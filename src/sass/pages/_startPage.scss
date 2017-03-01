@@ -1,0 +1,111 @@
+.Board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.page.start-page{
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background: #fff;
+
+
+  &.columns-1{
+    form.form{
+      &>div{
+        width: 100%;
+        .input-box.left{
+          label{
+            min-width: 30%;
+          }
+        }
+      }
+    }
+  }
+  &.columns-2{
+    form.form {
+      & > div {
+        width: 45%;
+        .input-box.left{
+          label{
+            min-width: 30%;
+          }
+        }
+      }
+    }
+  }
+  &.columns-3{
+    form.form {
+      & > div {
+        width: 30%;
+      }
+    }
+  }
+
+  .make-form{
+    width: 100%;
+    padding: 30px 0 0 0;
+    form{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      &>div{
+        width: 45%;
+        //height: 50px;
+      }
+
+      .input-box{
+        height: 75px;
+          label{
+            line-height: 40px;
+            font-size: 22px;
+          }
+        &.top{
+
+        }
+        &.left{
+          display: flex;
+          align-items: center;
+          label{
+            padding: 0 10px 0 0;
+            line-height: 22px;
+          }
+        }
+      }
+      .checkbox-wrapper{
+        height: 90px;
+        &.top{
+
+        }
+        &.left{
+          display: flex;
+          align-items: center;
+          p{
+            padding: 0 10px 0 0;
+            font-size: 22px;
+            line-height: 22px;
+          }
+        }
+      }
+
+    }
+  }
+
+
+  h3{
+    color: #006ec5;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 60px;
+  }
+  p{
+    color: #000;
+    font-size: 22px;
+    font-weight: 400;
+  }
+}

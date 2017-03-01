@@ -1,0 +1,29 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "ecmaVersion": 6,
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React"
+    }
+  },
+  "rules": {
+    "arrow-body-style": [2, "always"],
+    "react/sort-comp": [0],
+    "react/jsx-boolean-value": [0],
+    "react/jsx-no-bind": [2, {
+      "allowArrowFunctions": true
+    }]
+  }
+}

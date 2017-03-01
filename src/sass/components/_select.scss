@@ -1,0 +1,13 @@
+
+.Select {
+    position: relative;
+}
+.main-select{
+    &>{
+        outline: none;
+    }
+    .Select-arrow-zone{
+        display: none;
+
+    }
+}

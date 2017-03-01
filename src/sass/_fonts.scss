@@ -1,0 +1,51 @@
+//@font-face {
+//    font-family: 'SF-UI-Display-Regular';
+//    src: url('/assets/fonts/SF-UI-Display-Regular.eot');
+//    src: url('/assets/fonts/SF-UI-Display-Regular.eot?#iefix') format('embedded-opentype'),
+//         url('/assets/fonts/SF-UI-Display-Regular.woff2') format('woff2'),
+//         url('/assets/fonts/SF-UI-Display-Regular.woff') format('woff'),
+//         url('/assets/fonts/SF-UI-Display-Regular.ttf') format('truetype'),
+//         url('/assets/fonts/SF-UI-Display-Regular.svg#master_of_breakregular') format('svg');
+//    font-weight: normal;
+//    font-style: normal;
+//
+//}
+
+@mixin fontFace($FontName, $FontPathName ) {
+
+@font-face {
+
+  font-family: '#{$FontName}';
+	src:	url('/assets/fonts/#{$FontPathName}.eot');
+    src:	url('/assets/fonts/#{$FontPathName}.eot?#iefix') format('embedded-opentype'),
+			url('/assets/fonts/#{$FontPathName}.woff2') format('woff2'),
+            url('/assets/fonts/#{$FontPathName}.woff') format('woff'),
+            url('/assets/fonts/#{$FontPathName}.ttf') format('truetype');
+
+  font-weight: normal;
+  font-style: normal;
+  }
+}
+
+
+@mixin font($family,$fs,$lh:$fs) {
+    font-family: $family;
+    font-size: $fs;
+
+    @if $lh {
+        line-height: $lh;
+    }
+}
+@include fontFace('SFUIDisplayRegular','SFUIDisplayRegular');
+@include fontFace('SFUIDisplayBlack','SFUIDisplayBlack');
+
+
+$bold: 'SFUIDisplayBlack';
+$regular: 'SFUIDisplayRegular';
+/* USAGE
+@include fontFace('MyriadProSemibold','MyriadProSemibold');
+@include fontFace('MyriadProRegular','MyriadProRegular');
+$myriad-bold: 'MyriadProSemibold';
+$myriad-r: 'MyriadProRegular';
+
+*/

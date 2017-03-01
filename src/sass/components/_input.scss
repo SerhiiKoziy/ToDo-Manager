@@ -1,0 +1,49 @@
+.input-box {
+  margin: 0 0 15px 0;
+  .error{
+    color: #f10000;
+    display: block;
+    padding: 5px 0;
+  }
+  input {
+    height: 45px;
+
+  }
+  input, textarea {
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #e1e3e5;
+    font-size: 18px;
+    line-height: 21px;
+    color: #006ec5;
+    @include placeholder {
+      color: #bebebe;
+    }
+    width:100%;
+    resize: none;
+    transition: border 0.3s;
+    &:focus {
+      outline:none;
+      border: 1px solid $lightblue;
+    }
+  }
+  &>textarea{
+    height: 25vh;
+  }
+  .input-error {
+    display: none;
+    color: #f10000;
+  }
+  &.error {
+    margin: 0 0 25px 0;
+    line-height: 25px;
+    input {
+      border: 1px solid #f10000;
+    }
+    .input-error {
+      display: block;
+    }
+  }
+
+}
+
