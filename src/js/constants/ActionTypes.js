@@ -1,3 +1,6 @@
 
 
-export const UPDATE_ELEMENT = 'UPDATE_ELEMENT';
+export const ADD_ELEMENT = 'ADD_ELEMENT';
+
+export const MAIN_API_URL = 'MAIN_API_URL';
+export const WEATHER_FROM_COORDINATES = 'WEATHER_FROM_COORDINATES';
