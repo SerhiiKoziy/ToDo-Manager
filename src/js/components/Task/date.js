@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import DatePicker from 'material-ui/DatePicker';
-import * as actions from '../../actions';
 injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   datePicker: {
@@ -14,29 +13,21 @@ const muiTheme = getMuiTheme({
   }
 });
 
-function disablePrevDates() {
-  const startDate = new Date();
+function disablePrevDates(startDate) {
   const startSeconds = Date.parse(startDate);
-  //Date.parse(date)
-  //console.log(date,  startSeconds);
   return (date) => {
-    console.log( date);
-    return Date.parse(date) < startSeconds;
+    const maxDate = startSeconds + (14 * 1000 * 3600 * 24);
+    //return Date.parse(date) < startSeconds && Date.parse(date) < maxDate;
+    return  Date.parse(date) > maxDate;
   }
 }
-
-function setFechaDesde(x,event){
-  let curDate = Date.parse(new Date());
-  let dayBeforeDate = Math.ceil((Date.parse(event) - curDate) / 1000 / 3600 / 24);
-  console.log( dayBeforeDate);
-}
-const DatePickerExampleInline = () => (
-
+const startDate = new Date();
+const DatePickerExampleInline = ({onChange}) => (
   <MuiThemeProvider muiTheme={muiTheme}>
       <DatePicker hintText="Portrait Inline Dialog"
                   container="inline"
-                  //shouldDisableDate={}
-                  onChange={(x, event) => setFechaDesde(x,event)}
+                  shouldDisableDate={disablePrevDates(startDate)}
+                  onChange={onChange}
                   style={{
                     width: '100%'
                   }}

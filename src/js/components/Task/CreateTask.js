@@ -4,7 +4,8 @@ import * as actions from '../../actions';
 import {bindActionCreators} from 'redux';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import  { geocodeByAddress } from 'react-places-autocomplete';
-
+import dateformat from 'dateformat';
+var dateFormat = require('dateformat');
 
 import DatePickerExampleInline from './date';
 import TextField from '../TextField/TextField';
@@ -16,7 +17,9 @@ class CreateTask extends React.Component {
     this.state = {
       address: 'Kiev, Kyiv city, Ukraine',
       title:'',
-      description: ""
+      description: "",
+      daysToDate: 1,
+      date: '00-00-00',
     }
 
   }
@@ -39,7 +42,8 @@ class CreateTask extends React.Component {
           lat: lat,
           lng: lng
         },
-        day:10
+        day: this.state.daysToDate,
+        date: this.state.date
       };
       if(newTask.title.length > 0){
         this.sendTask(newTask)
@@ -61,21 +65,21 @@ class CreateTask extends React.Component {
   changeDesc(e) {
     this.setState({ description: e.target.value})
   }
-  changeDate(e){
-    console.log(e)
+  setFechaDesde(event, date){
+    let taskDate = dateFormat(date, "dddd, mmmm dS");
+    let curDate = Date.parse(new Date());
+    let daysToDate = Math.ceil((Date.parse(date) - curDate) / 1000 / 3600 / 24);
+
+    this.setState({day: daysToDate, date: taskDate});
+    //console.log( dateFormat(date, "dddd, mmmm dS"));
   }
-  setFechaDesde(x,event){
-  let curDate = Date.parse(new Date());
-  let dayBeforeDate = Math.ceil((Date.parse(event) - curDate) / 1000 / 3600 / 24);
-  console.log( dayBeforeDate);
-}
   render() {
 
     return (
       <form onSubmit={::this.handleFormSubmit}>
         <div className="input-wr">
           <DatePickerExampleInline
-            onClick={::this.changeDate.bind(this)}
+            onChange={::this.setFechaDesde}
           />
         </div>
 

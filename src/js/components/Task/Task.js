@@ -1,22 +1,25 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 
-class Task extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-        }
+const Task = ({ type, onClick, children , title}) => (
 
-    }
-    render(){
-        return(
-          <div id={id}
+          <div id={title}
 
                className={'task'}
                onClick={typeof onClick === 'function' ? onClick : false}>
               <h4>{title}</h4>
           </div>
-        )
-    }
+
+
+);
+
+
+Task.propTypes = {
+    type: React.PropTypes.string,
+    onClick: React.PropTypes.func,
+    children: React.PropTypes.string,
 };
 
+Task.defaultProps = {
+    type: 'default',
+};
 export default Task;

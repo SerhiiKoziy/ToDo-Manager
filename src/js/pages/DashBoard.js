@@ -1,10 +1,9 @@
 ﻿import React, { Component } from 'react';
 import * as actions from '../actions';
-import { Task } from '../components/Task/Task';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TextField from 'material-ui/TextField';
 import CreateTask from '../components/Task/CreateTask';
+import { Link } from 'react-router';
 
 
 
@@ -28,19 +27,30 @@ export default class StartPage extends Component {
   static propTypes = {
   };
 
-  weather(){
-    this.props.getWatherToCoor();
+  renderTask(item, i){
+
+    return(
+      <div id={i}
+           key={i}
+           className={`task ${item.type}`}>
+        <h4>{item.title}</h4>
+        <p>{item.description}</p>
+        <p className="date-task">{`${item.date}`}</p>
+        <p className="namePlace-task">{`${item.namePlace}`}</p>
+        <div className="weather-indicator">
+          <p>clouds : {item.weather.clouds}</p>
+        </div>
+        <div className="controls">
+          <Link to={`/task/${item.id}`}>View info</Link>
+          <Link to={`/task/${item.id}/edit`}>Edit task</Link>
+        </div>
+      </div>
+    )
+
   }
 
-
-  /*componentWillUnmount() {
-    this.unobserve();
-  }*/
-
-
-
   render() {
-    let arrList = this.props.data;
+    let tasksList = this.props.data;
     return (
       <div className={`page start-page columns`}>
         <h3>New list</h3>
@@ -48,26 +58,10 @@ export default class StartPage extends Component {
           <div className="lists-wr">
             <div className="list first-list">
               {
-                arrList.map((item, i)=>{
-                  return (
-                  <div id={i}
-                       key={i}
-                       className={`task ${item.type}`}>
-                    <h4>{item.title}</h4>
-                    <p>{item.description}</p>
-                    <p className="date-task">{`${item.date}`}</p>
-                    <p className="namePlace-task">{`${item.namePlace}`}</p>
-                  </div>
-
-
-
-                  )
+                tasksList.map((item, i)=>{
+                  return this.renderTask(item, i)
                 })
               }
-              {/*<Task
-               key={item.id}
-               title={item.title}
-               />*/}
             </div>
             <div className="list second-list">
 
@@ -77,13 +71,9 @@ export default class StartPage extends Component {
             </div>
           </div>
 
-            <div className="builder-task">
-
-
-                <CreateTask></CreateTask>
-
-
-            </div>
+          <div className="builder-task">
+            <CreateTask></CreateTask>
+          </div>
         </div>
       </div>
 

@@ -1,11 +1,13 @@
 main{
   position: relative;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 60px);
+  .route-wr{
 
+    height: calc(100vh - 120px);
+  }
 
-  .root,.route-wr,.page{
+  .root,.page{
     height: 100%;
-
   }
 
 
