@@ -29,6 +29,8 @@
         background: #ccc;
         margin: 0 0 20px 0;
         width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
         h4{
 
         }
@@ -37,12 +39,31 @@
           &.date-task{
 
           }
+
         }
+        .controls{
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          a{
+            padding: 5px 0;
+            display: block;
+          }
+          .deleteButton{
+            padding: 5px 0;
+            cursor: pointer;
+            color: #d0021b;
+          }
+        }
+
       }
       .list{
-        width: 30%;
+        width: 33%;
         height: 70vh;
         overflow: auto;
+        padding: 0 5px 0 0;
+        box-sizing: border-box;
+        @include scrollbar;
       }
       .first-list{
 

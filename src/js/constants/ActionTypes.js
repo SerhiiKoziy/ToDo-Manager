@@ -1,6 +1,11 @@
 
-
+export const UPDATE_DATA = 'UPDATE_DATA';
 export const ADD_ELEMENT = 'ADD_ELEMENT';
+export const DELETE_ELEMENT = 'DELETE_ELEMENT';
+
+
+export const REQUEST_API_RESULT = 'REQUEST_API_RESULT';
+
 
 export const MAIN_API_URL = 'MAIN_API_URL';
 export const WEATHER_FROM_COORDINATES = 'WEATHER_FROM_COORDINATES';

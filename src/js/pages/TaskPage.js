@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class StartPage extends Component {
+export default class TaskPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,25 +49,19 @@ export default class StartPage extends Component {
 
   render() {
     let tasksList = this.props.data;
+    const currentTask = this.props.params.taskId;
     return (
       <div className={`page task-page`}>
         <h3>Task</h3>
-        {this.props.params.taskId}
         <div className="inside-wr">
-          <div className="lists-wr">
-            <div className="list first-list">
               {
                 tasksList.map((item, i)=>{
+                  if(item.id == currentTask){
+                    return this.renderTask(item, i)
+                  }
 
-                  return this.renderTask(item, i)
                 })
               }
-            </div>
-          </div>
-
-          <div className="builder-task">
-            {this.props.children}
-          </div>
         </div>
       </div>
 

@@ -16,7 +16,7 @@ class CreateTask extends React.Component {
     super(props)
     this.state = {
       address: 'Kiev, Kyiv city, Ukraine',
-      title:'',
+      title: this.props.title || '',
       description: "",
       daysToDate: 1,
       date: '00-00-00',
@@ -24,17 +24,20 @@ class CreateTask extends React.Component {
 
   }
 
-  sendTask(newTask){
-    this.props.actions.getWatherToCoor(newTask);
+  createTask(newTaskParameters){
+
+    this.props.actions.getWatherToCoor(newTaskParameters);
   }
   handleFormSubmit(event){
-    event.preventDefault()
-    const { address } = this.state
+    event.preventDefault();
+    const { address } = this.state;
+    const uniqueId = this.props.elements.length + 1;
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { console.log('Oh no!', err) }
 
-      let newTask = {
+      let newTaskParameters = {
+        id: uniqueId,
         title: this.state.title,
         description:this.state.description,
         namePlace:address,
@@ -45,13 +48,12 @@ class CreateTask extends React.Component {
         day: this.state.daysToDate,
         date: this.state.date
       };
-      if(newTask.title.length > 0){
-        this.sendTask(newTask)
-        //this.sendTask(newTask)
+      if(newTaskParameters.title.length > 0){
+        this.createTask(newTaskParameters);
       }
 
 
-      console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
+     // console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
     })
 
   };
@@ -70,7 +72,7 @@ class CreateTask extends React.Component {
     let curDate = Date.parse(new Date());
     let daysToDate = Math.ceil((Date.parse(date) - curDate) / 1000 / 3600 / 24);
 
-    this.setState({day: daysToDate, date: taskDate});
+    this.setState({daysToDate: daysToDate, date: taskDate});
     //console.log( dateFormat(date, "dddd, mmmm dS"));
   }
   render() {

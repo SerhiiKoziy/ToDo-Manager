@@ -57,7 +57,7 @@
 
 @mixin scrollbar {
     &::-webkit-scrollbar {
-        width: 12px;
+        width: 8px;
     }
 
     &::-webkit-scrollbar-track {
@@ -70,17 +70,17 @@
 
     &::-webkit-scrollbar-thumb {
         border-radius: 0;
-        background: #012636;
+        background: #a2a0a0;
         -webkit-box-shadow: 0;
         transition: background 0.3s;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: lighten(#012636,10);
+        background: lighten(#a2a0a0,5);
     }
 
     &::-webkit-scrollbar-thumb:active {
-        background: darken(#012636,10);
+        background: darken(#a2a0a0,5);
     }
 }
 

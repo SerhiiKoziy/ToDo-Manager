@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class StartPage extends Component {
+export default class DashBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,22 +27,31 @@ export default class StartPage extends Component {
   static propTypes = {
   };
 
+  deleteTask(taskId){
+    this.props.deleteTaskInData(taskId);
+  }
+  componentDidUpdate(){
+    //this.pullFromLocalStorage()
+  }
+
   renderTask(item, i){
 
     return(
-      <div id={i}
-           key={i}
-           className={`task ${item.type}`}>
+      <div className={`task ${item.type}`}
+           id={item.id}
+           key={i}>
         <h4>{item.title}</h4>
         <p>{item.description}</p>
         <p className="date-task">{`${item.date}`}</p>
         <p className="namePlace-task">{`${item.namePlace}`}</p>
         <div className="weather-indicator">
-          <p>clouds : {item.weather.clouds}</p>
+          <p>clouds : {`${item.weather.clouds} %`}</p>
         </div>
         <div className="controls">
           <Link to={`/task/${item.id}`}>View info</Link>
           <Link to={`/task/${item.id}/edit`}>Edit task</Link>
+          <div className="deleteButton"
+               onClick={this.deleteTask.bind(this, item.id)}>Delete task</div>
         </div>
       </div>
     )
@@ -51,6 +60,12 @@ export default class StartPage extends Component {
 
   render() {
     let tasksList = this.props.data;
+
+    if(localStorage.getItem("LocalStorageTaskList")){
+      let string = localStorage.getItem("LocalStorageTaskList");
+      tasksList = JSON.parse(string)
+      console.log("local", tasksList);
+    }
     return (
       <div className={`page start-page columns`}>
         <h3>New list</h3>

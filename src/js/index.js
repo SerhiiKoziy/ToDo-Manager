@@ -22,7 +22,7 @@ render(
         <Route name="task" path='task/:taskId' component={TaskPage}>
           <Route name="EditTask" path='edit' component={EditTask}  />
         </Route>
-        <IndexRoute name="StartPage" component={DashBoard} />
+        <IndexRoute name="DashBoard" component={DashBoard} />
       </Route>
     </Router>
   </Provider>
