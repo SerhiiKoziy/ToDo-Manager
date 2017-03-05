@@ -27,7 +27,7 @@ export default class TaskPage extends Component {
   };
 
   renderTask(item, i){
-
+    let cloudImage = Math.ceil(item.weather.clouds / 15);
     return(
       <div id={i}
            key={i}
@@ -37,7 +37,7 @@ export default class TaskPage extends Component {
         <p className="date-task">{`${item.date}`}</p>
         <p className="namePlace-task">{`${item.namePlace}`}</p>
         <div className="weather-indicator">
-          <p>clouds : {item.weather.clouds}</p>
+          <img src={`./assets/images/${cloudImage}.png`} alt=""/>
         </div>
         <div className="controls">
 
@@ -49,10 +49,18 @@ export default class TaskPage extends Component {
 
   render() {
     let tasksList = this.props.data;
+    if(localStorage.getItem("LocalStorageTaskList")){
+      let string = localStorage.getItem("LocalStorageTaskList");
+      tasksList = JSON.parse(string)
+      console.log("local", tasksList);
+    }
     const currentTask = this.props.params.taskId;
+
+
     return (
       <div className={`page task-page`}>
         <h3>Task</h3>
+        {/*{this.props.children}*/}
         <div className="inside-wr">
               {
                 tasksList.map((item, i)=>{

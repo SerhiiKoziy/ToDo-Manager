@@ -31,7 +31,8 @@ class CreateTask extends React.Component {
   handleFormSubmit(event){
     event.preventDefault();
     const { address } = this.state;
-    const uniqueId = this.props.elements.length + 1;
+    let uniqueId = Date.parse( new Date() )/1000;
+    //const uniqueId = this.props.elements.length + 1;
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { console.log('Oh no!', err) }

@@ -35,7 +35,7 @@ export default class DashBoard extends Component {
   }
 
   renderTask(item, i){
-
+    let cloudImage = Math.ceil(item.weather.clouds / 15);
     return(
       <div className={`task ${item.type}`}
            id={item.id}
@@ -45,7 +45,8 @@ export default class DashBoard extends Component {
         <p className="date-task">{`${item.date}`}</p>
         <p className="namePlace-task">{`${item.namePlace}`}</p>
         <div className="weather-indicator">
-          <p>clouds : {`${item.weather.clouds} %`}</p>
+          <img src={`./assets/images/${cloudImage}.png`} alt=""/>
+          {/*<p>clouds : {`${item.weather.clouds} %`}</p>*/}
         </div>
         <div className="controls">
           <Link to={`/task/${item.id}`}>View info</Link>
@@ -63,7 +64,7 @@ export default class DashBoard extends Component {
 
     if(localStorage.getItem("LocalStorageTaskList")){
       let string = localStorage.getItem("LocalStorageTaskList");
-      tasksList = JSON.parse(string)
+      tasksList = JSON.parse(string);
       console.log("local", tasksList);
     }
     return (

@@ -17,8 +17,7 @@ function disablePrevDates(startDate) {
   const startSeconds = Date.parse(startDate);
   return (date) => {
     const maxDate = startSeconds + (14 * 1000 * 3600 * 24);
-    //return Date.parse(date) < startSeconds && Date.parse(date) < maxDate;
-    return  Date.parse(date) > maxDate;
+    return  (Date.parse(date) < startSeconds || Date.parse(date) > maxDate);
   }
 }
 const startDate = new Date();
