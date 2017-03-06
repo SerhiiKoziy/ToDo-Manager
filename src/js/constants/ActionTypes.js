@@ -1,7 +1,8 @@
 
-export const UPDATE_DATA = 'UPDATE_DATA';
+export const SET_DATA = 'SET_DATA';
 export const ADD_ELEMENT = 'ADD_ELEMENT';
 export const DELETE_ELEMENT = 'DELETE_ELEMENT';
+export const UPDATE_ELEMENT = 'UPDATE_ELEMENT';
 
 
 export const REQUEST_API_RESULT = 'REQUEST_API_RESULT';

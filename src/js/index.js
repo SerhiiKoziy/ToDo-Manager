@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 import configureStore from './store/configureStore';
-import {} from 'react-router';
+import { setList } from './actions';
 import  Root  from './pages/Root';
 import  DashBoard  from './pages/DashBoard';
 import  TaskPage from './pages/TaskPage';
@@ -12,7 +12,12 @@ import '../sass/common.scss';
 
 const store = configureStore();
 
+if(localStorage.getItem("LocalStorageTaskList")){
+  const string = localStorage.getItem("LocalStorageTaskList");
+  const tasksList = JSON.parse(string);
 
+  store.dispatch(setList(tasksList))
+}
 
 render(
   <Provider store={store}>

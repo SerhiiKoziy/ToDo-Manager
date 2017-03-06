@@ -12,50 +12,78 @@ import TextField from '../TextField/TextField';
 
 
 class CreateTask extends React.Component {
+  static propTypes = {
+    currentTask: React.PropTypes.object,
+    buttonText: React.PropTypes.string,
+  };
   constructor(props) {
     super(props)
-    this.state = {
+    const defaultValues = {
       address: 'Kiev, Kyiv city, Ukraine',
-      title: this.props.title || '',
-      description: "",
-      daysToDate: 1,
+      title: '',
+      description: '',
+      daysToDate:  1,
       date: '00-00-00',
-    }
+    };
+    this.state = this.props.currentTask ||  defaultValues
 
   }
 
   createTask(newTaskParameters){
-
-    this.props.actions.getWatherToCoor(newTaskParameters);
+    this.props.actions.addNewTask(newTaskParameters);
   }
+  editTask(editTaskParameters){
+    this.props.actions.getWatherToCoor(editTaskParameters);
+  }
+
   handleFormSubmit(event){
     event.preventDefault();
     const { address } = this.state;
     let uniqueId = Date.parse( new Date() )/1000;
-    //const uniqueId = this.props.elements.length + 1;
 
-    geocodeByAddress(address,  (err, { lat, lng }) => {
-      if (err) { console.log('Oh no!', err) }
+    if(this.props.currentTask){
+      geocodeByAddress(address,  (err, { lat, lng }) => {
+        if (err) { console.log('Oh no!', err) }
+        let task = this.props.currentTask
+        let editTaskParameters = {
+          id: task.id,
+          title: this.state.title,
+          description:this.state.description,
+          namePlace:address,
+          position:{
+            lat: lat,
+            lng: lng
+          },
+          day: this.state.daysToDate,
+          date: this.state.date
+        };
+        this.editTask(editTaskParameters);
 
-      let newTaskParameters = {
-        id: uniqueId,
-        title: this.state.title,
-        description:this.state.description,
-        namePlace:address,
-        position:{
-          lat: lat,
-          lng: lng
-        },
-        day: this.state.daysToDate,
-        date: this.state.date
-      };
-      if(newTaskParameters.title.length > 0){
-        this.createTask(newTaskParameters);
-      }
+      })
+    }else{
+      geocodeByAddress(address,  (err, { lat, lng }) => {
+        if (err) { console.log('Oh no!', err) }
+
+        let newTaskParameters = {
+          id: uniqueId,
+          title: this.state.title,
+          description:this.state.description,
+          namePlace:address,
+          position:{
+            lat: lat,
+            lng: lng
+          },
+          day: this.state.daysToDate,
+          date: this.state.date
+        };
+        if(newTaskParameters.title.length > 0){
+          this.createTask(newTaskParameters);
+        }
+      })
+    }
 
 
-     // console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
-    })
+
 
   };
   changeLocation(address){
@@ -77,7 +105,11 @@ class CreateTask extends React.Component {
     //console.log( dateFormat(date, "dddd, mmmm dS"));
   }
   render() {
+    console.log("1111", this.props.currentTask);
 
+    if(this.props.currentTask ){
+
+    }
     return (
       <form onSubmit={::this.handleFormSubmit}>
         <div className="input-wr">
@@ -101,7 +133,7 @@ class CreateTask extends React.Component {
             onChange={::this.changeLocation}
           />
         </div>
-        <button type="submit">Add task</button>
+        <button type="submit">{this.props.buttonText || "Edd task"}</button>
       </form>
 
     )
@@ -113,4 +145,4 @@ function mapDispatch(dispatch) {
     actions: bindActionCreators(actions, dispatch),
   };
 }
-export default connect(state => state, mapDispatch)(CreateTask);
+export default connect(null , mapDispatch)(CreateTask);

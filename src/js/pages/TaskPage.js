@@ -7,7 +7,7 @@ import CreateTask from '../components/Task/CreateTask';
 
 
 const mapStateToProps = (state) => {
-  return { data: state.elements, columns: state.columns };
+  return { data: state.elements };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -37,7 +37,8 @@ export default class TaskPage extends Component {
         <p className="date-task">{`${item.date}`}</p>
         <p className="namePlace-task">{`${item.namePlace}`}</p>
         <div className="weather-indicator">
-          <img src={`./assets/images/${cloudImage}.png`} alt=""/>
+          <img src={`../../assets/images/${cloudImage}.png`}
+               alt={`clouds-${item.weather.clouds}%`}/>
         </div>
         <div className="controls">
 
@@ -49,19 +50,16 @@ export default class TaskPage extends Component {
 
   render() {
     let tasksList = this.props.data;
-    if(localStorage.getItem("LocalStorageTaskList")){
-      let string = localStorage.getItem("LocalStorageTaskList");
-      tasksList = JSON.parse(string)
-      console.log("local", tasksList);
-    }
+
     const currentTask = this.props.params.taskId;
 
 
     return (
       <div className={`page task-page`}>
         <h3>Task</h3>
-        {/*{this.props.children}*/}
+
         <div className="inside-wr">
+
               {
                 tasksList.map((item, i)=>{
                   if(item.id == currentTask){
@@ -70,7 +68,9 @@ export default class TaskPage extends Component {
 
                 })
               }
+          {this.props.children}
         </div>
+
       </div>
 
     );

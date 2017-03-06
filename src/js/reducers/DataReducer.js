@@ -7,12 +7,11 @@ export default function DataReducer(state = INITIAL_STATE, action) {
   switch (type) {
 
     case types.ADD_ELEMENT:
-
-      let newDate = [payload, ...data];
-      localStorage.setItem("LocalStorageTaskList", JSON.stringify(newDate));
+      let newElements = [payload, ...data];
+      localStorage.setItem("LocalStorageTaskList", JSON.stringify(newElements));
       return {
         ...state,
-        elements:newDate,
+        elements:newElements,
       };
 
     case types.DELETE_ELEMENT:
@@ -21,15 +20,22 @@ export default function DataReducer(state = INITIAL_STATE, action) {
           return item
         }
       }).filter( item => !!item);
-
       localStorage.setItem("LocalStorageTaskList", JSON.stringify(newDataAfterDel));
       return {
         ...state,
         elements: newDataAfterDel,
       };
 
-    case types.UPDATE_DATA:
+    case types.UPDATE_ELEMENT:
+      const filteredElements = state.elements.filter( element => {
+        return element.id !== payload.id
+      });
+      return {
+        ...state,
+        elements: [...filteredElements, payload],
+      };
 
+    case types.SET_DATA:
       return {
         ...state,
         elements: payload,

@@ -27,7 +27,6 @@ export default class EditTask extends Component {
   };
 
   renderTask(item, i){
-
     return(
       <div id={i}
            key={i}
@@ -46,40 +45,30 @@ export default class EditTask extends Component {
     )
 
   }
-
-  render() {
+  renderEditForm(){
     let tasksList = this.props.data;
     const currentTaskID = this.props.params.taskId;
-    let currentTask;
-    tasksList.map(item => {
-      if(item.id == currentTaskID){
-        currentTask = item;
-      }
-    });
-    return (
-      <div className={`page edit-page`}>
-        <h3>Edit Task</h3>
-        <div className="inside-wr">
-          <div>
-            {
-              tasksList.map((item, i)=>{
-                if(item.id == currentTaskID){
-                  return this.renderTask(item, i)
-                }
+    const currentTask = tasksList.find(item => item.id == currentTaskID)
 
-              })
-            }
-          </div>
-          <div>
-            <div className="builder-task">
-              <CreateTask
-                // currentTask: {currentTask}
-              />
-            </div>
-          </div>
-        </div>
+    return(
+      <div className="builder-task edit-builder-task">
+        <CreateTask
+          currentTask = { currentTask || {} }
+          buttonText = {"Edit task"}
+        />
       </div>
+    )
+  }
 
+
+  render() {
+
+
+
+    return (
+      <div className="builder-task-wr">
+        {this.renderEditForm()}
+      </div>
     );
   }
 }

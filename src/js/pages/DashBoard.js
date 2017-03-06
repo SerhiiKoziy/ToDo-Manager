@@ -35,6 +35,7 @@ export default class DashBoard extends Component {
   }
 
   renderTask(item, i){
+
     let cloudImage = Math.ceil(item.weather.clouds / 15);
     return(
       <div className={`task ${item.type}`}
@@ -65,7 +66,8 @@ export default class DashBoard extends Component {
     if(localStorage.getItem("LocalStorageTaskList")){
       let string = localStorage.getItem("LocalStorageTaskList");
       tasksList = JSON.parse(string);
-      console.log("local", tasksList);
+      //this.sendLocalList(tasksList)
+     // console.log("local", tasksList);
     }
     return (
       <div className={`page start-page columns`}>
@@ -88,7 +90,7 @@ export default class DashBoard extends Component {
           </div>
 
           <div className="builder-task">
-            <CreateTask></CreateTask>
+            <CreateTask/>
           </div>
         </div>
       </div>
