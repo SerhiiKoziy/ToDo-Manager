@@ -44,12 +44,12 @@ class CreateTask extends React.Component {
     if(this.props.currentTask){
       geocodeByAddress(address,  (err, { lat, lng }) => {
         if (err) { console.log('Oh no!', err) }
-        let task = this.props.currentTask
+        let task = this.props.currentTask;
         let editTaskParameters = {
           id: task.id,
           title: this.state.title,
           description:this.state.description,
-          namePlace:address,
+          address:address,
           position:{
             lat: lat,
             lng: lng
@@ -68,7 +68,7 @@ class CreateTask extends React.Component {
           id: uniqueId,
           title: this.state.title,
           description:this.state.description,
-          namePlace:address,
+          address:address,
           position:{
             lat: lat,
             lng: lng
@@ -120,16 +120,17 @@ class CreateTask extends React.Component {
 
         <TextField classNameBox={'input-wr'}
                    placeholder = {'Write title Task'}
+                   value={this.state.title || ""}
                    onChange={this.changeTitle.bind(this)}
         />
         <TextField classNameBox={'input-wr'}
                    placeholder = {'Write description Task'}
-                   value={'ddd'}
+                   value={this.state.description || ""}
                    onChange={this.changeDesc.bind(this)}
         />
         <div className="input-wr">
           <PlacesAutocomplete
-            value={this.state.address}
+            value={this.state.address || ""}
             onChange={::this.changeLocation}
           />
         </div>
