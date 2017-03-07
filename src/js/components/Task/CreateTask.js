@@ -30,10 +30,10 @@ class CreateTask extends React.Component {
   }
 
   createTask(newTaskParameters){
-    this.props.actions.addNewTask(newTaskParameters);
+    this.props.actions.createTask(newTaskParameters);
   }
   editTask(editTaskParameters){
-    this.props.actions.getWatherToCoor(editTaskParameters);
+    this.props.actions.editTask(editTaskParameters);
   }
 
   handleFormSubmit(event){
@@ -86,10 +86,10 @@ class CreateTask extends React.Component {
 
 
   };
+
   changeLocation(address){
     this.setState({ address })
   }
-
   changeTitle(e){
     this.setState({ title: e.target.value})
   }

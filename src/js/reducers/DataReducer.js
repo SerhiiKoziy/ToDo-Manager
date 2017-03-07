@@ -30,6 +30,8 @@ export default function DataReducer(state = INITIAL_STATE, action) {
       const filteredElements = state.elements.filter( element => {
         return element.id !== payload.id
       });
+
+      localStorage.setItem("LocalStorageTaskList", JSON.stringify([...filteredElements, payload]));
       return {
         ...state,
         elements: [...filteredElements, payload],
