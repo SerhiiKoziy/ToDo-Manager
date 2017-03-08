@@ -1,15 +1,11 @@
 import React from 'react';
 
 const Task = ({ type, onClick, children , title}) => (
-
           <div id={title}
-
                className={'task'}
                onClick={typeof onClick === 'function' ? onClick : false}>
               <h4>{title}</h4>
           </div>
-
-
 );
 
 

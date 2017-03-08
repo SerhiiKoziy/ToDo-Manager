@@ -34,7 +34,7 @@ export default class EditTask extends Component {
         <h4>{item.title}</h4>
         <p>{item.description}</p>
         <p className="date-task">{`${item.date}`}</p>
-        <p className="namePlace-task">{`${item.namePlace}`}</p>
+        <p className="namePlace-task">{`${item.address}`}</p>
         <div className="weather-indicator">
           <p>clouds : {item.weather.clouds}</p>
         </div>

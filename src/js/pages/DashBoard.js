@@ -47,7 +47,7 @@ export default class DashBoard extends Component {
     return this.state.droppedBoxNames.indexOf(boxName) > -1;
   }
   deleteTask(taskId){
-    this.props.deleteTaskInData(taskId);
+    this.props.deleteTaskInList(taskId);
   }
   componentDidUpdate(){
   }
@@ -68,7 +68,7 @@ export default class DashBoard extends Component {
         <h4>{item.title}</h4>
         <p>{item.description}</p>
         <p className="date-task">{`${item.date}`}</p>
-        <p className="namePlace-task">{`${item.namePlace}`}</p>
+        <p className="namePlace-task">{`${item.address}`}</p>
         <div className="weather-indicator">
           <img src={`./assets/images/${cloudImage}.png`} alt=""/>
           {/*<p>clouds : {`${item.weather.clouds} %`}</p>*/}

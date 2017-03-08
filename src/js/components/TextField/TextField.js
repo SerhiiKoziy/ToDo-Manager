@@ -7,12 +7,14 @@ const TextField = (props) => {
   return (
 
     <div className={`input-box ${props.classNameBox}`}>
-      <label className="label" htmlFor={props.id}>{props.label}</label>
+      <label className="label"
+             htmlFor={props.id}>{props.label}</label>
       <input
         name={props.name}
         label={props.label}
         placeholder={props.placeholder}
         id={props.id}
+        value={props.value || ''}
         onChange={typeof props.onChange === 'function' ? props.onChange : false}
       />
     </div>

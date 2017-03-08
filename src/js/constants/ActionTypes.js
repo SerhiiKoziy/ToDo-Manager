@@ -1,8 +1,8 @@
 
-export const SET_DATA = 'SET_DATA';
-export const ADD_ELEMENT = 'ADD_ELEMENT';
-export const DELETE_ELEMENT = 'DELETE_ELEMENT';
-export const UPDATE_ELEMENT = 'UPDATE_ELEMENT';
+export const SET_LIST = 'SET_LIST';
+export const ADD_TASK = 'ADD_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
+export const UPDATE_TASK = 'UPDATE_TASK';
 
 
 export const REQUEST_API_RESULT = 'REQUEST_API_RESULT';
