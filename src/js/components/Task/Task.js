@@ -1,22 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Task = ({ item, onDelete, weather, map }) => {
+const Task = ({ item, onDelete, weather, children, map }) => {
   const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
   let currentWeather = weather || null;
 
-  if(currentWeather ){
-    Object.keys(currentWeather).map(key => {
-      if (key !== 'weather' && key !== 'temp') {
-        return (
-            <div key={key}>
-              <span>{key} :</span>
-              <span>{weather[key]}</span>
-            </div>
-        );
-      }
-    })
-  }
+  
 
   return (
     <div
@@ -35,7 +24,7 @@ const Task = ({ item, onDelete, weather, map }) => {
         image: cloudImageUrl,
       })}
 
-
+      {children}
       <div className="controls">
         <div className="control control-view">
           <Link to={`/task/${item.id}`}>

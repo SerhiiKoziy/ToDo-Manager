@@ -31,7 +31,7 @@ export default class TaskPage extends Component {
   }
 
   renderWeather() {
-    /*const weather = this.props.currentTask.weather;
+    const weather = this.props.currentTask.weather;
     return Object.keys(weather).map(key => {
       if (key !== 'weather' && key !== 'temp') {
         return (
@@ -41,7 +41,7 @@ export default class TaskPage extends Component {
           </div>
         );
       }
-    })*/
+    })
     //return null;
   }
 
