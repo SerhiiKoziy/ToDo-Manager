@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node webpack-dev-server.js",
     "build": "webpack --config webpack.config.prod.js",
-    "lint": "eslint ./src/js --ext .js"
+    "lint": "eslint ./src/js --ext .js",
+    "deploy": "gh-pages -d public"
   },
   "repository": {
     "type": "git",
