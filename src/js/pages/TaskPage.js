@@ -64,11 +64,12 @@ export default class TaskPage extends Component {
             <Task item={this.props.currentTask}
                   onDelete={this.deleteTask}
                   map={this.renderMap()}
-                  weather={this.props.currentTask.weather || {}}>
+                  weather={this.props.currentTask.weather }>
               {this.renderWeather()}
             </Task>
-          </div>
 
+          </div>
+            {this.props.children}
         </div>
 
       </div>

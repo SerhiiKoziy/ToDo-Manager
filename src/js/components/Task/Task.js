@@ -5,7 +5,7 @@ const Task = ({ item, onDelete, weather, children, map }) => {
   const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
   let currentWeather = weather || null;
 
-  
+
 
   return (
     <div
