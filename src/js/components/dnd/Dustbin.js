@@ -2,12 +2,12 @@ import React, { PropTypes, Component } from 'react';
 import { DropTarget } from 'react-dnd';
 
 const style = {
-  //color: 'white',
+  // color: 'white',
 };
 
 const dustbinTarget = {
   drop(props, monitor) {
-    //console.log(props.id, monitor)
+    // console.log(props.id, monitor)
     props.onDrop(monitor.getItem(), props.listId);
   },
 };

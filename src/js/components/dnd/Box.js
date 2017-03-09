@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { DragSource } from 'react-dnd';
 
 const style = {
-  //backgroundColor: 'white',
+  // backgroundColor: 'white',
   cursor: 'move',
 };
 
@@ -33,7 +33,7 @@ export default class Box extends Component {
 
     return connectDragSource(
       <div style={{ ...style }} className={`task-draggable ${isDragging ? 'is-dragging' : ''}`}>
-        {/*isDropped ?
+        {/* isDropped ?
          <s>{name}</s> :
          name*/
         }

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createTask, editTask }  from '../../actions';
+import { createTask, editTask } from '../../actions';
 import { bindActionCreators } from 'redux';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import  { geocodeByAddress } from 'react-places-autocomplete';
-import {dateformat} from 'dateformat';
+import { geocodeByAddress } from 'react-places-autocomplete';
+import { dateformat } from 'dateformat';
 var dateFormat = require('dateformat');
 
 import DatePickerExampleInline from './date';
@@ -50,8 +50,6 @@ class CreateTask extends React.Component {
       },
     };
     this.state = this.defaultState;
-
-
   }
 
   updateValue(target, value) {
@@ -59,10 +57,9 @@ class CreateTask extends React.Component {
       values: {
         ...this.state.values,
         [target]: value,
-      }
-    })
+      },
+    });
   }
-
 
 
   getLocationByAdress(address) {
@@ -73,12 +70,12 @@ class CreateTask extends React.Component {
         }
         resolve(location);
       });
-    })
+    });
   }
 
   createTask(values) {
     const dateObject = new Date(values.originalDate);
-    const date = dateFormat(dateObject, "dddd, mmmm dS");
+    const date = dateFormat(dateObject, 'dddd, mmmm dS');
     const day = Math.ceil(Math.abs((dateObject.getTime() - (new Date()).getTime()) / 1000 / 3600 / 24));
     const currentTime = new Date().getTime();
 
@@ -87,7 +84,7 @@ class CreateTask extends React.Component {
       date,
       day,
       id: currentTime,
-      stageProces: "ToDo",
+      stageProces: 'ToDo',
       createdAt: currentTime,
       updatedAt: currentTime,
     };
@@ -107,9 +104,9 @@ class CreateTask extends React.Component {
       }
 
       submitHandler(task);
-      this.setState(this.defaultState)
+      this.setState(this.defaultState);
     });
-  };
+  }
 
   changeLocation(address) {
     this.updateValue('address', address);
@@ -145,8 +142,8 @@ class CreateTask extends React.Component {
       touched: {
         ...this.state.touched,
         [target]: true,
-      }
-    })
+      },
+    });
   }
 
   render() {
@@ -160,25 +157,25 @@ class CreateTask extends React.Component {
         </div>
 
         <TextField classNameBox={'input-wr'}
-                   placeholder={'Enter title'}
-                   value={this.state.values.title}
-                   fieldName="title"
-                   maxLength="25"
-                   onChange={::this.handleInputChange}
-                   onBlur={::this.handleInputBlur}
-                   errorText={this.showError('title')}
+          placeholder={'Enter title'}
+          value={this.state.values.title}
+          fieldName="title"
+          maxLength="25"
+          onChange={::this.handleInputChange}
+          onBlur={::this.handleInputBlur}
+          errorText={this.showError('title')}
         />
         <TextField classNameBox={'input-wr'}
-                   placeholder={'Enter description'}
-                   value={this.state.values.description}
-                   fieldName="description"
-                   onChange={::this.handleInputChange}
-                   onBlur={::this.handleInputBlur}
-                   errorText={this.showError('description')}
+          placeholder={'Enter description'}
+          value={this.state.values.description}
+          fieldName="description"
+          onChange={::this.handleInputChange}
+          onBlur={::this.handleInputBlur}
+          errorText={this.showError('description')}
         />
         <div className="input-box input-wr">
           <PlacesAutocomplete
-            value={this.state.values.address || ""}
+            value={this.state.values.address || ''}
             onChange={::this.changeLocation}
             placeholder="Enter deadline location adress"
           />
@@ -186,12 +183,13 @@ class CreateTask extends React.Component {
         <button
           type="submit"
           className="btn btn--fw"
-          disabled={!this.isValidForm()}>
-          {this.props.buttonText || "Add task"}
+          disabled={!this.isValidForm()}
+        >
+          {this.props.buttonText || 'Add task'}
         </button>
       </form>
 
-    )
+    );
   }
 }
 

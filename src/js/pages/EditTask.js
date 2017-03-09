@@ -5,9 +5,8 @@ import { bindActionCreators } from 'redux';
 import CreateTask from '../components/Task/CreateTask';
 
 
-
 const mapStateToProps = (state) => {
-  return { data: state.data};
+  return { data: state.data };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -20,16 +19,16 @@ export default class EditTask extends Component {
   render() {
     const tasksList = this.props.data;
     const currentTaskID = this.props.params.taskId;
-    const currentTask = tasksList.find(item => item.id == currentTaskID)
+    const currentTask = tasksList.find(item => item.id == currentTaskID);
 
-    return(
+    return (
       <div className="builder-task edit-builder-task">
         <CreateTask
-          key = {currentTask.updatedAt}
-          currentTask = { currentTask || {} }
-          buttonText = {"Edit task"}
+          key={currentTask.updatedAt}
+          currentTask={currentTask || {}}
+          buttonText={"Edit task"}
         />
       </div>
-    )
+    );
   }
 }

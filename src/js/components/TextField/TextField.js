@@ -5,7 +5,8 @@ const TextField = (props) => {
   return (
     <div className={`input-box ${props.classNameBox}`}>
       <label className="label"
-             htmlFor={props.id}>{props.label}</label>
+        htmlFor={props.id}
+      >{props.label}</label>
       <input
         name={props.name}
         label={props.label}
@@ -18,8 +19,7 @@ const TextField = (props) => {
       />
       <label className="error visible">{props.errorText}</label>
     </div>
-  )
-
+  );
 };
 
 // Make ESLint happy again: add validation to props

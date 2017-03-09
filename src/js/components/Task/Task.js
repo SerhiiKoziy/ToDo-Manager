@@ -6,7 +6,6 @@ const Task = ({ item, onDelete, weather, children, map }) => {
   let currentWeather = weather || null;
 
 
-
   return (
     <div
       className={`task ${item.stageProces}`}
@@ -17,7 +16,7 @@ const Task = ({ item, onDelete, weather, children, map }) => {
       <p className="date-task">{`${item.date}`}</p>
       <p className="namePlace-task">{`${item.address}`}</p>
       <div className="weather-indicator">
-        <img src={cloudImageUrl} alt=""/>
+        <img src={cloudImageUrl} alt="" />
       </div>
 
       {map && React.cloneElement(map, {
@@ -37,7 +36,8 @@ const Task = ({ item, onDelete, weather, children, map }) => {
         </div>
         <div className="control control-delete">
           <div className="deleteButton"
-               onClick={onDelete}>
+            onClick={onDelete}
+          >
             <i className="fa fa-trash" aria-hidden="true"></i>
           </div>
         </div>

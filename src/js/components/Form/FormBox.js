@@ -52,7 +52,6 @@ const FormBox = (props) => {
   return (
     React.cloneElement(component)
   );
-
 };
 
 FormBox.propTypes = {

@@ -6,35 +6,36 @@ import DatePicker from 'material-ui/DatePicker';
 injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   datePicker: {
-    //selectColor: '#fff',
+    // selectColor: '#fff',
   },
-  textFieldStyle:{
+  textFieldStyle: {
     color: '#ffffff',
-  }
+  },
 });
 
 function disablePrevDates() {
   const startSeconds = Date.parse(new Date());
   return (date) => {
     const maxDate = startSeconds + (14 * 1000 * 3600 * 24);
-    return  (Date.parse(date) < startSeconds || Date.parse(date) > maxDate);
-  }
+    return (Date.parse(date) < startSeconds || Date.parse(date) > maxDate);
+  };
 }
 
-const DatePickerExampleInline = ({onChange, startDate}) => (
+const DatePickerExampleInline = ({ onChange, startDate }) => (
   <MuiThemeProvider muiTheme={muiTheme}>
       <DatePicker hintText="Portrait Inline Dialog"
-                  container="inline"
-                  className="input-datepicker"
-                  shouldDisableDate={disablePrevDates()}
-                  onChange={onChange}
-                  defaultDate={new Date(startDate)}
-                  style={{
-                    width: '100%'
-                  }}
-                  textFieldStyle={{
-                    color: 'yellow'
-                  }}/>
+        container="inline"
+        className="input-datepicker"
+        shouldDisableDate={disablePrevDates()}
+        onChange={onChange}
+        defaultDate={new Date(startDate)}
+        style={{
+          width: '100%',
+        }}
+        textFieldStyle={{
+          color: 'yellow',
+        }}
+      />
     </MuiThemeProvider>
 );
 

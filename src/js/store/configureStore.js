@@ -9,7 +9,8 @@ const reducer = combineReducers({
   routing: routerReducer,
   data: DataReducer,
 });
-export default function configureStore(baseHistory, initialState = INITIAL_STATE ) {
+
+export default function configureStore(baseHistory, initialState = INITIAL_STATE) {
   const routingMiddleware = routerMiddleware(baseHistory);
   const logger = createLogger();
   const middleware = applyMiddleware(routingMiddleware, thunk, logger);
@@ -20,8 +21,8 @@ export default function configureStore(baseHistory, initialState = INITIAL_STATE
   const history = syncHistoryWithStore(baseHistory, store);
   if (module.hot) {
     module.hot.accept('../reducers', () => {
-        return store.replaceReducer(require('../reducers') /* .default if you use Babel 6+  */);
-      }
+      return store.replaceReducer(require('../reducers'));
+    }
     );
   }
 

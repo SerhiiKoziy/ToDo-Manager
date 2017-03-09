@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 @DragDropContext(HTML5Backend)
 @connect(mapStateToProps, {
-  deleteTaskInList, updateTask
+  deleteTaskInList, updateTask,
 })
 export default class DashBoard extends Component {
   constructor(props) {
@@ -34,7 +34,6 @@ export default class DashBoard extends Component {
       ],
       droppedBoxNames: [],
     };
-
   }
 
   static propTypes = {};
@@ -51,7 +50,6 @@ export default class DashBoard extends Component {
   }
 
   renderTask(item, i, type) {
-
     let cloudImage = Math.ceil(item.weather.clouds / 20);
     return (
       <Box
@@ -61,21 +59,18 @@ export default class DashBoard extends Component {
         isDropped={this.isDropped(item.title)}
         key={i}
       >
-        <Task item={item} key={i} onDelete={this.deleteTask.bind(this, item.id)}/>
+        <Task item={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
       </Box>
-    )
-
+    );
   }
 
   handleDrop(index, item, target) {
-
     const changedTask = this.props.data.filter(element => {
       return element.id == item.taskId;
     });
     changedTask[0].stageProces = target;
-    console.log(index, item, target)
+    console.log(index, item, target);
     this.props.updateTask(changedTask);
-
   }
 
 
@@ -84,12 +79,12 @@ export default class DashBoard extends Component {
     const { dustbins } = this.state;
 
 
-    if (localStorage.getItem("LocalStorageTaskList")) {
-      let string = localStorage.getItem("LocalStorageTaskList");
+    if (localStorage.getItem('LocalStorageTaskList')) {
+      let string = localStorage.getItem('LocalStorageTaskList');
       tasksList = JSON.parse(string);
     }
     return (
-      <div className={`page start-page columns`}>
+      <div className={'page start-page columns'}>
         <div className="dashboard-wr">
           <div className="inside-wr">
             <div className="lists-wr">
@@ -106,12 +101,13 @@ export default class DashBoard extends Component {
                     listId={id}
                     onDrop={(item, target) => ::this.handleDrop(index, item, target)}
                     key={index}
-                    index={index}>
+                    index={index}
+                  >
                     {
-                      tasksList.map((item, i)=> {
+                      tasksList.map((item, i) => {
                         if (item.stageProces == id) {
                           let type = item.stageProces;
-                          return this.renderTask(item, i, type)
+                          return this.renderTask(item, i, type);
                         }
                       })
                     }
@@ -124,14 +120,13 @@ export default class DashBoard extends Component {
 
 
           <div className="builder-task">
-            <CreateTask/>
+            <CreateTask />
           </div>
 
         </div>
 
 
       </div>
-
 
 
     );
