@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import {deleteTaskInList, updateTask} from '../actions';
+import { deleteTaskInList, updateTask } from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CreateTask from '../components/Task/CreateTask';
@@ -13,16 +13,16 @@ import Box from '../components/dnd/Box';
 import ItemTypes from '../components/dnd/ItemTypes';
 
 const mapStateToProps = (state) => {
-  return { data: state.data};
+  return { data: state.data };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch);
 };
 @DragDropContext(HTML5Backend)
-@connect(mapStateToProps,{
+@connect(mapStateToProps, {
   deleteTaskInList, updateTask
-} )
+})
 export default class DashBoard extends Component {
   constructor(props) {
     super(props);
@@ -96,7 +96,7 @@ export default class DashBoard extends Component {
 
               {dustbins.map(({ accepts, id }, index) =>
                 <div key={`wr-${index}`} className="list-wrapper">
-                  <div  className="list-name">
+                  <div className="list-name">
                     <h3>
                       {id}
                     </h3>

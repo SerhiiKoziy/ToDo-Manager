@@ -34,8 +34,8 @@ export default class Box extends Component {
     return connectDragSource(
       <div style={{ ...style }} className={`task-draggable ${isDragging ? 'is-dragging' : ''}`}>
         {/*isDropped ?
-          <s>{name}</s> :
-          name*/
+         <s>{name}</s> :
+         name*/
         }
         {children}
       </div>,

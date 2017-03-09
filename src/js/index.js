@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory, hashHistory, Route, IndexRoute } from 'react-router';
+import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 import configureStore from './store/configureStore';
 import { setList } from './actions';
 import  Root  from './pages/Root';
@@ -10,7 +10,7 @@ import  TaskPage from './pages/TaskPage';
 import  EditTask from './pages/EditTask';
 import '../sass/common.scss';
 
-const { store, history } = configureStore(hashHistory);
+const { store, history } = configureStore(browserHistory);
 
 if(localStorage.getItem("LocalStorageTaskList")){
   const string = localStorage.getItem("LocalStorageTaskList");

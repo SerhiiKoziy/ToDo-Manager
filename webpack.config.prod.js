@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: ['babel-polyfill','./src/js/index'],
+  entry: ['babel-polyfill', './src/js/index'],
   output: {
     path: path.join(__dirname, 'public/assets/js/'),
     filename: 'bundle.js',
@@ -14,16 +14,14 @@ module.exports = {
   },
 
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compressor: { warnings: false }
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: { warnings: false }
+    }),
     new webpack.DefinePlugin({
       "process.env": {
-        // This has effect on the react lib size
         "NODE_ENV": JSON.stringify("production")
       }
     }),
-      //new ExtractTextPlugin('style.css'),
   ],
 
   module: {
