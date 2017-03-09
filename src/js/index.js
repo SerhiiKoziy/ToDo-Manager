@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory, Route, IndexRoute } from 'react-router';
+import { Router, browserHistory, hashHistory, Route, IndexRoute } from 'react-router';
 import configureStore from './store/configureStore';
 import { setList } from './actions';
 import  Root  from './pages/Root';
@@ -21,7 +21,7 @@ if(localStorage.getItem("LocalStorageTaskList")){
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route name="Root" path="/" component={Root}>
 
         <Route name="task" path='task/:taskId' component={TaskPage}>

@@ -11,8 +11,7 @@ export default function configureStore(initialState = INITIAL_STATE) {
   const middleware = applyMiddleware(thunk, logger);
 
   const store = createStore(DataReducer, initialState, compose(
-    middleware,
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    middleware
   ));
 
   if (module.hot) {

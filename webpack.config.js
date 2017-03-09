@@ -28,7 +28,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.(scss|js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
           require.resolve('react-hot-loader'),
