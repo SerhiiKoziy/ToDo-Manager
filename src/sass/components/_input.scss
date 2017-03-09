@@ -1,14 +1,17 @@
 .input-box {
-  margin: 0 0 15px 0;
-  .error{
+  margin: 0;
+
+  .error {
     color: #f10000;
     display: block;
-    padding: 5px 0;
+    line-height: 20px;
+    height: 15px;
   }
+
   input {
     height: 45px;
-
   }
+
   input, textarea {
     padding: 12px 20px;
     box-sizing: border-box;
@@ -19,15 +22,15 @@
     @include placeholder {
       color: #bebebe;
     }
-    width:100%;
+    width: 100%;
     resize: none;
     transition: border 0.3s;
     &:focus {
-      outline:none;
+      outline: none;
       border: 1px solid $lightblue;
     }
   }
-  &>textarea{
+  & > textarea {
     height: 25vh;
   }
   .input-error {
@@ -37,6 +40,7 @@
   &.error {
     margin: 0 0 25px 0;
     line-height: 25px;
+    height: 25px;
     input {
       border: 1px solid #f10000;
     }

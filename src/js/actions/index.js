@@ -66,7 +66,7 @@ export function getWatherToCoor(data) {
           return weatherObj;
         }else{
           console.log("error, forecast not found")
-          return weatherObj = {
+          return  {
             clouds: 0
           }
         }

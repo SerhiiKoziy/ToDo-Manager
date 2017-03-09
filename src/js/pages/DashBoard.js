@@ -3,9 +3,14 @@ import * as actions from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CreateTask from '../components/Task/CreateTask';
-import { Link } from 'react-router';
+import Task from '../components/Task/Task';
 
-
+import update from 'react/lib/update';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
+import Dustbin from '../components/dnd/Dustbin';
+import Box from '../components/dnd/Box';
+import ItemTypes from '../components/dnd/ItemTypes';
 
 const mapStateToProps = (state) => {
   return { data: state.elements, columns: state.columns };
@@ -14,86 +19,120 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch);
 };
-
+@DragDropContext(HTML5Backend)
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DashBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      dustbins: [
+        { accepts: [ItemTypes.INPROGRES, ItemTypes.DONE], lastDroppedItem: null, id: ItemTypes.TODO },
+        { accepts: [ItemTypes.TODO, ItemTypes.DONE], lastDroppedItem: null, id: ItemTypes.INPROGRES },
+        { accepts: [ItemTypes.TODO, ItemTypes.INPROGRES, NativeTypes.URL], lastDroppedItem: null, id: ItemTypes.DONE },
+      ],
+      droppedBoxNames: [],
     };
 
   }
-  static propTypes = {
-  };
 
-  deleteTask(taskId){
+  static propTypes = {};
+
+  isDropped(boxName) {
+    return this.state.droppedBoxNames.indexOf(boxName) > -1;
+  }
+
+  deleteTask(taskId) {
     this.props.deleteTaskInList(taskId);
   }
-  componentDidUpdate(){
-    //this.pullFromLocalStorage()
+
+  componentDidUpdate() {
   }
 
-  renderTask(item, i){
+  renderTask(item, i, type) {
 
-    let cloudImage = Math.ceil(item.weather.clouds / 15);
-    return(
-      <div className={`task ${item.type}`}
-           id={item.id}
-           key={i}>
-        <h4>{item.title}</h4>
-        <p>{item.description}</p>
-        <p className="date-task">{`${item.date}`}</p>
-        <p className="namePlace-task">{`${item.address}`}</p>
-        <div className="weather-indicator">
-          <img src={`./assets/images/${cloudImage}.png`} alt=""/>
-          {/*<p>clouds : {`${item.weather.clouds} %`}</p>*/}
-        </div>
-        <div className="controls">
-          <Link to={`/task/${item.id}`}>View info</Link>
-          <Link to={`/task/${item.id}/edit`}>Edit task</Link>
-          <div className="deleteButton"
-               onClick={this.deleteTask.bind(this, item.id)}>Delete task</div>
-        </div>
-      </div>
+    let cloudImage = Math.ceil(item.weather.clouds / 20);
+    return (
+      <Box
+        name={item.title}
+        type={type}
+        taskId={item.id}
+        isDropped={this.isDropped(item.title)}
+        key={i}
+      >
+        <Task item={item} onDelete={this.deleteTask.bind(this, item.id)}/>
+      </Box>
     )
 
   }
 
+  handleDrop(index, item, target) {
+
+    const changedTask = this.props.data.filter(element => {
+      return element.id == item.taskId;
+    });
+    changedTask[0].stageProces = target;
+    console.log(index, item, target)
+    this.props.updateTask(changedTask);
+
+  }
+
+
   render() {
     let tasksList = this.props.data;
+    const { dustbins } = this.state;
 
-    if(localStorage.getItem("LocalStorageTaskList")){
+
+    if (localStorage.getItem("LocalStorageTaskList")) {
       let string = localStorage.getItem("LocalStorageTaskList");
       tasksList = JSON.parse(string);
-      //this.sendLocalList(tasksList)
-     // console.log("local", tasksList);
     }
     return (
       <div className={`page start-page columns`}>
-        <h3>New list</h3>
-        <div className="inside-wr">
-          <div className="lists-wr">
-            <div className="list first-list">
-              {
-                tasksList.map((item, i)=>{
-                  return this.renderTask(item, i)
-                })
-              }
-            </div>
-            <div className="list second-list">
+        <div className="dashboard-wr">
 
-            </div>
-            <div className="list third-list">
+          <div className="inside-wr">
+            <div className="lists-wr">
 
+              {dustbins.map(({ accepts, id }, index) =>
+                <div className="list-wrapper">
+                  <div className="list-name">
+                    <h3>
+                      {id}
+                    </h3>
+                  </div>
+                  <Dustbin
+                    accepts={accepts}
+                    listId={id}
+                    onDrop={(item, target) => ::this.handleDrop(index, item, target)}
+                    key={index}
+                    index={index}>
+                    {
+                      tasksList.map((item, i)=> {
+                        if (item.stageProces == id) {
+                          let type = item.stageProces;
+                          return this.renderTask(item, i, type)
+                        }
+
+                      })
+                    }
+                  </Dustbin>
+                </div>
+              )}
             </div>
+
           </div>
+
 
           <div className="builder-task">
             <CreateTask/>
           </div>
+
         </div>
+
+
       </div>
+
+
 
     );
   }

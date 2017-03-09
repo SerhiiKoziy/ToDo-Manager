@@ -40,6 +40,11 @@ module.exports = {
         include: path.join(__dirname, 'src'),
         loaders: ['style', 'css?sourceMap', 'postcss', 'sass']
       },
+      {
+        test: /(\.svg|\.jpg|\.png)$/,
+        include: path.join(__dirname, '/public/'),
+        loaders: ['file-loader']
+      },
     ]
   }
 };

@@ -63,24 +63,24 @@
     &::-webkit-scrollbar-track {
         -webkit-box-shadow: 0;
         border-radius: 0px;
-        background: rgba(253, 250, 247, 0.3);
+        background: rgba(255,255,255, 0.3);
         -webkit-transition: all 0.3s;
         cursor: pointer;
     }
 
     &::-webkit-scrollbar-thumb {
         border-radius: 0;
-        background: #a2a0a0;
+        background: #fff;
         -webkit-box-shadow: 0;
         transition: background 0.3s;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: lighten(#a2a0a0,5);
+        background: lighten(#fff,5);
     }
 
     &::-webkit-scrollbar-thumb:active {
-        background: darken(#a2a0a0,5);
+        background: darken(#fff,5);
     }
 }
 
