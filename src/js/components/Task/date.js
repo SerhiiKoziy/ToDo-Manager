@@ -13,25 +13,27 @@ const muiTheme = getMuiTheme({
   }
 });
 
-function disablePrevDates(startDate) {
-  const startSeconds = Date.parse(startDate);
+function disablePrevDates() {
+  const startSeconds = Date.parse(new Date());
   return (date) => {
     const maxDate = startSeconds + (14 * 1000 * 3600 * 24);
     return  (Date.parse(date) < startSeconds || Date.parse(date) > maxDate);
   }
 }
-const startDate = new Date();
-const DatePickerExampleInline = ({onChange}) => (
+
+const DatePickerExampleInline = ({onChange, startDate}) => (
   <MuiThemeProvider muiTheme={muiTheme}>
       <DatePicker hintText="Portrait Inline Dialog"
                   container="inline"
-                  shouldDisableDate={disablePrevDates(startDate)}
+                  className="input-datepicker"
+                  shouldDisableDate={disablePrevDates()}
                   onChange={onChange}
+                  defaultDate={new Date(startDate)}
                   style={{
                     width: '100%'
                   }}
                   textFieldStyle={{
-                    color: 'white'
+                    color: 'yellow'
                   }}/>
     </MuiThemeProvider>
 );

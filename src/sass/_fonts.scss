@@ -10,6 +10,7 @@
 //    font-style: normal;
 //
 //}
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 
 @mixin fontFace($FontName, $FontPathName ) {
 
@@ -36,12 +37,11 @@
         line-height: $lh;
     }
 }
-@include fontFace('SFUIDisplayRegular','SFUIDisplayRegular');
-@include fontFace('SFUIDisplayBlack','SFUIDisplayBlack');
+@include fontFace('BebasNeueBook','BebasNeueBook');
 
 
-$bold: 'SFUIDisplayBlack';
-$regular: 'SFUIDisplayRegular';
+$book: 'BebasNeueBook';
+$bold: 'Roboto Condensed';
 /* USAGE
 @include fontFace('MyriadProSemibold','MyriadProSemibold');
 @include fontFace('MyriadProRegular','MyriadProRegular');

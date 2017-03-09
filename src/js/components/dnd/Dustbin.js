@@ -2,21 +2,13 @@ import React, { PropTypes, Component } from 'react';
 import { DropTarget } from 'react-dnd';
 
 const style = {
-  height: '12rem',
-  width: '12rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
-  color: 'white',
-  padding: '1rem',
-  textAlign: 'center',
-  fontSize: '1rem',
-  lineHeight: 'normal',
-  float: 'left',
+  //color: 'white',
 };
 
 const dustbinTarget = {
   drop(props, monitor) {
-    props.onDrop(monitor.getItem());
+    //console.log(props.id, monitor)
+    props.onDrop(monitor.getItem(), props.listId);
   },
 };
 
@@ -36,26 +28,22 @@ export default class Dustbin extends Component {
   };
 
   render() {
-    const { accepts, isOver, canDrop, connectDropTarget, lastDroppedItem } = this.props;
+    const { accepts, isOver, canDrop, connectDropTarget, listId } = this.props;
     const isActive = isOver && canDrop;
 
-    let backgroundColor = '#222';
+    const classList = ['list', 'back-list'];
+
     if (isActive) {
-      backgroundColor = 'darkgreen';
-    } else if (canDrop) {
-      backgroundColor = 'darkkhaki';
+      classList.push('is-active');
+    }
+
+    if (canDrop) {
+      classList.push('can-drop');
     }
 
     return connectDropTarget(
-      <div className="list" style={{ ...style, backgroundColor }}>
-        {isActive ?
-          'Release to drop' :
-          `This dustbin accepts: ${accepts.join(', ')}`
-        }
-
-        {lastDroppedItem &&
-          <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
-        }
+      <div className={classList.join(' ')} style={{ ...style }}>
+        {this.props.children}
       </div>,
     );
   }

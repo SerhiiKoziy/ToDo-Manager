@@ -1,61 +1,62 @@
 $blue: #00b3e3;
 
-.btn{
+.btn {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $lightblue;
-    cursor: pointer;
-    font-family:$bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $lightblue;
+  cursor: pointer;
+  font-family: $bold;
+  width: 336px;
+  height: 53px;
+  box-sizing: border-box;
+
+  &.error {
+    background-color: #d6d6d6;
+    cursor: inherit;
+    cursor: auto;
+  }
+  span {
+    color: white;
+    font-size: 1.1rem;
+    //  letter-spacing: -0.57px;
+
+  }
+
+  &--main {
     width: 336px;
-    height: 53px;
-    &.error{
-        background-color: #d6d6d6;
-        cursor: inherit;
-        cursor: auto;
-    }
-    span{
-        color: white;
-        font-size:1.1rem;
-      //  letter-spacing: -0.57px;
+    height: 45px;
+  }
+  &--fw {
 
+    width: 100%;
 
+  }
 
-    }
+  transition: background 0.3s;
+  &:hover {
+    background: darken($blue, 5%);
+  }
+  &.active {
+    background: darken($blue, 7.5%);
+  }
 
+  [disabled]{
 
-
-    &--main{
-        width: 336px;
-        height: 45px;
-    }
-    &--fw{
-
-        width:100%;
-
-    }
-
-
-
-    transition: background 0.3s;
-    &:hover {
-        background: darken($blue, 5%);
-    }
-    &.active {
-        background: darken($blue, 7.5%);
-    }
+    background: transparentize($blue, 0.5);
+  }
 }
 
-.btn-wr{
-    display: flex;
-    width:100%;
-    box-sizing: border-box;
+.btn-wr {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
 
-    &.center{
-        justify-content: center;
-    }
-    .btn{
-        margin: 0 10px;
-    }
+  &.center {
+    justify-content: center;
+  }
+  .btn {
+    margin: 0 10px;
+  }
 }

@@ -23,28 +23,7 @@ export default class EditTask extends Component {
     };
 
   }
-  static propTypes = {
-  };
 
-  renderTask(item, i){
-    return(
-      <div id={i}
-           key={i}
-           className={`task ${item.type}`}>
-        <h4>{item.title}</h4>
-        <p>{item.description}</p>
-        <p className="date-task">{`${item.date}`}</p>
-        <p className="namePlace-task">{`${item.address}`}</p>
-        <div className="weather-indicator">
-          <p>clouds : {item.weather.clouds}</p>
-        </div>
-        <div className="controls">
-
-        </div>
-      </div>
-    )
-
-  }
   renderEditForm(){
     let tasksList = this.props.data;
     const currentTaskID = this.props.params.taskId;
@@ -55,6 +34,7 @@ export default class EditTask extends Component {
         <CreateTask
           currentTask = { currentTask || {} }
           buttonText = {"Edit task"}
+          startDate ={ currentTask.originalDate}
         />
       </div>
     )
@@ -62,13 +42,6 @@ export default class EditTask extends Component {
 
 
   render() {
-
-
-
-    return (
-      <div className="builder-task-wr">
-        {this.renderEditForm()}
-      </div>
-    );
+    return this.renderEditForm();
   }
 }

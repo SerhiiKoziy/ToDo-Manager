@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../../actions';
-import {bindActionCreators} from 'redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { createTask, editTask }  from '../../actions';
+import { bindActionCreators } from 'redux';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import  { geocodeByAddress } from 'react-places-autocomplete';
 import dateformat from 'dateformat';
@@ -16,134 +16,180 @@ class CreateTask extends React.Component {
     currentTask: React.PropTypes.object,
     buttonText: React.PropTypes.string,
   };
+
   constructor(props) {
-    super(props)
+    super(props);
+
+    const nextDay = new Date();
+    nextDay.setDate(nextDay.getDate() + 1);
+
     const defaultValues = {
       address: 'Kiev, Kyiv city, Ukraine',
       title: '',
       description: '',
-      daysToDate:  1,
-      date: '00-00-00',
+      daysToDate: 1,
+      originalDate: nextDay,
     };
-    this.state = this.props.currentTask ||  defaultValues
+    this.state = {
+      values: this.props.currentTask || defaultValues,
+      touched: {
+        title: false,
+        description: false,
+      },
+      errorMessages: {
+        title: 'This field is required',
+        description: 'This field is required',
+      },
+      validation: {
+        title: (value) => {
+          return value.length > 0;
+        },
+        description: (value) => {
+          return value.length > 0;
+        },
+      },
+    };
+
 
   }
 
-  createTask(newTaskParameters){
-    this.props.actions.createTask(newTaskParameters);
+  updateValue(target, value) {
+    this.setState({
+      values: {
+        ...this.state.values,
+        [target]: value,
+      }
+    })
   }
-  editTask(editTaskParameters){
-    this.props.actions.editTask(editTaskParameters);
+
+  createUniqueId(title, date) {
+    return `${title}-${date.getTime()}`
   }
 
-  handleFormSubmit(event){
-    event.preventDefault();
-    const { address } = this.state;
-    let uniqueId = Date.parse( new Date() )/1000;
-
-    if(this.props.currentTask){
-      geocodeByAddress(address,  (err, { lat, lng }) => {
-        if (err) { console.log('Oh no!', err) }
-        let task = this.props.currentTask;
-        let editTaskParameters = {
-          id: task.id,
-          title: this.state.title,
-          description:this.state.description,
-          address:address,
-          position:{
-            lat: lat,
-            lng: lng
-          },
-          day: this.state.daysToDate,
-          date: this.state.date
-        };
-        this.editTask(editTaskParameters);
-
-      })
-    }else{
-      geocodeByAddress(address,  (err, { lat, lng }) => {
-        if (err) { console.log('Oh no!', err) }
-
-        let newTaskParameters = {
-          id: uniqueId,
-          title: this.state.title,
-          description:this.state.description,
-          address:address,
-          position:{
-            lat: lat,
-            lng: lng
-          },
-          day: this.state.daysToDate,
-          date: this.state.date
-        };
-        if(newTaskParameters.title.length > 0){
-          this.createTask(newTaskParameters);
+  getLocationByAdress(address) {
+    return new Promise((resolve, reject) => {
+      geocodeByAddress(address, (err, location) => {
+        if (err) {
+          reject(err);
         }
-      })
-    }
+        resolve(location);
+      });
+    })
+  }
 
+  createTask(values) {
+    const dateObject = new Date(values.originalDate);
+    const date = dateFormat(dateObject, "dddd, mmmm dS");
+    const day = Math.ceil(Math.abs((dateObject.getTime() - (new Date()).getTime()) / 1000 / 3600 / 24));
+    const uniqueId = this.createUniqueId(values.title, dateObject);
 
+    return {
+      ...values,
+      date,
+      day,
+      id: uniqueId,
+      stageProces: "ToDo",
+    };
+  }
 
+  handleFormSubmit(event) {
+    event.preventDefault();
+    const submitHandler = this.props.currentTask ? this.props.editTask : this.props.createTask;
 
+    this.getLocationByAdress(this.state.values.address).then((position) => {
+      const task = this.createTask(Object.assign({}, this.state.values, { position }));
+
+      if (this.props.currentTask) {
+        task.id = this.props.currentTask.id;
+        task.stageProces = this.props.currentTask.stageProces;
+      }
+
+      submitHandler(task);
+    });
   };
 
-  changeLocation(address){
-    this.setState({ address })
+  changeLocation(address) {
+    this.updateValue('address', address);
   }
-  changeTitle(e){
-    this.setState({ title: e.target.value})
-  }
-  changeDesc(e) {
-    this.setState({ description: e.target.value})
-  }
-  setFechaDesde(event, date){
-    let taskDate = dateFormat(date, "dddd, mmmm dS");
-    let curDate = Date.parse(new Date());
-    let daysToDate = Math.ceil((Date.parse(date) - curDate) / 1000 / 3600 / 24);
 
-    this.setState({daysToDate: daysToDate, date: taskDate});
-    //console.log( dateFormat(date, "dddd, mmmm dS"));
+  handleInputChange(target, e) {
+    this.updateValue(target, e.target.value);
   }
-  render() {
-    console.log("1111", this.props.currentTask);
 
-    if(this.props.currentTask ){
+  isValidForm() {
+    const validations = Object.keys(this.state.validation).filter(field => {
+      return !this.state.validation[field](this.state.values[field]);
+    });
+    return validations.length == 0;
+  }
 
+  handleDateChange(event, date) {
+    this.updateValue('originalDate', date);
+  }
+
+  showError(target) {
+    if (this.state.touched[target]) {
+      if (!this.state.validation[target](this.state.values[target])) {
+        return this.state.errorMessages[target];
+      }
     }
+
+    return null;
+  }
+
+  handleInputBlur(target) {
+    this.setState({
+      touched: {
+        ...this.state.touched,
+        [target]: true,
+      }
+    })
+  }
+
+  render() {
     return (
       <form onSubmit={::this.handleFormSubmit}>
-        <div className="input-wr">
+        <div className="input-box input-wr">
           <DatePickerExampleInline
-            onChange={::this.setFechaDesde}
+            onChange={::this.handleDateChange}
+            startDate={this.state.values.originalDate}
           />
         </div>
 
         <TextField classNameBox={'input-wr'}
-                   placeholder = {'Write title Task'}
-                   value={this.state.title || ""}
-                   onChange={this.changeTitle.bind(this)}
+                   placeholder={'Enter title'}
+                   value={this.state.values.title}
+                   fieldName="title"
+                   maxLength="25"
+                   onChange={::this.handleInputChange}
+                   onBlur={::this.handleInputBlur}
+                   errorText={this.showError('title')}
         />
         <TextField classNameBox={'input-wr'}
-                   placeholder = {'Write description Task'}
-                   value={this.state.description || ""}
-                   onChange={this.changeDesc.bind(this)}
+                   placeholder={'Enter description'}
+                   value={this.state.values.description}
+                   fieldName="description"
+                   onChange={::this.handleInputChange}
+                   onBlur={::this.handleInputBlur}
+                   errorText={this.showError('description')}
         />
-        <div className="input-wr">
+        <div className="input-box input-wr">
           <PlacesAutocomplete
-            value={this.state.address || ""}
+            value={this.state.values.address || ""}
             onChange={::this.changeLocation}
+            placeholder="Enter deadline location adress"
           />
         </div>
-        <button type="submit">{this.props.buttonText || "Edd task"}</button>
+        <button
+          type="submit"
+          className="btn btn--fw"
+          disabled={!this.isValidForm()}>
+          {this.props.buttonText || "Add task"}
+        </button>
       </form>
 
     )
   }
 }
 
-function mapDispatch(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch),
-  };
-}
-export default connect(null , mapDispatch)(CreateTask);
+export default connect(null, { createTask, editTask })(CreateTask);

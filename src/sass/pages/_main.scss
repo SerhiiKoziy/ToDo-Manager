@@ -1,15 +1,18 @@
-main{
+main {
   position: relative;
-  height: calc(100vh - 60px);
-  .route-wr{
+  height: 100%;
 
-    height: calc(100vh - 120px);
-  }
-
-  .root,.page{
+  .route-wr {
     height: 100%;
   }
 
+  .root, .page {
+    height: 100%;
+  }
 
-
+  .page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 30px;
+  }
 }

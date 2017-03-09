@@ -7,6 +7,7 @@ export const INITIAL_STATE = {
             date: '00-00-00',
             namePlace: 'namePlace',
             type:'make',
+            stageProces: "ToDo",
             weather:{
                 clouds: 0,
             }
@@ -18,6 +19,7 @@ export const INITIAL_STATE = {
             namePlace: 'namePlace',
             date: '00-00-00',
             type:'make',
+            stageProces: "InProgress",
             weather:{
                 clouds: 0,
             }
@@ -29,6 +31,7 @@ export const INITIAL_STATE = {
             namePlace: 'namePlace',
             date: '00-00-00',
             type:'make',
+            stageProces: "Done",
             weather:{
                 clouds: 0,
             }

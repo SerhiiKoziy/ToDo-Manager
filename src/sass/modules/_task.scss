@@ -1,43 +1,92 @@
-.task{
+.task-draggable {
+  &.is-dragging {
+    opacity: 1;
+    .task{
+      background: linear-gradient(135deg, rgba(253, 253, 253, 0.5), rgba(0, 127, 163, 0));
+      box-shadow: 0 0 10px transparentize(#fff, 0.7);
+    }
+  }
+
+}
+
+.task {
   position: relative;
-  background: #ccc;
+  background: transparent;
   margin: 0 0 20px 0;
-  width: 100%;
   padding: 10px;
+  overflow: hidden;
   box-sizing: border-box;
-  h4{
+  border-radius: 2px;
+  color: #fff;
+  box-shadow: 0 0 10px transparentize(#000, 0.7);
+  background: linear-gradient(135deg, rgba(253, 253, 253, 0.4), rgba(0, 127, 163, 0));
+  h4 {
 
   }
-  p{
+  p {
 
-    &.date-task{
+    &.date-task {
 
     }
 
   }
-  .weather-indicator{
+  .weather-indicator {
     position: absolute;
     right: 10px;
-    top:10px;
+    top: 10px;
     height: 40px;
     width: 40px;
-    img{
+    img {
       width: 100%;
     }
   }
-  .controls{
+  .controls {
+    margin-top: 15px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     text-align: center;
-    a{
+    position: relative;
+    transform: translateY(10%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+
+    .control {
       padding: 5px 0;
-      display: block;
-    }
-    .deleteButton{
-      padding: 5px 0;
+      box-sizing: border-box;
+      height: 30px;
+      width: 30px;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 1px #000;
+      border-radius: 2px;
+      margin-right: 5px;
+      color: black;
       cursor: pointer;
-      color: #d0021b;
+      transition: background 0.3s, box-shadow 0.3s;
+
+      a, .deleteButton {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &.control-delete {
+        color: #d0021b;
+      }
+
+      &:hover {
+
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 3px #000;
+      }
     }
   }
 
+  &:hover {
+    .controls {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
 }

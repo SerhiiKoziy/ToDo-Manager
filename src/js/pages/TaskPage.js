@@ -2,12 +2,13 @@
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import CreateTask from '../components/Task/CreateTask';
+import { Link } from 'react-router';
+import SimpleMap from '../components/Task/GoogleMap';
+import Task from '../components/Task/Task';
 
 
-
-const mapStateToProps = (state) => {
-  return { data: state.elements };
+const mapStateToProps = (state, ownProps) => {
+  return { currentTask: state.elements.find(task => task.id == ownProps.params.taskId) };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,57 +19,54 @@ const mapDispatchToProps = (dispatch) => {
 export default class TaskPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
 
   }
-  static propTypes = {
-  };
 
-  renderTask(item, i){
-    let cloudImage = Math.ceil(item.weather.clouds / 15);
-    return(
-      <div id={i}
-           key={i}
-           className={`task ${item.type}`}>
-        <h4>{item.title}</h4>
-        <p>{item.description}</p>
-        <p className="date-task">{`${item.date}`}</p>
-        <p className="namePlace-task">{`${item.namePlace}`}</p>
-        <div className="weather-indicator">
-          <img src={`../../assets/images/${cloudImage}.png`}
-               alt={`clouds-${item.weather.clouds}%`}/>
-        </div>
-        <div className="controls">
+  static propTypes = {};
 
-        </div>
-      </div>
-    )
 
+  deleteTask() {
+
+  }
+
+  renderWeather() {
+    const weather = this.props.currentTask.weather;
+    return Object.keys(weather).map(key => {
+      if (key !== 'weather' && key !== 'temp') {
+        return (
+          <div>
+            <span>{key} :</span>
+            <span>{weather[key]}</span>
+          </div>
+        );
+      }
+    })
+    //return null;
+  }
+
+  renderMap() {
+    return <SimpleMap key={JSON.stringify(this.props.currentTask.position)}
+                      position={this.props.currentTask.position}/>;
   }
 
   render() {
-    let tasksList = this.props.data;
-
-    const currentTask = this.props.params.taskId;
-
-
     return (
       <div className={`page task-page`}>
-        <h3>Task</h3>
-
         <div className="inside-wr">
-
-              {
-                tasksList.map((item, i)=>{
-                  if(item.id == currentTask){
-                    return this.renderTask(item, i)
-                  }
-
-                })
-              }
+          <div className="task-wr">
+            <div className="task-header">
+              <Link to="/">
+                <i className="fa fa-angle-left" aria-hidden="true"></i>
+                <span>Back to board</span>
+              </Link>
+            </div>
+            <Task item={this.props.currentTask} onDelete={this.deleteTask} map={this.renderMap()}>
+              {this.renderWeather()}
+            </Task>
+          </div>
           {this.props.children}
+
         </div>
 
       </div>
