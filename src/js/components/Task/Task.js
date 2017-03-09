@@ -1,11 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Task = ({ item, onDelete, children, map }) => {
+const Task = ({ item, onDelete, weather, map }) => {
   const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
+  let currentWeather = weather || null;
+
+  if(currentWeather ){
+    Object.keys(currentWeather).map(key => {
+      if (key !== 'weather' && key !== 'temp') {
+        return (
+            <div key={key}>
+              <span>{key} :</span>
+              <span>{weather[key]}</span>
+            </div>
+        );
+      }
+    })
+  }
+
   return (
     <div
-      className={`task ${item.type}`}
+      className={`task ${item.stageProces}`}
       id={item.id}
     >
       <h4>{item.title}</h4>
@@ -20,12 +35,12 @@ const Task = ({ item, onDelete, children, map }) => {
         image: cloudImageUrl,
       })}
 
-      {children}
 
       <div className="controls">
         <div className="control control-view">
-
-          <Link to={`/task/${item.id}`}><i className="fa fa-eye" aria-hidden="true"></i></Link>
+          <Link to={`/task/${item.id}`}>
+            <i className="fa fa-eye" aria-hidden="true"></i>
+          </Link>
         </div>
         <div className="control control-edit">
           <Link to={`/task/${item.id}/edit`}>
@@ -46,7 +61,6 @@ const Task = ({ item, onDelete, children, map }) => {
 Task.propTypes = {
   type: React.PropTypes.string,
   onClick: React.PropTypes.func,
-  children: <React className="PropTypes any"></React>,
 };
 
 Task.defaultProps = {

@@ -3,7 +3,7 @@ main {
   height: 100%;
 
   .route-wr {
-    height: 100%;
+    height: calc(100% - 60px);
   }
 
   .root, .page {

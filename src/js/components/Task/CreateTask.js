@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createTask, editTask }  from '../../actions';
-import { bindActionCreators } from 'redux';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import  { geocodeByAddress } from 'react-places-autocomplete';
-import dateformat from 'dateformat';
+import {dateformat} from 'dateformat';
 var dateFormat = require('dateformat');
 
 import DatePickerExampleInline from './date';

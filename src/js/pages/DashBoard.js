@@ -59,7 +59,7 @@ export default class DashBoard extends Component {
         isDropped={this.isDropped(item.title)}
         key={i}
       >
-        <Task item={item} onDelete={this.deleteTask.bind(this, item.id)}/>
+        <Task item={item} key={i} onDelete={this.deleteTask.bind(this, item.id)}/>
       </Box>
     )
 

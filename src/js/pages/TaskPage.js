@@ -31,17 +31,17 @@ export default class TaskPage extends Component {
   }
 
   renderWeather() {
-    const weather = this.props.currentTask.weather;
+    /*const weather = this.props.currentTask.weather;
     return Object.keys(weather).map(key => {
       if (key !== 'weather' && key !== 'temp') {
         return (
-          <div>
+          <div key={key}>
             <span>{key} :</span>
             <span>{weather[key]}</span>
           </div>
         );
       }
-    })
+    })*/
     //return null;
   }
 
@@ -61,11 +61,13 @@ export default class TaskPage extends Component {
                 <span>Back to board</span>
               </Link>
             </div>
-            <Task item={this.props.currentTask} onDelete={this.deleteTask} map={this.renderMap()}>
+            <Task item={this.props.currentTask}
+                  onDelete={this.deleteTask}
+                  map={this.renderMap()}
+                  weather={this.props.currentTask.weather || {}}>
               {this.renderWeather()}
             </Task>
           </div>
-          {this.props.children}
 
         </div>
 

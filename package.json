@@ -1,7 +1,7 @@
 {
-  "name": "makerForms",
+  "name": "ToDoManager",
   "version": "1.0.0",
-  "description": "make forms using json",
+  "description": "ToDo manager with weather",
   "main": "index.js",
   "scripts": {
     "dev": "node webpack-dev-server.js",
