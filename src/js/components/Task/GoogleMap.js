@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import Marker from './Marker';
 
-const Marker = ({ imageUrl }) => <div className="markerMap">
-  <img src={imageUrl} alt="" />
-</div>;
-
-export default class SimpleMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+export default class SimpleMap extends React.PureComponent {
+  static propTypes = {
+    position: React.PropTypes.shape({
+      lat: React.PropTypes.number,
+      lng: React.PropTypes.number,
+    }).isRequired,
+    zoom: React.PropTypes.number,
   }
 
   static defaultProps = {
-    center: { lat: 59.95, lng: 30.33 },
     zoom: 10,
   };
 

@@ -9,8 +9,7 @@
     "lint": "eslint ./src/js --ext .js",
     "lint-fix": "eslint ./src/js --ext .js --fix",
     "deploy": "gh-pages -d public",
-    "start": "node server.js",
-    "postinstall":"npm run build"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

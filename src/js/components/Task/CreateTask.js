@@ -1,20 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { createTask, editTask } from '../../actions';
-import { bindActionCreators } from 'redux';
-import PlacesAutocomplete from 'react-places-autocomplete';
-import { geocodeByAddress } from 'react-places-autocomplete';
-import { dateformat } from 'dateformat';
-var dateFormat = require('dateformat');
-
-import DatePickerExampleInline from './date';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
+import dateFormat from 'dateformat';
+import DatePicker from './DatePicker';
 import TextField from '../TextField/TextField';
-
+import { createTask, editTask } from '../../actions';
 
 class CreateTask extends React.Component {
   static propTypes = {
     currentTask: React.PropTypes.object,
     buttonText: React.PropTypes.string,
+    editTask: React.PropTypes.func,
+    createTask: React.PropTypes.func,
   };
 
   constructor(props) {
@@ -37,8 +34,8 @@ class CreateTask extends React.Component {
         description: false,
       },
       errorMessages: {
-        title: 'This field is required',
-        description: 'This field is required',
+        title: 'Title is required',
+        description: 'Description is required',
       },
       validation: {
         title: (value) => {
@@ -120,7 +117,7 @@ class CreateTask extends React.Component {
     const validations = Object.keys(this.state.validation).filter(field => {
       return !this.state.validation[field](this.state.values[field]);
     });
-    return validations.length == 0;
+    return validations.length === 0;
   }
 
   handleDateChange(event, date) {
@@ -150,13 +147,14 @@ class CreateTask extends React.Component {
     return (
       <form onSubmit={::this.handleFormSubmit}>
         <div className="input-box input-wr">
-          <DatePickerExampleInline
+          <DatePicker
             onChange={::this.handleDateChange}
             startDate={this.state.values.originalDate}
           />
         </div>
 
-        <TextField classNameBox={'input-wr'}
+        <TextField
+          classNameBox={'input-wr'}
           placeholder={'Enter title'}
           value={this.state.values.title}
           fieldName="title"
@@ -165,7 +163,8 @@ class CreateTask extends React.Component {
           onBlur={::this.handleInputBlur}
           errorText={this.showError('title')}
         />
-        <TextField classNameBox={'input-wr'}
+        <TextField
+          classNameBox={'input-wr'}
           placeholder={'Enter description'}
           value={this.state.values.description}
           fieldName="description"

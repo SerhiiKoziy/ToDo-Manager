@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 
-
 const TextField = (props) => {
+  const onBlur = props.onBlur.bind(null, props.fieldName);
+  const onChange = props.onChange.bind(null, props.fieldName);
   return (
     <div className={`input-box ${props.classNameBox}`}>
-      <label className="label"
+      <label
+        className="label"
         htmlFor={props.id}
       >{props.label}</label>
       <input
@@ -13,8 +15,8 @@ const TextField = (props) => {
         placeholder={props.placeholder}
         id={props.id}
         maxLength={props.maxLength}
-        onBlur={props.onBlur.bind(null, props.fieldName)}
-        onChange={props.onChange.bind(null, props.fieldName)}
+        onBlur={onBlur}
+        onChange={onChange}
         value={props.value || ''}
       />
       <label className="error visible">{props.errorText}</label>
@@ -22,7 +24,6 @@ const TextField = (props) => {
   );
 };
 
-// Make ESLint happy again: add validation to props
 TextField.propTypes = {
   placeholder: PropTypes.string,
   errorVisible: PropTypes.bool,
@@ -36,6 +37,7 @@ TextField.propTypes = {
   classNameBox: React.PropTypes.string,
   value: React.PropTypes.string,
   id: React.PropTypes.number,
+  maxLength: React.PropTypes.number,
 
 };
 TextField.defaultProps = {

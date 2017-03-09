@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Task = ({ item, onDelete, weather, children, map }) => {
+const Task = ({ item, onDelete, children, map }) => {
   const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
-  let currentWeather = weather || null;
-
 
   return (
     <div
@@ -35,7 +33,8 @@ const Task = ({ item, onDelete, weather, children, map }) => {
             <i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
         </div>
         <div className="control control-delete">
-          <div className="deleteButton"
+          <div
+            className="deleteButton"
             onClick={onDelete}
           >
             <i className="fa fa-trash" aria-hidden="true"></i>
@@ -48,11 +47,10 @@ const Task = ({ item, onDelete, weather, children, map }) => {
 
 
 Task.propTypes = {
-  type: React.PropTypes.string,
-  onClick: React.PropTypes.func,
+  item: React.PropTypes.object,
+  children: React.PropTypes.any,
+  map: React.PropTypes.any,
+  onDelete: React.PropTypes.func,
 };
 
-Task.defaultProps = {
-  type: 'default',
-};
 export default Task;

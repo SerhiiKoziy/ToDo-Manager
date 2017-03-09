@@ -1,9 +1,9 @@
-﻿import React, { Component } from 'react';
+﻿import React from 'react';
 
-export default class Root extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default class Root extends React.PureComponent {
+  static propTypes = {
+    children: React.PropTypes.any,
+  };
 
   render() {
     return (

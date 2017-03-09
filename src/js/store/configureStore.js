@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { DataReducer } from '../reducers';
 import createLogger from 'redux-logger';
 import { INITIAL_STATE } from '../constants/InitialState';
+import updateLocalStorage from './middleware';
 import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 
 const reducer = combineReducers({
@@ -13,15 +14,15 @@ const reducer = combineReducers({
 export default function configureStore(baseHistory, initialState = INITIAL_STATE) {
   const routingMiddleware = routerMiddleware(baseHistory);
   const logger = createLogger();
-  const middleware = applyMiddleware(routingMiddleware, thunk, logger);
+  const middleware = applyMiddleware(routingMiddleware, thunk, logger, updateLocalStorage);
 
   const store = createStore(reducer, initialState, compose(
-    middleware
+    middleware,
   ));
   const history = syncHistoryWithStore(baseHistory, store);
   if (module.hot) {
     module.hot.accept('../reducers', () => {
-      return store.replaceReducer(require('../reducers'));
+      return store.replaceReducer(require('../reducers')); // eslint-disable-line global-require
     }
     );
   }

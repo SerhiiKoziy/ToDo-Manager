@@ -1,34 +1,31 @@
-import React, { Component } from 'react';
-import * as actions from '../actions';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import CreateTask from '../components/Task/CreateTask';
 
-
-const mapStateToProps = (state) => {
-  return { data: state.data };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch);
-};
-
-@connect(mapStateToProps, mapDispatchToProps)
-export default class EditTask extends Component {
+class EditTask extends PureComponent {
+  static propTypes = {
+    params: React.PropTypes.object,
+    data: React.PropTypes.array,
+  };
 
   render() {
-    const tasksList = this.props.data;
-    const currentTaskID = this.props.params.taskId;
-    const currentTask = tasksList.find(item => item.id == currentTaskID);
+    const currentTask = this.props.data.find(item => {
+      return item.id === parseFloat(this.props.params.taskId);
+    });
 
     return (
       <div className="builder-task edit-builder-task">
         <CreateTask
           key={currentTask.updatedAt}
           currentTask={currentTask || {}}
-          buttonText={"Edit task"}
+          buttonText="Edit task"
         />
       </div>
     );
   }
 }
+
+export default connect((state) => {
+  return { data: state.data };
+})(EditTask);
+

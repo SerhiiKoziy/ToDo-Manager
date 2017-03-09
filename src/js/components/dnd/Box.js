@@ -1,8 +1,7 @@
-import React, { PropTypes, Component } from 'react';
-import { DragSource } from 'react-dnd';
+import React, { PropTypes, PureComponent } from 'react';
+import { DragSource as dragSource } from 'react-dnd';
 
 const style = {
-  // backgroundColor: 'white',
   cursor: 'move',
 };
 
@@ -15,30 +14,34 @@ const boxSource = {
   },
 };
 
-@DragSource(props => props.type, boxSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging(),
-}))
-export default class Box extends Component {
+class Box extends PureComponent {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
+    children: PropTypes.any,
     type: PropTypes.string.isRequired,
     isDropped: PropTypes.bool.isRequired,
   };
 
   render() {
-    const { name, isDropped, children, isDragging, connectDragSource } = this.props;
+    const { children, isDragging, connectDragSource } = this.props;
 
     return connectDragSource(
       <div style={{ ...style }} className={`task-draggable ${isDragging ? 'is-dragging' : ''}`}>
-        {/* isDropped ?
-         <s>{name}</s> :
-         name*/
-        }
         {children}
       </div>,
     );
   }
 }
+
+export default dragSource(props => {
+  return props.type;
+},
+  boxSource,
+  (connect, monitor) => {
+    return {
+      connectDragSource: connect.dragSource(),
+      isDragging: monitor.isDragging(),
+    };
+  }
+)(Box);

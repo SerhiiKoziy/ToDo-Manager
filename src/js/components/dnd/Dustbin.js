@@ -1,23 +1,13 @@
-import React, { PropTypes, Component } from 'react';
-import { DropTarget } from 'react-dnd';
-
-const style = {
-  // color: 'white',
-};
+import React, { PropTypes, PureComponent } from 'react';
+import { DropTarget as dropTarget } from 'react-dnd';
 
 const dustbinTarget = {
   drop(props, monitor) {
-    // console.log(props.id, monitor)
     props.onDrop(monitor.getItem(), props.listId);
   },
 };
 
-@DropTarget(props => props.accepts, dustbinTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-  canDrop: monitor.canDrop(),
-}))
-export default class Dustbin extends Component {
+class Dustbin extends PureComponent {
   static propTypes = {
     connectDropTarget: PropTypes.func.isRequired,
     isOver: PropTypes.bool.isRequired,
@@ -25,10 +15,11 @@ export default class Dustbin extends Component {
     accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
     lastDroppedItem: PropTypes.object,
     onDrop: PropTypes.func.isRequired,
+    listId: PropTypes.string,
   };
 
   render() {
-    const { accepts, isOver, canDrop, connectDropTarget, listId } = this.props;
+    const { isOver, canDrop, connectDropTarget } = this.props;
     const isActive = isOver && canDrop;
 
     const classList = ['list', 'back-list'];
@@ -42,9 +33,20 @@ export default class Dustbin extends Component {
     }
 
     return connectDropTarget(
-      <div className={classList.join(' ')} style={{ ...style }}>
+      <div className={classList.join(' ')}>
         {this.props.children}
       </div>,
     );
   }
 }
+export default dropTarget(props => {
+  return props.accepts;
+}, dustbinTarget,
+  (connect, monitor) => {
+    return {
+      connectDropTarget: connect.dropTarget(),
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    };
+  })(Dustbin);
+
