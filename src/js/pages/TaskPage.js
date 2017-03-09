@@ -9,7 +9,7 @@ import Task from '../components/Task/Task';
 
 
 const mapStateToProps = (state, ownProps) => {
-    return {currentTask: state.elements.find(task => task.id == ownProps.params.taskId)};
+    return {currentTask: state.data.find(task => task.id == ownProps.params.taskId)};
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -28,7 +28,9 @@ export default class TaskPage extends Component {
 
 
     deleteTask() {
-        this.props.deleteTaskInList(this.props.currentTask.id)
+        this.props.push('/');
+        this.props.deleteTaskInList(this.props.currentTask.id);
+
     }
 
     renderWeather() {
@@ -64,7 +66,7 @@ export default class TaskPage extends Component {
                                 </Link>
                             </div>
                             <Task item={this.props.currentTask}
-                                  onDelete={this.deleteTask}
+                                  onDelete={::this.deleteTask}
                                   map={this.renderMap()}
                                   weather={this.props.currentTask.weather }>
                                 {this.renderWeather()}

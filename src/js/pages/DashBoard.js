@@ -13,7 +13,7 @@ import Box from '../components/dnd/Box';
 import ItemTypes from '../components/dnd/ItemTypes';
 
 const mapStateToProps = (state) => {
-  return { data: state.elements};
+  return { data: state.data};
 };
 
 const mapDispatchToProps = (dispatch) => {

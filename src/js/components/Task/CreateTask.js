@@ -30,7 +30,7 @@ class CreateTask extends React.Component {
       daysToDate: 1,
       originalDate: nextDay,
     };
-    this.state = {
+    this.defaultState = {
       values: this.props.currentTask || defaultValues,
       touched: {
         title: false,
@@ -49,6 +49,7 @@ class CreateTask extends React.Component {
         },
       },
     };
+    this.state = this.defaultState;
 
 
   }
@@ -62,9 +63,7 @@ class CreateTask extends React.Component {
     })
   }
 
-  createUniqueId(title, date) {
-    return `${title}-${date.getTime()}`
-  }
+
 
   getLocationByAdress(address) {
     return new Promise((resolve, reject) => {
@@ -81,14 +80,16 @@ class CreateTask extends React.Component {
     const dateObject = new Date(values.originalDate);
     const date = dateFormat(dateObject, "dddd, mmmm dS");
     const day = Math.ceil(Math.abs((dateObject.getTime() - (new Date()).getTime()) / 1000 / 3600 / 24));
-    const uniqueId = this.createUniqueId(values.title, dateObject);
+    const currentTime = new Date().getTime();
 
     return {
       ...values,
       date,
       day,
-      id: uniqueId,
+      id: currentTime,
       stageProces: "ToDo",
+      createdAt: currentTime,
+      updatedAt: currentTime,
     };
   }
 
@@ -100,11 +101,13 @@ class CreateTask extends React.Component {
       const task = this.createTask(Object.assign({}, this.state.values, { position }));
 
       if (this.props.currentTask) {
+        task.createdAt = this.props.currentTask.createdAt;
         task.id = this.props.currentTask.id;
         task.stageProces = this.props.currentTask.stageProces;
       }
 
       submitHandler(task);
+      this.setState(this.defaultState)
     });
   };
 

@@ -42,8 +42,8 @@ $blue: #00b3e3;
     background: darken($blue, 7.5%);
   }
 
-  [disabled]{
-
+  &[disabled]{
+  cursor: not-allowed;
     background: transparentize($blue, 0.5);
   }
 }

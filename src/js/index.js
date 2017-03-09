@@ -10,7 +10,7 @@ import  TaskPage from './pages/TaskPage';
 import  EditTask from './pages/EditTask';
 import '../sass/common.scss';
 
-const store = configureStore();
+const { store, history } = configureStore(hashHistory);
 
 if(localStorage.getItem("LocalStorageTaskList")){
   const string = localStorage.getItem("LocalStorageTaskList");
@@ -21,7 +21,7 @@ if(localStorage.getItem("LocalStorageTaskList")){
 
 render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={history}>
       <Route name="Root" path="/" component={Root}>
 
         <Route name="task" path='task/:taskId' component={TaskPage}>
