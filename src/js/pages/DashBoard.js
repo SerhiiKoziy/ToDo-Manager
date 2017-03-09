@@ -89,13 +89,12 @@ export default class DashBoard extends Component {
     return (
       <div className={`page start-page columns`}>
         <div className="dashboard-wr">
-
           <div className="inside-wr">
             <div className="lists-wr">
 
               {dustbins.map(({ accepts, id }, index) =>
-                <div className="list-wrapper">
-                  <div className="list-name">
+                <div key={`wr-${index}`} className="list-wrapper">
+                  <div  className="list-name">
                     <h3>
                       {id}
                     </h3>
@@ -112,7 +111,6 @@ export default class DashBoard extends Component {
                           let type = item.stageProces;
                           return this.renderTask(item, i, type)
                         }
-
                       })
                     }
                   </Dustbin>
