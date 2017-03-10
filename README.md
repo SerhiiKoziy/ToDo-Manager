@@ -1,4 +1,4 @@
-# FormsMaker
+# ToDo forecast manager 
 
 install:
 npm i
