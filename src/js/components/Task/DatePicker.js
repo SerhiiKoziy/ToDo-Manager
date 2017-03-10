@@ -13,7 +13,7 @@ const muiTheme = getMuiTheme({
 
 export default class DatePicker extends React.PureComponent {
   static propTypes = {
-    startDate: React.PropTypes.number,
+    startDate: React.PropTypes.any,
     onChange: React.PropTypes.func,
   };
 
@@ -32,6 +32,7 @@ export default class DatePicker extends React.PureComponent {
           hintText="Portrait Inline Dialog"
           container="inline"
           className="input-datepicker"
+          disableYearSelection={true}
           shouldDisableDate={this.disablePrevDates()}
           onChange={this.props.onChange}
           defaultDate={new Date(this.props.startDate)}

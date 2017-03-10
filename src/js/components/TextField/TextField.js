@@ -37,7 +37,7 @@ TextField.propTypes = {
   classNameBox: React.PropTypes.string,
   value: React.PropTypes.string,
   id: React.PropTypes.number,
-  maxLength: React.PropTypes.number,
+  maxLength: React.PropTypes.any,
 
 };
 TextField.defaultProps = {
