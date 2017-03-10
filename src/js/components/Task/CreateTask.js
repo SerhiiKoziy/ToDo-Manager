@@ -32,16 +32,21 @@ class CreateTask extends React.Component {
       touched: {
         title: false,
         description: false,
+        address: false,
       },
       errorMessages: {
         title: 'Title is required',
         description: 'Description is required',
+        address: 'Address is required',
       },
       validation: {
         title: (value) => {
           return value.length > 0;
         },
         description: (value) => {
+          return value.length > 0;
+        },
+        address: (value) => {
           return value.length > 0;
         },
       },
@@ -114,10 +119,11 @@ class CreateTask extends React.Component {
   }
 
   isValidForm() {
+    const address = this.state.values.address;
     const validations = Object.keys(this.state.validation).filter(field => {
       return !this.state.validation[field](this.state.values[field]);
     });
-    return validations.length === 0;
+    return (validations.length === 0 && address.length > 0);
   }
 
   handleDateChange(event, date) {
@@ -176,6 +182,7 @@ class CreateTask extends React.Component {
           <PlacesAutocomplete
             value={this.state.values.address || ''}
             onChange={::this.changeLocation}
+            onBlur={::this.handleInputBlur}
             placeholder="Enter deadline location adress"
           />
         </div>
