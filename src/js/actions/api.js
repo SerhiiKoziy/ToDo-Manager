@@ -14,7 +14,7 @@ export function getWeatherByCoordinates(data) {
     if (response.data.list.length > 0) {
       return response.data.list[data.day - 1];
     }
-
+    response.data.list[response.data.list.length - 1]
     if (response.error) {
       throw new Error(response.error);
     }

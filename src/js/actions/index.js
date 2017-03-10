@@ -32,8 +32,8 @@ export function deleteTask(taskId) {
 export function editTask(task) {
   return (dispatch) => {
     getWeatherByCoordinates(task).then(weather => {
-      const taskWithWeather = { weather, ...task };
-      dispatch(updateTask(taskWithWeather));
+      task.weather = weather;
+      dispatch(updateTask(task));
     }
     );
   };
