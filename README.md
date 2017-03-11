@@ -1,7 +1,7 @@
 # ToDo forecast manager 
 
 
-![](https://github.com/SerhiiKoziy/ToDo-Manager/tree/master/public/assets/images/gif.gif)
+![](https://raw.githubusercontent.com/SerhiiKoziy/ToDo-Manager/master/public/assets/images/gif.gif)
 
 
 install:
