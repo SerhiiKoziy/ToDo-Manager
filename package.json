@@ -41,7 +41,7 @@
     "react-mdl": "*",
     "react-places-autocomplete": "^3.0.0",
     "react-redux": "*",
-    "react-router": "*",
+    "react-router": "2.0",
     "react-router-redux": "*",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "*",
