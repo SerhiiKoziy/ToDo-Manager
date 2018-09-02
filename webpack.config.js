@@ -10,7 +10,6 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/js/index',
   ],
-
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
@@ -21,7 +20,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: 'http://localhost:9090' }),
   ],
-
   module: {
     loaders: [
       {
@@ -46,8 +44,7 @@ module.exports = {
         test: /\.scss$/,
         loader: 'style!css!sass',
       },
-    ]
+    ],
   },
   postcss: [autoprefixer({ browsers: ['last 50 versions'] })]
-
 };

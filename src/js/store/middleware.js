@@ -12,7 +12,7 @@ const updateLocalStorage = store => {
       const result = next(action);
       if (shouldLocalStorageUpdate(action.type)) {
         console.info('Updating localstorage');
-        localStorage.setItem('LocalStorageTaskList', JSON.stringify(store.getState().data));
+        // localStorage.setItem('LocalStorageTaskList', JSON.stringify(store.getState().data));
       }
 
       return result;

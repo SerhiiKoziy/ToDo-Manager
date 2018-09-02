@@ -23,8 +23,7 @@ export default function configureStore(baseHistory, initialState = INITIAL_STATE
   if (module.hot) {
     module.hot.accept('../reducers', () => {
       return store.replaceReducer(require('../reducers')); // eslint-disable-line global-require
-    }
-    );
+    });
   }
 
   return { store, history };

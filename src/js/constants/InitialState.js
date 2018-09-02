@@ -1,3 +1,9 @@
 export const INITIAL_STATE = {
-  data: [],
+  data: [
+    {
+      id: 1,
+      taskId: '1',
+      name: 'first',
+    },
+  ],
 };

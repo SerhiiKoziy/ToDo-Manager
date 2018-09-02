@@ -25,8 +25,7 @@ if (localStorage.getItem('LocalStorageTaskList')) {
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route name="Root" path="/" component={Root}>
-
+      <Route exact name="Root" path="/" component={Root}>
         <Route name="task" path="task/:taskId" component={TaskPage}>
           <Route name="EditTask" path="edit" component={EditTask} />
         </Route>
