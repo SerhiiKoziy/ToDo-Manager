@@ -4,47 +4,77 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  devtool: 'source-map',
+  // devtool: 'source-map',
+  mode: "development",
   entry: [
     'webpack-dev-server/client?http://localhost:9090',
     'webpack/hot/only-dev-server',
     './src/js/index',
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.resolve(__dirname, "dist"),
     filename: 'bundle.js',
     publicPath: '/assets/js',
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:9090' }),
+    new webpack.HotModuleReplacementPlugin({
+      multiStep: true
+    }),
+    // new OpenBrowserPlugin({ url: 'http://localhost:9090' }),
   ],
   module: {
-    loaders: [
+    // loaders: [
+    //   {
+    //     test: /\.(js|jsx)$/,
+    //     exclude: /node_modules/,
+    //     loaders: [
+    //       require.resolve('react-hot-loader'),
+    //       require.resolve('babel-loader'),
+    //     ],
+    //   },
+    //   { test: /\.json$/, loader: 'json-loader' },
+    //   { test: /\.ttf$/, loader: 'file-loader' },
+    //   { test: /\.woff$/, loader: 'file-loader' },
+    //   { test: /\.eot$/, loader: 'file-loader' },
+    //   { test: /\.svg$/, loader: 'file-loader' },
+    //   { test: /\.png$/, loader: 'url-loader' },
+    //   {
+    //     test: /\.css$/,
+    //     loader: 'style!css',
+    //   },
+    //   {
+    //     test: /\.scss$/,
+    //     loader: 'style!css!sass',
+    //   },
+    // ],
+    rules: [
+      // rules for modules (configure loaders, parser options, etc.)
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loaders: [
-          require.resolve('react-hot-loader'),
-          require.resolve('babel-loader'),
-        ],
+        test: /\.js$/,
+        enforce: "pre",
+        //loader: "eslint-loader"
+        loader: "babel-loader",
+        options: {
+          presets: ["es2015"]
+        },
       },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.ttf$/, loader: 'file-loader' },
-      { test: /\.woff$/, loader: 'file-loader' },
-      { test: /\.eot$/, loader: 'file-loader' },
-      { test: /\.svg$/, loader: 'file-loader' },
-      { test: /\.png$/, loader: 'url-loader' },
       {
         test: /\.css$/,
-        loader: 'style!css',
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+           loader: "css-loader",
+           query: {
+             options: {
+               modules: true
+             }
+           },
+          }
+        ]
       },
-      {
-        test: /\.scss$/,
-        loader: 'style!css!sass',
-      },
-    ],
-  },
-  postcss: [autoprefixer({ browsers: ['last 50 versions'] })]
+    ]
+  }
 };
