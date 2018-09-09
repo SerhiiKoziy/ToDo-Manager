@@ -11,7 +11,6 @@ export default class Root extends React.PureComponent {
         <div className="route-wr">
           {this.props.children}
         </div>
-
       </div>
     );
   }
