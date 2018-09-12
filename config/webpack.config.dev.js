@@ -18,7 +18,7 @@ module.exports = require('./webpack.config.base')({
   ],
 
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/assets/js',
   },
@@ -27,17 +27,17 @@ module.exports = require('./webpack.config.base')({
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: 'public/index.html'
+      template: 'public/index.html',
     }),
     new CircularDependencyPlugin({
       exclude: /a\.js|node_modules/,
-      failOnError: false
-    })
+      failOnError: false,
+    }),
   ],
 
   devtool: 'eval-source-map',
 
   performance: {
-    hints: false
-  }
+    hints: false,
+  },
 });
