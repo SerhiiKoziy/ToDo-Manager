@@ -1,0 +1,40 @@
+.login {
+  margin-left: 20px;
+
+  a {
+    margin-left: 25px;
+  }
+
+  input {
+    display: block;
+  }
+
+  div {
+    cursor: pointer;
+    margin: 10px 0 10px 0;
+  }
+
+  button {
+    margin: 12px 12px 0 0;
+  }
+
+  .email_reg {
+    margin-bottom: 30px;
+  }
+
+  .ant-spin {
+    margin: 12px 0 0 10px;
+  }
+
+  .validation-failed-message {
+    color: crimson
+  }
+}
+
+.ant-layout-content {
+  .enter_with_email {
+    input {
+      width: 25%;
+    }
+  }
+}

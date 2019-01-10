@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import Login from '../components/auth/auth';
 
 export default class Root extends React.PureComponent {
   static propTypes = {
@@ -8,6 +9,10 @@ export default class Root extends React.PureComponent {
   render() {
     return (
       <div className="root">
+        <div>
+          <span>1111</span>
+          <Login />
+        </div>
         <div className="route-wr">
           {this.props.children}
         </div>

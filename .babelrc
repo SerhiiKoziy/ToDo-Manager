@@ -1,13 +1,10 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "modules": false
-      }
-    ],
-    "react",
-    "stage-0"
+    ["env", {
+      "targets": { node: "8" } // specify targets here
+    }],
+    "stage-0",
+    "react"
   ],
   "env": {
     "production": {

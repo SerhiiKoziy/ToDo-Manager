@@ -19,7 +19,7 @@
     }
   },
   "rules": {
-    "arrow-body-style": [2, "always"],
+    //"arrow-body-style": [2, "always"],
     "react/sort-comp": [0],
     "react/jsx-boolean-value": [0],
     "react/jsx-no-bind": [2, {

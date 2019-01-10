@@ -9,6 +9,6 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + './public/index.html'));
 });
 
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 90;
 app.listen(port);
 console.log('Listening on port ', port);
