@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth, initUser } from '../../../../firebase';
-// import { Button, Input, message, Spin, Form } from 'antd'
+import { deleteUserStore } from '../../actions/userStoreActions';
 
 class Login extends Component {
   constructor(props) {
@@ -54,6 +54,11 @@ class Login extends Component {
         </form>
       </div>
     );
+  }
+
+  sighOut() {
+    auth().signOut();
+    this.props.deleteUserStore();
   }
 
   // async handleEmail() {
@@ -157,10 +162,15 @@ class Login extends Component {
           </button>
         </div>
 
-        <button onClick={() => auth().signOut()}>Sign out</button>
+        <button onClick={() => this.sighOut()}>Sign out</button>
       </div>
     );
   }
 }
 
-export default Login;
+export default connect(
+  (state) => {
+    return { user: state.user };
+  },
+  { deleteUserStore }
+)(Login);

@@ -8,6 +8,10 @@ export default function UserReducer(state = INITIAL_STATE, action) {
     case types.ADD_USER:
       return payload;
 
+    case types.DELETE_USER:
+      console.log('22222')
+      return {};
+
     default:
       return state;
   }

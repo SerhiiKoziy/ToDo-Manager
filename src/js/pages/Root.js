@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Login from '../components/auth/auth';
 import {Link} from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { auth } from '../../../firebase';
 import { loadUserInfo, uploadUserInfo } from '../../../firebase/user';
@@ -21,7 +21,6 @@ class Root extends React.PureComponent {
 
     auth().onAuthStateChanged(user => {
       if (user) this.loadProfile();
-      this.props.addUserStore(user);
       this.setState({ user, loaded: true });
     });
   }
@@ -38,25 +37,47 @@ class Root extends React.PureComponent {
     let signAs;
     let PhotoUrl;
 
+    const preparedUserData = {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+    };
+
+    this.props.addUserStore(preparedUserData);
     if (res) {
       signAs = res.name;
       PhotoUrl = transformAvatarUrl(res.PhotoUrl);
     } else {
       signAs = defaultName;
-      uploadUserInfo({ name: defaultName, uid }, uid);
+      uploadUserInfo(preparedUserData, uid);
     }
 
     this.setState({ name: signAs, PhotoUrl });
   }
 
   render() {
+    const { user } = this.props;
+
+    console.log('user', user, user.photoUrl);
     return (
       <div className="root">
-        <header>
+        <header className="header">
           <div>logo</div>
-          <div>User: {this.state.name}</div>
-          <div onClick={() => this.setState({ openAuth: true })}>
-            <FontAwesomeIcon icon={faSignInAlt} />
+          <div>Hello!  Dear, {user.displayName || 'User'}</div>
+          <div className="login-wr" onClick={() => this.setState({ openAuth: true })}>
+            <div className="avatar-wr">
+              {
+                user.photoURL ?
+                  <img src={user.photoURL} alt="avatar" /> :
+                  <FontAwesomeIcon icon={faSignInAlt} />
+              }
+            </div>
+            {/*{*/}
+              {/*user && user.displayName ?*/}
+                {/*<FontAwesomeIcon icon={faSignInAlt} /> :*/}
+                {/*<FontAwesomeIcon icon={faSignOutAlt} />*/}
+            {/*}*/}
           </div>
         </header>
 
@@ -69,6 +90,7 @@ class Root extends React.PureComponent {
           </div>
           <Login />
         </div>
+
         <div className="route-wr">
           {this.props.children}
         </div>
@@ -79,7 +101,7 @@ class Root extends React.PureComponent {
 
 export default connect(
   (state) => {
-    return { data: state.data };
+    return { data: state.data, user: state.user };
   },
   { addUserStore }
 )(Root);
