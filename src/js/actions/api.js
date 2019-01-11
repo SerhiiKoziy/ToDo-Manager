@@ -9,12 +9,14 @@ export function getWeatherByCoordinates(data) {
       lat: data.position.lat,
       lon: data.position.lng,
       cnt: data.day,
+      units: 'metric',
     },
   }).then((response) => {
     if (response.data.list.length > 0) {
       return response.data.list[data.day - 1];
     }
-    response.data.list[response.data.list.length - 1]
+    response.data.list[response.data.list.length - 1];
+
     if (response.error) {
       throw new Error(response.error);
     }

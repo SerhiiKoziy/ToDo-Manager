@@ -155,6 +155,8 @@ class Login extends Component {
             Log in with Facebook
           </button>
         </div>
+
+        <button onClick={() => auth().signOut()}>Sign out</button>
       </div>
     );
   }

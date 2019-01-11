@@ -8,7 +8,6 @@ export default function DataReducer(state = INITIAL_STATE, action) {
     case types.ADD_TASK:
       return [...data, payload];
 
-
     case types.DELETE_TASK:
       return data.filter(item => {
         return item.id !== payload;

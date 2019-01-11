@@ -6,18 +6,18 @@ function shouldLocalStorageUpdate(actionType) {
   return updateActions.hasOwnProperty(actionType);
 }
 
-const updateLocalStorage = store => {
-  return next => {
-    return action => {
-      const result = next(action);
-      if (shouldLocalStorageUpdate(action.type)) {
-        console.info('Updating localstorage');
-        localStorage.setItem('LocalStorageTaskList', JSON.stringify(store.getState().data));
-      }
+const updateLocalStorage = store =>
+ next => {
+   return action => {
+     const result = next(action);
+     if (shouldLocalStorageUpdate(action.type)) {
+       console.info('Updating localstorage');
+       localStorage.setItem('LocalStorageTaskList', JSON.stringify(store.getState().data));
+     }
 
-      return result;
-    };
-  };
-};
+     return result;
+   };
+ };
+
 
 export default updateLocalStorage;
