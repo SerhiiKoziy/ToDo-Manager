@@ -1,12 +1,17 @@
 ﻿import React from 'react';
+import { connect } from 'react-redux';
 import Login from '../components/auth/auth';
+import {Link} from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+
 import { auth } from '../../../firebase';
 import { loadUserInfo, uploadUserInfo } from '../../../firebase/user';
 import { getAllEventsInfo } from '../../../firebase/events';
-import {Link} from "react-router";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { transformAvatarUrl } from '../actions/utils';
+import { addUserStore } from '../actions/userStoreActions';
 
-export default class Root extends React.PureComponent {
+class Root extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,24 +21,13 @@ export default class Root extends React.PureComponent {
 
     auth().onAuthStateChanged(user => {
       if (user) this.loadProfile();
-
+      this.props.addUserStore(user);
       this.setState({ user, loaded: true });
     });
   }
 
   componentDidMount() {
     getAllEventsInfo();
-  }
-
-  transformAvatarUrl(url) {
-    if (url) {
-      const slashPosition = url.substring(0, url.lastIndexOf('/')).lastIndexOf('/');
-      const beforeFileName = url.substring(0, slashPosition);
-      const afterFileName = url.substring(slashPosition, url.length);
-      return `${beforeFileName}/${afterFileName}`;
-    }
-
-    return '';
   }
 
   async loadProfile() {
@@ -46,10 +40,10 @@ export default class Root extends React.PureComponent {
 
     if (res) {
       signAs = res.name;
-      PhotoUrl = this.transformAvatarUrl(res.PhotoUrl);
+      PhotoUrl = transformAvatarUrl(res.PhotoUrl);
     } else {
       signAs = defaultName;
-      uploadUserInfo({ name: defaultName }, uid);
+      uploadUserInfo({ name: defaultName, uid }, uid);
     }
 
     this.setState({ name: signAs, PhotoUrl });
@@ -61,7 +55,9 @@ export default class Root extends React.PureComponent {
         <header>
           <div>logo</div>
           <div>User: {this.state.name}</div>
-          <div onClick={() => this.setState({ openAuth: true })}>auth</div>
+          <div onClick={() => this.setState({ openAuth: true })}>
+            <FontAwesomeIcon icon={faSignInAlt} />
+          </div>
         </header>
 
         <div className={`auth-wr ${this.state.openAuth ? 'open' : 'close'}`}>
@@ -69,7 +65,7 @@ export default class Root extends React.PureComponent {
             className="close-auth"
             onClick={() => this.setState({ openAuth: false })}
           >
-            <FontAwesomeIcon icon="coffee" />
+            <FontAwesomeIcon icon={faTimes} />
           </div>
           <Login />
         </div>
@@ -80,3 +76,10 @@ export default class Root extends React.PureComponent {
     );
   }
 }
+
+export default connect(
+  (state) => {
+    return { data: state.data };
+  },
+  { addUserStore }
+)(Root);

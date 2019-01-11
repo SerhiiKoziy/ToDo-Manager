@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { DataReducer } from '../reducers';
+import { DataReducer, UserReducer } from '../reducers';
 import createLogger from 'redux-logger';
 import { INITIAL_STATE } from '../constants/InitialState';
 import updateLocalStorage from './middleware';
@@ -9,6 +9,7 @@ import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-rou
 const reducer = combineReducers({
   routing: routerReducer,
   data: DataReducer,
+  user: UserReducer,
 });
 
 export default function configureStore(baseHistory, initialState = INITIAL_STATE) {

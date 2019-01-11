@@ -67,39 +67,39 @@ class DashBoard extends Component {
       return element.id == item.taskId;
     });
     changedTask[0].stageProces = target;
-    console.log(index, item, target);
     this.props.updateTask(changedTask);
   }
 
   renderDustbins() {
+    console.log('this.props.data', this.props.data)
     return this.state.dustbins.map(({ accepts, id }, index) => {
       return (
-          <div key={`wr-${index}`} className="list-wrapper">
-            <div className="list-name">
-              <h3>
-                {id}
-              </h3>
-            </div>
-            <Dustbin
-              accepts={accepts}
-              listId={id}
-              onDrop={(item, target) => {
-                return ::this.handleDrop(index, item, target);
-              }}
-              key={index}
-              index={index}
-            >
-              {
-                this.props.data.map((item, i) => {
-                  if (item.stageProces == id) {
-                    let type = item.stageProces;
-                    return this.renderTask(item, i, type);
-                  }
-                })
-              }
-            </Dustbin>
+        <div key={`wr-${index}`} className="list-wrapper">
+          <div className="list-name">
+            <h3>
+              {id}
+            </h3>
           </div>
-        );
+          <Dustbin
+            accepts={accepts}
+            listId={id}
+            onDrop={(item, target) => {
+              return ::this.handleDrop(index, item, target);
+            }}
+            key={index}
+            index={index}
+          >
+            {
+              this.props.data && this.props.data.map((item, i) => {
+                if (item.stageProces == id) {
+                  let type = item.stageProces;
+                  return this.renderTask(item, i, type);
+                }
+              })
+            }
+          </Dustbin>
+        </div>
+      );
     }
     );
   }

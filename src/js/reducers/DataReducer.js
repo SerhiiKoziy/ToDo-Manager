@@ -9,9 +9,9 @@ export default function DataReducer(state = INITIAL_STATE, action) {
       return [...data, payload];
 
     case types.DELETE_TASK:
-      return data.filter(item => {
-        return item.id !== payload;
-      });
+      return data.filter(item =>
+        item.id !== payload
+      );
 
     case types.UPDATE_TASK:
       const filteredElements = data.filter(element => {

@@ -6,4 +6,7 @@ export const INITIAL_STATE = {
       name: 'first',
     },
   ],
+  user: {
+    uid: '',
+  },
 };

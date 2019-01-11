@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { auth, initUser } from '../../../../firebase';
 // import { Button, Input, message, Spin, Form } from 'antd'
 
