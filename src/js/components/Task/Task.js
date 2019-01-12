@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
 const Task = ({ item, onDelete, children, map }) => {
   const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
@@ -13,6 +15,13 @@ const Task = ({ item, onDelete, children, map }) => {
       <p>{item.description}</p>
       <p className="date-task">{`${item.date}`}</p>
       <p className="namePlace-task">{`${item.address}`}</p>
+      <p><FontAwesomeIcon icon={faTemperatureLow} /> Temperature celsius:</p>
+      <ul className="temp-list">
+        <li>Day: {`${item.weather.temp.day}`}</li>
+        <li>Evening: {`${item.weather.temp.eve}`}</li>
+        <li>Morning: {`${item.weather.temp.morn}`}</li>
+        <li>Night: {`${item.weather.temp.night}`}</li>
+      </ul>
       <div className="weather-indicator">
         <img src={cloudImageUrl} alt="" />
       </div>
@@ -40,9 +49,9 @@ const Task = ({ item, onDelete, children, map }) => {
             <i className="fa fa-trash" aria-hidden="true"></i>
           </div>
         </div>
-
       </div>
-    </div>);
+    </div>
+  );
 };
 
 

@@ -6,6 +6,7 @@ export default function DataReducer(state = INITIAL_STATE, action) {
   const data = state;
   switch (type) {
     case types.ADD_TASK:
+      console.log('payload', payload)
       return [...data, payload];
 
     case types.DELETE_TASK:

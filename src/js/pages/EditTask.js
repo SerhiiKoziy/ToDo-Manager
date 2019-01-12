@@ -5,7 +5,7 @@ import CreateTask from '../components/Task/CreateTask';
 class EditTask extends PureComponent {
   render() {
     const currentTask = this.props.data.find(item => {
-      return item.id === parseFloat(this.props.params.taskId);
+      return item.id === this.props.params.taskId;
     });
 
     return (

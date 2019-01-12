@@ -91,7 +91,7 @@ class DashBoard extends Component {
             {
               this.props.data && this.props.data.map((item, i) => {
                 if (item.stageProces == id) {
-                  let type = item.stageProces;
+                  const type = item.stageProces;
                   return this.renderTask(item, i, type);
                 }
               })
@@ -99,8 +99,7 @@ class DashBoard extends Component {
           </Dustbin>
         </div>
       );
-    }
-    );
+    });
   }
 
   render() {

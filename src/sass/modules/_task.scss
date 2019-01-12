@@ -6,7 +6,6 @@
       box-shadow: 0 0 10px transparentize(#fff, 0.7);
     }
   }
-
 }
 
 .task {
@@ -20,16 +19,28 @@
   color: #fff;
   box-shadow: 0 0 10px transparentize(#000, 0.7);
   background: linear-gradient(135deg, rgba(253, 253, 253, 0.4), rgba(0, 127, 163, 0));
+
   h4 {
 
   }
-  p {
 
+  p {
     &.date-task {
 
     }
 
   }
+
+  .temp-list {
+    padding: 0 0 0 22px;
+    margin: -10px 0 0 0;
+
+    li {
+      margin: 0 0 5px 0;
+
+    }
+  }
+
   .weather-indicator {
     position: absolute;
     right: 10px;
