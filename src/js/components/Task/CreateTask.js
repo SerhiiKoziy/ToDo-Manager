@@ -9,6 +9,7 @@ import { createTask, editTask } from '../../actions';
 class CreateTask extends React.Component {
   static propTypes = {
     currentTask: React.PropTypes.object,
+    user: React.PropTypes.object || null,
     buttonText: React.PropTypes.string,
     editTask: React.PropTypes.func,
     createTask: React.PropTypes.func,
@@ -27,6 +28,7 @@ class CreateTask extends React.Component {
       daysToDate: 1,
       originalDate: nextDay,
     };
+
     this.defaultState = {
       values: this.props.currentTask || defaultValues,
       touched: {
@@ -94,6 +96,7 @@ class CreateTask extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
+    const userUID = this.props.user && this.props.user.uid;
     const submitHandler = this.props.currentTask ? this.props.editTask : this.props.createTask;
 
     this.getLocationByAdress(this.state.values.address).then((position) => {
@@ -102,6 +105,7 @@ class CreateTask extends React.Component {
       if (this.props.currentTask) {
         task.createdAt = this.props.currentTask.createdAt;
         task.id = this.props.currentTask.id;
+        task.uid = userUID;
         task.stageProces = this.props.currentTask.stageProces;
       }
 
@@ -150,6 +154,10 @@ class CreateTask extends React.Component {
   }
 
   render() {
+    const userUID = this.props.user && this.props.user.uid.length > 0;
+    // const isWrote = this.state.title && this.state.title.length > 0;
+    console.log('userUID', userUID)
+
     return (
       <form onSubmit={::this.handleFormSubmit}>
         <div className="input-box input-wr">
@@ -189,14 +197,20 @@ class CreateTask extends React.Component {
         <button
           type="submit"
           className="btn btn--fw"
-          disabled={!this.isValidForm()}
+          disabled={!this.isValidForm() || !userUID}
         >
           {this.props.buttonText || 'Add event'}
         </button>
+        {
+          !userUID && (
+            <p className="submit-message">Login, please!</p>
+          )
+        }
       </form>
-
     );
   }
 }
 
-export default connect(null, { createTask, editTask })(CreateTask);
+export default connect((state) => {
+  return { user: state.user };
+}, { createTask, editTask })(CreateTask);

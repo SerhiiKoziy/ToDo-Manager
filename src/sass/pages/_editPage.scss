@@ -52,8 +52,8 @@
               height: 50px;
             }
           }
-
         }
+
         p{
           font-size: 16px;
         }
@@ -65,6 +65,13 @@
           box-sizing: border-box;
         }
       }
+
+      .submit-message {
+        color: #000;
+        text-align: center;
+        margin: 10px 0 0 0;
+      }
+
       button{
         margin: 10px auto;
         width: 90%;

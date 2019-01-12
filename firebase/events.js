@@ -4,6 +4,7 @@ export async function getAllEventsInfo() {
   const entries = await database.ref('events').once('value');
   const obj = entries.val();
   const list = [];
+  console.log('obj', obj);
   for (const key in obj) {
     list.push(obj[key]);
   }

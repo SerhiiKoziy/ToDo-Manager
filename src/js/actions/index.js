@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import { getWeatherByCoordinates } from './api';
-import { postNewEvent, putEventInfo, deleteEvent } from '../../../firebase/events';
+import { postNewEvent, putEventInfo, deleteEvent, getAllEventsInfo } from '../../../firebase/events';
 
 export function setList(payload) {
   return {
@@ -14,6 +14,10 @@ export function addTask(payload) {
     type: types.ADD_TASK,
     payload,
   };
+}
+
+export function getAllEventsFromDatabase() {
+  let events = getAllEventsInfo();
 }
 
 export function createTask(task) {
