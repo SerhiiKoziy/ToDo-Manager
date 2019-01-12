@@ -71,7 +71,6 @@ class DashBoard extends Component {
   }
 
   renderDustbins() {
-    console.log('this.props.data', this.props.data)
     return this.state.dustbins.map(({ accepts, id }, index) => {
       return (
         <div key={`wr-${index}`} className="list-wrapper">

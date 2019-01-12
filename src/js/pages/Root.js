@@ -59,7 +59,6 @@ class Root extends React.PureComponent {
   render() {
     const { user } = this.props;
 
-    console.log('user', user, user.photoUrl);
     return (
       <div className="root">
         <header className="header">

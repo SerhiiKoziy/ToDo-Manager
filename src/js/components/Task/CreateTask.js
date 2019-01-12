@@ -191,7 +191,7 @@ class CreateTask extends React.Component {
           className="btn btn--fw"
           disabled={!this.isValidForm()}
         >
-          {this.props.buttonText || 'Add task'}
+          {this.props.buttonText || 'Add event'}
         </button>
       </form>
 

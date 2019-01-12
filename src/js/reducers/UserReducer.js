@@ -9,7 +9,6 @@ export default function UserReducer(state = INITIAL_STATE, action) {
       return payload;
 
     case types.DELETE_USER:
-      console.log('22222')
       return {};
 
     default:

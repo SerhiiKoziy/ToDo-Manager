@@ -162,7 +162,7 @@ class Login extends Component {
           </button>
         </div>
 
-        <button onClick={() => this.sighOut()}>Sign out</button>
+        <button className="button-signOut" onClick={() => this.sighOut()}>Sign out</button>
       </div>
     );
   }

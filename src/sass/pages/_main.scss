@@ -24,6 +24,7 @@ main {
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
 
           img {
             width: 100%;
@@ -42,9 +43,37 @@ main {
       border: 1px solid #fff;
       background: rgb(42, 96, 122);
 
+      .login {
+        .enter_with_email {
+          form {
+            input {
+              width: 100%;
+              height: 30px;
+              box-sizing: border-box;
+            }
+          }
+        }
+
+        .auth-buttons {
+          display: flex;
+          flex-direction: row;
+          button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin: 10px;
+            text-align: center;
+          }
+        }
+      }
+
       .close-auth {
         display: flex;
         flex-direction: row-reverse;
+
+        & > * {
+          cursor: pointer;
+        }
       }
 
       &.close {
