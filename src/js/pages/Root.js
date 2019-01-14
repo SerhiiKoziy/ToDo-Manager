@@ -1,15 +1,13 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import Login from '../components/auth/auth';
-import {Link} from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Header from '../components/modules/header';
 
-import { auth } from '../../../firebase';
-import { loadUserInfo, uploadUserInfo } from '../../../firebase/user';
 import { getAllEventsInfo } from '../../../firebase/events';
-import { transformAvatarUrl } from '../actions/utils';
 import { addUserStore } from '../actions/userStoreActions';
+import './root.scss';
 
 class Root extends React.PureComponent {
   constructor(props) {
@@ -19,66 +17,21 @@ class Root extends React.PureComponent {
       PhotoUrl: '',
     };
 
-    auth().onAuthStateChanged(user => {
-      if (user) this.loadProfile();
-      this.setState({ user, loaded: true });
-    });
+    this.handleAuth = this.handleAuth.bind(this);
   }
 
   componentDidMount() {
     getAllEventsInfo();
   }
 
-  async loadProfile() {
-    const user = auth().currentUser;
-    const uid = user.uid;
-    const res = await loadUserInfo(uid);
-    const defaultName = user.displayName || this.getNameFromEmail(user.email);
-    let signAs;
-    let PhotoUrl;
-
-    const preparedUserData = {
-      uid: user.uid,
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-    };
-
-    this.props.addUserStore(preparedUserData);
-    if (res) {
-      signAs = res.name;
-      PhotoUrl = transformAvatarUrl(res.PhotoUrl);
-    } else {
-      signAs = defaultName;
-      uploadUserInfo(preparedUserData, uid);
-    }
-
-    this.setState({ name: signAs, PhotoUrl });
+  handleAuth() {
+    this.setState({ openAuth: true });
   }
 
   render() {
-    const { user } = this.props;
-
     return (
       <div className="root">
-        <header className="header">
-          <div>logo</div>
-          <div>Hello!  Dear, {user.displayName || 'User'}</div>
-          <div className="login-wr" onClick={() => this.setState({ openAuth: true })}>
-            <div className="avatar-wr">
-              {
-                user.photoURL ?
-                  <img src={user.photoURL} alt="avatar" /> :
-                  <FontAwesomeIcon icon={faSignInAlt} />
-              }
-            </div>
-            {/*{*/}
-              {/*user && user.displayName ?*/}
-                {/*<FontAwesomeIcon icon={faSignInAlt} /> :*/}
-                {/*<FontAwesomeIcon icon={faSignOutAlt} />*/}
-            {/*}*/}
-          </div>
-        </header>
+        <Header handleAuth={() => this.handleAuth()} />
 
         <div className={`auth-wr ${this.state.openAuth ? 'open' : 'close'}`}>
           <div

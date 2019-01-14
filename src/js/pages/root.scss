@@ -11,28 +11,6 @@ main {
   }
 
   .root {
-    header.header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 40px;
-
-      .login-wr {
-        .avatar-wr {
-          height: 50px;
-          width: 50px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-
-          img {
-            width: 100%;
-          }
-        }
-      }
-    }
-
     .auth-wr {
       position: fixed;
       top: 50%;

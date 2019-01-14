@@ -156,7 +156,7 @@ class CreateTask extends React.Component {
   render() {
     const userUID = this.props.user && this.props.user.uid.length > 0;
     // const isWrote = this.state.title && this.state.title.length > 0;
-    console.log('userUID', userUID)
+    console.log('userUID', userUID);
 
     return (
       <form onSubmit={::this.handleFormSubmit}>

@@ -6,6 +6,8 @@ import { deleteTask } from '../actions';
 import SimpleMap from '../components/Task/GoogleMap';
 import Task from '../components/Task/Task';
 
+import './taskPage.scss';
+
 class TaskPage extends Component {
   static propTypes = {
     currentTask: React.PropTypes.object,
@@ -64,12 +66,10 @@ class TaskPage extends Component {
               >
                 {this.renderWeather()}
               </Task>
-
             </div>
             {this.props.children}
           </div>
         </div>
-
       );
     }
 
