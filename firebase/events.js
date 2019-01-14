@@ -1,16 +1,36 @@
 import { database } from './index';
+import firebase from 'firebase';
+import { updateStorage } from '../src/js/actions';
 
-export async function getAllEventsInfo() {
-  const entries = await database.ref('events').once('value');
-  const obj = entries.val();
-  const list = [];
-  console.log('obj', obj);
-  for (const key in obj) {
-    list.push(obj[key]);
-  }
 
-  return list;
+// async function callbackEvents(messages) {
+//   const eventsList = [];
+//
+//   for (const key in messages) {
+//     const messageInfo = messages[key];
+//     eventsList.push(messageInfo);
+//   }
+//
+//   console.log('eventsList', eventsList);
+//
+//   updateStorage(eventsList);
+//   // return eventsList;
+// }
+
+export async function getAllEventsInfoDatabase(callbackEvents) {
+  const user = await firebase.auth().currentUser;
+
+  console.log('22222', user && user.uid);
+
+  return user && await database.ref('events').orderByChild('uid').equalTo(user.uid).on('value', (snapshot) => {
+    snapshot && callbackEvents(snapshot.val());
+  });
 }
+
+// export async function getAllEventsInfo(callbackEvents) {
+//   const res = await getAllEventsInfoDatabase(callbackEvents);
+//   console.log('res11111', res);
+// }
 
 export function postNewEvent(newEvent) {
   const myRef = database.ref('events/').push();

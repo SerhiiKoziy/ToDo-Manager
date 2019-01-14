@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/modules/header';
 
-import { getAllEventsInfo } from '../../../firebase/events';
-import { addUserStore } from '../actions/userStoreActions';
+import { getAllEventsInfoDatabase } from '../../../firebase/events';
+import { getAllEventsFromDatabase, setList } from '../actions';
+
 import './root.scss';
+// import { auth } from '../../../firebase';
 
 class Root extends React.PureComponent {
   constructor(props) {
@@ -16,19 +18,47 @@ class Root extends React.PureComponent {
       openAuth: false,
       PhotoUrl: '',
     };
-
+    // auth().onAuthStateChanged(user => {
+    //
+    //   this.setState({ user });
+    // })
     this.handleAuth = this.handleAuth.bind(this);
   }
 
-  componentDidMount() {
-    getAllEventsInfo();
-  }
+  // async componentDidMount() {
+  //   // auth().onAuthStateChanged(user => {
+  //   //   // if (user) getAllEventsFromDatabase();
+  //   //
+  //   //   // if (user) getAllEventsInfoDatabase(this.callbackEvents);
+  //   //
+  //   // });
+  //
+  //
+  //   console.log('1111', this.state);
+  //   this.setState({ load: true }, await getAllEventsInfoDatabase(this.callbackEvents));
+  // }
+
+  // async callbackEvents(events) {
+  //   const eventsList = [];
+  //
+  //   for (const key in events) {
+  //     const messageInfo = events[key];
+  //     eventsList.push(messageInfo);
+  //   }
+  //
+  //   console.log('eventsList setList', eventsList);
+  //
+  //   eventsList && eventsList.length > 0 && this.setState({ eventsList });
+  //   // this.setState({eventsList})
+  //   // return eventsList;
+  // }
 
   handleAuth() {
     this.setState({ openAuth: true });
   }
 
   render() {
+    console.log('DATA', this.props.data);
     return (
       <div className="root">
         <Header handleAuth={() => this.handleAuth()} />
@@ -55,5 +85,5 @@ export default connect(
   (state) => {
     return { data: state.data, user: state.user };
   },
-  { addUserStore }
+  { getAllEventsFromDatabase, setList }
 )(Root);

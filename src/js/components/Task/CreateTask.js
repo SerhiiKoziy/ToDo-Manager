@@ -101,11 +101,11 @@ class CreateTask extends React.Component {
 
     this.getLocationByAdress(this.state.values.address).then((position) => {
       const task = this.createTask(Object.assign({}, this.state.values, { position }));
+      task.uid = userUID;
 
       if (this.props.currentTask) {
         task.createdAt = this.props.currentTask.createdAt;
         task.id = this.props.currentTask.id;
-        task.uid = userUID;
         task.stageProces = this.props.currentTask.stageProces;
       }
 

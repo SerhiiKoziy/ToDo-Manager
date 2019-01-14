@@ -8,7 +8,8 @@ import Root from './pages/Root';
 import DashBoard from './pages/DashBoard';
 import TaskPage from './pages/TaskPage';
 import EditTask from './pages/EditTask';
-// import NotificationPage from './pages/NotificationPage';
+import NotificationPage from './pages/NotificationPage';
+import WelcomePage from './pages/WelcomePage';
 import '../sass/common.scss';
 
 const { store, history } = configureStore(hashHistory);
@@ -30,7 +31,8 @@ render(
         <Route name="task" path="task/:taskId" component={TaskPage}>
           <Route name="EditTask" path="edit" component={EditTask} />
         </Route>
-        {/*<Route name="notification" component={NotificationPage} />*/}
+        <Route name="Notification" component={NotificationPage} />
+        <Route name="Welcome" component={WelcomePage} />
         <IndexRoute name="DashBoard" component={DashBoard} />
       </Route>
     </Router>

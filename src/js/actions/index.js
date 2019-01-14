@@ -1,8 +1,10 @@
 import * as types from '../constants/ActionTypes';
 import { getWeatherByCoordinates } from './api';
-import { postNewEvent, putEventInfo, deleteEvent, getAllEventsInfo } from '../../../firebase/events';
+import { postNewEvent, putEventInfo,
+  deleteEvent, getAllEventsInfo } from '../../../firebase/events';
 
 export function setList(payload) {
+  console.log('44444', payload);
   return {
     type: types.SET_LIST,
     payload,
@@ -16,8 +18,10 @@ export function addTask(payload) {
   };
 }
 
-export function getAllEventsFromDatabase() {
-  let events = getAllEventsInfo();
+export async function getAllEventsFromDatabase() {
+  const events = await getAllEventsInfo();
+
+  console.log('events2222', events);
 }
 
 export function createTask(task) {
@@ -30,6 +34,13 @@ export function createTask(task) {
         dispatch(addTask(taskWithWeather));
       }
     );
+  };
+}
+
+export function updateStorage(payload) {
+  console.log('55555', payload);
+  return (dispatch) => {
+    dispatch(updateEvents(payload));
   };
 }
 
