@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 import Login from '../components/auth/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,6 @@ import { getAllEventsInfoDatabase } from '../../../firebase/events';
 import { getAllEventsFromDatabase, setList } from '../actions';
 
 import './root.scss';
-// import { auth } from '../../../firebase';
 
 class Root extends React.PureComponent {
   constructor(props) {
@@ -17,48 +17,32 @@ class Root extends React.PureComponent {
     this.state = {
       openAuth: false,
       PhotoUrl: '',
+      eventsList: [],
     };
-    // auth().onAuthStateChanged(user => {
-    //
-    //   this.setState({ user });
-    // })
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) getAllEventsInfoDatabase(this.callbackEvents.bind(this));
+    });
+
     this.handleAuth = this.handleAuth.bind(this);
   }
 
-  // async componentDidMount() {
-  //   // auth().onAuthStateChanged(user => {
-  //   //   // if (user) getAllEventsFromDatabase();
-  //   //
-  //   //   // if (user) getAllEventsInfoDatabase(this.callbackEvents);
-  //   //
-  //   // });
-  //
-  //
-  //   console.log('1111', this.state);
-  //   this.setState({ load: true }, await getAllEventsInfoDatabase(this.callbackEvents));
-  // }
+  async callbackEvents(events) {
+    const eventsList = [];
 
-  // async callbackEvents(events) {
-  //   const eventsList = [];
-  //
-  //   for (const key in events) {
-  //     const messageInfo = events[key];
-  //     eventsList.push(messageInfo);
-  //   }
-  //
-  //   console.log('eventsList setList', eventsList);
-  //
-  //   eventsList && eventsList.length > 0 && this.setState({ eventsList });
-  //   // this.setState({eventsList})
-  //   // return eventsList;
-  // }
+    for (const key in events) {
+      const messageInfo = events[key];
+      eventsList.push(messageInfo);
+    }
+
+    if (eventsList && eventsList.length > 0) this.props.setList(eventsList);
+  }
 
   handleAuth() {
     this.setState({ openAuth: true });
   }
 
   render() {
-    console.log('DATA', this.props.data);
     return (
       <div className="root">
         <Header handleAuth={() => this.handleAuth()} />

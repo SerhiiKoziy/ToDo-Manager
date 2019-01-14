@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 import './header.scss';
+import {Link} from "react-router";
 
 class Header extends React.PureComponent {
   constructor(props) {
@@ -56,6 +57,9 @@ class Header extends React.PureComponent {
     return (
       <header className="header">
         <div>logo</div>
+        <Link to="/notification">
+          <span>notification</span>
+        </Link>
         <div>Hello!  Dear, {user.displayName || 'User'}</div>
         <div className="login-wr" onClick={() => this.props.handleAuth()}>
           <div className="avatar-wr">

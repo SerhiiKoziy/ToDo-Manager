@@ -19,11 +19,8 @@ class NotificationPage extends React.PureComponent {
   }
 
   render() {
-    console.log('DATA', this.props.data);
-
     return (
       <div className="notification">
-
         <div className="route-wr">
           <span>Notification</span>
         </div>

@@ -31,8 +31,8 @@ render(
         <Route name="task" path="task/:taskId" component={TaskPage}>
           <Route name="EditTask" path="edit" component={EditTask} />
         </Route>
-        <Route name="Notification" component={NotificationPage} />
-        <Route name="Welcome" component={WelcomePage} />
+        <Route name="Notification" path="notification" component={NotificationPage} />
+        <Route name="Welcome" path="welcome" component={WelcomePage} />
         <IndexRoute name="DashBoard" component={DashBoard} />
       </Route>
     </Router>
