@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth, initUser } from '../../../../firebase';
+import { auth } from '../../action-firebase';
 import { deleteUserStore } from '../../actions/userStoreActions';
+
+import './auth.scss';
 
 class Login extends Component {
   constructor(props) {

@@ -14,18 +14,19 @@
     padding: 0 10px;
     display: flex;
     flex-direction: column;
+
     .input-wr {
       padding: 15px 0 0;
-      & > div {
 
+      & > div {
         & > div {
           &:first-child {
             width: 100% !important;
             height: 50px;
           }
         }
-
       }
+
       p {
         font-size: 16px;
       }
@@ -51,8 +52,9 @@
           flex-direction: row;
 
           .input-datepicker {
-            & > div {
+            overflow: hidden;
 
+            & > div {
             }
           }
 
@@ -81,6 +83,7 @@
 
 .builder-task-wr {
   width: 40%;
+
   .edit-builder-task {
     width: 100%;
   }

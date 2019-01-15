@@ -21,7 +21,6 @@ export default function DataReducer(state = INITIAL_STATE, action) {
       return [...filteredElements, payload];
 
     case types.SET_LIST:
-      console.log('77777', payload)
       return payload;
 
     default:

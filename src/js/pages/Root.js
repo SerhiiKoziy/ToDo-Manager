@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/modules/header';
 
-import { getAllEventsInfoDatabase } from '../../../firebase/events';
-import { getAllEventsFromDatabase, setList } from '../actions';
+import { getAllEventsInfoDatabase } from '../action-firebase/events';
+import { setList } from '../actions';
 
 import './root.scss';
 
@@ -69,5 +69,5 @@ export default connect(
   (state) => {
     return { data: state.data, user: state.user };
   },
-  { getAllEventsFromDatabase, setList }
+  { setList }
 )(Root);

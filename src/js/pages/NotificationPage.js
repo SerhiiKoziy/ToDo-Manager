@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAllEventsFromDatabase, setList } from '../actions';
+import { setList } from '../actions';
 
 import './notificationPage.scss';
 
@@ -33,5 +33,5 @@ export default connect(
   (state) => {
     return { data: state.data, user: state.user };
   },
-  { getAllEventsFromDatabase, setList }
+  { setList }
 )(NotificationPage);

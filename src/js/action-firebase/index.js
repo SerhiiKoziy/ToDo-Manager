@@ -54,18 +54,6 @@ async function getToken() {
   return await user.getIdToken();
 }
 
-export function like(entryId) {
-  return fbRequest('like', { entryId });
-}
-
-export function addView(entryId) {
-  return fbRequest('addView', { entryId });
-}
-
-export function getChannelsFromUstream() {
-  return fbRequest('getChannelsFromUstream', {});
-}
-
 export async function handleNotification(subject, text) {
   let res = await fbRequest('handleNotification', { subject, text });
   res = res.data;
@@ -85,21 +73,6 @@ export async function initUser(entryId, email) {
   }
 
   return 'User';
-}
-
-function sendRequestChannel(endpoint, channel) {
-  fbRequest(endpoint, { channel })
-    .then(res => res.data)
-    .then(res => res)
-    .catch(error => console.error('Error:', error));
-}
-
-export async function putChannelUstream(channel) {
-  return sendRequestChannel('putChannelUstream', channel);
-}
-
-export async function postChannelUstream(channel) {
-  return sendRequestChannel('postChannelUstream', channel);
 }
 
 function sendRequestComment(endpoint, commentObj) {

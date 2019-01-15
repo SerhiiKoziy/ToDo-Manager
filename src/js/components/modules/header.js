@@ -1,14 +1,16 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
+
+import { Link } from 'react-router';
+
 import { addUserStore } from '../../actions/userStoreActions';
-import { auth } from '../../../../firebase';
-import { loadUserInfo, uploadUserInfo } from '../../../../firebase/user';
+import { auth } from '../../action-firebase';
+import { loadUserInfo, uploadUserInfo } from '../../action-firebase/user';
 import { transformAvatarUrl } from '../../actions/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 import './header.scss';
-import {Link} from "react-router";
 
 class Header extends React.PureComponent {
   constructor(props) {

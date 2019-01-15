@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
+import './task.scss';
+
 const Task = ({ item, onDelete, children, map }) => {
   const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
 

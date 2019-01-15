@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import { database } from './index';
 
 export async function loadUserInfo(uid) {

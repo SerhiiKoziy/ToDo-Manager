@@ -5,7 +5,7 @@ import { Router, hashHistory, Route, IndexRoute } from 'react-router';
 import configureStore from './store/configureStore';
 import { setList } from './actions';
 import Root from './pages/Root';
-import DashBoard from './pages/DashBoard';
+import StartPage from './pages/StartPage';
 import TaskPage from './pages/TaskPage';
 import EditTask from './pages/EditTask';
 import NotificationPage from './pages/NotificationPage';
@@ -33,7 +33,7 @@ render(
         </Route>
         <Route name="Notification" path="notification" component={NotificationPage} />
         <Route name="Welcome" path="welcome" component={WelcomePage} />
-        <IndexRoute name="DashBoard" component={DashBoard} />
+        <IndexRoute name="StartPage" component={StartPage} />
       </Route>
     </Router>
   </Provider>

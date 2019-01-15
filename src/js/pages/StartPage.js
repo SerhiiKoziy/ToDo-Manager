@@ -9,7 +9,9 @@ import Dustbin from '../components/dnd/Dustbin';
 import Box from '../components/dnd/Box';
 import ItemTypes from '../components/dnd/ItemTypes';
 
-class DashBoard extends Component {
+import './startPage.scss';
+
+class StartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -127,6 +129,6 @@ const ConnectedComponent = connect(
   {
     deleteTask, updateTask,
   }
-)(DashBoard);
+)(StartPage);
 
 export default DragDropContext(HTML5Backend)(ConnectedComponent);

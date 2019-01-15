@@ -49,7 +49,7 @@ class TaskPage extends Component {
   render() {
     if (this.props.currentTask) {
       return (
-        <div className={'page task-page'}>
+        <div className="page task-page">
           <div className="inside-wr">
             <div className="task-wr">
               <div className="task-header">
