@@ -5,6 +5,7 @@ import Login from '../components/auth/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/modules/header';
+import Footer from '../components/modules/footer';
 
 import { getAllEventsInfoDatabase } from '../action-firebase/events';
 import { setList } from '../actions';
@@ -60,6 +61,8 @@ class Root extends React.PureComponent {
         <div className="route-wr">
           {this.props.children}
         </div>
+
+        <Footer />
       </div>
     );
   }

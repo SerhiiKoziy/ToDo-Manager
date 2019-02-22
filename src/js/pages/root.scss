@@ -73,3 +73,11 @@ main {
     box-sizing: border-box;
   }
 }
+
+@media only screen and (max-width: 769px) {
+  main {
+    .route-wr {
+      height: calc(100% - 120px);
+    }
+  }
+}
