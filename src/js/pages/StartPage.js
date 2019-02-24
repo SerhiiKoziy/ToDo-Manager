@@ -34,6 +34,8 @@ class StartPage extends Component {
       ],
       droppedBoxNames: [],
     };
+
+    this.handleDrop = this.handleDrop.bind(this);
   }
 
   static propTypes = {
@@ -64,6 +66,12 @@ class StartPage extends Component {
     );
   }
 
+  renderTaskMobile(item, i) {
+    return (
+      <Task item={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
+    );
+  }
+
   handleDrop(index, item, target) {
     const changedTask = this.props.data.filter(element => {
       return element.id == item.taskId;
@@ -85,17 +93,19 @@ class StartPage extends Component {
             accepts={accepts}
             listId={id}
             onDrop={(item, target) => {
-              return ::this.handleDrop(index, item, target);
+              return this.handleDrop(index, item, target);
             }}
             key={index}
             index={index}
           >
             {
               this.props.data && this.props.data.map((item, i) => {
-                if (item.stageProces == id) {
+                if (item.stageProces === id) {
                   const type = item.stageProces;
                   return this.renderTask(item, i, type);
                 }
+
+                return null;
               })
             }
           </Dustbin>
@@ -109,8 +119,17 @@ class StartPage extends Component {
       <div className={'page start-page columns'}>
         <div className="dashboard-wr">
           <div className="inside-wr">
-            <div className="lists-wr">
+            <div className="lists-wr desktop">
               {this.renderDustbins()}
+            </div>
+            <div className="lists-wr mobile">
+              <div>
+                {
+                  this.props.data && this.props.data.map((item, i) => {
+                    return this.renderTaskMobile(item, i);
+                  })
+                }
+              </div>
             </div>
           </div>
           <div className="builder-task">

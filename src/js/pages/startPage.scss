@@ -20,6 +20,10 @@
         z-index: 1;
         display: flex;
 
+        &.mobile{
+          display: none;
+        }
+
         .list-wrapper {
           width: 33%;
           display: flex;
@@ -75,4 +79,22 @@
     }
   }
 
+}
+
+@media only screen and (max-width: 769px) {
+  .page.start-page {
+    .dashboard-wr {
+      .inside-wr {
+        .lists-wr {
+          &.desktop{
+            display: none;
+          }
+
+          &.mobile{
+            display: flex;
+          }
+        }
+      }
+    }
+  }
 }

@@ -10,7 +10,7 @@ import { transformAvatarUrl } from '../../actions/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import './header.scss';
+import './footer.scss';
 
 class Footer extends React.PureComponent {
   constructor(props) {
