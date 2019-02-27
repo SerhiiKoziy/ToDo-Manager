@@ -52,10 +52,107 @@ class Login extends Component {
             value={this.state.email}
             placeholder="email"
           />
-          {/* {this.state.preloader ? <Spin /> : <Button name="next" type="primary" htmlType='submit'>Next</Button>}*/}
+          {/* {this.state.preloader ? <Spin /> :
+          <Button name="next" type="primary" htmlType='submit'>Next</Button>}*/}
+          <button name="next" type="submit">Next</button>
         </form>
       </div>
     );
+  }
+
+  async handleEmail() {
+    if (!this.state.email) {
+      console.log('Email field is required');
+      // message.error('Email field is required')
+    } else {
+      console.log(this.state.email);
+      const res = await auth().fetchSignInMethodsForEmail(this.state.email);
+
+      if (res && res.length === 0) {
+        // message.error("Invalid login email. Please,
+        // registration your profile or choose a social button.")
+        this.setState({ preloader: false, activeButton: true });
+      } else {
+        this.setState({ emailPhase: 'using', preloader: false, activeButton: false });
+      }
+    }
+  }
+
+  emailContinuation(phase) {
+    const cr = phase === 'creation';
+
+    return (
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.loginWithEmail();
+          }}
+        >
+          <h2>
+            {cr ? `Account with email ${this.state.email}
+            does not exist. Enter password to create new account`
+            : 'Enter your password'}
+          </h2>
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={e => this.setState({ password: e.target.value })}
+            value={this.state.password}
+          />
+          <button
+            name="login"
+            // type="primary"
+            type="submit"
+          >
+            {cr ? 'Create account and log in' : 'Log in'}
+          </button>
+          <a onClick={() => this.setState({ emailPhase: 'start' })}>Back</a>
+          {cr ? null : <a onClick={() => this.forgotPassword()}>Forgot password ?</a>}
+        </form>
+      </div>
+    );
+  }
+
+  async loginWithEmail() {
+    // const { hide, type } = this.props
+    const { email, password } = this.state;
+    // const previousPhase = this.state.emailPhase;
+
+    const type = 'auth';
+    const request = () => type === 'auth' ?
+      auth().signInWithEmailAndPassword(email, password) :
+      auth().createUserWithEmailAndPassword(email, password);
+
+    try {
+      this.setState({ emailPhase: 'sendingFormData' });
+      const result = await request();
+      console.log('result', result);
+
+      // if (result.user) await initUser(result.user)
+
+      // if (hide) hide();
+    } catch (err) {
+      console.log('err', err);
+    }
+    // catch (err) {
+    //   console.error('loginWithEmail error', err)
+    //   let code = err.code
+    //   if (code === 'auth/wrong-password')
+    //     message.error('Wrong password')
+    //   else if (code === 'auth/weak-password')
+    //     message.error('Weak password')
+    //   else
+    //     message.error(`Authentication error: ${code}`)
+    //
+    //   this.setState({ emailPhase: previousPhase })
+    // }
+  }
+
+  async forgotPassword() {
+    auth().sendPasswordResetEmail(this.state.email);
+    // message.success('Email sent')
+    this.setState({ refresh: Math.random() });
   }
 
   sighOut() {
@@ -63,108 +160,91 @@ class Login extends Component {
     this.props.deleteUserStore();
   }
 
-  // async handleEmail() {
-  //   if (!this.state.email)
-  //     message.error('Email field is required')
-  //   else {
-  //     var res = await auth().fetchSignInMethodsForEmail(this.state.email)
-  //     var phase = res && res.length === 0 ? "creation" : "using"
-  //     this.setState({ emailPhase: phase, preloader: false })
-  //   }
-  // }
+  renderRegistrationBlock() {
+    return (
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          this.loginWithEmail();
+        }}
+      >
+        <h3>Enter your email</h3>
+        <input
+          type="email"
+          onChange={e => this.setState({ email: e.target.value })}
+          value={this.state.email}
+          placeholder="email"
+        />
+        <h3>Enter your pass</h3>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={e => this.setState({ password: e.target.value })}
+          value={this.state.password}
+        />
+        <button
+          name="login"
+          // type="primary"
+          type="submit"
+        >
+          {"Create account and log in"}
+        </button>
+      </form>
+    );
+  }
 
-  // emailContinuation(phase) {
-  //   var cr = phase === 'creation'
-  //   return <div>
-  //     <Form
-  //       onSubmit={(e) => {
-  //         e.preventDefault()
-  //         this.loginWithEmail()
-  //       }}
-  //     >
-  //       <h2>{cr ? `Account with email ${this.state.email} does not exist. Enter password to create new account` :
-  // "Enter your password"}</h2>
-  //       <Input
-  //         type="password"
-  //         placeholder="Password"
-  //         onChange={e => this.setState({ password: e.target.value })}
-  //         value={this.state.password}
-  //       />
-  //       <Button
-  //         name="login"
-  //         type="primary"
-  //         htmlType='submit'
-  //       >
-  //         {cr ? "Create account and log in" : "Log in"}
-  //       </Button>
-  //       <a onClick={() => this.setState({ emailPhase: 'start' })}>Back</a>
-  //       {cr ? null : <a onClick={() => this.forgotPassword()}>Forgot password ?</a>}
-  //     </Form>
-  //   </div>
-  // }
-
-  // async loginWithEmail() {
-  //   var hide = this.props.hide
-  //   var { email, password } = this.state
-  //   var previousPhase = this.state.emailPhase
-  //   var creation = previousPhase === 'creation'
-  //   var request = () => creation ?
-  //     auth().createUserWithEmailAndPassword(email, password) :
-  //     auth().signInWithEmailAndPassword(email, password)
-  //
-  //   try {
-  //     this.setState({ emailPhase: 'sendingFormData' })
-  //     let result = await request()
-  //     if (result.user) await initUser(result.user)
-  //
-  //     if (hide) hide()
-  //   }
-  //   catch (err) {
-  //     console.error('loginWithEmail error', err)
-  //     let code = err.code
-  //     if (code === 'auth/wrong-password')
-  //       message.error('Wrong password')
-  //     else if (code === 'auth/weak-password')
-  //       message.error('Weak password')
-  //     else
-  //       message.error(`Authentication error: ${code}`)
-  //
-  //     this.setState({ emailPhase: previousPhase })
-  //   }
-  // }
-
-  // async forgotPassword(){
-  //   auth().sendPasswordResetEmail(this.state.email)
-  //   message.success('Email sent')
-  //   this.setState({refresh: Math.random()})
-  // }
+  renderSocietyButtons() {
+    return (
+      <div className="auth-buttons">
+        <button
+          name="login-google"
+          type="primary"
+          onClick={() => this.loginWithGoogle()}
+        >
+          Log in with Google
+        </button>
+        <button
+          name="login-facebook"
+          type="primary"
+          onClick={() => this.loginWithFacebook()}
+        >
+          Log in with Facebook
+        </button>
+      </div>
+    );
+  }
 
   render() {
+    // const { type } = this.props;
+    const type = 'auth';
     if (this.state.emailPhase === 'sendingFormData') {
-      return <div className="login"> preloader </div>;
+      return <div className="login"> {'loading...'} </div>;
     }
 
     return (
       <div className="login">
-        {this.renderEmailBlock()}
-        <div className="auth-buttons">
+        {type === 'registration' ? this.renderRegistrationBlock() : this.renderEmailBlock()}
+        {
+          (type === 'auth') && this.renderSocietyButtons()
+        }
+        <div className="control-button">
           <button
+            className={`change-tab ${this.state.activeButton ? 'active' : ''}`}
             name="login-google"
             type="primary"
-            onClick={() => this.loginWithGoogle()}
+            // onClick={this.props.handleChangeTab}
           >
-            Log in with Google
+            {type === 'auth' ? 'Registration' : 'Authorization'}
           </button>
           <button
-            name="login-facebook"
+            className="change-tab"
+            name="login-google"
             type="primary"
-            onClick={() => this.loginWithFacebook()}
+            onClick={() => this.sighOut()}
           >
-            Log in with Facebook
+            {'Sign out'}
           </button>
         </div>
-
-        <button className="button-signOut" onClick={() => this.sighOut()}>Sign out</button>
       </div>
     );
   }

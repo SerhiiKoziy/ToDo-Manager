@@ -30,7 +30,7 @@ class Header extends React.PureComponent {
     const user = auth().currentUser;
     const uid = user.uid;
     const res = await loadUserInfo(uid);
-    const defaultName = user.displayName || this.getNameFromEmail(user.email);
+    const defaultName = (user.displayName || this.getNameFromEmail(user.email)) || '1111';
     let signAs;
     let PhotoUrl;
 
@@ -53,16 +53,22 @@ class Header extends React.PureComponent {
     this.setState({ name: signAs, PhotoUrl });
   }
 
+  getNameFromEmail(email) {
+    const end = email.indexOf('@');
+    return email.slice(0, end);
+  }
+
   render() {
     const { user } = this.props;
 
     return (
       <header className="header">
-        <div>logo</div>
-        <Link to="/notification">
-          <span>notification</span>
+        <Link to="/">
+          <span>logo</span>
         </Link>
-        <div>Hello!  Dear, {user.displayName || 'User'}</div>
+        <Link to="/profile">
+          <span>Hello!  Dear, {user.displayName || 'User'}</span>
+        </Link>
         <div className="login-wr" onClick={() => this.props.handleAuth()}>
           <div className="avatar-wr">
             {

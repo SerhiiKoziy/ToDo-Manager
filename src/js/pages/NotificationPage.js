@@ -21,9 +21,7 @@ class NotificationPage extends React.PureComponent {
   render() {
     return (
       <div className="notification">
-        <div className="route-wr">
-          <span>Notification</span>
-        </div>
+        <span>Notification</span>
       </div>
     );
   }

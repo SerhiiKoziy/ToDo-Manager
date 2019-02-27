@@ -1,6 +1,25 @@
 .login {
-  .auth-buttons {
+  .enter_with_email {
+    form {
+      input {
+        width: 100%;
+        height: 30px;
+        box-sizing: border-box;
+      }
+    }
+  }
 
+  .auth-buttons {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin: 10px;
+      text-align: center;
+    }
   }
 
   a {

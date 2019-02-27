@@ -1,83 +1,58 @@
-main {
-  position: relative;
+.root, .page {
   height: 100%;
+}
+
+.root {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   .route-wr {
-    height: calc(100% - 60px);
+    // height: calc(100% - 60px);
   }
 
-  .root, .page {
-    height: 100%;
-  }
+  .auth-wr {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.4s all;
+    padding: 20px;
+    border: 1px solid #fff;
+    background: rgb(42, 96, 122);
 
-  .root {
-    .auth-wr {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: 0.4s all;
-      padding: 20px;
-      border: 1px solid #fff;
-      background: rgb(42, 96, 122);
+    &.close {
+      z-index: -100;
+      opacity: 0;
+    }
 
-      .login {
-        .enter_with_email {
-          form {
-            input {
-              width: 100%;
-              height: 30px;
-              box-sizing: border-box;
-            }
-          }
-        }
+    &.open {
+      z-index: 100;
+      opacity: 1;
+    }
 
-        .auth-buttons {
-          display: flex;
-          flex-direction: row;
-          button {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin: 10px;
-            text-align: center;
-          }
-        }
-      }
+    .close-auth {
+      display: flex;
+      flex-direction: row-reverse;
 
-      .close-auth {
-        display: flex;
-        flex-direction: row-reverse;
-
-        & > * {
-          cursor: pointer;
-        }
-      }
-
-      &.close {
-        z-index: -100;
-        opacity: 0;
-      }
-
-      &.open {
-        z-index: 100;
-        opacity: 1;
+      & > * {
+        cursor: pointer;
       }
     }
   }
+}
 
-  .page {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px 30px;
-    box-sizing: border-box;
-  }
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px 30px;
+  box-sizing: border-box;
 }
 
 @media only screen and (max-width: 769px) {
-  main {
-    .route-wr {
-      height: calc(100% - 120px);
-    }
+  .route-wr {
+    height: calc(100% - 120px);
   }
 }
+

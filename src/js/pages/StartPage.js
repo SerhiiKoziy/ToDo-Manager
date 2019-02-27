@@ -93,7 +93,7 @@ class StartPage extends Component {
             accepts={accepts}
             listId={id}
             onDrop={(item, target) => {
-              return this.handleDrop(index, item, target);
+              return ::this.handleDrop(index, item, target);
             }}
             key={index}
             index={index}
@@ -116,7 +116,7 @@ class StartPage extends Component {
 
   render() {
     return (
-      <div className={'page start-page columns'}>
+      <div className="page start-page columns">
         <div className="dashboard-wr">
           <div className="inside-wr">
             <div className="lists-wr desktop">

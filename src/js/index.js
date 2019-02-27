@@ -1,18 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, hashHistory, Route, IndexRoute } from 'react-router';
+import createHashHistory from 'history/lib/createHashHistory';
+
+import { Router, Route } from 'react-router';
 import configureStore from './store/configureStore';
 import { setList } from './actions';
 import Root from './pages/Root';
+// import Base from './pages/Base';
+// import BaseRoot from './pages/Base-root';
 import StartPage from './pages/StartPage';
 import TaskPage from './pages/TaskPage';
 import EditTask from './pages/EditTask';
 import NotificationPage from './pages/NotificationPage';
-import WelcomePage from './pages/WelcomePage';
+// import WelcomePage from './pages/WelcomePage';
 import '../sass/common.scss';
 
-const { store, history } = configureStore(hashHistory);
+const historyHash = createHashHistory({ alwaysEnableState: true });
+const { store, history } = configureStore(historyHash);
 
 if (localStorage.getItem('LocalStorageTaskList')) {
   const string = localStorage.getItem('LocalStorageTaskList');
@@ -24,18 +29,31 @@ if (localStorage.getItem('LocalStorageTaskList')) {
   }
 }
 
+// render(
+//   <Provider store={store}>
+//     <Router history={history}>
+//       <Route exact name="Root" path="/" component={Root}>
+//         <Route name="task" path="task/:taskId" component={TaskPage}>
+//           <Route name="EditTask" path="edit" component={EditTask} />
+//         </Route>
+//         {/* <Route name="Welcome" path="welcome" component={WelcomePage} />*/}
+//         <Route name="Profile" path="profile" component={NotificationPage} />
+//          <IndexRoute name="StartPage" component={StartPage} />
+//       </Route>
+//     </Router>
+//   </Provider>
+//   , document.getElementById('app')
+// );
+
 render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route exact name="Root" path="/" component={Root}>
-        <Route name="task" path="task/:taskId" component={TaskPage}>
-          <Route name="EditTask" path="edit" component={EditTask} />
-        </Route>
-        <Route name="Welcome" path="welcome" component={WelcomePage} />
-        <Route name="Profile" path="profile" component={NotificationPage} />
-        <IndexRoute name="StartPage" component={StartPage} />
+    <Router history={historyHash}>
+      <Route exact name="Root" path="/root" component={Root}>
+        <Route path="/" component={NotificationPage} />
+        <Route path="/profile" component={StartPage} />
+        <Route path="/task/:taskId" component={TaskPage} />
       </Route>
     </Router>
   </Provider>
-  , document.getElementById('app')
+  , document.getElementById('root')
 );

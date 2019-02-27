@@ -86,12 +86,15 @@
     .dashboard-wr {
       .inside-wr {
         .lists-wr {
+
           &.desktop{
             display: none;
           }
 
           &.mobile{
             display: flex;
+            overflow: auto;
+            height: calc(100vh - 150px);
           }
         }
       }
