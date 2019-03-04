@@ -27,6 +27,5 @@ export default function configureStore(baseHistory, initialState = INITIAL_STATE
     });
   }
 
-  console.log('syncHistoryWithStore', history)
   return { store, history };
 }

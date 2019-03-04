@@ -20,4 +20,23 @@ header.header {
       }
     }
   }
+
+  .header-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  header.header {
+    .header-desktop {
+      display: none;
+    }
+
+    .header-mobile {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 }

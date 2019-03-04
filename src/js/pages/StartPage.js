@@ -123,7 +123,7 @@ class StartPage extends Component {
               {this.renderDustbins()}
             </div>
             <div className="lists-wr mobile">
-              <div>
+              <div className="list">
                 {
                   this.props.data && this.props.data.map((item, i) => {
                     return this.renderTaskMobile(item, i);
@@ -132,7 +132,7 @@ class StartPage extends Component {
               </div>
             </div>
           </div>
-          <div className="builder-task">
+          <div className="builder-task mobile">
             <CreateTask />
           </div>
         </div>
@@ -142,9 +142,7 @@ class StartPage extends Component {
 }
 
 const ConnectedComponent = connect(
-  (state) => {
-    return { data: state.data };
-  },
+  (state) => ({ data: state.data }),
   {
     deleteTask, updateTask,
   }

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { ADD_TASK, UPDATE_TASK, DELETE_TASK, SET_LIST } from '../constants/ActionTypes';
-const updateActions = { ADD_TASK, UPDATE_TASK, DELETE_TASK, SET_LIST };
+const updateActions = { UPDATE_TASK, DELETE_TASK, SET_LIST };
 
 function shouldLocalStorageUpdate(actionType) {
   return updateActions.hasOwnProperty(actionType);

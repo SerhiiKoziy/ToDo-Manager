@@ -46,7 +46,10 @@ class Root extends React.PureComponent {
   render() {
     return (
       <div className="root">
-        <Header handleAuth={() => this.handleAuth()} />
+        <Header
+          handleAuth={() => this.handleAuth()}
+          location={this.props.location}
+        />
 
         <div className={`auth-wr ${this.state.openAuth ? 'open' : 'close'}`}>
           <div

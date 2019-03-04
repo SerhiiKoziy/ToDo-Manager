@@ -25,6 +25,7 @@
     .task-wr {
       width: 75%;
     }
+
     .task {
       margin: 0 10px;
 
@@ -50,6 +51,23 @@
         &.date-task {
 
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .page.task-page {
+    .inside-wr {
+
+      .task-wr {
+        width: 100%;
+
+        overflow: auto;
+      }
+
+      .task {
+        margin: 0;
       }
     }
   }

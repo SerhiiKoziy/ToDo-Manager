@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import connect from 'react-redux/es/connect/connect';
 
 import { Link } from 'react-router';
 
 import { addUserStore } from '../../actions/userStoreActions';
-import { auth } from '../../action-firebase';
-import { loadUserInfo, uploadUserInfo } from '../../action-firebase/user';
-import { transformAvatarUrl } from '../../actions/utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+// import { auth } from '../../action-firebase';
+// import { loadUserInfo, uploadUserInfo } from '../../action-firebase/user';
+// import { transformAvatarUrl } from '../../actions/utils';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 import './footer.scss';
 
-class Footer extends React.PureComponent {
+class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {

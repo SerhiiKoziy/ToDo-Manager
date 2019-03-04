@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 import { INITIAL_STATE } from '../constants/InitialState';
 
-export default function DataReducer(state = INITIAL_STATE, action) {
+export function DataReducer(state = INITIAL_STATE, action) {
   const { type, payload } = action;
   const data = state;
   switch (type) {
