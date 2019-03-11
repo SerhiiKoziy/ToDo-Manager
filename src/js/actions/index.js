@@ -18,12 +18,14 @@ export function addTask(payload) {
 
 export function createTask(task) {
   return (dispatch) => {
-    getWeatherByCoordinates(task).then(
+    return getWeatherByCoordinates(task).then(
       (weather) => {
         const taskWithWeather = { weather, ...task };
 
         postNewEvent(taskWithWeather);
         dispatch(addTask(taskWithWeather));
+
+        return 'success';
       }
     );
   };

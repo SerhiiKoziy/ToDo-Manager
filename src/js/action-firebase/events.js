@@ -13,9 +13,10 @@ export async function getAllEventsInfoDatabase(callbackEvents) {
 export function postNewEvent(newEvent) {
   const myRef = database.ref('events/').push();
   // uploadNewEventCallback(myRef.key);
-  newEvent.id = myRef.key;
+  const newEventChanged = newEvent;
+  newEventChanged.id = myRef.key;
 
-  return myRef.set(newEvent);
+  return myRef.set(newEventChanged);
 }
 
 export async function putEventInfo(obj, uid) {

@@ -12,6 +12,7 @@ import Root from './pages/Root';
 import StartPage from './pages/StartPage';
 import TaskPage from './pages/TaskPage';
 import EditTask from './pages/EditTask';
+import AddTask from './pages/AddTask';
 import NotificationPage from './pages/NotificationPage';
 // import WelcomePage from './pages/WelcomePage';
 import '../sass/common.scss';
@@ -53,6 +54,7 @@ render(
         <Route path="/profile" component={NotificationPage} />
         <Route path="/task/:taskId" component={TaskPage} />
         <Route path="/edit" component={EditTask} />
+        <Route path="/add" component={AddTask} />
       </Route>
     </Router>
   </Provider>

@@ -8,6 +8,7 @@ import Header from '../components/modules/header';
 import Footer from '../components/modules/footer';
 
 import { getAllEventsInfoDatabase } from '../action-firebase/events';
+import { saveUserClaimsAction } from '../actions/userStoreActions';
 import { setList } from '../actions';
 
 import './root.scss';
@@ -22,6 +23,7 @@ class Root extends React.PureComponent {
     };
 
     firebase.auth().onAuthStateChanged(user => {
+      this.props.saveUserClaimsAction(user);
       if (user) getAllEventsInfoDatabase(this.callbackEvents.bind(this));
     });
 
@@ -73,5 +75,5 @@ class Root extends React.PureComponent {
 
 export default connect(
   (state) => ({ data: state.data, user: state.user }),
-  { setList }
+  { saveUserClaimsAction, setList }
 )(Root);

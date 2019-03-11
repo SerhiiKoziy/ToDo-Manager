@@ -64,7 +64,7 @@ class Header extends Component {
         return (
           <Link
             className="right-button"
-            to="/edit"
+            to="/add"
           >
             <span>add +</span>
           </Link>

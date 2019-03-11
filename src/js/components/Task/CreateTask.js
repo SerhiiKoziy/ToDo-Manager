@@ -21,6 +21,7 @@ class CreateTask extends React.Component {
     const nextDay = new Date();
     nextDay.setDate(nextDay.getDate() + 1);
 
+    console.log('1111', nextDay)
     const defaultValues = {
       address: 'Kiev, Kyiv city, Ukraine',
       title: '',
@@ -43,13 +44,13 @@ class CreateTask extends React.Component {
       },
       validation: {
         title: (value) => {
-          return value.length > 0;
+          return value && value.length > 0;
         },
         description: (value) => {
-          return value.length > 0;
+          return value && value.length > 0;
         },
         address: (value) => {
-          return value.length > 0;
+          return value && value.length > 0;
         },
       },
     };
@@ -103,13 +104,14 @@ class CreateTask extends React.Component {
       const task = this.createTask(Object.assign({}, this.state.values, { position }));
       task.uid = userUID;
 
-      if (this.props.currentTask) {
+      if (this.props.updatedAt) {
         task.createdAt = this.props.currentTask.createdAt;
         task.id = this.props.currentTask.id;
         task.stageProces = this.props.currentTask.stageProces;
       }
 
-      submitHandler(task);
+      const result = submitHandler(task);
+      console.log('Task create:', result)
       this.setState(this.defaultState);
     });
   }
@@ -156,13 +158,14 @@ class CreateTask extends React.Component {
   render() {
     const userUID = this.props.user && this.props.user.uid.length > 0;
     // const isWrote = this.state.title && this.state.title.length > 0;
-
+    const nextDay = new Date();
+    nextDay.setDate(nextDay.getDate() + 1);
     return (
       <form onSubmit={::this.handleFormSubmit}>
         <div className="input-box input-wr">
           <DatePicker
             onChange={::this.handleDateChange}
-            startDate={this.state.values.originalDate}
+            startDate={this.state.values.originalDate || nextDay}
           />
         </div>
 
@@ -210,6 +213,6 @@ class CreateTask extends React.Component {
   }
 }
 
-export default connect((state) => {
-  return { user: state.user };
-}, { createTask, editTask })(CreateTask);
+export default connect((state) => ({ user: state.user }),
+  { createTask, editTask }
+  )(CreateTask);
