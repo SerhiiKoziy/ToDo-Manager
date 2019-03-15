@@ -4,15 +4,10 @@ import CreateTask from '../components/Task/CreateTask';
 
 class AddTask extends PureComponent {
   render() {
-    // const currentTask = this.props.data.find(item => {
-    //   return item.id === this.props.params.taskId;
-    // });
-
     return (
       <div className="builder-task edit-builder-task">
         <CreateTask
-          currentTask={{}}
-          buttonText="Edit event"
+          buttonText="Add event"
         />
       </div>
     );

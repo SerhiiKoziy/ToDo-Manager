@@ -7,7 +7,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/modules/header';
 import Footer from '../components/modules/footer';
 
-import { getAllEventsInfoDatabase } from '../action-firebase/events';
+import { getAllEventsDatabase } from '../action-firebase/events';
 import { saveUserClaimsAction } from '../actions/userStoreActions';
 import { setList } from '../actions';
 
@@ -24,7 +24,7 @@ class Root extends React.PureComponent {
 
     firebase.auth().onAuthStateChanged(user => {
       this.props.saveUserClaimsAction(user);
-      if (user) getAllEventsInfoDatabase(this.callbackEvents.bind(this));
+      if (user) getAllEventsDatabase(this.callbackEvents.bind(this));
     });
 
     this.handleAuth = this.handleAuth.bind(this);

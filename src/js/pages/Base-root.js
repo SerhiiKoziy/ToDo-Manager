@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { getAllEventsInfoDatabase } from '../action-firebase/events';
+import { getAllEventsDatabase } from '../action-firebase/events';
 
 import './root.scss';
 
@@ -17,7 +17,7 @@ export default class BaseRoot extends React.PureComponent {
     };
 
     firebase.auth().onAuthStateChanged(user => {
-      if (user) getAllEventsInfoDatabase(this.callbackEvents.bind(this));
+      if (user) getAllEventsDatabase(this.callbackEvents.bind(this));
     });
 
     this.handleAuth = this.handleAuth.bind(this);

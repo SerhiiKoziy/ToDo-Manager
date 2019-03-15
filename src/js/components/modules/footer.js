@@ -62,7 +62,7 @@ class Footer extends Component {
           </Link>
         </div>
         <div className="footer-tab">
-          <Link to="/welcome">
+          <Link to="/events">
             <span>Tasks</span>
           </Link>
         </div>

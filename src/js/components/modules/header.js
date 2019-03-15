@@ -86,6 +86,8 @@ class Header extends Component {
 
   render() {
     const { user } = this.props;
+    const userName = user.displayName || user.email || 'User';
+
     const currentPath = this.props.location.pathname;
     let page = 'main'
 
@@ -105,7 +107,7 @@ class Header extends Component {
             <span>logo</span>
           </Link>
           <Link to="/profile">
-            <span>Hello!  Dear, {user.displayName || 'User'}</span>
+            <span>Hello!  Dear, {userName || 'User'}</span>
           </Link>
           <div className="login-wr" onClick={() => this.props.handleAuth()}>
             <div className="avatar-wr">

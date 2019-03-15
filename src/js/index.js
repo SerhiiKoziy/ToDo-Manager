@@ -50,10 +50,12 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route exact name="Root" path="/root" component={Root}>
-        <Route path="/" component={StartPage} />
+        <Route path="/" component={NotificationPage} />
+        <Route path="/events" component={StartPage} />
         <Route path="/profile" component={NotificationPage} />
         <Route path="/task/:taskId" component={TaskPage} />
-        <Route path="/edit" component={EditTask} />
+        {/* <Route path="/edit" component={EditTask} />*/}
+        <Route path="/task/:taskId/edit" component={EditTask} />
         <Route path="/add" component={AddTask} />
       </Route>
     </Router>

@@ -4,15 +4,15 @@ import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import dateFormat from 'dateformat';
 import DatePicker from './DatePicker';
 import TextField from '../TextField/TextField';
-import { createTask, editTask } from '../../actions';
+import { createTaskAction, editTaskAction } from '../../actions';
 
 class CreateTask extends React.Component {
   static propTypes = {
     currentTask: React.PropTypes.object,
     user: React.PropTypes.object || null,
     buttonText: React.PropTypes.string,
-    editTask: React.PropTypes.func,
-    createTask: React.PropTypes.func,
+    editTaskAction: React.PropTypes.func,
+    createTaskAction: React.PropTypes.func,
   };
 
   constructor(props) {
@@ -21,7 +21,6 @@ class CreateTask extends React.Component {
     const nextDay = new Date();
     nextDay.setDate(nextDay.getDate() + 1);
 
-    console.log('1111', nextDay)
     const defaultValues = {
       address: 'Kiev, Kyiv city, Ukraine',
       title: '',
@@ -33,16 +32,21 @@ class CreateTask extends React.Component {
     this.defaultState = {
       values: this.props.currentTask || defaultValues,
       touched: {
+        originalDate: false,
         title: false,
         description: false,
         address: false,
       },
       errorMessages: {
+        originalDate: 'Date is required',
         title: 'Title is required',
         description: 'Description is required',
         address: 'Address is required',
       },
       validation: {
+        originalDate: (value) => {
+          return !!value;
+        },
         title: (value) => {
           return value && value.length > 0;
         },
@@ -98,7 +102,8 @@ class CreateTask extends React.Component {
   handleFormSubmit(event) {
     event.preventDefault();
     const userUID = this.props.user && this.props.user.uid;
-    const submitHandler = this.props.currentTask ? this.props.editTask : this.props.createTask;
+    const submitHandler = this.props.currentTask ?
+      this.props.editTaskAction : this.props.createTaskAction;
 
     this.getLocationByAdress(this.state.values.address).then((position) => {
       const task = this.createTask(Object.assign({}, this.state.values, { position }));
@@ -129,6 +134,7 @@ class CreateTask extends React.Component {
     const validations = Object.keys(this.state.validation).filter(field => {
       return !this.state.validation[field](this.state.values[field]);
     });
+
     return (validations.length === 0 && address.length > 0);
   }
 
@@ -160,6 +166,7 @@ class CreateTask extends React.Component {
     // const isWrote = this.state.title && this.state.title.length > 0;
     const nextDay = new Date();
     nextDay.setDate(nextDay.getDate() + 1);
+
     return (
       <form onSubmit={::this.handleFormSubmit}>
         <div className="input-box input-wr">
@@ -214,5 +221,5 @@ class CreateTask extends React.Component {
 }
 
 export default connect((state) => ({ user: state.user }),
-  { createTask, editTask }
+  { createTaskAction, editTaskAction }
   )(CreateTask);
