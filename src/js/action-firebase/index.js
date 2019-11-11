@@ -16,7 +16,9 @@ const config = {
 
 firebase.initializeApp(config);
 
-const fbUrl = url => `http://${config.functionsUrl}/${url}`;
+const fbUrl = url => `https://${config.functionsUrl}/${url}`;
+
+// Local cloud server:
 // const fbUrl = url => 'http://localhost:7777/implant-compare/us-central1/' + url;
 
 async function fbRequest(endpoint, data) {
