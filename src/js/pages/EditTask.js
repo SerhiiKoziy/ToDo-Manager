@@ -8,7 +8,6 @@ class EditTask extends PureComponent {
       return item.id === this.props.params.taskId;
     });
 
-    console.log('currentTask', this.props.data, this.props.params.taskId)
     return (
       <div className="builder-task edit-builder-task">
         <CreateTask

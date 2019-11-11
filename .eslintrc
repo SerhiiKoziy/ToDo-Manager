@@ -21,9 +21,13 @@
   "rules": {
     //"arrow-body-style": [2, "always"],
     "react/sort-comp": [0],
-    "react/jsx-boolean-value": [0],
+    "arrow-body-style": ["error", "never"],
     "react/jsx-no-bind": [2, {
-      "allowArrowFunctions": true
+      "ignoreDOMComponents": false,
+      "ignoreRefs": false,
+      "allowArrowFunctions": false,
+      "allowFunctions": false,
+      "allowBind": false
     }]
   }
 }

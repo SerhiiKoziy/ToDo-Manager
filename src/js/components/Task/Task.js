@@ -6,7 +6,8 @@ import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 import './task.scss';
 
 const Task = ({ item, onDelete, children, map }) => {
-  const cloudImageUrl = `http://openweathermap.org/img/w/${item.weather.weather[0].icon}.png`;
+  const weatherItem = item.weather;
+  const cloudImageUrl = weatherItem && `http://openweathermap.org/img/w/${weatherItem.weather[0].icon}.png`;
 
   return (
     <div
@@ -18,12 +19,16 @@ const Task = ({ item, onDelete, children, map }) => {
       <p className="date-task">{`${item.date}`}</p>
       <p className="namePlace-task">{`${item.address}`}</p>
       <p><FontAwesomeIcon icon={faTemperatureLow} /> Temperature celsius:</p>
-      <ul className="temp-list">
-        <li>Day: {`${item.weather.temp.day}`}</li>
-        <li>Evening: {`${item.weather.temp.eve}`}</li>
-        <li>Morning: {`${item.weather.temp.morn}`}</li>
-        <li>Night: {`${item.weather.temp.night}`}</li>
-      </ul>
+        {
+          weatherItem && (
+            <ul className="temp-list">
+              <li>Day: {`${weatherItem.temp.day}`}</li>
+              <li>Evening: {`${weatherItem.temp.eve}`}</li>
+              <li>Morning: {`${weatherItem.temp.morn}`}</li>
+              <li>Night: {`${weatherItem.temp.night}`}</li>
+            </ul>
+          )
+        }
       <div className="weather-indicator">
         <img src={cloudImageUrl} alt="" />
       </div>

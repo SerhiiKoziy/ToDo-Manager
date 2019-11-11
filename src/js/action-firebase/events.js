@@ -20,7 +20,6 @@ export function postEventFirebase(newEvent) {
 }
 
 export async function putEventFirebase(obj, uid) {
-  console.log('putEventFirebase', obj, uid)
   try {
     return await database.ref(`events/${uid}/`).update(obj);
   } catch (err) {

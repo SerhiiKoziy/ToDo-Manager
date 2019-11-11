@@ -63,14 +63,11 @@ class Login extends Component {
   async handleEmail() {
     if (!this.state.email) {
       console.log('Email field is required');
-      // message.error('Email field is required')
     } else {
-      console.log(this.state.email);
       const res = await auth().fetchSignInMethodsForEmail(this.state.email);
 
       if (res && res.length === 0) {
-        // message.error("Invalid login email. Please,
-        // registration your profile or choose a social button.")
+        console.log("Invalid login email. Please, registration your profile or choose a social button.");
         this.setState({ preloader: false, activeButton: true });
       } else {
         this.setState({ emailPhase: 'using', preloader: false, activeButton: false });
@@ -127,13 +124,12 @@ class Login extends Component {
     try {
       this.setState({ emailPhase: 'sendingFormData' });
       const result = await request();
-      console.log('result', result);
 
       // if (result.user) await initUser(result.user)
 
       // if (hide) hide();
     } catch (err) {
-      console.log('err', err);
+      console.error('err', err);
     }
     // catch (err) {
     //   console.error('loginWithEmail error', err)

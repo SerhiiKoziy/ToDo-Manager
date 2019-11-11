@@ -59,6 +59,11 @@ class CreateTask extends React.Component {
       },
     };
     this.state = this.defaultState;
+
+    this.handleInputBlur = this.handleInputBlur.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   updateValue(target, value) {
@@ -69,7 +74,6 @@ class CreateTask extends React.Component {
       },
     });
   }
-
 
   getLocationByAdress(address) {
     return new Promise((resolve, reject) => {
@@ -82,7 +86,7 @@ class CreateTask extends React.Component {
     });
   }
 
-  createTask(values) {
+  prepareTask(values) {
     const dateObject = new Date(values.originalDate);
     const date = dateFormat(dateObject, 'dddd, mmmm dS');
     const day = Math.ceil(Math.abs((dateObject.getTime() - (new Date()).getTime()) / 1000 / 3600 / 24));
@@ -101,12 +105,14 @@ class CreateTask extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
+
     const userUID = this.props.user && this.props.user.uid;
     const submitHandler = this.props.currentTask ?
       this.props.editTaskAction : this.props.createTaskAction;
 
     this.getLocationByAdress(this.state.values.address).then((position) => {
-      const task = this.createTask(Object.assign({}, this.state.values, { position }));
+
+      const task = this.prepareTask(Object.assign({}, this.state.values, { position }));
       task.uid = userUID;
 
       if (this.props.updatedAt) {
@@ -115,8 +121,7 @@ class CreateTask extends React.Component {
         task.stageProces = this.props.currentTask.stageProces;
       }
 
-      const result = submitHandler(task);
-      console.log('Task create:', result)
+      submitHandler(task);
       this.setState(this.defaultState);
     });
   }
@@ -168,10 +173,10 @@ class CreateTask extends React.Component {
     nextDay.setDate(nextDay.getDate() + 1);
 
     return (
-      <form onSubmit={::this.handleFormSubmit}>
+      <form onSubmit={this.handleFormSubmit}>
         <div className="input-box input-wr">
           <DatePicker
-            onChange={::this.handleDateChange}
+            onChange={this.handleDateChange}
             startDate={this.state.values.originalDate || nextDay}
           />
         </div>
@@ -182,8 +187,8 @@ class CreateTask extends React.Component {
           value={this.state.values.title}
           fieldName="title"
           maxLength="25"
-          onChange={::this.handleInputChange}
-          onBlur={::this.handleInputBlur}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
           errorText={this.showError('title')}
         />
         <TextField
@@ -191,15 +196,15 @@ class CreateTask extends React.Component {
           placeholder={'Enter description'}
           value={this.state.values.description}
           fieldName="description"
-          onChange={::this.handleInputChange}
-          onBlur={::this.handleInputBlur}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
           errorText={this.showError('description')}
         />
         <div className="input-box input-wr">
           <PlacesAutocomplete
             value={this.state.values.address || ''}
-            onChange={::this.changeLocation}
-            onBlur={::this.handleInputBlur}
+            onChange={this.changeLocation}
+            onBlur={this.handleInputBlur}
             placeholder="Enter deadline location adress"
           />
         </div>

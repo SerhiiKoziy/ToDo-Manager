@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes';
-import { getAllEventsDatabase } from '../action-firebase/events';
 
 export function setList(payload) {
   return {
@@ -16,9 +15,6 @@ async function callbackEvents(events) {
     eventsList.push(messageInfo);
   }
 
-  // if (eventsList && eventsList.length > 0) setList(eventsList);
-
-  console.log('eventsList', eventsList);
   return (eventsList && eventsList.length > 0) && eventsList;
 }
 

@@ -46,8 +46,9 @@
 .page {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px 30px;
+  padding: 0 40px 0;
   box-sizing: border-box;
+  max-height: calc(100vh - 60px);
 }
 
 @media only screen and (max-width: 769px) {

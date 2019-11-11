@@ -17,13 +17,13 @@ export function addTask(payload) {
 }
 
 export function createTaskAction(task) {
-  return (dispatch) => {
+  return () => {
     return getWeatherByCoordinates(task).then(
       (weather) => {
         const taskWithWeather = { weather, ...task };
 
         postEventFirebase(taskWithWeather);
-        dispatch(addTask(taskWithWeather));
+        // dispatch(addTask(taskWithWeather));
 
         return 'success';
       }
