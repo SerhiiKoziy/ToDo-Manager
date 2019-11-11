@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import connect from 'react-redux/es/connect/connect';
+import PropsTypes from 'prop-types';
 
 import { Link } from 'react-router';
 
@@ -20,10 +21,12 @@ class Header extends Component {
       PhotoUrl: '',
     };
 
-    // auth().onAuthStateChanged(user => {
-    //   if (user) this.loadProfile();
-    //   this.setState({ user, loaded: true });
-    // });
+    auth().onAuthStateChanged(user => {
+      if (user) {
+        this.loadProfile();
+        this.setState({ user, loaded: true });
+      }
+    });
   }
 
   async loadProfile() {
@@ -86,12 +89,10 @@ class Header extends Component {
 
   render() {
     const { user } = this.props;
-    const userName = user.displayName || user.email || 'User';
+    const userName = (user && (user.displayName || user.email)) || 'User';
 
     const currentPath = this.props.location.pathname;
-    let page = 'main'
-
-    console.log('currentPath', currentPath)
+    let page = 'main';
 
     if (currentPath === '/') {
       page = 'main';
@@ -103,7 +104,7 @@ class Header extends Component {
       <header className="header">
 
         <div className="header-desktop">
-          <Link to="/">
+          <Link to="/events">
             <span>logo</span>
           </Link>
           <Link to="/profile">
@@ -112,7 +113,7 @@ class Header extends Component {
           <div className="login-wr" onClick={() => this.props.handleAuth()}>
             <div className="avatar-wr">
               {
-                user.photoURL ?
+                user && user.photoURL ?
                   <img src={user.photoURL} alt="avatar" /> :
                   <FontAwesomeIcon icon={faSignInAlt} />
               }
@@ -125,12 +126,12 @@ class Header extends Component {
             this.renderRightBlock(page)
           }
           <Link to="/profile">
-            <span>Hello!  Dear, {user.displayName || 'User'}</span>
+            <span>Hello!  Dear, {user && user.displayName || 'User'}</span>
           </Link>
           <div className="login-wr" onClick={() => this.props.handleAuth()}>
             <div className="avatar-wr">
               {
-                user.photoURL ?
+                user && user.photoURL ?
                   <img src={user.photoURL} alt="avatar" /> :
                   <FontAwesomeIcon icon={faSignInAlt} />
               }
@@ -142,6 +143,13 @@ class Header extends Component {
     );
   }
 }
+
+Header.propsType = {
+  user: PropsTypes.object,
+  location: PropsTypes.object,
+  handleAuth: PropsTypes.function,
+  addUserStore: PropsTypes.function,
+};
 
 export default connect(
   (state) => ({ data: state.data, user: state.user }),
