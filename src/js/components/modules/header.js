@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, PropTypes} from 'react';
 import connect from 'react-redux/es/connect/connect';
 import PropsTypes from 'prop-types';
 
@@ -14,6 +14,10 @@ import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import './header.scss';
 
 class Header extends Component {
+  static propTypes = {
+    user: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
