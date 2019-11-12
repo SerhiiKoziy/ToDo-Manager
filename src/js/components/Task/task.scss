@@ -1,7 +1,8 @@
 .task-draggable {
   &.is-dragging {
     opacity: 1;
-    .task{
+
+    .task {
       background: linear-gradient(135deg, rgba(253, 253, 253, 0.5), rgba(0, 127, 163, 0));
       box-shadow: 0 0 10px transparentize(#fff, 0.7);
     }
@@ -47,10 +48,12 @@
     top: 10px;
     height: 40px;
     width: 40px;
+
     img {
       width: 100%;
     }
   }
+
   .controls {
     margin-top: 15px;
     display: flex;

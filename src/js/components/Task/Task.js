@@ -46,7 +46,8 @@ const Task = ({ item, onDelete, children, map }) => {
         </div>
         <div className="control control-edit">
           <Link to={`/task/${item.id}/edit`}>
-            <i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </Link>
         </div>
         <div className="control control-delete">
           <div

@@ -50,6 +50,7 @@
   padding: 0 40px 0;
   box-sizing: border-box;
   max-height: calc(100vh - 60px);
+  overflow: auto;
 }
 
 @media only screen and (max-width: 769px) {
