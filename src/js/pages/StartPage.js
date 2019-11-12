@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { deleteTask, updateTask } from '../actions';
+import { deleteTask, editTaskAction } from '../actions';
 import { connect } from 'react-redux';
 import CreateTask from '../components/Task/CreateTask';
 import Task from '../components/Task/Task';
@@ -75,9 +75,10 @@ class StartPage extends Component {
   handleDrop(index, item, target) {
     const changedTask = this.props.data.filter(element => {
       return element.id == item.taskId;
-    });
-    changedTask[0].stageProces = target;
-    this.props.updateTask(changedTask);
+    })[0];
+
+    changedTask.stageProces = target;
+    this.props.editTaskAction(changedTask);
   }
 
   renderDustbins() {
@@ -144,7 +145,7 @@ class StartPage extends Component {
 const ConnectedComponent = connect(
   (state) => ({ data: state.data }),
   {
-    deleteTask, updateTask,
+    deleteTask, editTaskAction
   }
 )(StartPage);
 

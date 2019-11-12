@@ -18,7 +18,7 @@ export function DataReducer(state = INITIAL_STATE, action) {
         return element.id !== payload.id;
       });
 
-      return [...filteredElements, payload];
+      return [...filteredElements, ...payload];
 
     case types.SET_LIST:
       return payload;
