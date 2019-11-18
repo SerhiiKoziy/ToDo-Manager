@@ -167,7 +167,7 @@ class CreateTask extends React.Component {
   }
 
   render() {
-    const userUID = this.props.user && this.props.user.uid.length > 0;
+    const userUID = this.props.user && this.props.user.uid && this.props.user.uid.length > 0;
     // const isWrote = this.state.title && this.state.title.length > 0;
     const nextDay = new Date();
     nextDay.setDate(nextDay.getDate() + 1);

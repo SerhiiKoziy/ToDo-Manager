@@ -9,16 +9,26 @@
     }
   }
 
+  .none {
+    display: none;
+  }
+
   .auth-buttons {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 
     button {
       display: flex;
       align-items: center;
-      cursor: pointer;
-      margin: 10px;
+      padding: 10px;
+      margin: 0;
+      border: 1px solid;
+      border-radius: 5px;
       text-align: center;
+      line-height: 16px;
+      font-size: 16px;
+      cursor: pointer;
     }
   }
 
@@ -48,6 +58,33 @@
 
   .validation-failed-message {
     color: crimson
+  }
+
+  .control-buttons {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #fff;
+    padding: 15px 0 0 0;
+
+    button {
+      cursor: pointer;
+      margin: 0;
+      padding: 10px;
+
+      &.sigh-out {
+        border: 1px solid #f1000085;
+        border-radius: 6px;
+        transition: 0.4s all;
+
+        &:hover {
+          border: 1px solid #f10000c4;
+        }
+      }
+    }
+
+    .google-btn {
+
+    }
   }
 }
 

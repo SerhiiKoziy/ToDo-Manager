@@ -10,6 +10,8 @@ class Login extends Component {
     super(props);
     this.state = {
       emailPhase: 'start',
+      type: 'auth',
+      email: '',
       password: '',
     };
   }
@@ -113,10 +115,9 @@ class Login extends Component {
 
   async loginWithEmail() {
     // const { hide, type } = this.props
-    const { email, password } = this.state;
+    const { email, password, type } = this.state;
     // const previousPhase = this.state.emailPhase;
 
-    const type = 'auth';
     const request = () => type === 'auth' ?
       auth().signInWithEmailAndPassword(email, password) :
       auth().createUserWithEmailAndPassword(email, password);
@@ -154,6 +155,10 @@ class Login extends Component {
   sighOut() {
     auth().signOut();
     this.props.deleteUserStore();
+  }
+
+  handleChangeTab(typeSet) {
+    this.setState({ type: typeSet })
   }
 
   renderRegistrationBlock() {
@@ -199,20 +204,21 @@ class Login extends Component {
         >
           Log in with Google
         </button>
-        <button
-          name="login-facebook"
-          type="primary"
-          onClick={() => this.loginWithFacebook()}
-        >
-          Log in with Facebook
-        </button>
+        {/*<button*/}
+          {/*name="login-facebook"*/}
+          {/*type="primary"*/}
+          {/*onClick={() => this.loginWithFacebook()}*/}
+        {/*>*/}
+          {/*Log in with Facebook*/}
+        {/*</button>*/}
       </div>
     );
   }
 
   render() {
+    const { type } = this.state
     // const { type } = this.props;
-    const type = 'auth';
+    // const type = 'auth';
     if (this.state.emailPhase === 'sendingFormData') {
       return <div className="login"> {'loading...'} </div>;
     }
@@ -223,21 +229,23 @@ class Login extends Component {
         {
           (type === 'auth') && this.renderSocietyButtons()
         }
-        <div className="control-button">
+        <div className="control-buttons">
+          {/*<button*/}
+            {/*className={`change-tab ${this.state.activeButton ? 'active' : ''}`}*/}
+            {/*name="change-type"*/}
+            {/*type="primary"*/}
+            {/*onClick={() => this.handleChangeTab(type === 'auth' ? 'registration' : 'auth')}*/}
+          {/*>*/}
+            {/*{ type === 'auth' ? 'Registration' : 'Authorization' }*/}
+          {/*</button>*/}
           <button
-            className={`change-tab ${this.state.activeButton ? 'active' : ''}`}
-            name="login-google"
-            type="primary"
-            // onClick={this.props.handleChangeTab}
-          >
-            {type === 'auth' ? 'Registration' : 'Authorization'}
-          </button>
-          <button
-            className="change-tab"
-            name="login-google"
+            className="change-tab sigh-out"
+            name="sigh-out"
             type="primary"
             onClick={() => this.sighOut()}
           >
+            {/*<FontAwesomeIcon icon={faTemperatureLow} />*/}
+            {/*<Icon icon={'google'}/>*/}
             {'Sign out'}
           </button>
         </div>
