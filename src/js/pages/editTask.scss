@@ -1,0 +1,15 @@
+.edit-page {
+  display: flex;
+  padding: 40px;
+
+  .task {
+    width: 100%;
+    margin: 0 20px 0 0;
+  }
+
+  .builder-task {
+    min-width: 300px;
+    margin: 0;
+    padding: 0 0 20px 0;
+  }
+}

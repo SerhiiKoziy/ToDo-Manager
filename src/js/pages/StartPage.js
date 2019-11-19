@@ -61,14 +61,14 @@ class StartPage extends Component {
         isDropped={this.isDropped(item.title)}
         key={i}
       >
-        <Task item={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
+        item && <Task currentTask={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
       </Box>
     );
   }
 
   renderTaskMobile(item, i) {
     return (
-      <Task item={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
+      item && <Task currentTask={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
     );
   }
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux';
 import { deleteTask } from '../actions';
-import SimpleMap from '../components/Task/GoogleMap';
 import Task from '../components/Task/Task';
 
 import './taskPage.scss';
@@ -21,15 +20,6 @@ class TaskPage extends Component {
     this.props.deleteTask(this.props.currentTask.id);
   }
 
-  renderMap() {
-    return (
-      <SimpleMap
-        key={JSON.stringify(this.props.currentTask.position)}
-        position={this.props.currentTask.position}
-      />
-    );
-  }
-
   render() {
     if (this.props.currentTask) {
       return (
@@ -42,12 +32,15 @@ class TaskPage extends Component {
                   <span>Back to board</span>
                 </Link>
               </div>
-              <Task
-                item={this.props.currentTask}
-                onDelete={::this.deleteTask}
-                map={this.renderMap()}
-                weather={this.props.currentTask.weather}
-              />
+              {
+                this.props.currentTask && (
+                  <Task
+                    currentTask={this.props.currentTask}
+                    onDelete={this.deleteTask.bind(this)}
+                    weather={this.props.currentTask.weather}
+                  />
+                )
+              }
             </div>
             {this.props.children}
           </div>
