@@ -61,7 +61,12 @@ class StartPage extends Component {
         isDropped={this.isDropped(item.title)}
         key={i}
       >
-        item && <Task currentTask={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
+        <Task
+          currentTask={item}
+          key={i}
+          onDelete={this.deleteTask.bind(this, item.id)}
+          className={"onBoard-task"}
+        />
       </Box>
     );
   }

@@ -6,7 +6,7 @@ import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
 import './task.scss';
 
-const Task = ({ currentTask, onDelete }) => {
+const Task = ({ currentTask, onDelete, className }) => {
   const weather = currentTask && currentTask.weather;
   const cloudImageUrl = weather && `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
@@ -38,7 +38,7 @@ const Task = ({ currentTask, onDelete }) => {
 
   return (
     <div
-      className={`task ${currentTask.stageProces}`}
+      className={`task ${currentTask.stageProces} ${className}`}
       id={currentTask.id}
     >
       <div className="task-content">
@@ -47,7 +47,7 @@ const Task = ({ currentTask, onDelete }) => {
           <p>Desc: {currentTask.description}</p>
           <p className="date-task">{`${currentTask.date}`}</p>
           <p className="namePlace-task">{`${currentTask.address}`}</p>
-          <p>
+          <p className="temp-list-title">
             <FontAwesomeIcon icon={faTemperatureLow} /> Temperature celsius:
           </p>
           {
@@ -106,6 +106,7 @@ const Task = ({ currentTask, onDelete }) => {
 Task.propTypes = {
   currentTask: React.PropTypes.object,
   onDelete: React.PropTypes.func,
+  className: React.PropTypes.string,
 };
 
 export default Task;

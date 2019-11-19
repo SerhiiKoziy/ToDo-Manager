@@ -21,6 +21,16 @@
   box-shadow: 0 0 10px transparentize(#000, 0.7);
   background: linear-gradient(135deg, rgba(253, 253, 253, 0.4), rgba(0, 127, 163, 0));
 
+  &.onBoard-task {
+    .task-secondary-info {
+      display: none;
+    }
+
+    .temp-list, .temp-list-title {
+      display: none;
+    }
+  }
+
   h4 {
 
   }
