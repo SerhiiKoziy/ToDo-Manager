@@ -29,7 +29,17 @@
     &.date-task {
 
     }
+  }
 
+  .task-content {
+    display: flex;
+    justify-content: space-between;
+
+    .task-secondary-info {
+      div {
+        padding: 0 0 10px 0;
+      }
+    }
   }
 
   .temp-list {
@@ -43,12 +53,6 @@
   }
 
   .weather-indicator {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    height: 40px;
-    width: 40px;
-
     img {
       width: 100%;
     }

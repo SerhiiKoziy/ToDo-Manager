@@ -9,35 +9,61 @@ const Task = ({ item, onDelete, children, map }) => {
   const weatherItem = item.weather;
   const cloudImageUrl = weatherItem && `http://openweathermap.org/img/w/${weatherItem.weather[0].icon}.png`;
 
+  const renderWeather = () => {
+    const weather = item.weather;
+
+    return weather && Object.keys(weather).map(key => {
+      if (key !== 'weather' && key !== 'temp') {
+        return (
+          <div key={key}>
+            <span>{key} :</span>
+            <span>{weather[key]}</span>
+          </div>
+        );
+      }
+
+      return null;
+    });
+  };
+
   return (
     <div
       className={`task ${item.stageProces}`}
       id={item.id}
     >
-      <h4>{item.title}</h4>
-      <p>{item.description}</p>
-      <p className="date-task">{`${item.date}`}</p>
-      <p className="namePlace-task">{`${item.address}`}</p>
-      <p><FontAwesomeIcon icon={faTemperatureLow} /> Temperature celsius:</p>
-        {
-          weatherItem && (
-            <ul className="temp-list">
-              <li>Day: {`${weatherItem.temp.day}`}</li>
-              <li>Evening: {`${weatherItem.temp.eve}`}</li>
-              <li>Morning: {`${weatherItem.temp.morn}`}</li>
-              <li>Night: {`${weatherItem.temp.night}`}</li>
-            </ul>
-          )
-        }
-      <div className="weather-indicator">
-        <img src={cloudImageUrl} alt="" />
+      <div className="task-content">
+        <div className="task-main-info">
+          <h4>Title: {item.title}</h4>
+          <p>Desc: {item.description}</p>
+          <p className="date-task">{`${item.date}`}</p>
+          <p className="namePlace-task">{`${item.address}`}</p>
+          <p>
+            <FontAwesomeIcon icon={faTemperatureLow} /> Temperature celsius:
+          </p>
+          {
+            weatherItem && (
+              <ul className="temp-list">
+                <li>Day: {`${weatherItem.temp.day}`}</li>
+                <li>Evening: {`${weatherItem.temp.eve}`}</li>
+                <li>Morning: {`${weatherItem.temp.morn}`}</li>
+                <li>Night: {`${weatherItem.temp.night}`}</li>
+              </ul>
+            )
+          }
+        </div>
+        <div className="task-secondary-info">
+          {renderWeather()}
+        </div>
+
+        <div className="weather-indicator">
+          <img src={cloudImageUrl} alt="" />
+        </div>
       </div>
 
       {map && React.cloneElement(map, {
         image: cloudImageUrl,
       })}
 
-      {children}
       <div className="controls">
         <div className="control control-view">
           <Link to={`/task/${item.id}`}>
