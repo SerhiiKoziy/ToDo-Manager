@@ -28,6 +28,9 @@ export default class DatePicker extends React.PureComponent {
   }
 
   render() {
+    let DateTimeFormat;
+    DateTimeFormat = global.Intl.DateTimeFormat;
+
     return (
       <div className="datepicker-wr">
         <p>Select event's date:</p>
@@ -50,6 +53,11 @@ export default class DatePicker extends React.PureComponent {
               textFieldStyle={{
                 color: 'yellow',
               }}
+              formatDate={new DateTimeFormat('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              }).format}
             />
           </MuiThemeProvider>
         </div>

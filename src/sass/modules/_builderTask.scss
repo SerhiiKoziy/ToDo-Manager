@@ -44,7 +44,8 @@
 
         & > p {
           margin: 0;
-          color: #8e8080;
+          color: rgb(42, 96, 122);
+          font-weight: 800;
         }
 
         .datepicker-field {
@@ -55,6 +56,13 @@
             overflow: hidden;
 
             & > div {
+              width: 100% !important;
+
+              &>div {
+                hr {
+                  border-bottom: 2px solid rgb(0, 188, 212) !important;
+                }
+              }
             }
           }
 
