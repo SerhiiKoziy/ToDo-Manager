@@ -6,7 +6,7 @@ import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
 import './task.scss';
 
-const Task = ({ currentTask, onDelete, className }) => {
+const Task = ({ currentTask, onDelete, parentWr }) => {
   const weather = currentTask && currentTask.weather;
   const cloudImageUrl = weather && `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
@@ -38,7 +38,7 @@ const Task = ({ currentTask, onDelete, className }) => {
 
   return (
     <div
-      className={`task ${currentTask.stageProces} ${className}`}
+      className={`task ${currentTask.stageProces} ${parentWr}`}
       id={currentTask.id}
     >
       <div className="task-content">
@@ -71,7 +71,7 @@ const Task = ({ currentTask, onDelete, className }) => {
       </div>
 
       {
-        currentTask && (
+        currentTask && (parentWr !== 'onBoard-task') && (
             React.cloneElement(renderMap(currentTask), {
             image: cloudImageUrl,
           })
@@ -106,7 +106,7 @@ const Task = ({ currentTask, onDelete, className }) => {
 Task.propTypes = {
   currentTask: React.PropTypes.object,
   onDelete: React.PropTypes.func,
-  className: React.PropTypes.string,
+  parentWr: React.PropTypes.string,
 };
 
 export default Task;

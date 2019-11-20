@@ -65,7 +65,7 @@ class StartPage extends Component {
           currentTask={item}
           key={i}
           onDelete={this.deleteTask.bind(this, item.id)}
-          className={"onBoard-task"}
+          parentWr={"onBoard-task"}
         />
       </Box>
     );
@@ -73,7 +73,12 @@ class StartPage extends Component {
 
   renderTaskMobile(item, i) {
     return (
-      item && <Task currentTask={item} key={i} onDelete={this.deleteTask.bind(this, item.id)} />
+      item && <Task
+        currentTask={item}
+        key={i}
+        parentWr={"onBoard-task"}
+        onDelete={this.deleteTask.bind(this, item.id)}
+      />
     );
   }
 

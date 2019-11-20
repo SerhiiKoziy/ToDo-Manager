@@ -64,6 +64,7 @@ class CreateTask extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.changeLocation = this.changeLocation.bind(this);
   }
 
   updateValue(target, value) {
