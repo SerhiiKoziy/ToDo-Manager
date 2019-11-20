@@ -43,6 +43,7 @@ class EditTask extends PureComponent {
           <CreateTask
             key={currentTask.updatedAt}
             currentTask={currentTask || {}}
+            isEdit={true}
             buttonText="Edit event"
           />
         </div>
@@ -55,7 +56,7 @@ export default connect(
   (state, ownProps) => {
     return {
       currentTask: state.data.find(task => {
-        return task.id === ownProps.params.taskId;
+        return task.eventId === ownProps.params.taskId;
       }),
     };
   },

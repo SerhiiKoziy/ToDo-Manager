@@ -13,6 +13,7 @@ class CreateTask extends React.Component {
     buttonText: React.PropTypes.string,
     editTaskAction: React.PropTypes.func,
     createTaskAction: React.PropTypes.func,
+    isEdit: React.PropTypes.bool,
   };
 
   constructor(props) {
@@ -108,7 +109,7 @@ class CreateTask extends React.Component {
     event.preventDefault();
 
     const userUID = this.props.user && this.props.user.uid;
-    const submitHandler = this.props.currentTask ?
+    const submitHandler = this.props.isEdit ?
       this.props.editTaskAction : this.props.createTaskAction;
 
     this.getLocationByAdress(this.state.values.address).then((position) => {

@@ -14,7 +14,7 @@ export function postEventFirebase(newEvent) {
   const myRef = database.ref('events/').push();
   // uploadNewEventCallback(myRef.key);
   const newEventChanged = newEvent;
-  newEventChanged.id = myRef.key;
+  newEventChanged.eventId = myRef.key;
 
   return myRef.set(newEventChanged);
 }

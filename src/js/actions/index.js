@@ -43,7 +43,7 @@ export function editTaskAction(task) {
     getWeatherByCoordinates(task).then(weather => {
       task.weather = weather;
 
-      putEventFirebase(task, task.id).then((res) => {});
+      putEventFirebase(task, task.eventId).then((res) => {});
     });
   };
 }

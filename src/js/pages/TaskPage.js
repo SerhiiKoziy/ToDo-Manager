@@ -56,7 +56,7 @@ export default connect(
   (state, ownProps) => {
     return {
       currentTask: state.data.find(task => {
-        return task.id === ownProps.params.taskId;
+        return task.eventId === ownProps.params.taskId;
       }),
     };
   },

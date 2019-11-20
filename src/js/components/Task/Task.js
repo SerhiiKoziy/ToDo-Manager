@@ -80,12 +80,12 @@ const Task = ({ currentTask, onDelete, parentWr }) => {
 
       <div className="controls">
         <div className="control control-view">
-          <Link to={`/task/${currentTask.id}`}>
+          <Link to={`/task/${currentTask.eventId}`}>
             <i className="fa fa-eye" aria-hidden="true"></i>
           </Link>
         </div>
         <div className="control control-edit">
-          <Link to={`/task/${currentTask.id}/edit`}>
+          <Link to={`/task/${currentTask.eventId}/edit`}>
             <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
           </Link>
         </div>
