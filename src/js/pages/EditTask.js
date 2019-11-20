@@ -23,7 +23,7 @@ class EditTask extends PureComponent {
 
   deleteTask(currentTask) {
     this.props.push('/');
-    this.props.deleteTask(currentTask.id);
+    this.props.deleteTask(currentTask.eventId);
   }
 
   render() {

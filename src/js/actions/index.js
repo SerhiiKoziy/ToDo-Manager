@@ -48,17 +48,17 @@ export function editTaskAction(task) {
   };
 }
 
-export function deleteEventStore(taskId) {
+export function deleteEventStore(eventId) {
   return {
     type: types.DELETE_TASK,
-    payload: taskId,
+    payload: eventId,
   };
 }
 
-export function deleteTask(taskId) {
+export function deleteTask(eventId) {
   return (dispatch) => {
-    deleteEvent(taskId).then(() => {
-      dispatch(deleteEventStore(taskId));
+    deleteEvent(eventId).then(() => {
+      dispatch(deleteEventStore(eventId));
     });
   };
 }

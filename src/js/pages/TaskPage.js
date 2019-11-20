@@ -17,7 +17,7 @@ class TaskPage extends Component {
 
   deleteTask() {
     this.props.push('/');
-    this.props.deleteTask(this.props.currentTask.id);
+    this.props.deleteTask(this.props.currentTask.eventId);
   }
 
   render() {

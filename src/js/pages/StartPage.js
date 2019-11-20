@@ -57,14 +57,14 @@ class StartPage extends Component {
       <Box
         name={item.title}
         type={type}
-        taskId={item.id}
+        taskId={item.eventId}
         isDropped={this.isDropped(item.title)}
         key={i}
       >
         <Task
           currentTask={item}
           key={i}
-          onDelete={this.deleteTask.bind(this, item.id)}
+          onDelete={this.deleteTask.bind(this, item.eventId)}
           parentWr={"onBoard-task"}
         />
       </Box>
@@ -77,14 +77,17 @@ class StartPage extends Component {
         currentTask={item}
         key={i}
         parentWr={"onBoard-task"}
-        onDelete={this.deleteTask.bind(this, item.id)}
+        onDelete={this.deleteTask.bind(this, item.eventId)}
       />
     );
   }
 
   handleDrop(index, item, target) {
+    console.log('index, item, target', index, item, target)
+    console.log('this.props.data', this.props.data)
     const changedTask = this.props.data.filter(element => {
-      return element.id == item.taskId;
+      console.log('1111', element.eventId, item.taskId)
+      return element.eventId == item.taskId;
     })[0];
 
     changedTask.stageProces = target;
@@ -92,6 +95,7 @@ class StartPage extends Component {
   }
 
   renderDustbins() {
+    console.log('this.state.dustbins', this.state.dustbins)
     return this.state.dustbins.map(({ accepts, id }, index) => {
       return (
         <div key={`wr-${index}`} className="list-wrapper">
@@ -104,7 +108,7 @@ class StartPage extends Component {
             accepts={accepts}
             listId={id}
             onDrop={(item, target) => {
-              return ::this.handleDrop(index, item, target);
+              return this.handleDrop(index, item, target);
             }}
             key={index}
             index={index}
