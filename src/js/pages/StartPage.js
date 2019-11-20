@@ -83,10 +83,7 @@ class StartPage extends Component {
   }
 
   handleDrop(index, item, target) {
-    console.log('index, item, target', index, item, target)
-    console.log('this.props.data', this.props.data)
     const changedTask = this.props.data.filter(element => {
-      console.log('1111', element.eventId, item.taskId)
       return element.eventId == item.taskId;
     })[0];
 
@@ -95,7 +92,6 @@ class StartPage extends Component {
   }
 
   renderDustbins() {
-    console.log('this.state.dustbins', this.state.dustbins)
     return this.state.dustbins.map(({ accepts, id }, index) => {
       return (
         <div key={`wr-${index}`} className="list-wrapper">
