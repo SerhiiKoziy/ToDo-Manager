@@ -22,12 +22,17 @@ class Root extends React.PureComponent {
       eventsList: [],
     };
 
-    firebase.auth().onAuthStateChanged(user => {
-      this.props.saveUserClaimsAction(user);
-      if (user) getAllEventsDatabase(this.callbackEvents.bind(this));
-    });
 
     this.handleAuth = this.handleAuth.bind(this);
+  }
+
+  componentDidMount () {
+    firebase.auth().onAuthStateChanged(user => {
+      this.props.saveUserClaimsAction(user);
+      if (user) {
+        getAllEventsDatabase(this.callbackEvents.bind(this))
+      }
+    });
   }
 
   async callbackEvents(events) {

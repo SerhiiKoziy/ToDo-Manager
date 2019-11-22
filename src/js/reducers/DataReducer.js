@@ -15,10 +15,10 @@ export function DataReducer(state = INITIAL_STATE, action) {
 
     case types.UPDATE_TASK:
       const filteredElements = data.filter(element => {
-        return element.id !== payload.id;
+        return element.eventId !== payload.eventId;
       });
 
-      return [...filteredElements, ...payload];
+      return [...filteredElements];
 
     case types.SET_LIST:
       return payload;
