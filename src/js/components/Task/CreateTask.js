@@ -6,6 +6,8 @@ import DatePicker from './DatePicker';
 import TextField from '../TextField/TextField';
 import { createTaskAction, editTaskAction } from '../../actions';
 
+import moment from 'moment';
+
 class CreateTask extends React.Component {
   static propTypes = {
     currentTask: React.PropTypes.object,
@@ -77,7 +79,7 @@ class CreateTask extends React.Component {
     });
   }
 
-  getLocationByAdress(address) {
+  getLocationByAddress(address) {
     return new Promise((resolve, reject) => {
       geocodeByAddress(address, (err, location) => {
         if (err) {
@@ -97,6 +99,7 @@ class CreateTask extends React.Component {
     return {
       ...values,
       date,
+      originalDate: values.originalDate,
       day,
       id: currentTime,
       stageProces: 'ToDo',
@@ -112,7 +115,7 @@ class CreateTask extends React.Component {
     const submitHandler = this.props.isEdit ?
       this.props.editTaskAction : this.props.createTaskAction;
 
-    this.getLocationByAdress(this.state.values.address).then((position) => {
+    this.getLocationByAddress(this.state.values.address).then((position) => {
 
       const task = this.prepareTask(Object.assign({}, this.state.values, { position }));
       task.uid = userUID;
@@ -146,7 +149,10 @@ class CreateTask extends React.Component {
   }
 
   handleDateChange(event, date) {
-    this.updateValue('originalDate', date);
+    const dateMoment = moment(date);
+    const datePrepared = dateMoment && dateMoment._d && dateMoment._d.toISOString();
+
+    this.updateValue('originalDate', datePrepared);
   }
 
   showError(target) {
@@ -207,7 +213,7 @@ class CreateTask extends React.Component {
             value={this.state.values.address || ''}
             onChange={this.changeLocation}
             onBlur={this.handleInputBlur}
-            placeholder="Enter deadline location adress"
+            placeholder="Enter deadline location address"
           />
         </div>
         <button

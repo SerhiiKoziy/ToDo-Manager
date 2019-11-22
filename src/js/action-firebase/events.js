@@ -12,7 +12,6 @@ export async function getAllEventsDatabase(callbackEvents) {
 
 export function postEventFirebase(newEvent) {
   const myRef = database.ref('events/').push();
-  // uploadNewEventCallback(myRef.key);
   const newEventChanged = newEvent;
   newEventChanged.eventId = myRef.key;
 

@@ -5,8 +5,6 @@ import CreateTask from '../components/Task/CreateTask';
 import Task from "../components/Task/Task";
 import { deleteTask } from "../actions";
 
-import './editTask.scss';
-
 class EditTask extends PureComponent {
   constructor(props) {
     super(props);
