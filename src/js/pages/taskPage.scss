@@ -1,7 +1,6 @@
-.page.task-page {
+.task-page {
   h3 {
     color: #006ec5;
-    //font-size: 60px;
     font-size: 15px;
     font-weight: 400;
     line-height: 60px;
@@ -23,16 +22,17 @@
     }
 
     .task-wr {
-      width: 75%;
+      width: 100%;
     }
 
     .task {
-      margin: 0 10px;
+      padding: 20px;
 
       .map {
         height: 300px;
         width: 100%
       }
+
       .markerMap {
         height: 40px;
         width: 40px;
@@ -43,11 +43,12 @@
           max-width: 100%;
         }
       }
+
       h4 {
 
       }
-      p {
 
+      p {
         &.date-task {
 
         }
@@ -62,7 +63,6 @@
 
       .task-wr {
         width: 100%;
-
         overflow: auto;
       }
 

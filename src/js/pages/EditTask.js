@@ -17,6 +17,7 @@ class EditTask extends PureComponent {
   static propTypes = {
     push: React.PropTypes.func,
     deleteTask: React.PropTypes.func,
+    currentTask: React.PropTypes.object,
   };
 
   deleteTask(currentTask) {

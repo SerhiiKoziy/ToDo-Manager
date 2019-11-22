@@ -8,6 +8,13 @@ import Task from '../components/Task/Task';
 import './taskPage.scss';
 
 class TaskPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.deleteTask = this.deleteTask.bind(this);
+  }
+
   static propTypes = {
     currentTask: React.PropTypes.object,
     push: React.PropTypes.func,
@@ -15,13 +22,15 @@ class TaskPage extends Component {
     children: React.PropTypes.any,
   };
 
-  deleteTask() {
+  deleteTask(currentTask) {
     this.props.push('/');
-    this.props.deleteTask(this.props.currentTask.eventId);
+    this.props.deleteTask(currentTask.eventId);
   }
 
   render() {
-    if (this.props.currentTask) {
+    const { currentTask } = this.props;
+
+    if (currentTask) {
       return (
         <div className="page task-page">
           <div className="inside-wr">
@@ -33,11 +42,10 @@ class TaskPage extends Component {
                 </Link>
               </div>
               {
-                this.props.currentTask && (
+                currentTask && (
                   <Task
-                    currentTask={this.props.currentTask}
-                    onDelete={this.deleteTask.bind(this)}
-                    weather={this.props.currentTask.weather}
+                    currentTask={currentTask}
+                    onDelete={() => this.deleteTask(currentTask)}
                   />
                 )
               }
