@@ -37,7 +37,7 @@ class TaskPage extends Component {
             <div className="task-wr">
               <div className="task-header">
                 <Link to="/">
-                  <i className="fa fa-angle-left" aria-hidden="true"></i>
+                  <i className="fa fa-angle-left" aria-hidden="true" />
                   <span>Back to board</span>
                 </Link>
               </div>

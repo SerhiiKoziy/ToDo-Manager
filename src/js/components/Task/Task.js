@@ -81,12 +81,12 @@ const Task = ({ currentTask, onDelete, parentWr }) => {
       <div className="controls">
         <div className="control control-view">
           <Link to={`/task/${currentTask.eventId}`}>
-            <i className="fa fa-eye" aria-hidden="true"></i>
+            <i className="fa fa-eye" aria-hidden="true" />
           </Link>
         </div>
         <div className="control control-edit">
           <Link to={`/task/${currentTask.eventId}/edit`}>
-            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i className="fa fa-pencil-square-o" aria-hidden="true" />
           </Link>
         </div>
         <div className="control control-delete">
@@ -94,7 +94,7 @@ const Task = ({ currentTask, onDelete, parentWr }) => {
             className="deleteButton"
             onClick={onDelete}
           >
-            <i className="fa fa-trash" aria-hidden="true"></i>
+            <i className="fa fa-trash" aria-hidden="true" />
           </div>
         </div>
       </div>
