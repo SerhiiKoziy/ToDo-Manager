@@ -6,7 +6,7 @@ import createHashHistory from 'history/lib/createHashHistory';
 import { Router, Route } from 'react-router';
 import configureStore from './store/configureStore';
 import { setList } from './actions';
-import Root from './pages/Root';
+import Index from './pages/Index';
 import StartPage from './pages/StartPage';
 import TaskPage from './pages/TaskPage';
 import EditTask from './pages/EditTask';
@@ -32,7 +32,7 @@ if (localStorage.getItem('LocalStorageTaskList')) {
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route exact name="Root" path="/root" component={Root}>
+      <Route exact name="Index" path="/root" component={Index}>
         <Route path="/" component={StartPage} />
         <Route path="/events" component={StartPage} />
         <Route path="/profile" component={NotificationPage} />

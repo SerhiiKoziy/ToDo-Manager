@@ -1,19 +1,19 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import Login from '../components/auth/auth';
+import Login from '../../components/auth/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import Header from '../components/modules/header';
-import Footer from '../components/modules/footer';
+import Header from '../../components/modules/header';
+import Footer from '../../components/modules/footer';
 
-import { getAllEventsDatabase } from '../action-firebase/events';
-import { saveUserClaimsAction } from '../actions/userStoreActions';
-import { setList } from '../actions';
+import { getAllEventsDatabase } from '../../action-firebase/events';
+import { saveUserClaimsAction } from '../../actions/userStoreActions';
+import { setList } from '../../actions';
 
-import './root.scss';
+import './styles.scss';
 
-class Root extends React.PureComponent {
+class Index extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,4 +81,4 @@ class Root extends React.PureComponent {
 export default connect(
   (state) => ({ data: state.data, user: state.user }),
   { saveUserClaimsAction, setList }
-)(Root);
+)(Index);

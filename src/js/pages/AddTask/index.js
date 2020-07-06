@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import CreateTask from '../components/Task/CreateTask';
+import CreateTask from '../../components/Task/CreateTask';
 
-class AddTask extends PureComponent {
+class Index extends PureComponent {
   render() {
     return (
       <div className="builder-task edit-builder-task">
@@ -15,5 +15,5 @@ class AddTask extends PureComponent {
 }
 
 export default connect((state) => ({ data: state.data })
-)(AddTask);
+)(Index);
 
