@@ -1,17 +1,17 @@
 ﻿import React, { Component } from 'react';
-import { deleteTask, editTaskAction } from '../actions';
+import { deleteTask, editTaskAction } from '../../actions';
 import { connect } from 'react-redux';
-import CreateTask from '../components/Task/CreateTask';
-import Task from '../components/Task/Task';
+import CreateTask from '../../components/Task/CreateTask';
+import Task from '../../components/Task/Task';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
-import Dustbin from '../components/dnd/Dustbin';
-import Box from '../components/dnd/Box';
-import ItemTypes from '../components/dnd/ItemTypes';
+import Dustbin from '../../components/dnd/Dustbin';
+import Box from '../../components/dnd/Box';
+import ItemTypes from '../../components/dnd/ItemTypes';
 
-import './startPage.scss';
+import './styles.scss';
 
-class StartPage extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -157,6 +157,6 @@ const ConnectedComponent = connect(
   {
     deleteTask, editTaskAction
   }
-)(StartPage);
+)(Index);
 
 export default DragDropContext(HTML5Backend)(ConnectedComponent);
