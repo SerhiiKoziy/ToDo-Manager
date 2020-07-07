@@ -1,11 +1,11 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 
-import { setList } from '../actions';
+import { setList } from '../../actions';
 
-import './welcomePage.scss';
+import './styles.scss';
 
-class WelcomePage extends React.PureComponent {
+class Index extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,4 +34,4 @@ export default connect(
     return { data: state.data, user: state.user };
   },
   { setList }
-)(WelcomePage);
+)(Index);
