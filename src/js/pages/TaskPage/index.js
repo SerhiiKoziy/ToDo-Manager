@@ -2,12 +2,12 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux';
-import { deleteTask } from '../actions';
-import Task from '../components/Task/Task';
+import { deleteTask } from '../../actions';
+import Task from '../../components/Task/Task';
 
-import './taskPage.scss';
+import './styles.scss';
 
-class TaskPage extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -69,4 +69,4 @@ export default connect(
     };
   },
   { deleteTask, push }
-)(TaskPage);
+)(Index);
