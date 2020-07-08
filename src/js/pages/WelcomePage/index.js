@@ -29,7 +29,7 @@ class WelcomePage extends React.PureComponent {
   }
 }
 
-export default connect(
-  (state) => ({ data: state.data, user: state.user }),
-  { setList }
-)(WelcomePage);
+export default connect((state) => ({
+  data: state.data,
+  user: state.user,
+}), { setList })(WelcomePage);

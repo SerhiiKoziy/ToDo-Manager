@@ -152,11 +152,8 @@ class StartPage extends Component {
   }
 }
 
-const ConnectedComponent = connect(
-  (state) => ({ data: state.data }),
-  {
-    deleteTask, editTaskAction
-  }
-)(StartPage);
+const ConnectedComponent = connect((state) => ({
+    data: state.data
+}), { deleteTask, editTaskAction })(StartPage);
 
 export default DragDropContext(HTML5Backend)(ConnectedComponent);
