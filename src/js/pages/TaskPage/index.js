@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux';
@@ -7,58 +7,42 @@ import Task from '../../components/Task/Task';
 
 import './styles.scss';
 
-class TaskPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-
-    this.deleteTask = this.deleteTask.bind(this);
-  }
-
-  static propTypes = {
-    currentTask: React.PropTypes.object,
-    push: React.PropTypes.func,
-    deleteTask: React.PropTypes.func,
-    children: React.PropTypes.any,
-  };
-
-  deleteTask(currentTask) {
+const TaskPage = ({ currentTask }) => {
+  const deleteTask = (currentTask) => {
     this.props.push('/');
     this.props.deleteTask(currentTask.eventId);
-  }
+  };
 
-  render() {
-    const { currentTask } = this.props;
-
-    if (currentTask) {
-      return (
-        <div className="page task-page">
-          <div className="inside-wr">
-            <div className="task-wr">
-              <div className="task-header">
-                <Link to="/">
-                  <i className="fa fa-angle-left" aria-hidden="true" />
-                  <span>Back to board</span>
-                </Link>
+  return (
+    <>
+      {
+        currentTask && (
+          <div className="page task-page">
+            <div className="inside-wr">
+              <div className="task-wr">
+                <div className="task-header">
+                  <Link to="/">
+                    <i className="fa fa-angle-left" aria-hidden="true" />
+                    <span>Back to board</span>
+                  </Link>
+                </div>
+                {
+                  currentTask && (
+                    <Task
+                      currentTask={currentTask}
+                      onDelete={() => deleteTask(currentTask)}
+                    />
+                  )
+                }
               </div>
-              {
-                currentTask && (
-                  <Task
-                    currentTask={currentTask}
-                    onDelete={() => this.deleteTask(currentTask)}
-                  />
-                )
-              }
+              {this.props.children}
             </div>
-            {this.props.children}
           </div>
-        </div>
-      );
-    }
-
-    return null;
-  }
-}
+        )
+      }
+    </>
+  )
+};
 
 export default connect(
   (state, ownProps) => {
