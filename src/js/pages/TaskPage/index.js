@@ -7,7 +7,7 @@ import Task from '../../components/Task/Task';
 
 import './styles.scss';
 
-class Index extends Component {
+class TaskPage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -69,4 +69,4 @@ export default connect(
     };
   },
   { deleteTask, push }
-)(Index);
+)(TaskPage);

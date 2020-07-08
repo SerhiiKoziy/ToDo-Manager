@@ -5,7 +5,7 @@ import { setList } from '../actions';
 
 import './styles.scss';
 
-class Index extends React.PureComponent {
+class Notification extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,4 +32,4 @@ export default connect(
     return { data: state.data, user: state.user };
   },
   { setList }
-)(Index);
+)(Notification);

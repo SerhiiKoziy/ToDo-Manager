@@ -11,7 +11,7 @@ import ItemTypes from '../../components/dnd/ItemTypes';
 
 import './styles.scss';
 
-class Index extends Component {
+class StartPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -157,6 +157,6 @@ const ConnectedComponent = connect(
   {
     deleteTask, editTaskAction
   }
-)(Index);
+)(StartPage);
 
 export default DragDropContext(HTML5Backend)(ConnectedComponent);
