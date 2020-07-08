@@ -79,6 +79,9 @@ class Root extends React.PureComponent {
 }
 
 export default connect(
-  (state) => ({ data: state.data, user: state.user }),
+  (state) => ({
+    data: state.data,
+    user: state.user,
+  }),
   { saveUserClaimsAction, setList }
 )(Root);

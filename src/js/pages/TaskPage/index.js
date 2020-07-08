@@ -63,9 +63,7 @@ class TaskPage extends Component {
 export default connect(
   (state, ownProps) => {
     return {
-      currentTask: state.data.find(task => {
-        return task.eventId === ownProps.params.taskId;
-      }),
+      currentTask: state.data.find(task => task.eventId === ownProps.params.taskId),
     };
   },
   { deleteTask, push }

@@ -5,7 +5,7 @@ import { setList } from '../../actions';
 
 import './styles.scss';
 
-class Index extends React.PureComponent {
+class WelcomePage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,8 +30,6 @@ class Index extends React.PureComponent {
 }
 
 export default connect(
-  (state) => {
-    return { data: state.data, user: state.user };
-  },
+  (state) => ({ data: state.data, user: state.user }),
   { setList }
-)(Index);
+)(WelcomePage);

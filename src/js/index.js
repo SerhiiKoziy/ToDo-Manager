@@ -6,13 +6,7 @@ import createHashHistory from 'history/lib/createHashHistory';
 import { Router, Route } from 'react-router';
 import configureStore from './store/configureStore';
 import { setList } from './actions';
-import Index from './pages/Index';
-import StartPage from './pages/StartPage';
-import TaskPage from './pages/TaskPage';
-import EditTask from './pages/EditTask';
-import AddTask from './pages/AddTask';
-import NotificationPage from './pages/NotificationPage';
-// import WelcomePage from './pages/WelcomePage';
+import { Root, StartPage, TaskPage, EditTask, AddTask, NotificationPage } from './pages';
 import '../sass/common.scss';
 
 const historyHash = createHashHistory({ alwaysEnableState: true });
@@ -28,20 +22,18 @@ if (localStorage.getItem('LocalStorageTaskList')) {
   }
 }
 
-
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route exact name="Index" path="/root" component={Index}>
+      <Route exact name="Index" path="/root" component={Root}>
         <Route path="/" component={StartPage} />
         <Route path="/events" component={StartPage} />
         <Route path="/profile" component={NotificationPage} />
         <Route path="/task/:taskId" component={TaskPage} />
-        {/* <Route path="/edit" component={EditTask} />*/}
         <Route path="/task/:taskId/edit" component={EditTask} />
         <Route path="/add" component={AddTask} />
       </Route>
     </Router>
-  </Provider>
-  , document.getElementById('root')
+  </Provider>,
+  document.getElementById('root'),
 );

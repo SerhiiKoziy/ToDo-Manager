@@ -28,8 +28,9 @@ class Notification extends React.PureComponent {
 }
 
 export default connect(
-  (state) => {
-    return { data: state.data, user: state.user };
-  },
+  (state) => ({
+    data: state.data,
+    user: state.user,
+  }),
   { setList }
 )(Notification);

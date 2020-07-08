@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import CreateTask from '../components/Task/CreateTask';
-import Task from "../components/Task/Task";
-import { deleteTask } from "../actions";
+import CreateTask from '../../components/Task/CreateTask';
+import Task from "../../components/Task/Task";
+import { deleteTask } from "../../actions";
 
 class EditTask extends PureComponent {
   constructor(props) {
