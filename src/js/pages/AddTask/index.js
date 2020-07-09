@@ -1,15 +1,10 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import CreateTask from '../../components/Task/CreateTask';
 
-class AddTask extends PureComponent {
-  render() {
-    return (
-      <div className="builder-task edit-builder-task">
-        <CreateTask buttonText="Add event"/>
-      </div>
-    );
-  }
-}
+const AddTask = () => (
+  <div className="builder-task edit-builder-task">
+    <CreateTask buttonText="Add event"/>
+  </div>
+);
 
-export default connect((state) => ({ data: state.data }))(AddTask);
+export default AddTask;
