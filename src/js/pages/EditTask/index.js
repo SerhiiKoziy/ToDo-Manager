@@ -35,14 +35,6 @@ const EditTask = ({ currentTask }) => {
   )
 };
 
-export default connect(
-  (state, ownProps) => {
-    return {
-      currentTask: state.data.find(task => {
-        return task.eventId === ownProps.params.taskId;
-      }),
-    };
-  },
-  { deleteTask, push }
-)(EditTask);
-
+export default connect((state, ownProps) => ({
+  currentTask: state.data.find(task => task.eventId === ownProps.params.taskId)
+}), { deleteTask, push })(EditTask);
