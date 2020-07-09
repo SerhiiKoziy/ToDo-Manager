@@ -45,10 +45,8 @@ const TaskPage = ({ currentTask }) => {
 };
 
 export default connect(
-  (state, ownProps) => {
-    return {
-      currentTask: state.data.find(task => task.eventId === ownProps.params.taskId),
-    };
-  },
+  (state, ownProps) => ({
+    currentTask: state.data.find(task => task.eventId === ownProps.params.taskId)
+  }),
   { deleteTask, push }
 )(TaskPage);
