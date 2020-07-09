@@ -1,28 +1,26 @@
 import React, { PropTypes } from 'react';
 
-const TextField = (props) => {
-  const onBlur = props.onBlur.bind(null, props.fieldName);
-  const onChange = props.onChange.bind(null, props.fieldName);
-  return (
-    <div className={`input-box ${props.classNameBox}`}>
-      <label
-        className="label"
-        htmlFor={props.id}
-      >{props.label}</label>
-      <input
-        name={props.name}
-        label={props.label}
-        placeholder={props.placeholder}
-        id={props.id}
-        maxLength={props.maxLength}
-        onBlur={onBlur}
-        onChange={onChange}
-        value={props.value || ''}
-      />
-      <label className="error visible">{props.errorText}</label>
-    </div>
-  );
-};
+const TextField = ({ onBlur, onChange, classNameBox, label, id, name, placeholder, maxLength, value, fieldName, errorText }) => (
+  <div className={`input-box ${classNameBox}`}>
+    <label
+      className="label"
+      htmlFor={id}
+    >
+      {label}
+    </label>
+    <input
+      name={name}
+      label={label}
+      placeholder={placeholder}
+      id={id}
+      maxLength={maxLength}
+      onBlur={onBlur.bind(null, fieldName)}
+      onChange={onChange.bind(null, fieldName)}
+      value={value || ''}
+    />
+    <label className="error visible">{errorText}</label>
+  </div>
+);
 
 TextField.propTypes = {
   placeholder: PropTypes.string,
@@ -40,12 +38,12 @@ TextField.propTypes = {
   maxLength: React.PropTypes.any,
 
 };
+
 TextField.defaultProps = {
   errorText: 'error',
   fieldType: 'input',
   placeholder: '',
   errorVisible: false,
-
 };
 
 export default TextField;
