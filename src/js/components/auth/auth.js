@@ -101,7 +101,6 @@ class Login extends Component {
           />
           <button
             name="login"
-            // type="primary"
             type="submit"
           >
             {cr ? 'Create account and log in' : 'Log in'}
@@ -124,26 +123,16 @@ class Login extends Component {
 
     try {
       this.setState({ emailPhase: 'sendingFormData' });
-      const result = await request();
-
-      // if (result.user) await initUser(result.user)
-
-      // if (hide) hide();
     } catch (err) {
-      console.error('err', err);
+      console.error('Login error', err);
+      // let code = err.code;
+      // if (code === 'auth/wrong-password')
+      //   message.error('Wrong password');
+      // else if (code === 'auth/weak-password')
+      //   message.error('Weak password');
+      // else
+      //   message.error(`Authentication error: ${code}`);
     }
-    // catch (err) {
-    //   console.error('loginWithEmail error', err)
-    //   let code = err.code
-    //   if (code === 'auth/wrong-password')
-    //     message.error('Wrong password')
-    //   else if (code === 'auth/weak-password')
-    //     message.error('Weak password')
-    //   else
-    //     message.error(`Authentication error: ${code}`)
-    //
-    //   this.setState({ emailPhase: previousPhase })
-    // }
   }
 
   async forgotPassword() {
@@ -185,7 +174,6 @@ class Login extends Component {
         />
         <button
           name="login"
-          // type="primary"
           type="submit"
         >
           {"Create account and log in"}
@@ -204,21 +192,12 @@ class Login extends Component {
         >
           Log in with Google
         </button>
-        {/*<button*/}
-          {/*name="login-facebook"*/}
-          {/*type="primary"*/}
-          {/*onClick={() => this.loginWithFacebook()}*/}
-        {/*>*/}
-          {/*Log in with Facebook*/}
-        {/*</button>*/}
       </div>
     );
   }
 
   render() {
-    const { type } = this.state
-    // const { type } = this.props;
-    // const type = 'auth';
+    const { type } = this.state;
     if (this.state.emailPhase === 'sendingFormData') {
       return <div className="login"> {'loading...'} </div>;
     }
