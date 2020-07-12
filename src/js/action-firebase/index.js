@@ -57,12 +57,11 @@ const getToken = async () => {
   return await user.getIdToken();
 };
 
-export async function handleNotification(subject, text) {
-  let res = await fbRequest('handleNotification', { subject, text });
-  res = res.data;
+export const handleNotification = async(subject, text) => {
+  let { data } = await fbRequest('handleNotification', { subject, text });
 
-  return res === 'success' ? res : 'reject';
-}
+  return data === 'success' ? data : 'reject';
+};
 
 export async function initUser(entryId, email) {
   await getToken();
