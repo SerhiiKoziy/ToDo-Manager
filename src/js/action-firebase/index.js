@@ -75,14 +75,14 @@ export async function initUser(entryId, email) {
   }
 
   return 'User';
-}
+};
 
-function sendRequestComment(endpoint, commentObj) {
+const sendRequestComment = (endpoint, commentObj) =>  {
   return fbRequest(endpoint, commentObj)
     .then(res => res.data)
     .catch(error => console.error('Error:', error));
-}
+};
 
 export function postComment(commentObj) {
   return sendRequestComment('postComment', commentObj);
-}
+};
