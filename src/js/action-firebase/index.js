@@ -51,10 +51,11 @@ export function checkConnection() {
   return result;
 }
 
-async function getToken() {
+const getToken = async () => {
   const user = auth().currentUser;
+
   return await user.getIdToken();
-}
+};
 
 export async function handleNotification(subject, text) {
   let res = await fbRequest('handleNotification', { subject, text });
