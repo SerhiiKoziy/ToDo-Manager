@@ -1,7 +1,6 @@
 $blue: #00b3e3;
 
 .btn {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,17 +16,17 @@ $blue: #00b3e3;
     cursor: inherit;
     cursor: auto;
   }
+
   span {
     color: white;
     font-size: 1.1rem;
-    //  letter-spacing: -0.57px;
-
   }
 
   &--main {
     width: 336px;
     height: 45px;
   }
+
   &--fw {
 
     width: 100%;
@@ -35,9 +34,11 @@ $blue: #00b3e3;
   }
 
   transition: background 0.3s;
+
   &:hover {
     background: darken($blue, 5%);
   }
+
   &.active {
     background: darken($blue, 7.5%);
   }
