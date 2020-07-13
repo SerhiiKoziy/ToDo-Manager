@@ -1,69 +1,72 @@
-
 .options-wr {
-
     font-size: 32px;
     padding: 20px;
     line-height: 1.5em;
-
 }
 
 .checkbox-wr{
     margin: 0 0 10px 0;
-    //min-height: 60px;
     max-width: 500px;
+
     &.opinion{
 
     }
-input[type="checkbox"] {
-    display: none;
-    & + label {
-        position: relative;
-        display: inline-block;
-        padding-left: 35px;
-        cursor: pointer;
-        transition: all .3s ease-in-out;
 
-        color: #585858;
-        font-size: 18px;
-        line-height: 20px;
+    input[type="checkbox"] {
+        display: none;
 
-        &:before, &:after {
+        & + label {
+            position: relative;
+            display: inline-block;
+            padding-left: 35px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+
+            color: #585858;
+            font-size: 18px;
+            line-height: 20px;
+
+            &:before, &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+
+                color: white;
+                border-radius: 50%;
+                transition: all .3s ease;
+            }
+        }
+    }
+
+    input[type="checkbox"] + label {
+        &:after{
+            border: 1px solid #ccc;
+        }
+
+        &:before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            text-align: center;
-
-            color: white;
             border-radius: 50%;
-            transition: all .3s ease;
+            background-color: #00b3e3;
+            height: 14px;
+            width: 14px;
+            padding: 0px;
+            margin: 4px;
+            color: white;
+        }
+
+        &:hover:before {
+            color: #f0f0f0;
+        }
+    }
+
+    input[type="checkbox"]:checked + label {
+        &:before {
+            background-color: white;
+            color: rgba(247,148,32,100%);
         }
     }
 }
-
-input[type="checkbox"] + label {
-    &:after{
-        border: 1px solid #ccc;
-    }
-    &:before {
-        content: '';
-        border-radius: 50%;
-        background-color: #00b3e3;
-        height: 14px;
-        width: 14px;
-        padding: 0px;
-        margin: 4px;
-        color: white;
-    }
-    &:hover:before {
-        color: #f0f0f0;
-    }
-}
-input[type="checkbox"]:checked + label {
-    &:before {
-        background-color: white;
-        color: rgba(247,148,32,100%);
-    }
-}}
