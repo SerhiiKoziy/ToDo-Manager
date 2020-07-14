@@ -1,10 +1,11 @@
-footer{
+footer {
   display: flex;
   justify-content: space-between;
   height: 60px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
-  &>p{
+
+  & > p {
     padding: 20px 60px;
     color: white;
     font-family: SF-UI-Display-Regular;
@@ -12,16 +13,14 @@ footer{
     font-weight: 400;
     line-height: 17px;
   }
-  .social{
+
+  .social {
     padding: 9px 60px;
     height: 40px;
     float: right;
 
-    li{
-      display: inline-block;
-      a{
-
-      }
+    li {
+      display: inline-bloc;
     }
   }
 }
