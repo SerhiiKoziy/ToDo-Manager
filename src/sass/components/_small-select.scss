@@ -6,25 +6,30 @@
     align-items: center;
     background-image: radial-gradient(at top, #b5e6cf, #9dddad);
     z-index: 100;
-    .input-error{
+
+    .input-error {
         display: none;
         color: #f10000;
     }
-    &.error{
+
+    &.error {
         position: relative;
         margin: 0 0 25px 0;
         line-height: 25px;
-        input{
+
+        input {
             border: 1px solid #f10000;
         }
-        .input-error{
+
+        .input-error {
             display: block;
             width: 100%;
             position: absolute;
             left: 0;
             bottom: -25px;
         }
-        .select_expandLabel{
+
+        .select_expandLabel {
             border: 1px solid #f10000;
         }
     }
@@ -37,7 +42,7 @@
     cursor: pointer;
     background-color: white;
     z-index: 100;
-    //border: 1px solid #e1e3e5;
+
     &_expand {
         width: 0;
         height: 45px;
@@ -45,6 +50,7 @@
         top: 0;
         right: 0;
         outline: none;
+
          &::after {
            content: '';
            position: absolute;
@@ -59,8 +65,7 @@
            pointer-events: none;
            z-index: 2;
            transition: all 250ms cubic-bezier(.4,.25,.3,1);
-
-             outline: none;
+           outline: none;
          }
 
          &:hover::after {opacity: 1}
@@ -100,7 +105,9 @@
         padding-top: 45px;
     }
 
-    &_input {display: none}
+    &_input {
+        display: none
+    }
 
     &_label {
         transition: all 250ms cubic-bezier(.4,.25,.3,1);
