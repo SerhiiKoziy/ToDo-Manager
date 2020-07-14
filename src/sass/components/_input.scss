@@ -30,24 +30,28 @@
       border: 1px solid $lightblue;
     }
   }
+
   & > textarea {
     height: 25vh;
   }
+
   .input-error {
     display: none;
     color: #f10000;
   }
+
   &.error {
     margin: 0 0 25px 0;
     line-height: 25px;
     height: 25px;
+
     input {
       border: 1px solid #f10000;
     }
+
     .input-error {
       display: block;
     }
   }
-
 }
 

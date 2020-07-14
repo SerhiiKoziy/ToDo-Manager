@@ -1,20 +1,23 @@
 
 .options-wr {
-
     font-size: 32px;
     padding: 20px;
     line-height: 1.5em;
 
 }
 
-.checkbox-wr{
+.checkbox-wr {
     margin: 0 0 10px 0;
-   // min-height: 60px;
     max-width: 500px;
+}
 
-.small-select-box{}
+.small-select-box {
+
+}
+
 input[type="radio"] {
     display: none;
+
     & + label {
         position: relative;
         display: inline-block;
@@ -23,6 +26,7 @@ input[type="radio"] {
         font-size: 18px;
         line-height: 20px;
         transition: all .3s ease-in-out;
+
         &:before, &:after {
             content: '';
             position: absolute;
@@ -37,6 +41,7 @@ input[type="radio"] {
         }
     }
 }
+
 input[type="radio"] + label {
     &:before {
         transition: all .3s ease;
@@ -51,6 +56,7 @@ input[type="radio"] + label {
         inset 0 0 0 1em #00b3e3;
     }
 }
+
 input[type="radio"]:checked + label {
     &:before {
         transition: all .3s ease;
@@ -58,4 +64,5 @@ input[type="radio"]:checked + label {
         inset 0 0 0 0.2em white,
         inset 0 0 0 1em #00b3e3;
     }
-}}
+}
+
