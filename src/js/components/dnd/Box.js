@@ -34,14 +34,15 @@ class Box extends PureComponent {
   }
 }
 
-export default dragSource(props => {
-  return props.type;
-},
+export default dragSource(
+  props => (
+    props.type
+  ),
   boxSource,
-  (connect, monitor) => {
-    return {
+  (connect, monitor) => (
+    {
       connectDragSource: connect.dragSource(),
       isDragging: monitor.isDragging(),
-    };
-  }
+    }
+  )
 )(Box);
