@@ -39,14 +39,16 @@ class Dustbin extends PureComponent {
     );
   }
 }
-export default dropTarget(props => {
-  return props.accepts;
-}, dustbinTarget,
-  (connect, monitor) => {
-    return {
+export default dropTarget(props => (
+  props.accepts
+  ),
+  dustbinTarget,
+  (connect, monitor) => (
+    {
       connectDropTarget: connect.dropTarget(),
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
-    };
-  })(Dustbin);
+    }
+  )
+)(Dustbin);
 
