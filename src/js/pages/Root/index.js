@@ -22,7 +22,6 @@ class Root extends React.PureComponent {
       eventsList: [],
     };
 
-
     this.handleAuth = this.handleAuth.bind(this);
   }
 

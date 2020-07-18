@@ -42,6 +42,7 @@ export const database = firebase.database();
 export function checkConnection() {
   let result = false;
   const connectedRef = firebase.database().ref('.info/connected');
+
   connectedRef.on('value', snap => {
     if (snap.val() && window.navigator.onLine) {
       result = true;
@@ -58,18 +59,17 @@ const getToken = async () => {
 };
 
 export const handleNotification = async(subject, text) => {
-  let { data } = await fbRequest('handleNotification', { subject, text });
+  const { data } = await fbRequest('handleNotification', { subject, text });
 
   return data === 'success' ? data : 'reject';
 };
 
 export async function initUser(entryId, email) {
   await getToken();
-  let res = await fbRequest('initUser', { entryId, email });
-  res = res.data;
+  const { data } = await fbRequest('initUser', { entryId, email });
 
-  if (res && res.token) {
-    return firebase.auth().signInWithCustomToken(res.token).then(() => {
+  if (data && data.token) {
+    return firebase.auth().signInWithCustomToken(data.token).then(() => {
       return 'Admin Success';
     });
   }
