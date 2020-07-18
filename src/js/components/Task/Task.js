@@ -27,14 +27,12 @@ const Task = ({ currentTask, onDelete, parentWr }) => {
     });
   };
 
-  const renderMap = (currentTask) => {
-    return (
-      <SimpleMap
-        key={JSON.stringify(currentTask.position)}
-        position={currentTask.position}
-      />
-    );
-  };
+  const renderMap = (currentTask) => (
+    <SimpleMap
+      key={JSON.stringify(currentTask.position)}
+      position={currentTask.position}
+    />
+  );
 
   return (
     <div
