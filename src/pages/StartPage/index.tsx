@@ -8,6 +8,7 @@ import Task from '../../components/Task/Task';
 import Dustbin from '../../components/dnd/Dustbin';
 import Box from '../../components/dnd/Box';
 import ItemTypes from '../../components/dnd/ItemTypes';
+import ITask from '../../types/ITask';
 
 import { StoreState } from "../../store/reducers";
 import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
@@ -36,13 +37,14 @@ const state = {
 };
 
 interface IStartPage {
-  data: any;
+  data: ITask[];
   droppedBoxNames: any;
   editTaskAction: (changedTask: any) => void;
-  deleteTask: (taskId: number) => void;
+  deleteTask: (taskId: string) => void;
 }
 
 const StartPage = ({ data, droppedBoxNames, editTaskAction, deleteTask }: IStartPage) => {
+  console.log('data', data)
   // constructor(props: any) {
   //   super(props);
   //   this.state = {
@@ -74,11 +76,11 @@ const StartPage = ({ data, droppedBoxNames, editTaskAction, deleteTask }: IStart
     return false;
   };
 
-  const handledeleteTask = (taskId: number) => {
+  const handleDeleteTask = (taskId: string) => {
     deleteTask(taskId);
   };
 
-  const renderTask = (item: any, i: number, type: string) => {
+  const renderTask = (item: ITask, i: number, type: string) => {
     return (
       <Box
         name={item.title}
@@ -129,16 +131,17 @@ const StartPage = ({ data, droppedBoxNames, editTaskAction, deleteTask }: IStart
           <Dustbin
             accepts={accepts}
             listId={id}
-            onDrop={(item: any, target: any) => {
+            onDrop={(item: ITask, target: any) => {
               return handleDrop(index, item, target);
             }}
             key={index}
             index={index}
           >
             {
-              data && data.map((item: any, i: number) => {
+              data && data.map((item: ITask, i: number) => {
                 if (item.stageProces === id) {
                   const type = item.stageProces;
+
                   return renderTask(item, i, type);
                 }
 

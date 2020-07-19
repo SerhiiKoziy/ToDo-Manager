@@ -46,6 +46,7 @@ const Root = ({ children, saveUserClaimsAction, getAllEventsDatabase, setList }:
 
   const callbackEvents = async (events: any) => {
     const eventsList = [];
+    console.log('events', events)
 
     for (const key in events) {
       const messageInfo = events[key];

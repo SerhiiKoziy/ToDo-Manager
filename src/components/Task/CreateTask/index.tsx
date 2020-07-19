@@ -18,11 +18,12 @@ import mapDispatchToProps from "./mapDispatchToProps";
 interface ICreateTaskProps {
   user: any;
   currentTask: ITask;
+  buttonText: string;
   createTaskAction: () => void;
   editTaskAction: () => void;
 }
 
-const CreateTask = ({ user, currentTask, createTaskAction, editTaskAction }: ICreateTaskProps) => {
+const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskAction }: ICreateTaskProps) => {
   // constructor(props) {
   //   super(props);
   //
@@ -208,6 +209,7 @@ const CreateTask = ({ user, currentTask, createTaskAction, editTaskAction }: ICr
       <Field
         name="title"
         type="text"
+        className={'input-wr'}
         component={TextField}
         placeholder={'Enter title'}
         // label={texts.name}
@@ -215,6 +217,36 @@ const CreateTask = ({ user, currentTask, createTaskAction, editTaskAction }: ICr
         fullWidth
         // disabled={!editable}
       />
+      <Field
+        name="description"
+        type="text"
+        className={'input-wr'}
+        component={TextField}
+        placeholder={'Enter description'}
+        // label={texts.name}
+        // validate={[required]}
+        fullWidth
+        // disabled={!editable}
+      />
+      <Field
+        name="address"
+        type="text"
+        className={'input-wr'}
+        component={PlacesAutocomplete}
+        placeholder={'Enter deadline location address'}
+        // label={texts.name}
+        // validate={[required]}
+        fullWidth
+        // disabled={!editable}
+      />
+      {/*<div className="input-box input-wr">*/}
+      {/*  <PlacesAutocomplete*/}
+      {/*    value={this.state.values.address || ''}*/}
+      {/*    onChange={this.changeLocation}*/}
+      {/*    onBlur={this.handleInputBlur}*/}
+      {/*    placeholder="Enter deadline location address"*/}
+      {/*  />*/}
+      {/*</div>*/}
       {/*<TextField*/}
       {/*  classNameBox={'input-wr'}*/}
       {/*  placeholder={'Enter description'}*/}
@@ -224,21 +256,14 @@ const CreateTask = ({ user, currentTask, createTaskAction, editTaskAction }: ICr
       {/*  onBlur={this.handleInputBlur}*/}
       {/*  errorText={this.showError('description')}*/}
       {/*/>*/}
-      {/*<div className="input-box input-wr">*/}
-      {/*  <PlacesAutocomplete*/}
-      {/*    value={this.state.values.address || ''}*/}
-      {/*    onChange={this.changeLocation}*/}
-      {/*    onBlur={this.handleInputBlur}*/}
-      {/*    placeholder="Enter deadline location address"*/}
-      {/*  />*/}
-      {/*</div>*/}
-      {/*<button*/}
-      {/*  type="submit"*/}
-      {/*  className="btn btn--fw"*/}
-      {/*  disabled={!this.isValidForm() || !userUID}*/}
-      {/*>*/}
-      {/*  {this.props.buttonText || 'Add event'}*/}
-      {/*</button>*/}
+
+      <button
+        type="submit"
+        className="btn btn--fw"
+        // disabled={!this.isValidForm() || !userUID}
+      >
+        {buttonText || 'Add event'}
+      </button>
       {
         !userUID && (
           <p className="submit-message">Login, please!</p>
