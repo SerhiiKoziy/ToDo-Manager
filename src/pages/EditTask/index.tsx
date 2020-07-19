@@ -17,11 +17,11 @@ interface IEditTaskProps {
 }
 
 const EditTask = ({ data, deleteTask }: IEditTaskProps) => {
-  const [ currentTask, setCurrentTask ] = useState<ITask>({});
+  const [ currentTask, setCurrentTask ] = useState<ITask | object>({});
   const { taskId } = useParams();
   useEffect(
     () => {
-      const task = data.find((task: any) => task.eventId === taskId);
+      const task: ITask | object = data.find((task: any) => task.eventId === taskId) || {};
       setCurrentTask(task)
     },
     [data]
@@ -33,13 +33,13 @@ const EditTask = ({ data, deleteTask }: IEditTaskProps) => {
         currentTask && (
           <Task
             currentTask={currentTask}
-            onDelete={() => deleteTask(currentTask.taskId)}
+            onDelete={() => deleteTask(taskId)}
           />
         )
       }
       <div className="builder-task">
         <CreateTask
-          key={currentTask.updatedAt}
+          // key={currentTask.updatedAt}
           currentTask={currentTask || {}}
           isEdit={true}
           buttonText="Edit event"

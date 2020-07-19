@@ -1,19 +1,19 @@
 import { takeLatest, select } from 'redux-saga/effects';
 import { submit } from 'redux-form';
 
-import { CHANGE_PRICE_FORM, LEASING_OPTIONS_PRICE_FORM } from '^config/forms';
-import businessTypes from '^config/businessTypes';
-
-import put from '^utils/sagaPut';
-
-import { getBusinessTypeFilter } from '^store/filters/selectors';
-import { LEASING_OPTIONS_REQUESTED } from '^store/leasingOptions/sagas';
+// import { CHANGE_PRICE_FORM, LEASING_OPTIONS_PRICE_FORM } from '^config/forms';
+// import businessTypes from '^config/businessTypes';
+//
+// import put from '^utils/sagaPut';
+//
+// import { getBusinessTypeFilter } from '^store/filters/selectors';
+// import { LEASING_OPTIONS_REQUESTED } from '^store/leasingOptions/sagas';
 
 import { isFormValid, isFormPristine } from './selectors';
 
-export const VALIDATE_VARIANT_PRICE_FORM = 'VALIDATE_VARIANT_PRICE_FORM';
+export const VALIDATE_TASK_FORM = 'VALIDATE_TASK_FORM';
 
-function* validateVariantPriceForm() {
+function* validateTaskForm() {
 //   const isPriceFormValid = yield select(isFormValid(CHANGE_PRICE_FORM));
 //   // const isPriceFormPristine = yield select(isFormPristine(CHANGE_PRICE_FORM));
 //   // const businessType = yield select(getBusinessTypeFilter);
@@ -31,5 +31,5 @@ function* validateVariantPriceForm() {
 }
 
 export default function* watcher() {
-  yield takeLatest(VALIDATE_VARIANT_PRICE_FORM, validateVariantPriceForm);
+  yield takeLatest(VALIDATE_TASK_FORM, validateTaskForm);
 }

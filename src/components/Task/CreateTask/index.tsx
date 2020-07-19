@@ -8,11 +8,12 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from '../../TextField/TextField';
 import { TASK_FORM } from '../../../configs/forms';
 
+import ITask from "../../../types/ITask";
+
 import moment from 'moment';
 
 import mapStateToProps from "./mapStateToProps";
 import mapDispatchToProps from "./mapDispatchToProps";
-import ITask from "../../../types/ITask";
 
 interface ICreateTaskProps {
   user: any;
@@ -246,10 +247,6 @@ const CreateTask = ({ user, currentTask, createTaskAction, editTaskAction }: ICr
     </form>
   );
 };
-
-// export default connect((state: StoreState) => ({
-//     user: state.user
-// }), { createTaskAction, editTaskAction })(CreateTask);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   reduxForm<any, any>({

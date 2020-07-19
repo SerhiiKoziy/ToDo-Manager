@@ -17,6 +17,7 @@ export interface StoreState {
   data: any[];
   currentModel: CurrentModelWithSelectedTrim;
   isLoading: boolean;
+  form: any;
   router: RouterState;
 }
 

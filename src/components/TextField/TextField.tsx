@@ -1,40 +1,29 @@
 import React from 'react';
 
-interface ITextFieldProps {
-  placeholder: string;
-  errorVisible: boolean;
-  errorText: string,
-  onChange: () => void,
-  onBlur: () => void,
-  type: string,
-  name: string,
-  label: string,
-  fieldName: string,
-  classNameBox: string,
-  value: string,
-  id: string,
-  maxLength: number,
-}
+import TextField from '@material-ui/core/TextField';
 
-const TextField = ({ onBlur, onChange, classNameBox, label, id, name, placeholder, maxLength, value, fieldName, errorText }: ITextFieldProps) => (
-  <div className={`input-box ${classNameBox}`}>
-    <label
-      className="label"
-      htmlFor={id}
-    >
-      {label}
-    </label>
-    <input
-      name={name}
-      placeholder={placeholder}
-      id={id}
-      maxLength={maxLength}
-      onBlur={onBlur.bind(null, fieldName)}
-      onChange={onChange.bind(null, fieldName)}
-      value={value || ''}
+import buildClassName from '^utils/buildClassName';
+
+import useStyles from './styles';
+
+const Field = ({ className, label, input, placeholder, meta: { touched, invalid, error }, ...custom }) => {
+  const classes = useStyles();
+
+  const fieldClasses = buildClassName([classes.input], {
+    [className]: className,
+  });
+
+  return (
+    <TextField
+      className={fieldClasses}
+      label={label}
+      placeholder={placeholder || label}
+      error={touched && invalid}
+      helperText={touched && error}
+      {...input}
+      {...custom}
     />
-    <label className="error visible">{errorText}</label>
-  </div>
-);
+  );
+};
 
-export default TextField;
+export default Field;
