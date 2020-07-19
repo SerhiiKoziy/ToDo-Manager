@@ -23,7 +23,7 @@
     "connected-react-router": "^6.8.0",
     "google-map-react": "^0.22.3",
     "font-awesome": "^4.7.0",
-    "firebase": "^5.7.2",
+    "firebase": "7.16.1",
     "enzyme": "^3.11.0",
     "moment": "^2.24.0",
     "enzyme-adapter-react-16": "^1.15.2",
