@@ -5,7 +5,7 @@ import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 // import DatePicker from '../DatePicker';
 import { Field, reduxForm } from 'redux-form';
 
-import TextField from '../../TextField/TextField';
+import TextField from '../../TextField';
 import { TASK_FORM } from '../../../configs/forms';
 
 import ITask from "../../../types/ITask";

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 // import dateFormat from 'dateformat';
 import DatePicker from '../Task/DatePicker';
-import TextField from '../TextField/TextField';
+import TextField from '../TextField';
 import { createTaskAction, editTaskAction } from '../../store/actions/tasksActions';
 
 import moment from 'moment';
