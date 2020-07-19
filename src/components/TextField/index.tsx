@@ -2,20 +2,17 @@ import React from 'react';
 
 import TextField from '@material-ui/core/TextField';
 
-import buildClassName from '^utils/buildClassName';
-
-// import useStyles from './styles';
+// import buildClassName from '../../utils/buildClassName';
 
 const Field = ({ className, label, input, placeholder, meta: { touched, invalid, error }, ...custom }) => {
-  const classes = useStyles();
 
-  const fieldClasses = buildClassName([classes.input], {
-    [className]: className,
-  });
+  // const fieldClasses = buildClassName({
+  //   [className]: className,
+  // });
 
   return (
     <TextField
-      className={fieldClasses}
+      className={className}
       label={label}
       placeholder={placeholder || label}
       error={touched && invalid}
