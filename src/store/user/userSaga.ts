@@ -10,28 +10,30 @@ import {
   getCurrentTrim,
   getCurrentModelTrims,
 } from "../selectors";
-import { sortByPrice, getUpdatedTrim } from "./helperFunctions";
+import { sortByPrice, getUpdatedTrim } from "../sagas/helperFunctions";
 import {
   setCurrentModel,
   FetchModel,
   startFetching,
   stopFetching,
   setCurrentTrim,
-} from "../actions/";
+} from "../actions";
 
 import {
   CurrentModel,
   CurrentModelWithSelectedTrim,
-} from "./types";
+} from "../sagas/types";
 
 import firebase from "firebase";
 
 function* fetchUser({ id }: FetchModel) {
   try {
     yield put(startFetching());
-    const { data }: { data: CurrentModel } = yield axios.get(`model/${id}`);
+    // const { data }: { data: CurrentModel } = yield axios.get(`model/${id}`);
+
     firebase.auth().onAuthStateChanged(user => {
       saveUserClaimsAction(user);
+      yield put(setCurrentModel(currentModelWithCheapestTrim));
 
       if (user) {
         getAllEventsDatabase(callbackEvents)
@@ -44,12 +46,12 @@ function* fetchUser({ id }: FetchModel) {
       }
     });
 
-    const [chiepestTrim] = data.trims.sort(sortByPrice);
-    const initiallySelectedTrim = getUpdatedTrim(chiepestTrim);
-    const currentModelWithCheapestTrim: CurrentModelWithSelectedTrim = {
-      ...data,
-      currentTrim: initiallySelectedTrim,
-    };
+    // const [chiepestTrim] = data.trims.sort(sortByPrice);
+    // const initiallySelectedTrim = getUpdatedTrim(chiepestTrim);
+    // const currentModelWithCheapestTrim: CurrentModelWithSelectedTrim = {
+    //   ...data,
+    //   currentTrim: initiallySelectedTrim,
+    // };
     yield put(setCurrentModel(currentModelWithCheapestTrim));
     yield put(stopFetching());
   } catch {

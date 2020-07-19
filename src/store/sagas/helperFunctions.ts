@@ -13,15 +13,13 @@ export function sortByPrice(
   return priceA - priceB;
 }
 
-export function getUpdatedTrim(
-  currentTrim: ModelTrim,
-  color?: TrimColor | string
-): CurrentModelTrim {
+export function getUpdatedTrim(currentTrim: ModelTrim, color?: TrimColor | string): CurrentModelTrim {
   let totalLocalPrice: string;
   let totalPrice: number;
   let colorName: string;
   let currentColor;
   currentTrim.colors.sort(sortByPrice);
+
   if (color) {
     if (typeof color === "string") {
       colorName = color;

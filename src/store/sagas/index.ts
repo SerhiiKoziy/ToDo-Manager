@@ -4,7 +4,7 @@ import { all, fork } from "redux-saga/effects";
 import listSaga from "./listSaga";
 import modelSaga from "./modelSaga";
 import taskSaga from "./taskSaga";
-import userSaga from "./userSaga";
+import userSaga from "../user/userSaga";
 import formSaga from "../form/sagas";
 
 export type {

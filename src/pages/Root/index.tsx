@@ -27,19 +27,19 @@ const Root = ({ children, saveUserClaimsAction, getAllEventsDatabase, setList }:
 
   useEffect(
     () => {
-      firebase.auth().onAuthStateChanged(user => {
-        saveUserClaimsAction(user);
-
-        if (user) {
-          getAllEventsDatabase(callbackEvents)
-            .then((res: any) => {
-              console.log('res', res)
-            })
-            .catch((error) => {
-              console.log('error', error)
-            })
-        }
-      });
+      // firebase.auth().onAuthStateChanged(user => {
+      //   saveUserClaimsAction(user);
+      //
+      //   if (user) {
+      //     getAllEventsDatabase(callbackEvents)
+      //       .then((res: any) => {
+      //         console.log('res', res)
+      //       })
+      //       .catch((error) => {
+      //         console.log('error', error)
+      //       })
+      //   }
+      // });
     },
     [],
   );
