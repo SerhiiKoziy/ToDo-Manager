@@ -7,7 +7,7 @@ import { createBrowserHistory } from "history";
 import axios from "axios";
 // Imports
 import { createRootReducer } from "./reducers";
-import rootSaga from "./sagas";
+import rootSaga from "./rootSaga";
 
 export const browserHistory = createBrowserHistory();
 
