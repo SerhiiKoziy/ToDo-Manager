@@ -1,16 +1,16 @@
 // Imports
 import * as actionTypes from "../actions/actionTypes";
 // Type imports
-import { CurrentModelTrim, CurrentModelWithSelectedTrim } from "../sagas";
 
 export interface FetchUser {
   type: typeof actionTypes.FETCH_USER;
-  id: string;
+  // id: string;
 }
-export const fetchUser = (id: string): FetchUser => {
+
+export const fetchUserAction = (): FetchUser => {
+  console.log('0000')
   return {
     type: actionTypes.FETCH_USER,
-    id,
   };
 };
 

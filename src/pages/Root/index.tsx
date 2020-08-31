@@ -10,6 +10,7 @@ import Footer from '../../components/modules/Footer';
 
 import { getAllEventsDatabase } from '../../store/action-firebase/events';
 import { saveUserClaimsAction } from '../../store/actions/userStoreActions';
+import { fetchUserAction } from '../../store/user/userActions';
 import { setList } from '../../store/actions/tasksActions';
 import { StoreState } from '../../store/reducers';
 
@@ -40,6 +41,8 @@ const Root = ({ children, saveUserClaimsAction, getAllEventsDatabase, setList }:
       //       })
       //   }
       // });
+
+      fetchUserAction()
     },
     [],
   );
@@ -86,5 +89,5 @@ export default connect(
     data: state.data,
     user: state.user,
   }),
-  { saveUserClaimsAction, getAllEventsDatabase, setList }
+  { fetchUserAction, saveUserClaimsAction, getAllEventsDatabase, setList }
 )(Root);
