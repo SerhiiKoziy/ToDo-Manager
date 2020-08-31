@@ -15,6 +15,8 @@ import { getAllEventsDatabase } from '../../store/action-firebase/events';
 
 import firebase from "firebase";
 
+export const FETCH_USER = "FETCH_USER";
+
 const requestUserData = () => (
   firebase.auth().onAuthStateChanged(user => {
     // saveUserClaimsAction(user);
@@ -40,9 +42,10 @@ const requestUserData = () => (
   })
 );
 
-function* fetchUser() {
+function* requestFetchUserAsync() {
   try {
-    // yield put(startFetching());
+    console.log('01111')
+    yield put(startFetching());
     // const { data }: { data: CurrentModel } = yield axios.get(`model/${id}`);
     console.log('1111')
     const a = yield call(requestUserData);
@@ -63,8 +66,13 @@ function* fetchUser() {
   }
 }
 
-export default function* userSaga() {
-  yield all([
-    takeLatest(actionTypes.FETCH_USER, fetchUser),
-  ]);
+// export default function* sagas() {
+//   // yield all([
+//   //   takeLatest(actionTypes.FETCH_USER, fetchUser),
+//   // ]);
+//   yield takeLatest(FETCH_USER, requestFetchUserAsync);
+// }
+
+export default function* watcher() {
+  yield takeLatest(FETCH_USER, requestFetchUserAsync);
 }
