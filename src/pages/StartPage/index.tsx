@@ -10,7 +10,7 @@ import Box from '../../components/dnd/Box';
 import ItemTypes from '../../components/dnd/ItemTypes';
 import ITask from '../../types/ITask';
 
-import { IState } from "../../types/IState";
+import IState from "../../types/IState";
 import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
 
 import './styles.module.scss';
