@@ -5,12 +5,17 @@ import { reducer as formReducer } from "redux-form";
 
 import loadingReducer from "./reducers/loading";
 import dataReducer from "./reducers/dataReducer";
-import { userReducer } from "./user/reducer";
+
+import { IEventsState } from "./events/reducer";
+import eventsReducer from "./events/reducer";
+
+import { IUserState, userReducer } from "./user/reducer";
 
 export interface StoreState {
-  user: object;
-  data: any[];
   isLoading: boolean;
+  data: any[];
+  user: IUserState;
+  events: IEventsState;
   form: any;
   router: RouterState;
 }
@@ -20,6 +25,7 @@ export const createRootReducer = (history: History) => (
     isLoading: loadingReducer,
     data: dataReducer,
     user: userReducer,
+    events: eventsReducer,
     form: formReducer,
     router: connectRouter(history),
   })

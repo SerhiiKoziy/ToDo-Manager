@@ -9,7 +9,7 @@ import { setUserMeta } from './actionCreators';
 
 import firebase from "firebase";
 
-export const FETCH_USER = "FETCH_USER";
+export const USER_REQUESTED = "USER_REQUESTED";
 
 //TODO change Promise
 const getCurrentUserMeta = (auth: any) => {
@@ -21,7 +21,7 @@ const getCurrentUserMeta = (auth: any) => {
   });
 };
 
-function* requestFetchUserAsync() {
+function* requestUserAsync() {
   try {
     yield put(startFetching());
 
@@ -39,5 +39,5 @@ function* requestFetchUserAsync() {
 }
 
 export default function* watcher() {
-  yield takeLatest(FETCH_USER, requestFetchUserAsync);
+  yield takeLatest(USER_REQUESTED, requestUserAsync);
 }

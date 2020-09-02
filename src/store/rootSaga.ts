@@ -2,12 +2,12 @@
 import { all, fork } from "redux-saga/effects";
 // Imports
 import userSagas from "./user/sagas";
-import taskSaga from "./sagas/taskSaga";
+import eventsSagas from "./events/sagas";
 import formSaga from "./form/sagas";
 
 const sagas = [
   userSagas,
-  taskSaga,
+  eventsSagas,
   formSaga
 ];
 

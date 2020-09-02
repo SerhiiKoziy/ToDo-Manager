@@ -1,14 +1,14 @@
-// import IUserMeta from '../../types/IUserMeta'
+// import IEvents from '../../types/IEvents'
 
-export interface IUserState {
-  events: any | null;
+export interface IEventsState {
+  events: any[] | null;
   isLoading: boolean;
 }
 
 export const SET_EVENTS = "SET_EVENTS";
 export const UPDATE_EVENT = "UPDATE_EVENT";
 
-export const userReducer = (state: object = {}, action: any) => {
+export const eventsReducer = (state: object = {}, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -29,4 +29,4 @@ export const userReducer = (state: object = {}, action: any) => {
   }
 };
 
-export default userReducer;
+export default eventsReducer;

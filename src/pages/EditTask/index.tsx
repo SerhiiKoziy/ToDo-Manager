@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import CreateTask from '../../components/Task/CreateTask';
 import Task from "../../components/Task/Task";
 
-import { StoreState } from "../../store/reducers";
+import IState from "../../types/IState";
 import { deleteTask } from "../../store/actions/tasksActions";
 
 import ITask from '../../types/ITask';
@@ -49,7 +49,7 @@ const EditTask = ({ data, deleteTask }: IEditTaskProps) => {
   )
 };
 
-export default connect((state: StoreState) => ({
+export default connect((state: IState) => ({
   data: state.data,
   // currentTask: null
 }), { deleteTask, push })(EditTask);

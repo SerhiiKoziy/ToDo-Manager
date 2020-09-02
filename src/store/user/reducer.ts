@@ -6,6 +6,7 @@ export interface IUserState {
 }
 
 export const UPDATE_USER_META = "UPDATE_USER_META";
+export const DELETE_USER = "DELETE_USER";
 
 export const userReducer = (state: object = {}, action: any) => {
   const { type, payload } = action;
@@ -17,9 +18,13 @@ export const userReducer = (state: object = {}, action: any) => {
         ...payload,
       };
 
+    case DELETE_USER:
+      return {
+        ...state,
+        userMeta: {},
+      };
+
     default:
       return state;
   }
 };
-
-export default userReducer;

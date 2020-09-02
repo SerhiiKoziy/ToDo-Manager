@@ -1,15 +1,29 @@
-import { put, call, takeLatest } from "redux-saga/effects";
+import firebase from "firebase";
+import { put, call, select, takeLatest } from "redux-saga/effects";
 
 import {
   startFetching,
   stopFetching,
 } from "../actions";
 
-import { setUserMeta } from './actionCreators';
+import { setEvents } from './actionCreators';
+import { getUserMeta } from '../user/selectors';
 
-import firebase from "firebase";
+import IUserMeta from "../../types/IUserMeta";
 
-export const FETCH_USER = "FETCH_USER";
+
+export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
+
+//TODO add to events
+
+// await getAllEventsDatabase()
+//   .then((res: any) => {
+//     console.log('res', res)
+//     return res
+//   })
+//   .catch((error) => {
+//     console.log('error', error)
+//   });
 
 //TODO change Promise
 const getCurrentUserMeta = (auth: any) => {
@@ -21,15 +35,18 @@ const getCurrentUserMeta = (auth: any) => {
   });
 };
 
-function* requestFetchUserAsync() {
+function* requestEventsAsync() {
   try {
     yield put(startFetching());
+    const user: IUserMeta | null = yield select(getUserMeta);
+
+    console.log('user', user);
 
     const auth = firebase.auth();
-    const getUserMeta = () => getCurrentUserMeta(auth).then((user: any) => user);
-    const { uid, displayName, email, emailVerified, providerData, photoURL, phoneNumber }: any = yield call(getUserMeta);
+    const getEvents = () => getCurrentUserMeta(auth).then((user: any) => user);
+    const events: any = yield call(getEvents);
 
-    yield put(setUserMeta({ uid, displayName, email, emailVerified, providerData, photoURL, phoneNumber }));
+    yield put(setEvents(events));
 
     yield put(stopFetching());
   } catch {
@@ -39,5 +56,5 @@ function* requestFetchUserAsync() {
 }
 
 export default function* watcher() {
-  yield takeLatest(FETCH_USER, requestFetchUserAsync);
+  yield takeLatest(EVENTS_REQUESTED, requestEventsAsync);
 }

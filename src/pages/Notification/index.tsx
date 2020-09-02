@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setList } from '../../store/actions/tasksActions';
 
 import './styles.scss';
-import {StoreState} from "../../store/reducers";
+import IState from "../../types/IState";
 
 class Notification extends React.PureComponent {
   constructor(props: any) {
@@ -29,7 +29,7 @@ class Notification extends React.PureComponent {
 }
 
 export default connect(
-  (state: StoreState) => ({
+  (state: IState) => ({
     data: state.data,
     user: state.user,
   }),

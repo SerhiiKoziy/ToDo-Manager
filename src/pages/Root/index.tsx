@@ -11,7 +11,7 @@ import { getAllEventsDatabase } from '../../store/action-firebase/events';
 import { saveUserClaimsAction } from '../../store/actions/userStoreActions';
 import { fetchUserAction } from '../../store/user/actionCreators';
 import { setList } from '../../store/actions/tasksActions';
-import { StoreState } from '../../store/reducers';
+import IState from '../../types/IState';
 
 import './styles.scss';
 
@@ -85,7 +85,7 @@ const Root = ({ children, fetchUserAction, getAllEventsDatabase, setList }: IRoo
 };
 
 export default connect(
-  (state: StoreState) => ({
+  (state: IState) => ({
     data: state.data,
     user: state.user,
   }),

@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 import './header.scss';
-import { StoreState } from "../../store/reducers";
+import IState from "../../types/IState";
 
 interface IHeaderProps {
   user: any;
@@ -154,7 +154,7 @@ const Header = ({ user, handleAuth, addUserStore }: IHeaderProps) => {
 };
 
 export default connect(
-  (state: StoreState) => ({
+  (state: IState) => ({
     data: state.data,
     user: state.user
   }),

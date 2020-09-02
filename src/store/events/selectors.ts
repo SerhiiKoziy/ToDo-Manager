@@ -1,10 +1,10 @@
 import IState from '../../types/IState';
 import IUserMeta from '../../types/IUserMeta';
 
-import { IUserState } from './reducer';
+import { IEventsState } from './reducer';
 
-const getUser = ({ user }: IState): IUserState => user;
+const getEvents = ({ events }: IState): IEventsState => events;
 
-export const getUserMeta = (state: IState): IUserMeta | null => getUser(state).userMeta;
+// export const getUserMeta = (state: IState): IUserMeta | null => getUser(state).userMeta;
 
-export const getUserIsLoading= (state: IState): boolean => getUser(state).isLoading;
+// export const getUserIsLoading= (state: IState): boolean => getUser(state).isLoading;

@@ -9,7 +9,7 @@ import Task from '../../components/Task/Task';
 import { deleteTask } from '../../store/actions/tasksActions';
 
 import './styles.module.scss';
-import {StoreState} from "../../store/reducers";
+import IState from "../../types/IState";
 
 interface ITaskPageProps {
   data: any;
@@ -65,7 +65,7 @@ const TaskPage = ({ data, deleteTask, children }: ITaskPageProps) => {
 };
 
 export default connect(
-  (state: StoreState) => ({
+  (state: IState) => ({
     data: state.data,
   }),
   { deleteTask, push }

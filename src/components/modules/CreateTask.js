@@ -7,7 +7,7 @@ import TextField from '../TextField';
 import { createTaskAction, editTaskAction } from '../../store/actions/tasksActions';
 
 import moment from 'moment';
-import { StoreState } from "../../store/reducers";
+// import { StoreState } from "../../store/reducers";
 
 class CreateTask extends React.Component {
   constructor(props) {
