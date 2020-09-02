@@ -1,12 +1,19 @@
 import { database } from './index';
 import firebase from 'firebase/app';
 
-export async function getAllEventsDatabase(callbackEvents) {
+export async function getAllEventsDatabase() {
   const user = await firebase.auth().currentUser;
   const ref = database.ref('events');
 
-  return user && await ref.orderByChild('uid').equalTo(user.uid).on('value', (snapshot) => {
-    callbackEvents(snapshot.val());
+  // return user && await ref.orderByChild('uid').equalTo(user.uid).on('value', (snapshot) => {
+  //   callbackEvents(snapshot.val());
+  // });
+
+  return user && await ref.orderByChild('uid').equalTo(user.uid).once('value').then((snapshot) => {
+    const value = snapshot.val();
+    console.log('value', value)
+
+    return value
   });
 }
 

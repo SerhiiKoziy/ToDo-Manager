@@ -20,6 +20,17 @@ function* fetchModel({ id }: any) {
   }
 }
 
+//TODO add to events
+
+// await getAllEventsDatabase()
+//   .then((res: any) => {
+//     console.log('res', res)
+//     return res
+//   })
+//   .catch((error) => {
+//     console.log('error', error)
+//   });
+
 export default function* modelSaga() {
   yield all([
     takeLatest(actionTypes.FETCH_MODEL, fetchModel),

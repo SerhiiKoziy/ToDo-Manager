@@ -1,6 +1,5 @@
 ﻿import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
-import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +9,7 @@ import Footer from '../../components/modules/Footer';
 
 import { getAllEventsDatabase } from '../../store/action-firebase/events';
 import { saveUserClaimsAction } from '../../store/actions/userStoreActions';
-import { fetchUserAction } from '../../store/user/userActions';
+import { fetchUserAction } from '../../store/user/actionCreators';
 import { setList } from '../../store/actions/tasksActions';
 import { StoreState } from '../../store/reducers';
 
@@ -21,9 +20,10 @@ interface IRootProps {
   saveUserClaimsAction: (user: any) => void;
   getAllEventsDatabase: (callback: any) => Promise<any>;
   setList: (callback: any) => void;
+  fetchUserAction: () => void;
 }
 
-const Root = ({ children, saveUserClaimsAction, getAllEventsDatabase, setList }: IRootProps) => {
+const Root = ({ children, fetchUserAction, getAllEventsDatabase, setList }: IRootProps) => {
   const [ openAuth, setOpenAuth ] = useState<boolean>(false);
 
   useEffect(

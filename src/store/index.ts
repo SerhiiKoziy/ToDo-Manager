@@ -6,7 +6,7 @@ import { routerMiddleware as createRouterMiddleware } from "connected-react-rout
 import { createBrowserHistory } from "history";
 import axios from "axios";
 // Imports
-import { createRootReducer } from "./reducers";
+import { createRootReducer } from "./rootReducer";
 import rootSaga from "./rootSaga";
 
 export const browserHistory = createBrowserHistory();
