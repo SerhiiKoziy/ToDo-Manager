@@ -15,7 +15,8 @@ export const userReducer = (state: object = {}, action: any) => {
     case UPDATE_USER_META:
       return {
         ...state,
-        ...payload,
+        ...payload, //TODO change data user
+        userMeta: payload,
       };
 
     case DELETE_USER:

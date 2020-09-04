@@ -1,50 +1,35 @@
-import firebase from "firebase";
-import { put, call, select, takeLatest } from "redux-saga/effects";
+import { put, call, takeLatest } from "redux-saga/effects";
 
 import {
   startFetching,
   stopFetching,
 } from "../actions";
 
+import { getAllEventsDatabase } from '../action-firebase/events';
 import { setEvents } from './actionCreators';
-import { getUserMeta } from '../user/selectors';
 
-import IUserMeta from "../../types/IUserMeta";
-
+import IEvent from '../../types/IEvent'
 
 export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
 
 //TODO add to events
-
-// await getAllEventsDatabase()
-//   .then((res: any) => {
-//     console.log('res', res)
-//     return res
-//   })
-//   .catch((error) => {
-//     console.log('error', error)
-//   });
-
-//TODO change Promise
-const getCurrentUserMeta = (auth: any) => {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged((user: any) => {
-      unsubscribe();
-      resolve(user);
-    }, reject);
-  });
+const getEventsList = async () => {
+  return await getAllEventsDatabase()
+    .then((res: Promise<any>) => res)
+    .catch((error) => {
+      console.log('error', error)
+    });
 };
 
 function* requestEventsAsync() {
   try {
     yield put(startFetching());
-    const user: IUserMeta | null = yield select(getUserMeta);
 
-    console.log('user', user);
-
-    const auth = firebase.auth();
-    const getEvents = () => getCurrentUserMeta(auth).then((user: any) => user);
-    const events: any = yield call(getEvents);
+    const getEvents = () => getEventsList().then((events: IEvent[]) => {
+      console.log('events', events)
+      return events
+    });
+    const events: IEvent[] = yield call(getEvents);
 
     yield put(setEvents(events));
 

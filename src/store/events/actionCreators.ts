@@ -2,7 +2,7 @@ import { EVENTS_REQUESTED } from './sagas';
 
 import { actionFactory } from '../utils';
 
-import { UPDATE_EVENT, SET_EVENTS, IEventsState } from './reducer';
+import { SET_EVENTS, IEventsState } from './reducer';
 
 export const updateEvents = (key: keyof IEventsState, value: any) => actionFactory(SET_EVENTS, value);
 

@@ -1,7 +1,7 @@
-// import IEvents from '../../types/IEvents'
+import IEvent from '../../types/IEvent'
 
 export interface IEventsState {
-  events: any[] | null;
+  events: IEvent[] | null;
   isLoading: boolean;
 }
 
@@ -15,7 +15,7 @@ export const eventsReducer = (state: object = {}, action: any) => {
     case SET_EVENTS:
       return {
         ...state,
-        events: payload,
+        ...payload,
       };
 
     case UPDATE_EVENT:
