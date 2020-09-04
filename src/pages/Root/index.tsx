@@ -9,22 +9,33 @@ import Footer from '../../components/modules/Footer';
 
 import { getAllEventsDatabase } from '../../store/action-firebase/events';
 import { saveUserClaimsAction } from '../../store/actions/userStoreActions';
+
 import { fetchUserAction } from '../../store/user/actionCreators';
+import { fetchEventsAction } from '../../store/events/actionCreators';
 import { setList } from '../../store/actions/tasksActions';
 import IState from '../../types/IState';
 
 import './styles.scss';
+import IUserMeta from "../../types/IUserMeta";
 
 interface IRootProps {
+  userMeta: IUserMeta | null;
   children?: any;
   saveUserClaimsAction: (user: any) => void;
-  getAllEventsDatabase: (callback: any) => Promise<any>;
+  fetchEventsAction: () => void;
   setList: (callback: any) => void;
   fetchUserAction: () => void;
 }
 
-const Root = ({ children, fetchUserAction, getAllEventsDatabase, setList }: IRootProps) => {
+const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction, setList }: IRootProps) => {
   const [ openAuth, setOpenAuth ] = useState<boolean>(false);
+
+  useEffect(
+    () => {
+      fetchUserAction();
+    },
+    [],
+  );
 
   useEffect(
     () => {
@@ -42,24 +53,26 @@ const Root = ({ children, fetchUserAction, getAllEventsDatabase, setList }: IRoo
       //   }
       // });
 
-      fetchUserAction()
+      if (userMeta) {
+        fetchEventsAction();
+      }
     },
-    [],
+    [userMeta],
   );
 
-  const callbackEvents = async (events: any) => {
-    const eventsList = [];
-    console.log('events', events)
-
-    for (const key in events) {
-      const messageInfo = events[key];
-      eventsList.push(messageInfo);
-    }
-
-    if (eventsList && eventsList.length > 0) {
-      return setList(eventsList);
-    }
-  };
+  // const callbackEvents = async (events: any) => {
+  //   const eventsList = [];
+  //   console.log('events', events)
+  //
+  //   for (const key in events) {
+  //     const messageInfo = events[key];
+  //     eventsList.push(messageInfo);
+  //   }
+  //
+  //   if (eventsList && eventsList.length > 0) {
+  //     return setList(eventsList);
+  //   }
+  // };
 
   return (
     <div className="root">
@@ -88,6 +101,7 @@ export default connect(
   (state: IState) => ({
     data: state.data,
     user: state.user,
+    userMeta: state.user.userMeta,
   }),
-  { fetchUserAction, saveUserClaimsAction, getAllEventsDatabase, setList }
+  { fetchUserAction, saveUserClaimsAction, fetchEventsAction, setList }
 )(Root);
