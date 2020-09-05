@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../../store/action-firebase';
-import { deleteUserStore } from '../../store/actions/userStoreActions';
 
 import './auth.module.scss';
 
@@ -143,7 +142,7 @@ class Login extends Component {
 
   sighOut() {
     auth().signOut();
-    this.props.deleteUserStore();
+    // this.props.deleteUserStore();
   }
 
   handleChangeTab(typeSet) {
@@ -237,5 +236,5 @@ export default connect(
   (state) => {
     return { user: state.user };
   },
-  { deleteUserStore }
+  { }
 )(Login);
