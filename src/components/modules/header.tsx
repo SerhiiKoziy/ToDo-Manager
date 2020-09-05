@@ -1,46 +1,35 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, {useMemo} from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from "react-router";
 
 import { Link } from "react-router-dom";
 
-import { addUserStore } from '../../store/actions/userStoreActions';
 // import { auth } from '../../store/action-firebase';
+import { getUserMeta } from '../../store/user/selectors';
 // import { loadUserInfo, uploadUserInfo } from '../../store/action-firebase/user';
 // import { transformAvatarUrl } from '../../store/actions/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import './header.scss';
 import IState from "../../types/IState";
+
+import './header.scss';
 
 interface IHeaderProps {
   user: any;
   handleAuth: () => void;
-  addUserStore: () => void;
 }
 
-const Header = ({ user, handleAuth, addUserStore }: IHeaderProps) => {
+const Header = ({ user, handleAuth }: IHeaderProps) => {
   const location = useLocation();
+  const userMeta = useSelector(getUserMeta);
 
-//   // static propTypes = {
-//   //   user: PropTypes.object,
-//   // };
-//
-//   constructor(props: any) {
-//     super(props);
-//     this.state = {
-//       openAuth: false,
-//       PhotoUrl: '',
-//     };
-//
-//     auth().onAuthStateChanged(user => {
-//       if (user) {
-//         this.loadProfile();
-//         this.setState({ user, loaded: true });
-//       }
-//     });
-//   }
+  const preparedTitle = useMemo(
+    () => {
+      return (userMeta?.displayName || userMeta?.email) || 'User';
+    },
+    [userMeta],
+  );
 //
 //   async loadProfile() {
 //     const user = auth().currentUser;
@@ -100,8 +89,7 @@ const Header = ({ user, handleAuth, addUserStore }: IHeaderProps) => {
     }
   };
 
-  const userName = (user && (user.displayName || user.email)) || 'User';
-
+  const url = userMeta?.photoURL;
   const currentPath = location.pathname;
   let page = 'main';
 
@@ -118,14 +106,16 @@ const Header = ({ user, handleAuth, addUserStore }: IHeaderProps) => {
           <span>logo</span>
         </Link>
         <Link to="/profile">
-          <span>Hello!  Dear, {userName || 'User'}</span>
+          <span>Hello!  Dear, { preparedTitle }</span>
         </Link>
         <div className="login-wr" onClick={() => handleAuth()}>
           <div className="avatar-wr">
             {
-              user && user.photoURL ?
-                <img src={user.photoURL} alt="avatar" /> :
+              url ? (
+                <img src={url} alt="avatar" />
+              ) : (
                 <FontAwesomeIcon icon={faSignInAlt} />
+              )
             }
           </div>
         </div>
@@ -136,14 +126,16 @@ const Header = ({ user, handleAuth, addUserStore }: IHeaderProps) => {
           renderRightBlock(page)
         }
         <Link to="/profile">
-          <span>Hello!  Dear, {user && user.displayName || 'User'}</span>
+          <span>Hello!  Dear, { preparedTitle }</span>
         </Link>
         <div className="login-wr" onClick={() => handleAuth()}>
           <div className="avatar-wr">
             {
-              user && user.photoURL ?
-                <img src={user.photoURL} alt="avatar" /> :
+              url ? (
+                <img src={url} alt="avatar" />
+              ) : (
                 <FontAwesomeIcon icon={faSignInAlt} />
+              )
             }
           </div>
         </div>
@@ -158,5 +150,5 @@ export default connect(
     data: state.data,
     user: state.user
   }),
-  { addUserStore }
+  { }
 )(Header);
