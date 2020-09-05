@@ -4,30 +4,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import Login from '../../components/auth/auth';
-import Header from '../../components/modules/header';
+import Header from '../../components/modules/Header';
 import Footer from '../../components/modules/Footer';
-
-import { getAllEventsDatabase } from '../../store/action-firebase/events';
-import { saveUserClaimsAction } from '../../store/actions/userStoreActions';
+import Dashboard from '../Dashboard';
 
 import { fetchUserAction } from '../../store/user/actionCreators';
 import { fetchEventsAction } from '../../store/events/actionCreators';
-import { setList } from '../../store/actions/tasksActions';
+
 import IState from '../../types/IState';
+import IUserMeta from "../../types/IUserMeta";
 
 import './styles.scss';
-import IUserMeta from "../../types/IUserMeta";
 
 interface IRootProps {
   userMeta: IUserMeta | null;
-  children?: any;
-  saveUserClaimsAction: (user: any) => void;
-  fetchEventsAction: () => void;
-  setList: (callback: any) => void;
   fetchUserAction: () => void;
+  fetchEventsAction: () => void;
+  children?: any;
 }
 
-const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction, setList }: IRootProps) => {
+const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction }: IRootProps) => {
   const [ openAuth, setOpenAuth ] = useState<boolean>(false);
 
   useEffect(
@@ -39,40 +35,12 @@ const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction, setList 
 
   useEffect(
     () => {
-      // firebase.auth().onAuthStateChanged(user => {
-      //   saveUserClaimsAction(user);
-      //
-      //   if (user) {
-      //     getAllEventsDatabase(callbackEvents)
-      //       .then((res: any) => {
-      //         console.log('res', res)
-      //       })
-      //       .catch((error) => {
-      //         console.log('error', error)
-      //       })
-      //   }
-      // });
-
       if (userMeta) {
         fetchEventsAction();
       }
     },
     [userMeta],
   );
-
-  // const callbackEvents = async (events: any) => {
-  //   const eventsList = [];
-  //   console.log('events', events)
-  //
-  //   for (const key in events) {
-  //     const messageInfo = events[key];
-  //     eventsList.push(messageInfo);
-  //   }
-  //
-  //   if (eventsList && eventsList.length > 0) {
-  //     return setList(eventsList);
-  //   }
-  // };
 
   return (
     <div className="root">
@@ -90,6 +58,8 @@ const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction, setList 
 
       <div className="route-wr">
         {children}
+
+        <Dashboard />
       </div>
 
       <Footer />
@@ -99,9 +69,8 @@ const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction, setList 
 
 export default connect(
   (state: IState) => ({
-    data: state.data,
     user: state.user,
     userMeta: state.user.userMeta,
   }),
-  { fetchUserAction, saveUserClaimsAction, fetchEventsAction, setList }
+  { fetchUserAction, fetchEventsAction }
 )(Root);

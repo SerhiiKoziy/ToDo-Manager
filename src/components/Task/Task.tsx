@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router';
-import SimpleMap from "./GoogleMap";
+// import SimpleMap from "./GoogleMap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,14 +33,14 @@ const Task = ({ currentTask, onDelete, parentWr }: ITaskProps) => {
     });
   };
 
-  const renderMap = (currentTask: any) => {
-    return (
-      <SimpleMap
-        key={JSON.stringify(currentTask.position)}
-        position={currentTask.position}
-      />
-    );
-  };
+  // const renderMap = (currentTask: any) => {
+  //   return (
+  //     <SimpleMap
+  //       key={JSON.stringify(currentTask.position)}
+  //       position={currentTask.position}
+  //     />
+  //   );
+  // };
 
   return (
     <div
@@ -76,13 +76,13 @@ const Task = ({ currentTask, onDelete, parentWr }: ITaskProps) => {
         </div>
       </div>
 
-      {
-        currentTask && (parentWr !== 'onBoard-task') && (
-            React.cloneElement(renderMap(currentTask), {
-            image: cloudImageUrl,
-          })
-        )
-      }
+      {/*{*/}
+      {/*  currentTask && (parentWr !== 'onBoard-task') && (*/}
+      {/*      React.cloneElement(renderMap(currentTask), {*/}
+      {/*      image: cloudImageUrl,*/}
+      {/*    })*/}
+      {/*  )*/}
+      {/*}*/}
 
       {/*<div className="controls">*/}
       {/*  <div className="control control-view">*/}

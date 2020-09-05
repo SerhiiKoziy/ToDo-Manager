@@ -8,16 +8,6 @@ const dustbinTarget = {
 };
 
 class Dustbin extends PureComponent {
-  // static propTypes = {
-  //   connectDropTarget: PropTypes.func.isRequired,
-  //   isOver: PropTypes.bool.isRequired,
-  //   canDrop: PropTypes.bool.isRequired,
-  //   accepts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  //   lastDroppedItem: PropTypes.object,
-  //   onDrop: PropTypes.func.isRequired,
-  //   listId: PropTypes.string,
-  // };
-
   render() {
     const { isOver, canDrop, connectDropTarget } = this.props;
     const isActive = isOver && canDrop;
@@ -39,14 +29,18 @@ class Dustbin extends PureComponent {
     );
   }
 }
-export default dropTarget(props => {
-  return props.accepts;
-}, dustbinTarget,
+
+export default dropTarget(
+  props => {
+    return props.accepts;
+  },
+  dustbinTarget,
   (connect, monitor) => {
     return {
       connectDropTarget: connect.dropTarget(),
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     };
-  })(Dustbin);
+  }
+)(Dustbin);
 

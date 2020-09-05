@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 
-import { setList } from '../../store/actions/tasksActions';
+// import { setList } from '../../store/actions/tasksActions';
 
 import './styles.scss';
 import IState from "../../types/IState";
@@ -33,4 +33,4 @@ class WelcomePage extends React.PureComponent {
 export default connect((state: IState) => ({
   // data: state.data,
   user: state.user,
-}), { setList })(WelcomePage);
+}), { })(WelcomePage);

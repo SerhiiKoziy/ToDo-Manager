@@ -1,22 +1,23 @@
 import React, { Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Root, StartPage, TaskPage, EditTask, AddTask, NotificationPage } from "../../pages";
+import { TaskPage, EditTask, AddTask, NotificationPage } from "../../pages";
+import Root from "../../pages/Root";
 
 import styles from "./App.module.scss";
 
 function App() {
   return (
     <div className={styles.App}>
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Switch>
 
-          <Route path="/events" component={() => <StartPage />} />
           <Route path="/profile" component={() => <NotificationPage /> } />
           {/*<Route path="/task/:taskId" component={() => <TaskPage /> } />*/}
           <Route path="/task/:taskId/edit" component={() => <EditTask /> } />
           <Route path="/add" component={() => <AddTask /> } />
-          <Route path="/" component={() => <Root />} />
+
+          <Route path="/" component={() => <Root /> } />
 
           <Redirect to="/" />
         </Switch>

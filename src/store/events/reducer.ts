@@ -5,17 +5,22 @@ export interface IEventsState {
   isLoading: boolean;
 }
 
+const defaultEventsReducer = {
+  events: [],
+  isLoading: false,
+};
+
 export const SET_EVENTS = "SET_EVENTS";
 export const UPDATE_EVENT = "UPDATE_EVENT";
 
-export const eventsReducer = (state: object = {}, action: any) => {
+export const eventsReducer = (state: object = defaultEventsReducer || {}, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
     case SET_EVENTS:
       return {
         ...state,
-        ...payload,
+        events: payload
       };
 
     case UPDATE_EVENT:

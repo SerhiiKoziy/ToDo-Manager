@@ -25,13 +25,12 @@ function* requestEventsAsync() {
   try {
     yield put(startFetching());
 
-    const getEvents = () => getEventsList().then((events: IEvent[]) => {
-      console.log('events', events)
-      return events
-    });
-    const events: IEvent[] = yield call(getEvents);
+    const getEvents = () => getEventsList().then((events: IEvent[]) => events);
+    const eventsList: IEvent[] = yield call(getEvents); //TODO add list interface
 
-    yield put(setEvents(events));
+    const eventsArray = Object.values(eventsList);
+
+    yield put(setEvents(eventsArray));
 
     yield put(stopFetching());
   } catch {
