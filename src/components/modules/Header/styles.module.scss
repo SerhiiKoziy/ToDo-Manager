@@ -1,4 +1,4 @@
-header.header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,15 +6,15 @@ header.header {
   height: 60px;
   background-color: rgba(255, 255, 255, 0.2);
 
-  .header-desktop {
+  .headerDesktop {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
 
-  .login-wr {
-    .avatar-wr {
+  .loginWrapper {
+    .avatarWrapper {
       height: 50px;
       width: 50px;
       display: flex;
@@ -28,18 +28,18 @@ header.header {
     }
   }
 
-  .header-mobile {
+  .headerMobile {
     display: none;
   }
 }
 
 @media only screen and (max-width: 769px) {
-  header.header {
-    .header-desktop {
+  .header {
+    .headerDesktop {
       display: none;
     }
 
-    .header-mobile {
+    .headerMobile {
       display: flex;
       width: 100%;
       align-items: center;

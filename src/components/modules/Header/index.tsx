@@ -1,26 +1,26 @@
-import React, {useMemo} from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import React, { useMemo } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { useLocation } from "react-router";
 
 import { Link } from "react-router-dom";
 
 // import { auth } from '../../store/action-firebase';
-import { getUserMeta } from '../../store/user/selectors';
+import { getUserMeta } from '../../../store/user/selectors';
 // import { loadUserInfo, uploadUserInfo } from '../../store/action-firebase/user';
 // import { transformAvatarUrl } from '../../store/actions/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import IState from "../../types/IState";
+import IState from "../../../types/IState";
 
-import './header.scss';
+import styles from './styles.module.scss';
 
 interface IHeaderProps {
   user: any;
   handleAuth: () => void;
 }
 
-const Header = ({ user, handleAuth }: IHeaderProps) => {
+const Index = ({ user, handleAuth }: IHeaderProps) => {
   const location = useLocation();
   const userMeta = useSelector(getUserMeta);
 
@@ -100,16 +100,16 @@ const Header = ({ user, handleAuth }: IHeaderProps) => {
   }
 
   return (
-    <header className="header">
-      <div className="header-desktop">
+    <header className={styles.header}>
+      <div className={styles.headerDesktop}>
         <Link to="/events">
           <span>logo</span>
         </Link>
         <Link to="/profile">
           <span>Hello!  Dear, { preparedTitle }</span>
         </Link>
-        <div className="login-wr" onClick={() => handleAuth()}>
-          <div className="avatar-wr">
+        <div className={styles.loginWrapper} onClick={() => handleAuth()}>
+          <div className={styles.avatarWrapper}>
             {
               url ? (
                 <img src={url} alt="avatar" />
@@ -121,7 +121,7 @@ const Header = ({ user, handleAuth }: IHeaderProps) => {
         </div>
       </div>
 
-      <div className="header-mobile">
+      <div className={styles.headerMobile}>
         {
           renderRightBlock(page)
         }
@@ -140,7 +140,6 @@ const Header = ({ user, handleAuth }: IHeaderProps) => {
           </div>
         </div>
       </div>
-
     </header>
   );
 };
@@ -151,4 +150,4 @@ export default connect(
     user: state.user
   }),
   { }
-)(Header);
+)(Index);
