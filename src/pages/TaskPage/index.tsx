@@ -8,24 +8,26 @@ import Task from '../../components/Task/Task';
 
 import { deleteTask } from '../../store/actions/tasksActions';
 
-import './styles.module.scss';
 import IState from "../../types/IState";
+import IEvent from "../../types/IEvent";
+
+import './styles.module.scss';
 
 interface ITaskPageProps {
-  data: any;
+  events: IEvent[];
   deleteTask: (eventId: string) => void;
   children: any;
 }
 
-const TaskPage = ({ data, deleteTask, children }: ITaskPageProps) => {
-  const [ currentTask, setCurrentTask ] = useState({});
+const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
+  const [ currentTask, setCurrentTask ] = useState<IEvent>();
   const { taskId } = useParams();
   useEffect(
     () => {
-      const task = data.find((task: any) => task.eventId === taskId);
-      setCurrentTask(task)
+      const task = events.find((task: any) => task.eventId === taskId);
+      task && setCurrentTask(task)
     },
-    [data]
+    [events]
   );
 
   const handleDeleteTask = (currentTask: any) => {
@@ -34,39 +36,33 @@ const TaskPage = ({ data, deleteTask, children }: ITaskPageProps) => {
   };
 
   return (
-    <>
-      {
-        currentTask && (
-          <div className="page task-page">
-            <div className="inside-wr">
-              <div className="task-wr">
-                <div className="task-header">
-                  <Link to="/">
-                    <i className="fa fa-angle-left" aria-hidden="true" />
-                    <span>Back to board</span>
-                  </Link>
-                </div>
-                {
-                  currentTask && (
-                    <Task
-                      currentTask={currentTask}
-                      onDelete={() => handleDeleteTask(currentTask)}
-                    />
-                  )
-                }
-              </div>
-              {children}
-            </div>
+    <div className="page task-page">
+      <div className="inside-wr">
+        <div className="task-wr">
+          <div className="task-header">
+            <Link to="/">
+              <i className="fa fa-angle-left" aria-hidden="true" />
+              <span>Back to board</span>
+            </Link>
           </div>
-        )
-      }
-    </>
+          {
+            currentTask && (
+              <Task
+                event={currentTask}
+                onDelete={() => handleDeleteTask(currentTask)}
+              />
+            )
+          }
+        </div>
+        {children}
+      </div>
+    </div>
   )
 };
 
 export default connect(
   (state: IState) => ({
-    data: state.data,
+    events: state.events.events, //TODO add hooks
   }),
   { deleteTask, push }
 )(TaskPage);

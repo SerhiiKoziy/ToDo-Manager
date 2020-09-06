@@ -2,6 +2,8 @@ import * as types from './actionTypes';
 import { getWeatherByCoordinates } from './api';
 import { postEventFirebase, putEventFirebase, deleteEvent } from '../action-firebase/events';
 
+import IEvent from '../../types/IEvent';
+
 export function setList(payload: any) {
   return {
     type: types.SET_LIST,
@@ -38,13 +40,13 @@ export function updateTask(payload: any) {
   };
 }
 
-export function editTaskAction(task: any) {
+export function editTaskAction(event: IEvent) {
   return (dispatch: any) => {
-    getWeatherByCoordinates(task).then((weather: any) => {
-      task.weather = weather;
+    getWeatherByCoordinates(event).then((weather: any) => {
+      event.weather = weather;
 
-      putEventFirebase(task, task.eventId).then((res: any) => {
-        dispatch(updateTask([task]))
+      putEventFirebase(event, event.eventId).then((res: any) => {
+        dispatch(updateTask([event]))
       });
     });
   };

@@ -1,30 +1,33 @@
 import React from 'react';
-// import { Link } from 'react-router';
+import classNames from "classnames";
 // import SimpleMap from "./GoogleMap";
+import Link from "../Link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
-import './task.scss';
+import IEvent from '../../types/IEvent';
+
+import styles from './styles.module.scss';
 
 interface ITaskProps {
-  currentTask: any;
+  event: IEvent;
   onDelete: () => void;
-  parentWr?: any;
+  className?: any;
 }
 
-const Task = ({ currentTask, onDelete, parentWr }: ITaskProps) => {
-  const weather = currentTask && currentTask.weather;
-  const cloudImageUrl = weather && `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+const Task = ({ event, onDelete, className }: ITaskProps) => {
+  const weather: IEvent['weather'] = event && event.weather;
+  // const cloudImageUrl = weather && `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
   const renderWeather = () => {
-    const weather = currentTask.weather;
+    const weather: IEvent['weather'] = event.weather;
 
-    return weather && Object.keys(weather).map(key => {
+    return weather && Object.keys(weather).map((key: any) => {
       if (key !== 'weather' && key !== 'temp') {
         return (
           <div key={key}>
             <span>{key} :</span>
-            <span>{weather[key]}</span>
+            {/*<span>{weather[key]}</span>*/} //TODO temperature
           </div>
         );
       }
@@ -44,21 +47,31 @@ const Task = ({ currentTask, onDelete, parentWr }: ITaskProps) => {
 
   return (
     <div
-      className={`task ${currentTask.stageProces} ${parentWr}`}
-      id={currentTask.id}
+      // className={`task ${currentTask.stageProces} ${parentWr}`}
+      className={
+        classNames(
+          className,
+          styles.task,
+          // {
+          //   [styles.link]: styled,
+          // },
+        )
+      }
+      // className={styles.task}
+      // id={currentTask.id}
     >
-      <div className="task-content">
-        <div className="task-main-info">
-          <h4>Title: {currentTask.title}</h4>
-          <p>Desc: {currentTask.description}</p>
-          <p className="date-task">{`${currentTask.date}`}</p>
-          <p className="namePlace-task">{`${currentTask.address}`}</p>
-          <p className="temp-list-title">
+      <div className={styles.taskContent}>
+        <div className={styles.taskMainInfo}>
+          <h4>Title: {event.title}</h4>
+          <p>Desc: {event.description}</p>
+          <p>{`${event.date}`}</p>
+          <p>{`${event.address}`}</p>
+          <p>
             <FontAwesomeIcon icon={faTemperatureLow} /> Temperature celsius:
           </p>
           {
             weather && (
-              <ul className="temp-list">
+              <ul className={styles.tempList}>
                 <li>Day: {`${weather.temp.day}`}</li>
                 <li>Evening: {`${weather.temp.eve}`}</li>
                 <li>Morning: {`${weather.temp.morn}`}</li>
@@ -67,43 +80,43 @@ const Task = ({ currentTask, onDelete, parentWr }: ITaskProps) => {
             )
           }
         </div>
-        <div className="task-secondary-info">
+        <div className={styles.taskSecondaryInfo}>
           {renderWeather()}
         </div>
 
-        <div className="weather-indicator">
-          <img src={cloudImageUrl} alt="" />
-        </div>
+        {/*<div className={styles.weatherIndicator}>*/}
+        {/*  <img src={cloudImageUrl} alt="" />*/}
+        {/*</div>*/}
       </div>
 
       {/*{*/}
-      {/*  currentTask && (parentWr !== 'onBoard-task') && (*/}
-      {/*      React.cloneElement(renderMap(currentTask), {*/}
+      {/*  event && (parentWr !== 'onBoard-task') && (*/}
+      {/*      React.cloneElement(renderMap(event), {*/}
       {/*      image: cloudImageUrl,*/}
       {/*    })*/}
       {/*  )*/}
       {/*}*/}
 
-      {/*<div className="controls">*/}
-      {/*  <div className="control control-view">*/}
-      {/*    <Link to={`/task/${currentTask.eventId}`}>*/}
-      {/*      <i className="fa fa-eye" aria-hidden="true" />*/}
-      {/*    </Link>*/}
-      {/*  </div>*/}
-      {/*  <div className="control control-edit">*/}
-      {/*    <Link to={`/task/${currentTask.eventId}/edit`}>*/}
-      {/*      <i className="fa fa-pencil-square-o" aria-hidden="true" />*/}
-      {/*    </Link>*/}
-      {/*  </div>*/}
-      {/*  <div className="control control-delete">*/}
-      {/*    <div*/}
-      {/*      className="deleteButton"*/}
-      {/*      onClick={onDelete}*/}
-      {/*    >*/}
-      {/*      <i className="fa fa-trash" aria-hidden="true" />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      <div className={styles.controls}>
+        <div className={styles.control}>
+          <Link href={`/task/${event.eventId}`}>
+            <i className="fa fa-eye" aria-hidden="true" />
+          </Link>
+        </div>
+        <div className={styles.control}>
+          <Link href={`/task/${event.eventId}/edit`}>
+            <i className="fa fa-pencil-square-o" aria-hidden="true" />
+          </Link>
+        </div>
+        <div className={classNames(styles.control, styles.controlDelete)}>
+          <div
+            className={styles.deleteButton}
+            onClick={onDelete}
+          >
+            <i className="fa fa-trash" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

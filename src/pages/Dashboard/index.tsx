@@ -82,14 +82,15 @@ const Dashboard = () => {
 
   const handleDrop = useCallback(
     (index: number, event: IEvent, target: any): void => {
-      const changedTask = events?.filter((element: IEvent) => {
-        return element.eventId == event.taskId; //TODO check
+      const changedTask = events.filter((eventItem: IEvent) => {
+        return eventItem.eventId == event.taskId;
       })[0];
+      // console.log('changedTask', changedTask)
+      changedTask.stageProces = target; //TODO check
 
-      // changedTask && changedTask?.stageProces = target; //TODO check
       dispatch(editTaskAction(changedTask));
     },
-    [dispatch],
+    [dispatch, events],
   );
 
   const isDropped = (boxName: string) =>  {
@@ -108,10 +109,9 @@ const Dashboard = () => {
         key={i}
       >
         <Task
-          currentTask={event}
           key={i}
+          event={event}
           onDelete={() => deleteTask(eventId)}
-          parentWr={"onBoard-task"}
         />
       </Box>
     );
@@ -155,7 +155,6 @@ const Dashboard = () => {
                   >
                     {
                       events?.map((event: IEvent, i: number) => {
-                        console.log('event', event)
                         if (event.stageProces === id) {
                           return renderTask(event, i);
                         }

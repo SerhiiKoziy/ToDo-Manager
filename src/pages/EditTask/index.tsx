@@ -9,22 +9,22 @@ import Task from "../../components/Task/Task";
 import IState from "../../types/IState";
 import { deleteTask } from "../../store/actions/tasksActions";
 
-import ITask from '../../types/ITask';
+import IEvent from '../../types/IEvent';
 
 interface IEditTaskProps {
-  data: ITask[];
+  events: IEvent[];
   deleteTask: (taskId: string) => void;
 }
 
-const EditTask = ({ data, deleteTask }: IEditTaskProps) => {
-  const [ currentTask, setCurrentTask ] = useState<ITask | object>({});
+const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
+  const [ currentTask, setCurrentTask ] = useState<IEvent>();
   const { taskId } = useParams();
   useEffect(
     () => {
-      const task: ITask | object = data.find((task: any) => task.eventId === taskId) || {};
-      setCurrentTask(task)
+      const task: IEvent | undefined = events.find((task: any) => task.eventId === taskId);
+      task && setCurrentTask(task)
     },
-    [data]
+    [events]
   );
 
   return (
@@ -32,7 +32,7 @@ const EditTask = ({ data, deleteTask }: IEditTaskProps) => {
       {
         currentTask && (
           <Task
-            currentTask={currentTask}
+            event={currentTask}
             onDelete={() => deleteTask(taskId)}
           />
         )
@@ -50,6 +50,5 @@ const EditTask = ({ data, deleteTask }: IEditTaskProps) => {
 };
 
 export default connect((state: IState) => ({
-  data: state.data,
-  // currentTask: null
+  events: state.events.events,
 }), { deleteTask, push })(EditTask);
