@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
-// import CreateTask from '../../components/Task/CreateTask';
-import Task from '../../components/Task/Task';
+import CreateTask from '../../components/Task/CreateTask';
+import Index from '../../components/Task';
 import Dustbin from '../../components/dnd/Dustbin';
 import Box from '../../components/dnd/Box';
 
@@ -108,7 +108,7 @@ const Dashboard = () => {
         isDropped={isDropped(title)}
         key={i}
       >
-        <Task
+        <Index
           key={i}
           event={event}
           onDelete={() => deleteTask(eventId)}
@@ -170,7 +170,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles.builderTask}>
-        {/*<CreateTask />*/}
+        <CreateTask />
       </div>
     </div>
   );

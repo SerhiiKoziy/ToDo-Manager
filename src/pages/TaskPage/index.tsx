@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
-import Task from '../../components/Task/Task';
+import Index from '../../components/Task';
 
 import { deleteTask } from '../../store/actions/tasksActions';
 
@@ -47,7 +47,7 @@ const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
           </div>
           {
             currentTask && (
-              <Task
+              <Index
                 event={currentTask}
                 onDelete={() => handleDeleteTask(currentTask)}
               />

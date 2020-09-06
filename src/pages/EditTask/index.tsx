@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
 import CreateTask from '../../components/Task/CreateTask';
-import Task from "../../components/Task/Task";
+import Index from "../../components/Task";
 
 import IState from "../../types/IState";
 import { deleteTask } from "../../store/actions/tasksActions";
@@ -19,6 +19,7 @@ interface IEditTaskProps {
 const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
   const [ currentTask, setCurrentTask ] = useState<IEvent>();
   const { taskId } = useParams();
+
   useEffect(
     () => {
       const task: IEvent | undefined = events.find((task: any) => task.eventId === taskId);
@@ -31,7 +32,7 @@ const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
     <div className="edit-page ">
       {
         currentTask && (
-          <Task
+          <Index
             event={currentTask}
             onDelete={() => deleteTask(taskId)}
           />
