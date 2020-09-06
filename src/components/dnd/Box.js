@@ -15,14 +15,6 @@ const boxSource = {
 };
 
 class Box extends PureComponent {
-  // static propTypes = {
-  //   connectDragSource: PropTypes.func.isRequired,
-  //   isDragging: PropTypes.bool.isRequired,
-  //   children: PropTypes.any,
-  //   type: PropTypes.string.isRequired,
-  //   isDropped: PropTypes.bool.isRequired,
-  // };
-
   render() {
     const { children, isDragging, connectDragSource } = this.props;
 

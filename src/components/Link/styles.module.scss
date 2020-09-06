@@ -1,5 +1,10 @@
-@import '~^scss-config';
-
 .link {
-  @include link();
+  color: #000;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:visited {
+    color: #000;
+  }
 }

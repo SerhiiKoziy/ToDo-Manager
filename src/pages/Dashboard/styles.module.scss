@@ -1,10 +1,4 @@
 .dashboardWrapper {
-  //height: 100%;
-
-  //display: flex;
-
-  //box-sizing: border-box;
-
   .insideWrapper {
     display: flex;
     flex-direction: row;
@@ -13,14 +7,20 @@
 
     .lists {
       position: relative;
-      width: 100%;
-      z-index: 1;
+
       display: flex;
+
+      width: 100%;
+
+      z-index: 1;
 
       .listWrapper {
         width: 33%;
+
         display: flex;
         flex-direction: column;
+
+        padding: 0 20px;
       }
 
       .listName {
@@ -32,11 +32,14 @@
 
       .list {
         flex: 1 1 auto;
-        overflow-y: auto;
+
         margin: 0 5px 0 0;
         padding: 10px;
+
+        overflow-y: auto;
         box-sizing: border-box;
         z-index: 1;
+
         border-radius: 5px;
         border: 3px dashed transparent;
         transition: border 0.3s, background 0.3s;
@@ -51,17 +54,12 @@
         }
 
       }
-      .first-list {
 
-      }
       &.back-fields {
         position: absolute;
+
         z-index: 0;
       }
-    }
-
-    .builderTask {
-
     }
   }
 }
