@@ -1,3 +1,5 @@
+import IWeatherTemp from './IWeatherTemp';
+
 export default interface IWeather {
   clouds: number;
   deg: number;
@@ -7,4 +9,6 @@ export default interface IWeather {
   speed: number;
   sunrise: number;
   sunset: number;
+  temp: any;
+  weather: IWeatherTemp[];
 }

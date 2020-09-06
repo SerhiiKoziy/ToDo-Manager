@@ -1,7 +1,7 @@
 import IEvent from '../../types/IEvent'
 
 export interface IEventsState {
-  events: IEvent[] | null;
+  events: IEvent[];
   isLoading: boolean;
 }
 
