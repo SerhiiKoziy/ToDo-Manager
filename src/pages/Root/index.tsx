@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import Login from '../../components/auth/auth';
-import Header from '../../components/modules/Header';
-import Footer from '../../components/modules/Footer';
+import Login from '../../modules/auth/auth';
+import Header from '../../modules/Header';
+import Footer from '../../modules/Footer';
 import Dashboard from '../Dashboard';
 
 import { fetchUserAction } from '../../store/user/actionCreators';

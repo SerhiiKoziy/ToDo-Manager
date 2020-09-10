@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from "classnames";
 // import SimpleMap from "./GoogleMap";
 
-import Link from "../Link";
+import Link from "../../components/Link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow, faEye, faPencilRuler, faTrash } from '@fortawesome/free-solid-svg-icons';
 

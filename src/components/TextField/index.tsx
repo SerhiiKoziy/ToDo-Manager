@@ -1,21 +1,29 @@
 import React from 'react';
+import classNames from 'classnames';
+import { WrappedFieldProps } from 'redux-form';
 
-import TextField from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import Input from "./Input";
 
-// import buildClassName from '../../utils/buildClassName';
+import styles from "./styles.module.scss";
 
-const Field = ({ className, label, input, placeholder, meta: { touched, invalid, error }, ...custom }: any) => {
-  // const fieldClasses = buildClassName({
-  //   [className]: className,
-  // });
+const inputProps: TextFieldProps['InputProps'] = {
+  inputComponent: Input,
+};
 
+interface ITextFieldProps {
+  charactersMaxCount?: number;
+}
+
+const Field = ({ className, label, input, placeholder, meta: { touched, invalid, error }, ...custom }: ITextFieldProps & TextFieldProps & WrappedFieldProps) => {
   return (
     <TextField
-      className={className}
+      className={classNames(styles.input, className)}
       label={label}
-      placeholder={placeholder || label}
+      placeholder={placeholder}
       error={touched && invalid}
       helperText={touched && error}
+      InputProps={inputProps}
       {...input}
       {...custom}
     />
