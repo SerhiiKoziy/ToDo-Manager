@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateTask from '../../components/Task/CreateTask';
+import CreateTask from '../../modules/Task/CreateTask';
 
 const AddTask = () => (
   <div className="builder-task edit-builder-task">

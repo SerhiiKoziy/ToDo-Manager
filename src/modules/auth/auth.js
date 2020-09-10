@@ -142,7 +142,7 @@ class Login extends Component {
 
   sighOut() {
     auth().signOut();
-    // this.props.deleteUserStore();
+    // this.props.deleteUserStore(); //TODO add handler
   }
 
   handleChangeTab(typeSet) {

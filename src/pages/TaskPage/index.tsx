@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
-import Index from '../../components/Task';
+import Index from '../../modules/Task';
 
 import { deleteTask } from '../../store/actions/tasksActions';
 

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
-import CreateTask from '../../components/Task/CreateTask';
-import Index from '../../components/Task';
+import CreateTask from '../../modules/Task/CreateTask';
+import Index from '../../modules/Task';
 import Dustbin from '../../components/dnd/Dustbin';
 import Box from '../../components/dnd/Box';
 

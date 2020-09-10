@@ -5,13 +5,13 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
 // import { auth } from '../../store/action-firebase';
-import { getUserMeta } from '../../../store/user/selectors';
+import { getUserMeta } from '../../store/user/selectors';
 // import { loadUserInfo, uploadUserInfo } from '../../store/action-firebase/user';
 // import { transformAvatarUrl } from '../../store/actions/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import IState from "../../../types/IState";
+import IState from "../../types/IState";
 
 import styles from './styles.module.scss';
 
@@ -46,7 +46,7 @@ const Index = ({ user, handleAuth }: IHeaderProps) => {
 //       photoURL: user.photoURL,
 //     };
 //
-//     this.props.addUserStore(preparedUserData);
+//     this.props.addUserStore(preparedUserData); //TODO add handler
 //     if (res) {
 //       signAs = res.name;
 //       PhotoUrl = transformAvatarUrl(res.PhotoUrl);

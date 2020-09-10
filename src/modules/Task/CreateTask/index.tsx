@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
-// import dateFormat from 'dateformat';
-// import DatePicker from '../DatePicker';
 import { Field, reduxForm } from 'redux-form';
 
-import TextField from '../../TextField';
+// import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
+// import dateFormat from 'dateformat';
+
+import DatePicker from "../../../components/DatePicker/DatePicker";
+
+import TextField from '../../../components/TextField';
 import { TASK_FORM } from '../../../configs/forms';
 
 import ITask from "../../../types/ITask";
@@ -196,6 +198,18 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
       {/*  />*/}
       {/*</div>*/}
 
+      <Field
+        name="date"
+        type="text"
+        className={'input-wr'}
+        component={DatePicker}
+        placeholder={"Choose event's date"}
+        label={"Choose event's date"}
+        // validate={[required]}
+        fullWidth
+        // disabled={!editable}
+      />
+
       {/*<Field*/}
       {/*  name="title"*/}
       {/*  classNameBox={'input-wr'}*/}
@@ -212,7 +226,7 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
         className={'input-wr'}
         component={TextField}
         placeholder={'Enter title'}
-        // label={texts.name}
+        label={'Enter event name'}
         // validate={[required]}
         fullWidth
         // disabled={!editable}
@@ -223,7 +237,7 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
         className={'input-wr'}
         component={TextField}
         placeholder={'Enter description'}
-        // label={texts.name}
+        label={'Add description'}
         // validate={[required]}
         fullWidth
         // disabled={!editable}

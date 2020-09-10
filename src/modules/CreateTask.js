@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 // import dateFormat from 'dateformat';
-import DatePicker from '../Task/DatePicker/DatePicker';
-import TextField from '../TextField';
-import { createTaskAction, editTaskAction } from '../../store/actions/tasksActions';
+import DatePicker from './Task/DatePicker/DatePicker';
+import TextField from '../components/TextField';
+import { createTaskAction, editTaskAction } from '../store/actions/tasksActions';
 
 import moment from 'moment';
 // import { StoreState } from "../../store/reducers";

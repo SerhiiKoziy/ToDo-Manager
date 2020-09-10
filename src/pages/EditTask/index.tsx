@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
-import CreateTask from '../../components/Task/CreateTask';
-import Index from "../../components/Task";
+import CreateTask from '../../modules/Task/CreateTask';
+import Index from "../../modules/Task";
 
 import IState from "../../types/IState";
 import { deleteTask } from "../../store/actions/tasksActions";
