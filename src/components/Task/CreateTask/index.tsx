@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
+// import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 // import dateFormat from 'dateformat';
 // import DatePicker from '../DatePicker';
 import { Field, reduxForm } from 'redux-form';
@@ -228,17 +228,17 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
         fullWidth
         // disabled={!editable}
       />
-      <Field
-        name="address"
-        type="text"
-        className={'input-wr'}
-        component={PlacesAutocomplete}
-        placeholder={'Enter deadline location address'}
-        // label={texts.name}
-        // validate={[required]}
-        fullWidth
-        // disabled={!editable}
-      />
+      {/*<Field*/}
+      {/*  name="address"*/}
+      {/*  type="text"*/}
+      {/*  className={'input-wr'}*/}
+      {/*  component={PlacesAutocomplete}*/}
+      {/*  placeholder={'Enter deadline location address'}*/}
+      {/*  // label={texts.name}*/}
+      {/*  // validate={[required]}*/}
+      {/*  fullWidth*/}
+      {/*  // disabled={!editable}*/}
+      {/*/>*/}
       {/*<div className="input-box input-wr">*/}
       {/*  <PlacesAutocomplete*/}
       {/*    value={this.state.values.address || ''}*/}

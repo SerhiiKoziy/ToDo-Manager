@@ -1,11 +1,13 @@
 import React from 'react';
 import classNames from "classnames";
 // import SimpleMap from "./GoogleMap";
+
 import Link from "../Link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
+import { faTemperatureLow, faEye, faPencilRuler, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import IEvent from '../../types/IEvent';
+import IWeather from "../../types/IWeather";
 
 import styles from './styles.module.scss';
 
@@ -15,19 +17,19 @@ interface ITaskProps {
   className?: any;
 }
 
-const Task = ({ event, onDelete, className }: ITaskProps) => {
-  const weather: IEvent['weather'] = event && event.weather;
+const Index = ({ event, onDelete, className }: ITaskProps) => {
+  const weather: IWeather = event && event.weather;
   // const cloudImageUrl = weather && `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
   const renderWeather = () => {
-    const weather: IEvent['weather'] = event.weather;
+    const weather: IWeather = event.weather;
 
     return weather && Object.keys(weather).map((key: any) => {
       if (key !== 'weather' && key !== 'temp') {
         return (
           <div key={key}>
             <span>{key} :</span>
-            {/*<span>{weather[key]}</span>*/} //TODO temperature
+            {/*<span>{weather[key]}</span>*/}
           </div>
         );
       }
@@ -57,7 +59,6 @@ const Task = ({ event, onDelete, className }: ITaskProps) => {
           // },
         )
       }
-      // className={styles.task}
       // id={currentTask.id}
     >
       <div className={styles.taskContent}>
@@ -100,12 +101,12 @@ const Task = ({ event, onDelete, className }: ITaskProps) => {
       <div className={styles.controls}>
         <div className={styles.control}>
           <Link href={`/task/${event.eventId}`}>
-            <i className="fa fa-eye" aria-hidden="true" />
+            <FontAwesomeIcon icon={faEye} />
           </Link>
         </div>
         <div className={styles.control}>
           <Link href={`/task/${event.eventId}/edit`}>
-            <i className="fa fa-pencil-square-o" aria-hidden="true" />
+            <FontAwesomeIcon icon={faPencilRuler} />
           </Link>
         </div>
         <div className={classNames(styles.control, styles.controlDelete)}>
@@ -113,7 +114,7 @@ const Task = ({ event, onDelete, className }: ITaskProps) => {
             className={styles.deleteButton}
             onClick={onDelete}
           >
-            <i className="fa fa-trash" aria-hidden="true" />
+            <FontAwesomeIcon icon={faTrash} />
           </div>
         </div>
       </div>
@@ -121,4 +122,4 @@ const Task = ({ event, onDelete, className }: ITaskProps) => {
   );
 };
 
-export default Task;
+export default Index;
