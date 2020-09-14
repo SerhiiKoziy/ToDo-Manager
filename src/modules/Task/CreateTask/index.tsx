@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 // import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 // import dateFormat from 'dateformat';
 
-import DatePicker from "../../../components/DatePicker/DatePicker";
+import DatePicker from "../../../components/DatePicker";
 
 import TextField from '../../../components/TextField';
 import { TASK_FORM } from '../../../configs/forms';
@@ -16,6 +16,8 @@ import moment from 'moment';
 
 import mapStateToProps from "./mapStateToProps";
 import mapDispatchToProps from "./mapDispatchToProps";
+
+import styles from './styles.module.scss';
 
 interface ICreateTaskProps {
   user: any;
@@ -190,14 +192,8 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
   return (
     <form
       // onSubmit={handleFormSubmit}
+      className={styles.formWrapper}
     >
-      {/*<div className="input-box input-wr">*/}
-      {/*  <DatePicker*/}
-      {/*    onChange={handleDateChange}*/}
-      {/*    startDate={this.state.values.originalDate || nextDay}*/}
-      {/*  />*/}
-      {/*</div>*/}
-
       <Field
         name="date"
         type="text"
@@ -210,16 +206,6 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
         // disabled={!editable}
       />
 
-      {/*<Field*/}
-      {/*  name="title"*/}
-      {/*  classNameBox={'input-wr'}*/}
-      {/*  placeholder={'Enter title'}*/}
-      {/*  // value={this.state.values.title}*/}
-      {/*  maxLength="25"*/}
-      {/*  onChange={this.handleInputChange}*/}
-      {/*  onBlur={this.handleInputBlur}*/}
-      {/*  errorText={this.showError('title')}*/}
-      {/*/>*/}
       <Field
         name="title"
         type="text"
@@ -231,6 +217,7 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
         fullWidth
         // disabled={!editable}
       />
+
       <Field
         name="description"
         type="text"

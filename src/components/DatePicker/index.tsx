@@ -1,23 +1,22 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
+import classNames from "classnames";
+import { WrappedFieldProps } from "redux-form";
 
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import styles from "./styles.module.scss";
 
 interface IDatePicker {
   label?: string;
+  className?: string;
 }
-const DatePicker = ({ label }: IDatePicker ): ReactElement => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date('2020-08-18T21:11:54'));
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
+const DatePicker = ({ className, input,  meta: { touched, invalid, error }, label }: IDatePicker & WrappedFieldProps ): ReactElement => {
+
   // disablePrevDates() {
   //   const startSeconds = Date.parse(new Date());
   //   return (date) => {
@@ -27,12 +26,8 @@ const DatePicker = ({ label }: IDatePicker ): ReactElement => {
   // }
 
   return (
-    <div className="datepicker-wr">
-      <p>Select event's date:</p>
-      <div className="datepicker-field">
-        <div className="icon">
-          <FontAwesomeIcon icon={faCalendarAlt} color={'#808080'} />
-        </div>
+    <div className={classNames(styles.datepickerWr, className)}>
+      <div className={styles.datepickerField}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             id="date-picker-inline"
@@ -41,13 +36,14 @@ const DatePicker = ({ label }: IDatePicker ): ReactElement => {
             format="MM/dd/yyyy"
             margin="normal"
             label={label}
-            value={selectedDate}
-            onChange={handleDateChange}
+            error={touched && invalid}
+            className={styles.datepicker}
+            helperText={touched && error}
+            {...input}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
           />
-
         </MuiPickersUtilsProvider>
       </div>
     </div>
