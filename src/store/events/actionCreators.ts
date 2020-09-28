@@ -1,4 +1,4 @@
-import { EVENTS_REQUESTED, UPDATE_EVENT } from './sagas';
+import { EVENTS_REQUESTED, UPDATE_EVENT, CREATE_EVENT } from './sagas';
 
 import { actionFactory } from '../utils';
 
@@ -12,4 +12,5 @@ export const setEvents = (value: IEvent[]): any => updateEvents('events', value)
 
 export const fetchEventsAction = () => actionFactory(EVENTS_REQUESTED);
 
-export const updateEvent = (event: IEvent) => actionFactory(UPDATE_EVENT, event);
+export const updateEvent = () => actionFactory(UPDATE_EVENT);
+export const createEvent = () => actionFactory(CREATE_EVENT);

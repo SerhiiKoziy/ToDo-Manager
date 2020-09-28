@@ -1,1 +1,1 @@
-export const TASK_FORM = 'TASK_FORM';
+export const EVENT_FORM = 'EVENT_FORM';

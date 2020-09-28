@@ -39,12 +39,12 @@ const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
         )
       }
       <div className="builder-task">
-        <CreateTask
-          // key={currentTask.updatedAt}
-          currentTask={currentTask || {}}
-          isEdit={true}
-          buttonText="Edit event"
-        />
+        {/*<CreateTask*/}
+        {/*  // key={currentTask.updatedAt}*/}
+        {/*  currentTask={currentTask || {}}*/}
+        {/*  isEdit={true}*/}
+        {/*  buttonText="Edit event"*/}
+        {/*/>*/}
       </div>
     </div>
   )

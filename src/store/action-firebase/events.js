@@ -1,7 +1,7 @@
 import { database } from './index';
 import firebase from 'firebase/app';
 
-export async function getAllEventsDatabase() {
+export async function getEventsFirebase() {
   const user = await firebase.auth().currentUser;
   const ref = database.ref('events');
 
@@ -10,12 +10,12 @@ export async function getAllEventsDatabase() {
   });
 }
 
-export function postEventFirebase(newEvent) {
+export async function postEventFirebase(newEvent) {
   const myRef = database.ref('events/').push();
   const newEventChanged = newEvent;
   newEventChanged.eventId = myRef.key;
 
-  return myRef.set(newEventChanged);
+  return await myRef.set(newEventChanged);
 }
 
 export async function putEventFirebase(obj, eventId) {
