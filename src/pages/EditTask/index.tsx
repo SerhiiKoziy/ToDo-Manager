@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
-import CreateTask from '../../modules/Task/CreateTask';
-import Index from "../../modules/Task";
+import CreateTask from '../../modules/CreateTask';
+import { Event } from "../../modules/Event";
 
 import IState from "../../types/IState";
 import { deleteTask } from "../../store/actions/tasksActions";
@@ -32,9 +32,10 @@ const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
     <div className="edit-page ">
       {
         currentTask && (
-          <Index
+          <Event
             event={currentTask}
             onDelete={() => deleteTask(taskId)}
+            onEditEvent={(eventId) => console.log('event', eventId)}
           />
         )
       }
@@ -51,5 +52,5 @@ const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
 };
 
 export default connect((state: IState) => ({
-  events: state.events.events,
+  events: state.events.list,
 }), { deleteTask, push })(EditTask);

@@ -11,13 +11,14 @@ import IWeather from "../../types/IWeather";
 
 import styles from './styles.module.scss';
 
-interface ITaskProps {
+interface IEventProps {
   event: IEvent;
   onDelete: () => void;
-  className?: any;
+  onEditEvent: (eventId: string) => void;
+  className?: string;
 }
 
-const Index = ({ event, onDelete, className }: ITaskProps) => {
+export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps): any => {
   const weather: IWeather = event && event.weather;
   // const cloudImageUrl = weather && `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
@@ -105,9 +106,13 @@ const Index = ({ event, onDelete, className }: ITaskProps) => {
           </Link>
         </div>
         <div className={styles.control}>
-          <Link href={`/task/${event.eventId}/edit`}>
+          {/*<Link href={`/task/${event.eventId}/edit`}>*/}
+          {/*  <FontAwesomeIcon icon={faPencilRuler} />*/}
+          {/*</Link>*/}
+
+          <div onClick={() => onEditEvent(event.eventId)}>
             <FontAwesomeIcon icon={faPencilRuler} />
-          </Link>
+          </div>
         </div>
         <div className={classNames(styles.control, styles.controlDelete)}>
           <div
@@ -121,5 +126,3 @@ const Index = ({ event, onDelete, className }: ITaskProps) => {
     </div>
   );
 };
-
-export default Index;

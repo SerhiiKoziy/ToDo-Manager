@@ -3,21 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import CreateTaskForm from './CreateTaskForm';
 
-import ITask from "../../../types/ITask";
+// import ITask from "../../types/ITask";
 
 import moment from 'moment';
 
-import { createEvent } from "../../../store/events/actionCreators";
-import { getEventFormValues } from "../../../store/form/selectors";
-import IEvent from "../../../types/IEvent";
+import { createEvent } from "../../store/events/actionCreators";
+import { getEventFormValues } from "../../store/form/selectors";
+import IEvent from "../../types/IEvent";
 
 import styles from './styles.module.scss';
 
-interface ICreateTaskProps {
+interface ICreateEventProps {
   buttonText?: string;
 }
 
-const CreateTask = ({ buttonText }: ICreateTaskProps) => {
+const CreateTask = ({ buttonText }: ICreateEventProps) => {
   const dispatch = useDispatch();
   const values = useSelector(getEventFormValues);
 

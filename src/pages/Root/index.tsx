@@ -9,7 +9,7 @@ import Footer from '../../modules/Footer';
 import Dashboard from '../Dashboard';
 
 import { fetchUserAction } from '../../store/user/actionCreators';
-import { fetchEventsAction } from '../../store/events/actionCreators';
+import { fetchEvents } from '../../store/events/actionCreators';
 
 import IState from '../../types/IState';
 import IUserMeta from "../../types/IUserMeta";
@@ -19,11 +19,11 @@ import './styles.scss';
 interface IRootProps {
   userMeta: IUserMeta | null;
   fetchUserAction: () => void;
-  fetchEventsAction: () => void;
+  fetchEvents: () => void;
   children?: any;
 }
 
-const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction }: IRootProps) => {
+const Root = ({ children, userMeta, fetchUserAction, fetchEvents }: IRootProps) => {
   const [ openAuth, setOpenAuth ] = useState<boolean>(false);
 
   useEffect(
@@ -36,7 +36,7 @@ const Root = ({ children, userMeta, fetchUserAction, fetchEventsAction }: IRootP
   useEffect(
     () => {
       if (userMeta) {
-        fetchEventsAction();
+        fetchEvents();
       }
     },
     [userMeta],
@@ -72,5 +72,5 @@ export default connect(
     user: state.user,
     userMeta: state.user.userMeta,
   }),
-  { fetchUserAction, fetchEventsAction }
+  { fetchUserAction, fetchEvents }
 )(Root);
