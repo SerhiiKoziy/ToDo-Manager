@@ -3,7 +3,7 @@ import CreateTask from '../../modules/Task/CreateTask';
 
 const AddTask = () => (
   <div className="builder-task edit-builder-task">
-    <CreateTask buttonText="Add event"/>
+    {/*<CreateTask buttonText="Add event"/>*/}
   </div>
 );
 

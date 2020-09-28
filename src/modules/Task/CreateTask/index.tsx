@@ -1,33 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import React, { useCallback, MouseEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
-// import dateFormat from 'dateformat';
-
-import DatePicker from "../../../components/DatePicker";
-
-import TextField from '../../../components/TextField';
-import { TASK_FORM } from '../../../configs/forms';
+import CreateTaskForm from './CreateTaskForm';
 
 import ITask from "../../../types/ITask";
 
 import moment from 'moment';
 
-import mapStateToProps from "./mapStateToProps";
-import mapDispatchToProps from "./mapDispatchToProps";
+import { createEvent } from "../../../store/events/actionCreators";
+import { getEventFormValues } from "../../../store/form/selectors";
+import IEvent from "../../../types/IEvent";
 
 import styles from './styles.module.scss';
 
 interface ICreateTaskProps {
-  user: any;
-  currentTask: ITask;
-  buttonText: string;
-  createTaskAction: () => void;
-  editTaskAction: () => void;
+  buttonText?: string;
 }
 
-const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskAction }: ICreateTaskProps) => {
+const CreateTask = ({ buttonText }: ICreateTaskProps) => {
+  const dispatch = useDispatch();
+  const values = useSelector(getEventFormValues);
+
   // constructor(props) {
   //   super(props);
   //
@@ -185,97 +178,39 @@ const CreateTask = ({ user, currentTask, buttonText, createTaskAction, editTaskA
   //   });
   // };
 
-  const userUID = user && user.uid && user.uid.length > 0;
-  const nextDay = new Date();
-  nextDay.setDate(nextDay.getDate() + 1);
+  const publish = useCallback(
+    (): void => {
+      dispatch(createEvent());
+    },
+    [dispatch],
+  );
+
+  // const handlerSubmit = useCallback(
+  //   (): void => {
+  //
+  //     console.log('values', values);
+  //     dispatch(createEvent(values));
+  //   },
+  //   [dispatch, values],
+  // );
+
 
   return (
-    <form
-      // onSubmit={handleFormSubmit}
-      className={styles.formWrapper}
-    >
-      <Field
-        name="date"
-        type="text"
-        className={'input-wr'}
-        component={DatePicker}
-        placeholder={"Choose event's date"}
-        label={"Choose event's date"}
-        // validate={[required]}
-        fullWidth
-        // disabled={!editable}
+    <div>
+      <CreateTaskForm
+        buttonText={buttonText}
+        // onSubmit={publish}
       />
-
-      <Field
-        name="title"
-        type="text"
-        className={'input-wr'}
-        component={TextField}
-        placeholder={'Enter title'}
-        label={'Enter event name'}
-        // validate={[required]}
-        fullWidth
-        // disabled={!editable}
-      />
-
-      <Field
-        name="description"
-        type="text"
-        className={'input-wr'}
-        component={TextField}
-        placeholder={'Enter description'}
-        label={'Add description'}
-        // validate={[required]}
-        fullWidth
-        // disabled={!editable}
-      />
-      {/*<Field*/}
-      {/*  name="address"*/}
-      {/*  type="text"*/}
-      {/*  className={'input-wr'}*/}
-      {/*  component={PlacesAutocomplete}*/}
-      {/*  placeholder={'Enter deadline location address'}*/}
-      {/*  // label={texts.name}*/}
-      {/*  // validate={[required]}*/}
-      {/*  fullWidth*/}
-      {/*  // disabled={!editable}*/}
-      {/*/>*/}
-      {/*<div className="input-box input-wr">*/}
-      {/*  <PlacesAutocomplete*/}
-      {/*    value={this.state.values.address || ''}*/}
-      {/*    onChange={this.changeLocation}*/}
-      {/*    onBlur={this.handleInputBlur}*/}
-      {/*    placeholder="Enter deadline location address"*/}
-      {/*  />*/}
-      {/*</div>*/}
-      {/*<TextField*/}
-      {/*  classNameBox={'input-wr'}*/}
-      {/*  placeholder={'Enter description'}*/}
-      {/*  value={this.state.values.description}*/}
-      {/*  fieldName="description"*/}
-      {/*  onChange={this.handleInputChange}*/}
-      {/*  onBlur={this.handleInputBlur}*/}
-      {/*  errorText={this.showError('description')}*/}
-      {/*/>*/}
-
       <button
-        type="submit"
+        // type="submit"
         className="btn btn--fw"
+        onClick={publish}
         // disabled={!this.isValidForm() || !userUID}
       >
         {buttonText || 'Add event'}
       </button>
-      {
-        !userUID && (
-          <p className="submit-message">Login, please!</p>
-        )
-      }
-    </form>
+    </div>
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  reduxForm<any, any>({
-    form: TASK_FORM,
-    enableReinitialize: true,
-  })(CreateTask));
+export default CreateTask
