@@ -8,12 +8,13 @@ import {
 
 import { getEventsFirebase, postEventFirebase } from '../action-firebase/events';
 import { setEvents } from './actionCreators';
-
-import IEvent from '../../types/IEvent';
-import { database } from "../action-firebase";
-
+import { getEventsList } from './selectors';
 import { getEventFormValues } from "../form/selectors";
 import { getUserUid } from "../user/selectors";
+
+import { database } from "../action-firebase";
+
+import IEvent from '../../types/IEvent';
 
 export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
 export const UPDATE_EVENT = "UPDATE_EVENT";
@@ -46,8 +47,6 @@ function* requestEventsAsync() {
   }
 }
 
-
-
 const postEventFirebaseAction = async (event: IEvent): Promise<any> => await postEventFirebase(event);
 
 function* createEventAsync() {
@@ -70,6 +69,7 @@ function* createEventAsync() {
 }
 
 export async function putEventFirebase(event: IEvent, eventId: IEvent['eventId']) {
+  console.log('event, eventId', event, eventId)
   try {
     return await database.ref(`events/${eventId}/`).update(event);
   } catch (err) {
@@ -78,19 +78,32 @@ export async function putEventFirebase(event: IEvent, eventId: IEvent['eventId']
 }
 
 interface IUpdateEventAsyncAction extends AnyAction {
-  payload: IEvent
+  eventId: string
 }
 
-function* updateEventAsync({ payload: event }: IUpdateEventAsyncAction) {
+function* updateEventAsync({ eventId }: IUpdateEventAsyncAction) {
+  yield put(startFetching());
+
   try {
-    yield put(startFetching());
+    const event: IEvent = yield select(getEventFormValues);
+    const events = yield select(getEventsList);
+    const selectedEvent: IEvent | null = events.find((event: IEvent) => event.eventId === eventId);
 
-    const updateEvent = () => putEventFirebase(event, event.eventId).then((res: IEvent[]) => res);
-    console.log('updateEvent', updateEvent)
-    const eventRes: IEvent[] = yield call(updateEvent);
+    if (selectedEvent) {
+      const updatedEvent = {...selectedEvent, ...event};
+      const updateEvent = () => putEventFirebase(updatedEvent, eventId).then((res: IEvent[]) => {
+        console.log('res', res);
 
-    console.log('eventRes', eventRes)
-    // yield put(setEvent({}));
+        return res;
+      });
+      console.log('updateEvent', updateEvent);
+      const eventRes: IEvent[] = yield call(updateEvent);
+
+      console.log('eventRes', eventRes)
+      // yield put(setEvent({}));
+    }
+
+
 
     yield put(stopFetching());
   } catch {

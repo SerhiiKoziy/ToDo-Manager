@@ -2,15 +2,21 @@ import { EVENTS_REQUESTED, UPDATE_EVENT, CREATE_EVENT } from './sagas';
 
 import { actionFactory } from '../utils';
 
-import { SET_EVENTS, IEventsState } from './reducer';
+import { SET_EVENTS, SET_CURRENT_EVENT, IEventsState } from './reducer';
+import { getEventsList } from './selectors';
 
 import IEvent from '../../types/IEvent';
 
-export const updateEvents = (key: keyof IEventsState, value: any) => actionFactory(SET_EVENTS, value);
+export const updateEvents = (key: keyof IEventsState, events: IEvent[]) => actionFactory(SET_EVENTS, events);
+export const setEvents = (events: IEvent[]) => updateEvents('list', events);
 
-export const setEvents = (value: IEvent[]): any => updateEvents('events', value);
+export const updateCurrentEvent = (key: keyof IEventsState, event: IEvent | null) => actionFactory(SET_CURRENT_EVENT, event);
+export const setCurrentEvent = (event: IEvent | null) => {
+  // const eventsList = getEventsList;
+  // const currentEvent = eventsList.find(event => evsnt.eventId === eventId);
+  updateCurrentEvent('currentEvent', event);
+};
 
-export const fetchEventsAction = () => actionFactory(EVENTS_REQUESTED);
-
-export const updateEvent = () => actionFactory(UPDATE_EVENT);
+export const fetchEvents = () => actionFactory(EVENTS_REQUESTED);
+export const updateEvent = (eventId : string) => actionFactory(UPDATE_EVENT, eventId);
 export const createEvent = () => actionFactory(CREATE_EVENT);

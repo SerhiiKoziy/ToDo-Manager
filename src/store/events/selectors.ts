@@ -5,6 +5,5 @@ import { IEventsState } from './reducer';
 
 export const getEvents = ({ events }: IState): IEventsState => events;
 
-export const getEventsList = (state: IState): IEvent[] => getEvents(state).events;
-
+export const getEventsList = (state: IState): IEvent[] => getEvents(state).list;
 export const getEventsIsLoading = (state: IState): boolean => getEvents(state).isLoading;

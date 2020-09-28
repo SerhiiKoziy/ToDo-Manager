@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
-import Index from '../../modules/Task';
+import { Event } from '../../modules/Event';
 
 import { deleteTask } from '../../store/actions/tasksActions';
 
@@ -47,9 +47,10 @@ const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
           </div>
           {
             currentTask && (
-              <Index
+              <Event
                 event={currentTask}
                 onDelete={() => handleDeleteTask(currentTask)}
+                onEditEvent={(eventId) => console.log('event', eventId)}
               />
             )
           }
@@ -62,7 +63,7 @@ const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
 
 export default connect(
   (state: IState) => ({
-    events: state.events.events, //TODO add hooks
+    events: state.events.list, //TODO add hooks
   }),
   { deleteTask, push }
 )(TaskPage);

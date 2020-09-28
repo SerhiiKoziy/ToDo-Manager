@@ -1,32 +1,34 @@
 import IEvent from '../../types/IEvent'
 
 export interface IEventsState {
-  events: IEvent[];
+  list: IEvent[];
+  currentEvent: IEvent | null;
   isLoading: boolean;
 }
 
 const defaultEventsReducer = {
-  events: [],
+  list: [],
+  currentEvent: null,
   isLoading: false,
 };
 
 export const SET_EVENTS = "SET_EVENTS";
-export const UPDATE_EVENT = "UPDATE_EVENT";
+export const SET_CURRENT_EVENT = "SET_CURRENT_EVENT";
 
-export const eventsReducer = (state: object = defaultEventsReducer || {}, action: any) => {
+export const eventsReducer = (state: IEventsState = defaultEventsReducer, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
     case SET_EVENTS:
       return {
         ...state,
-        events: payload
+        list: payload
       };
 
-    case UPDATE_EVENT:
+    case SET_CURRENT_EVENT:
       return {
         ...state,
-        ...payload,
+        currentEvent: payload,
       };
 
     default:

@@ -3,12 +3,12 @@ import { Field, reduxForm } from 'redux-form';
 import { useSelector } from "react-redux";
 
 import styles from "./styles.module.scss";
-import DatePicker from "../../../components/DatePicker";
-import TextField from "../../../components/TextField";
-import { getUserMeta } from "../../../store/user/selectors";
-import { EVENT_FORM } from '../../../configs/forms';
-import IUserMeta from "../../../types/IUserMeta";
-import IEvent from '../../../types/IEvent';
+import DatePicker from "../../components/DatePicker";
+import TextField from "../../components/TextField";
+import { getUserMeta } from "../../store/user/selectors";
+import { EVENT_FORM } from '../../configs/forms';
+import IUserMeta from "../../types/IUserMeta";
+import IEvent from '../../types/IEvent';
 
 interface ICreateTaskFormProps {
   // currentTask: IEvent;

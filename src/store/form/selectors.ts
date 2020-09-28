@@ -3,7 +3,7 @@ import IState from "../../types/IState";
 import IEvent from "../../types/IEvent";
 import { EVENT_FORM } from '../../configs/forms';
 
-export const getFormValue = (form: string) => formValueSelector(form);
+// export const getFormValue = (form: string) => formValueSelector(form);
 export const getFormValues = (form: string) => getValues(form);
 
 export const isFormValid = (form: string) => isValid(form);

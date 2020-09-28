@@ -13,8 +13,8 @@ function App() {
         <Switch>
 
           <Route path="/profile" component={() => <NotificationPage /> } />
-          {/*<Route path="/task/:taskId" component={() => <TaskPage /> } />*/}
-          <Route path="/task/:taskId/edit" component={() => <EditTask /> } />
+          {/*<Route path="/event/:taskId" component={() => <TaskPage /> } />*/}
+          <Route path="/event/:eventId/edit" component={() => <EditTask /> } />
           <Route path="/add" component={() => <AddTask /> } />
 
           <Route path="/" component={() => <Root /> } />

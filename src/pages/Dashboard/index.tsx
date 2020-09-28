@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
-import CreateTask from '../../modules/Task/CreateTask';
-import Index from '../../modules/Task';
+import CreateTask from '../../modules/CreateTask';
+import { Event } from '../../modules/Event';
 import Dustbin from '../../components/dnd/Dustbin';
 import Box from '../../components/dnd/Box';
 
@@ -14,6 +14,7 @@ import IEvent from '../../types/IEvent';
 import { getEventsList } from '../../store/events/selectors';
 import { getEventsIsLoading } from '../../store/events/selectors';
 import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
+import { setCurrentEvent } from '../../store/events/actionCreators'
 
 import styles from './styles.module.scss';
 
@@ -73,11 +74,20 @@ const Dashboard = () => {
   //   // this.handleDrop = this.handleDrop.bind(this);
   // }
 
-  const handleDeleteTask = useCallback(
+  const deleteEvent = useCallback(
     (taskId: string): void => {
       dispatch(deleteTask(taskId));
     },
     [dispatch],
+  );
+
+  const onEditEvent = useCallback(
+    (eventId: string): void => {
+      const currentEvent = events.find((event: IEvent) => event.eventId === eventId);
+
+      // currentEvent && dispatch(setCurrentEvent(currentEvent));
+    },
+    [dispatch, events],
   );
 
   const handleDrop = useCallback(
@@ -97,7 +107,7 @@ const Dashboard = () => {
     return droppedBoxNames.indexOf(boxName) > -1;
   };
 
-  const renderTask = (event: IEvent, i: number) => {
+  const renderEvent = (event: IEvent, i: number) => {
     const { title, eventId } = event;
 
     return (
@@ -108,10 +118,11 @@ const Dashboard = () => {
         isDropped={isDropped(title)}
         key={i}
       >
-        <Index
+        <Event
           key={i}
           event={event}
-          onDelete={() => deleteTask(eventId)}
+          onDelete={() => deleteEvent(eventId)}
+          onEditEvent={() => onEditEvent(eventId)}
         />
       </Box>
     );
@@ -156,7 +167,7 @@ const Dashboard = () => {
                     {
                       events?.map((event: IEvent, i: number) => {
                         if (event.stageProces === id) {
-                          return renderTask(event, i);
+                          return renderEvent(event, i);
                         }
 
                         return null;
