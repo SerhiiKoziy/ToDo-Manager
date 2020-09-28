@@ -11,11 +11,7 @@ export const updateEvents = (key: keyof IEventsState, events: IEvent[]) => actio
 export const setEvents = (events: IEvent[]) => updateEvents('list', events);
 
 export const updateCurrentEvent = (key: keyof IEventsState, event: IEvent | null) => actionFactory(SET_CURRENT_EVENT, event);
-export const setCurrentEvent = (event: IEvent | null) => {
-  // const eventsList = getEventsList;
-  // const currentEvent = eventsList.find(event => evsnt.eventId === eventId);
-  updateCurrentEvent('currentEvent', event);
-};
+export const setCurrentEvent = (event: IEvent | null) => updateCurrentEvent('currentEvent', event);
 
 export const fetchEvents = () => actionFactory(EVENTS_REQUESTED);
 export const updateEvent = (eventId : string) => actionFactory(UPDATE_EVENT, eventId);

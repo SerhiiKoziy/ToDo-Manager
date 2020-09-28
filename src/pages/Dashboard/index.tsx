@@ -85,7 +85,7 @@ const Dashboard = () => {
     (eventId: string): void => {
       const currentEvent = events.find((event: IEvent) => event.eventId === eventId);
 
-      // currentEvent && dispatch(setCurrentEvent(currentEvent));
+      currentEvent && dispatch(setCurrentEvent(currentEvent));
     },
     [dispatch, events],
   );

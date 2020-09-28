@@ -15,3 +15,8 @@ export const getUserUid = createSelector(
   getUserMeta,
   (userMeta: IUserMeta | null): string => userMeta && userMeta.uid || '',
 );
+
+export const getIsUserLogin = createSelector(
+  getUserMeta,
+  (userMeta: IUserMeta | null): boolean => (userMeta && userMeta.uid && userMeta.uid.length > 0) || false,
+);

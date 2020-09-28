@@ -1,30 +1,30 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { useSelector } from "react-redux";
 
 import styles from "./styles.module.scss";
 import DatePicker from "../../components/DatePicker";
 import TextField from "../../components/TextField";
-import { getUserMeta } from "../../store/user/selectors";
+import { getIsUserLogin } from "../../store/user/selectors";
 import { EVENT_FORM } from '../../configs/forms';
 import IUserMeta from "../../types/IUserMeta";
 import IEvent from '../../types/IEvent';
 
-interface ICreateTaskFormProps {
-  // currentTask: IEvent;
-  buttonText?: string;
-  handlerSubmit: () => void;
-  // editTaskAction: () => void;
-}
+// interface ICreateTaskFormProps {
+//   // currentTask: IEvent;
+//   buttonText?: string;
+//   handlerSubmit: () => void;
+//   // editTaskAction: () => void;
+// }
 
-const CreateTaskForm = ({ buttonText, handlerSubmit }: ICreateTaskFormProps) => {
-  const userMeta = useSelector(getUserMeta);
-  const userUID = userMeta && userMeta.uid && userMeta.uid.length > 0;
+const CreateTaskForm = () => {
+  const isUserLogin = useSelector(getIsUserLogin);
   const nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
 
   return (
-    <form className={styles.formWrapper}>
+    <div className={styles.formWrapper}>
       <Field
         name="date"
         type="text"
@@ -90,15 +90,15 @@ const CreateTaskForm = ({ buttonText, handlerSubmit }: ICreateTaskFormProps) => 
       {/*  {buttonText || 'Add event'}*/}
       {/*</button>*/}
       {
-        !userUID && (
+        !isUserLogin && (
           <p className="submit-message">Login, please!</p>
         )
       }
-    </form>
+    </div>
   )
 };
 
-export default reduxForm<any, any>({
+export default reduxForm({
   form: EVENT_FORM,
   enableReinitialize: true,
 })(CreateTaskForm);

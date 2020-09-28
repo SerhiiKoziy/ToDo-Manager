@@ -9,6 +9,7 @@ import moment from 'moment';
 
 import { createEvent } from "../../store/events/actionCreators";
 import { getEventFormValues } from "../../store/form/selectors";
+import { getCurrentEvent } from "../../store/events/selectors";
 import IEvent from "../../types/IEvent";
 
 import styles from './styles.module.scss';
@@ -20,6 +21,7 @@ interface ICreateEventProps {
 const CreateTask = ({ buttonText }: ICreateEventProps) => {
   const dispatch = useDispatch();
   const values = useSelector(getEventFormValues);
+  const currentEvent = useSelector(getCurrentEvent);
 
   // constructor(props) {
   //   super(props);
@@ -198,7 +200,8 @@ const CreateTask = ({ buttonText }: ICreateEventProps) => {
   return (
     <div>
       <CreateTaskForm
-        buttonText={buttonText}
+        // buttonText={buttonText}
+        initialValues={currentEvent || {}}
         // onSubmit={publish}
       />
       <button
