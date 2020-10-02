@@ -16,8 +16,6 @@ const Input = ({ defaultValue = '', inputRef, onChange, onBlur, type, value, ...
 
   const handleChange= useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
-      // const newValue = unformatValue(value, type) as any;
-
       if (typeof onChange === 'function') {
         onChange(e);
       }
@@ -30,6 +28,7 @@ const Input = ({ defaultValue = '', inputRef, onChange, onBlur, type, value, ...
     <input
       ref={inputRef}
       onChange={handleChange}
+      defaultValue={defaultValue}
       {...rest}
     />
   );

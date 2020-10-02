@@ -5,7 +5,7 @@ import { reducer as formReducer } from "redux-form";
 
 import loadingReducer from "./reducers/loading";
 
-import { IEventsState, eventsReducer } from "./events/reducer";
+import {IEventsState, eventsReducer, RESET_CURRENT_EVENT} from "./events/reducer";
 import { IUserState, userReducer } from "./user/reducer";
 
 export interface StoreState {
@@ -21,7 +21,16 @@ export const createRootReducer = (history: History) => (
     isLoading: loadingReducer,
     user: userReducer,
     events: eventsReducer,
-    form: formReducer,
+    form: formReducer.plugin({
+      EVENT_FORM: (state, action) => {
+        switch(action.type) {
+          case RESET_CURRENT_EVENT:
+            return null;       // <--- blow away form data
+          default:
+            return state;
+        }
+      }
+    }),
     router: connectRouter(history),
   })
 );

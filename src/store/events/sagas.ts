@@ -6,7 +6,7 @@ import { startFetching, stopFetching } from "../actions";
 import { getEventsFirebase, postEventFirebase } from '../action-firebase/events';
 import { database } from "../action-firebase";
 
-import { setEvents, setCurrentEvent } from './actionCreators';
+import { setEvents, resetCurrentEvent } from './actionCreators';
 
 import { getCurrentEvent } from './selectors';
 import { getEventFormValues } from "../form/selectors";
@@ -88,15 +88,15 @@ function* updateEventAsync({ eventId }: IUpdateEventAsyncAction) {
     if (currentEvent) {
       const preparedEvent = {...currentEvent, ...formValues};
       const updateEvent = () => putEventFirebase(preparedEvent, currentEvent.eventId)
-        .then((res: IEvent[]) => res);
-      console.log('updateEvent', updateEvent);
-      const eventRes: IEvent[] = yield call(updateEvent);
+        .then((res: IEvent[]) => res)
+        .catch(() => console.error('Event update'));
 
-      console.log('eventRes', eventRes)
-      // yield put(setEvent({}));
+      yield call(updateEvent);
+      yield put(resetCurrentEvent());
+
+      yield call(requestEventsAsync);
     }
 
-    yield put(setCurrentEvent(null));
     yield put(stopFetching());
   } catch {
     alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");

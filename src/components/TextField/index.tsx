@@ -15,7 +15,7 @@ interface ITextFieldProps {
   charactersMaxCount?: number;
 }
 
-const Field = ({ className, label, input, placeholder, meta: { touched, invalid, error }, ...custom }: ITextFieldProps & TextFieldProps & WrappedFieldProps) => {
+const Field = ({ className, defaultValue, label, InputProps, input, placeholder, meta: { touched, invalid, error }, ...custom }: ITextFieldProps & TextFieldProps & WrappedFieldProps) => {
   return (
     <TextField
       className={classNames(styles.input, className)}
@@ -23,7 +23,11 @@ const Field = ({ className, label, input, placeholder, meta: { touched, invalid,
       placeholder={placeholder}
       error={touched && invalid}
       helperText={touched && error}
-      InputProps={inputProps}
+      defaultValue={defaultValue}
+      InputProps={{
+        inputComponent: Input,
+        ...InputProps,
+      }}
       {...input}
       {...custom}
     />

@@ -14,6 +14,7 @@ const defaultEventsReducer = {
 
 export const SET_EVENTS = "SET_EVENTS";
 export const SET_CURRENT_EVENT = "SET_CURRENT_EVENT";
+export const RESET_CURRENT_EVENT = "RESET_CURRENT_EVENT";
 
 export const eventsReducer = (state: IEventsState = defaultEventsReducer, action: any) => {
   const { type, payload } = action;
@@ -29,6 +30,12 @@ export const eventsReducer = (state: IEventsState = defaultEventsReducer, action
       return {
         ...state,
         currentEvent: payload,
+      };
+
+    case RESET_CURRENT_EVENT:
+      return {
+        ...state,
+        currentEvent: null,
       };
 
     default:
