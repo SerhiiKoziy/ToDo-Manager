@@ -16,17 +16,17 @@ const config = {
 
 firebase.initializeApp(config);
 
-const fbUrl = url => `https://${config.functionsUrl}/${url}`;
+const firebaseUrl = url => `https://${config.functionsUrl}/${url}`;
 
 // Local cloud server:
-// const fbUrl = url => 'http://localhost:7777/implant-compare/us-central1/' + url;
+// const fbUrl = url => 'http://localhost:3000/tobby-helper/us-central1/' + url;
 
 async function fbRequest(endpoint, data) {
   const token = await getToken();
 
   return axios({
     method: 'POST',
-    url: fbUrl(endpoint),
+    url: firebaseUrl(endpoint),
     crossDomain: true,
     data: JSON.stringify(data),
     headers: {
@@ -53,26 +53,24 @@ export function checkConnection() {
 
 async function getToken() {
   const user = auth().currentUser;
+
   return await user.getIdToken();
 }
 
 export async function handleNotification(subject, text) {
-  let res = await fbRequest('handleNotification', { subject, text });
-  res = res.data;
+  const { data } = await fbRequest('handleNotification', { subject, text });
 
-  return res === 'success' ? res : 'reject';
+  return data === 'success' ? data : 'reject';
 }
 
 export async function initUser(entryId, email) {
   await getToken();
-  let res = await fbRequest('initUser', { entryId, email });
-  res = res.data;
+  const { data } = await fbRequest('initUser', { entryId, email });
 
-  if (res && res.token) {
-    return firebase.auth().signInWithCustomToken(res.token).then(() => {
-      return 'Admin Success';
-    });
-  }
+  if (data && data.token) (
+    firebase.auth().signInWithCustomToken(data.token)
+      .then(() => 'Admin Success')
+  );
 
   return 'User';
 }

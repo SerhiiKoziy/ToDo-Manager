@@ -1,5 +1,6 @@
 import { database } from './index';
 import firebase from 'firebase/app';
+import IEvent from "../../types/IEvent";
 
 export async function getEventsFirebase() {
   const user = await firebase.auth().currentUser;
@@ -10,25 +11,28 @@ export async function getEventsFirebase() {
   });
 }
 
-export async function postEventFirebase(newEvent) {
+export async function postEventFirebase(newEvent: IEvent) {
   const myRef = database.ref('events/').push();
-  const newEventChanged = newEvent;
-  newEventChanged.eventId = myRef.key;
 
-  return await myRef.set(newEventChanged);
+  if (myRef && myRef.key) {
+    const newEventChanged = newEvent;
+    newEventChanged.eventId = myRef.key;
+
+    return await myRef.set(newEventChanged);
+  }
 }
 
-export async function putEventFirebase(obj, eventId) {
+export async function putEventFirebase(event: IEvent, eventId: string) {
   try {
-    return await database.ref(`events/${eventId}/`).update(obj);
+    return await database.ref(`events/${eventId}/`).update(event);
   } catch (err) {
     return Promise.reject(err);
   }
 }
 
-export async function deleteEvent(uid) {
+export async function deleteEvent(eventId: string) {
   try {
-    return await database.ref(`events/${uid}/`).remove();
+    return await database.ref(`events/${eventId}/`).remove();
   } catch (err) {
     return Promise.reject(err);
   }

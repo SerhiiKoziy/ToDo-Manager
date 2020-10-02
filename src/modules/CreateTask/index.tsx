@@ -11,7 +11,7 @@ import moment from 'moment';
 import { createEvent, updateEvent } from "../../store/events/actionCreators";
 import { getEventFormValues } from "../../store/form/selectors";
 import { getCurrentEvent } from "../../store/events/selectors";
-import IEvent from "../../types/IEvent";
+
 
 import styles from './styles.module.scss';
 

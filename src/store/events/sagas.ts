@@ -1,5 +1,4 @@
 import { put, call, select, takeLatest } from "redux-saga/effects";
-import { AnyAction } from 'redux';
 
 import { startFetching, stopFetching } from "../actions";
 
@@ -74,11 +73,7 @@ export async function putEventFirebase(event: IEvent, eventId: IEvent['eventId']
   }
 }
 
-interface IUpdateEventAsyncAction extends AnyAction {
-  eventId: string
-}
-
-function* updateEventAsync({ eventId }: IUpdateEventAsyncAction) {
+function* updateEventAsync() {
   yield put(startFetching());
 
   try {
