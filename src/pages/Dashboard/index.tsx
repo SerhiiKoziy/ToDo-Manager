@@ -14,7 +14,7 @@ import IEvent from '../../types/IEvent';
 import { getEventsList } from '../../store/events/selectors';
 import { getEventsIsLoading } from '../../store/events/selectors';
 import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
-import { setCurrentEvent } from '../../store/events/actionCreators'
+import { setCurrentEvent } from '../../store/events/actionCreators';
 
 import styles from './styles.module.scss';
 

@@ -1,18 +1,16 @@
 import { put, call, select, takeLatest } from "redux-saga/effects";
 import { AnyAction } from 'redux';
 
-import {
-  startFetching,
-  stopFetching,
-} from "../actions";
+import { startFetching, stopFetching } from "../actions";
 
 import { getEventsFirebase, postEventFirebase } from '../action-firebase/events';
-import { setEvents } from './actionCreators';
-import { getEventsList } from './selectors';
+import { database } from "../action-firebase";
+
+import { setEvents, setCurrentEvent } from './actionCreators';
+
+import { getCurrentEvent } from './selectors';
 import { getEventFormValues } from "../form/selectors";
 import { getUserUid } from "../user/selectors";
-
-import { database } from "../action-firebase";
 
 import IEvent from '../../types/IEvent';
 
@@ -69,7 +67,6 @@ function* createEventAsync() {
 }
 
 export async function putEventFirebase(event: IEvent, eventId: IEvent['eventId']) {
-  console.log('event, eventId', event, eventId)
   try {
     return await database.ref(`events/${eventId}/`).update(event);
   } catch (err) {
@@ -85,17 +82,13 @@ function* updateEventAsync({ eventId }: IUpdateEventAsyncAction) {
   yield put(startFetching());
 
   try {
-    const event: IEvent = yield select(getEventFormValues);
-    const events = yield select(getEventsList);
-    const selectedEvent: IEvent | null = events.find((event: IEvent) => event.eventId === eventId);
+    const currentEvent: IEvent = yield select(getCurrentEvent);
+    const formValues: IEvent = yield select(getEventFormValues);
 
-    if (selectedEvent) {
-      const updatedEvent = {...selectedEvent, ...event};
-      const updateEvent = () => putEventFirebase(updatedEvent, eventId).then((res: IEvent[]) => {
-        console.log('res', res);
-
-        return res;
-      });
+    if (currentEvent) {
+      const preparedEvent = {...currentEvent, ...formValues};
+      const updateEvent = () => putEventFirebase(preparedEvent, currentEvent.eventId)
+        .then((res: IEvent[]) => res);
       console.log('updateEvent', updateEvent);
       const eventRes: IEvent[] = yield call(updateEvent);
 
@@ -103,8 +96,7 @@ function* updateEventAsync({ eventId }: IUpdateEventAsyncAction) {
       // yield put(setEvent({}));
     }
 
-
-
+    yield put(setCurrentEvent(null));
     yield put(stopFetching());
   } catch {
     alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");

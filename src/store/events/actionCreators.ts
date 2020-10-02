@@ -3,7 +3,6 @@ import { EVENTS_REQUESTED, UPDATE_EVENT, CREATE_EVENT } from './sagas';
 import { actionFactory } from '../utils';
 
 import { SET_EVENTS, SET_CURRENT_EVENT, IEventsState } from './reducer';
-import { getEventsList } from './selectors';
 
 import IEvent from '../../types/IEvent';
 
@@ -14,5 +13,5 @@ export const updateCurrentEvent = (key: keyof IEventsState, event: IEvent | null
 export const setCurrentEvent = (event: IEvent | null) => updateCurrentEvent('currentEvent', event);
 
 export const fetchEvents = () => actionFactory(EVENTS_REQUESTED);
-export const updateEvent = (eventId : string) => actionFactory(UPDATE_EVENT, eventId);
+export const updateEvent = () => actionFactory(UPDATE_EVENT);
 export const createEvent = () => actionFactory(CREATE_EVENT);

@@ -1,5 +1,6 @@
-import React, { useCallback, MouseEvent } from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { reset } from 'redux-form';
 
 import CreateTaskForm from './CreateTaskForm';
 
@@ -7,7 +8,7 @@ import CreateTaskForm from './CreateTaskForm';
 
 import moment from 'moment';
 
-import { createEvent } from "../../store/events/actionCreators";
+import { createEvent, updateEvent } from "../../store/events/actionCreators";
 import { getEventFormValues } from "../../store/form/selectors";
 import { getCurrentEvent } from "../../store/events/selectors";
 import IEvent from "../../types/IEvent";
@@ -182,35 +183,24 @@ const CreateTask = ({ buttonText }: ICreateEventProps) => {
 
   const publish = useCallback(
     (): void => {
-      dispatch(createEvent());
+      if (currentEvent) {
+        dispatch(updateEvent());
+      } else {
+        dispatch(createEvent());
+      }
     },
-    [dispatch],
+    [dispatch, currentEvent],
   );
-
-  // const handlerSubmit = useCallback(
-  //   (): void => {
-  //
-  //     console.log('values', values);
-  //     dispatch(createEvent(values));
-  //   },
-  //   [dispatch, values],
-  // );
-
 
   return (
     <div>
-      <CreateTaskForm
-        // buttonText={buttonText}
-        initialValues={currentEvent || {}}
-        // onSubmit={publish}
-      />
+      <CreateTaskForm />
       <button
-        // type="submit"
         className="btn btn--fw"
         onClick={publish}
         // disabled={!this.isValidForm() || !userUID}
       >
-        {buttonText || 'Add event'}
+        {currentEvent ? 'Edit event' : 'Add event'}
       </button>
     </div>
   );

@@ -1,25 +1,20 @@
 import React from "react";
-import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { useSelector } from "react-redux";
 
-import styles from "./styles.module.scss";
 import DatePicker from "../../components/DatePicker";
 import TextField from "../../components/TextField";
-import { getIsUserLogin } from "../../store/user/selectors";
-import { EVENT_FORM } from '../../configs/forms';
-import IUserMeta from "../../types/IUserMeta";
-import IEvent from '../../types/IEvent';
 
-// interface ICreateTaskFormProps {
-//   // currentTask: IEvent;
-//   buttonText?: string;
-//   handlerSubmit: () => void;
-//   // editTaskAction: () => void;
-// }
+import { getIsUserLogin } from "../../store/user/selectors";
+import { getCurrentEvent } from "../../store/events/selectors";
+
+import { EVENT_FORM } from '../../configs/forms';
+
+import styles from "./styles.module.scss";
 
 const CreateTaskForm = () => {
   const isUserLogin = useSelector(getIsUserLogin);
+  const currentEvent = useSelector(getCurrentEvent);
   const nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
 
@@ -35,6 +30,7 @@ const CreateTaskForm = () => {
         // validate={[required]}
         fullWidth
         // disabled={!editable}
+        defaultValue={currentEvent?.date}
       />
 
       <Field
@@ -47,6 +43,7 @@ const CreateTaskForm = () => {
         // validate={[required]}
         fullWidth
         // disabled={!editable}
+        defaultValue={currentEvent?.title}
       />
 
       <Field
@@ -59,6 +56,7 @@ const CreateTaskForm = () => {
         // validate={[required]}
         fullWidth
         // disabled={!editable}
+        defaultValue={currentEvent?.description}
       />
       {/*<Field*/}
       {/*  name="address"*/}
