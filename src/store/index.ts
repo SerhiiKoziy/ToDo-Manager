@@ -24,7 +24,7 @@ function configureStore() {
   return store;
 }
 
-// axios.defaults.baseURL = "https://reacttestprojectapi.azurewebsites.net/Cars";
-// axios.defaults.headers["X-API-KEY"] = "320e638a-4e70-4408-9f37-0fcef96c8574";
+// axios.defaults.baseURL = "https://def";
+// axios.defaults.headers["X-API-KEY"] = "1233";
 
 export default configureStore;

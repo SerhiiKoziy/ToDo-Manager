@@ -7,7 +7,7 @@ import CreateTask from '../../modules/CreateTask';
 import { Event } from "../../modules/Event";
 
 import IState from "../../types/IState";
-import { deleteTask } from "../../store/actions/tasksActions";
+// import { deleteTask } from "../../store/actions/tasksActions";
 
 import IEvent from '../../types/IEvent';
 
@@ -53,4 +53,4 @@ const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
 
 export default connect((state: IState) => ({
   events: state.events.list,
-}), { deleteTask, push })(EditTask);
+}), { push })(EditTask);

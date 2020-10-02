@@ -1,9 +1,6 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 
-import {
-  startFetching,
-  stopFetching,
-} from "../actions";
+import { startFetching, stopFetching } from "../loading/actionCreators";
 
 import { setUserMeta } from './actionCreators';
 

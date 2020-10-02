@@ -1,6 +1,6 @@
 import { put, call, select, takeLatest } from "redux-saga/effects";
 
-import { startFetching, stopFetching } from "../actions";
+import { startFetching, stopFetching } from "../loading/actionCreators";
 
 import { getEventsFirebase, postEventFirebase } from '../action-firebase/events';
 import { database } from "../action-firebase";

@@ -13,7 +13,7 @@ import IEvent from '../../types/IEvent';
 
 import { getEventsList } from '../../store/events/selectors';
 import { getEventsIsLoading } from '../../store/events/selectors';
-import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
+// import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
 import { setCurrentEvent } from '../../store/events/actionCreators';
 
 import styles from './styles.module.scss';
@@ -76,7 +76,7 @@ const Dashboard = () => {
 
   const deleteEvent = useCallback(
     (taskId: string): void => {
-      dispatch(deleteTask(taskId));
+      // dispatch(deleteTask(taskId));
     },
     [dispatch],
   );
@@ -98,7 +98,7 @@ const Dashboard = () => {
       // console.log('changedTask', changedTask)
       changedTask.stageProces = target; //TODO check
 
-      dispatch(editTaskAction(changedTask));
+      // dispatch(editTaskAction(changedTask));
     },
     [dispatch, events],
   );
