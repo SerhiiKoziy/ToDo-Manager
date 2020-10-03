@@ -14,7 +14,7 @@ import IEvent from '../../types/IEvent';
 import { getEventsList } from '../../store/events/selectors';
 import { getEventsIsLoading } from '../../store/events/selectors';
 // import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
-import { setCurrentEvent } from '../../store/events/actionCreators';
+import { setCurrentEvent, deleteEvent } from '../../store/events/actionCreators';
 
 import styles from './styles.module.scss';
 
@@ -74,9 +74,9 @@ const Dashboard = () => {
   //   // this.handleDrop = this.handleDrop.bind(this);
   // }
 
-  const deleteEvent = useCallback(
-    (taskId: string): void => {
-      // dispatch(deleteTask(taskId));
+  const onDeleteEvent = useCallback(
+    (eventId: string): void => {
+      dispatch(deleteEvent(eventId));
     },
     [dispatch],
   );
@@ -121,7 +121,7 @@ const Dashboard = () => {
         <Event
           key={i}
           event={event}
-          onDelete={() => deleteEvent(eventId)}
+          onDelete={() => onDeleteEvent(eventId)}
           onEditEvent={() => onEditEvent(eventId)}
         />
       </Box>

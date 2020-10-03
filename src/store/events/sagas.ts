@@ -1,8 +1,9 @@
 import { put, call, select, takeLatest } from "redux-saga/effects";
+import { AnyAction } from 'redux';
 
 import { startFetching, stopFetching } from "../loading/actionCreators";
 
-import { getEventsFirebase, postEventFirebase } from '../action-firebase/events';
+import { getEventsFirebase, postEventFirebase, deleteEvent } from '../action-firebase/events';
 import { database } from "../action-firebase";
 
 import { setEvents, resetCurrentEvent } from './actionCreators';
@@ -16,6 +17,7 @@ import IEvent from '../../types/IEvent';
 export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
 export const UPDATE_EVENT = "UPDATE_EVENT";
 export const CREATE_EVENT = "CREATE_EVENT";
+export const DELETE_EVENT = "DELETE_EVENT";
 
 //TODO add to events
 const getEventsFirebaseAction  = async () => {
@@ -99,8 +101,38 @@ function* updateEventAsync() {
   }
 }
 
+export async function deleteEventFirebase(eventId: IEvent['eventId']) {
+  return await deleteEvent(eventId)
+    .then((res: Promise<any>) => res)
+    .catch((error) => {
+      console.log('error', error)
+    });
+}
+
+interface IDeleteEventAsyncProps extends AnyAction {
+  payload: any
+}
+
+function* deleteEventAsync({ payload: eventId }: IDeleteEventAsyncProps) {
+  yield put(startFetching());
+
+  try {
+    const deleteEvent = () => deleteEventFirebase(eventId.eventId) //TODO change name
+      .then((res: IEvent[]) => res)
+      .catch(() => console.error('Event update'));
+
+    yield call(deleteEvent);
+    yield call(requestEventsAsync);
+    yield put(stopFetching());
+  } catch {
+    alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    yield put(stopFetching());
+  }
+}
+
 export default function* watcher() {
   yield takeLatest(EVENTS_REQUESTED, requestEventsAsync);
   yield takeLatest(CREATE_EVENT, createEventAsync);
   yield takeLatest(UPDATE_EVENT, updateEventAsync);
+  yield takeLatest(DELETE_EVENT, deleteEventAsync);
 }
