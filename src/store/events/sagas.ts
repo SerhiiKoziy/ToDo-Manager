@@ -110,14 +110,14 @@ export async function deleteEventFirebase(eventId: IEvent['eventId']) {
 }
 
 interface IDeleteEventAsyncProps extends AnyAction {
-  payload: any
+  payload: IEvent; //TODO fix type
 }
 
-function* deleteEventAsync({ payload: eventId }: IDeleteEventAsyncProps) {
+function* deleteEventAsync({ payload: { eventId } }: IDeleteEventAsyncProps) {
   yield put(startFetching());
 
   try {
-    const deleteEvent = () => deleteEventFirebase(eventId.eventId) //TODO change name
+    const deleteEvent = () => deleteEventFirebase(eventId) //TODO change name
       .then((res: IEvent[]) => res)
       .catch(() => console.error('Event update'));
 
