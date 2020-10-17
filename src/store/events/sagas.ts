@@ -2,6 +2,7 @@ import { put, call, select, takeLatest } from "redux-saga/effects";
 import { AnyAction } from 'redux';
 
 import { startFetching, stopFetching } from "../loading/actionCreators";
+import { getWeatherByCoordinates } from "../../api/weatherApi";
 
 import { getEventsFirebase, postEventFirebase, deleteEvent } from '../action-firebase/events';
 import { database } from "../action-firebase";
@@ -13,6 +14,7 @@ import { getEventFormValues } from "../form/selectors";
 import { getUserUid } from "../user/selectors";
 
 import IEvent from '../../types/IEvent';
+import IWeather from "../../types/IWeather";
 
 export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
 export const UPDATE_EVENT = "UPDATE_EVENT";
@@ -54,11 +56,25 @@ function* createEventAsync() {
   try {
     const event: IEvent = yield select(getEventFormValues);
     const uid: string = yield select(getUserUid);
-    const preparedEvent: IEvent = {...event, uid: uid, stageProces: 'ToDo'};
 
-    yield call(() => postEventFirebaseAction(preparedEvent));
+    const mockWeather = {
+      position: {
+        lat: 50.4501,
+        lng: 30.523400000000038,
+      },
+      day: 1,
+    };
 
-    yield call(requestEventsAsync);
+    const getWeather = () => getWeatherByCoordinates(mockWeather).then((res) => res);
+
+    const weather: IWeather = yield call(getWeather);
+    console.log('weather', weather)
+
+    if (weather) {
+      const preparedEvent: IEvent = {...event, uid: uid, stageProces: 'ToDo', weather};
+      yield call(() => postEventFirebaseAction(preparedEvent));
+      yield call(requestEventsAsync);
+    }
 
     yield put(stopFetching());
   } catch {

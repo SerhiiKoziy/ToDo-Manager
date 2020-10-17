@@ -1,4 +1,5 @@
 import IWeatherTemp from './IWeatherTemp';
+import IPosition from './IPosition';
 
 export default interface IWeather {
   clouds: number;
@@ -10,5 +11,7 @@ export default interface IWeather {
   sunrise: number;
   sunset: number;
   temp: any;
+  day: number;
+  position: IPosition;
   weather: IWeatherTemp[];
 }
