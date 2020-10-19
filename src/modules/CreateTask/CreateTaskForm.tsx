@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import { Field, reduxForm } from 'redux-form';
 import { useSelector } from "react-redux";
 
@@ -18,6 +18,16 @@ const CreateTaskForm = () => {
   const nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
 
+  const disabledDates = useCallback(
+    (date: string) => {
+      const currentDate = Date.parse(`${new Date()}`);
+      const maxDateFromCurrent = currentDate + (14 * 1000 * 3600 * 24); // 14 days //TODO make logic without seconds
+
+      return Date.parse(date) > maxDateFromCurrent;
+    },
+    [],
+  );
+
   return (
     <div className={styles.formWrapper}>
       <Field
@@ -29,8 +39,10 @@ const CreateTaskForm = () => {
         label={"Choose event's date"}
         // validate={[required]}
         fullWidth
+        disablePast
         // disabled={!editable}
         defaultValue={currentEvent?.date}
+        disabledDates={disabledDates}
       />
 
       <Field
@@ -58,17 +70,17 @@ const CreateTaskForm = () => {
         // disabled={!editable}
         defaultValue={currentEvent?.description}
       />
-      {/*<Field*/}
-      {/*  name="address"*/}
-      {/*  type="text"*/}
-      {/*  className={'input-wr'}*/}
-      {/*  component={PlacesAutocomplete}*/}
-      {/*  placeholder={'Enter deadline location address'}*/}
-      {/*  // label={texts.name}*/}
-      {/*  // validate={[required]}*/}
-      {/*  fullWidth*/}
-      {/*  // disabled={!editable}*/}
-      {/*/>*/}
+      <Field
+        name="address"
+        type="text"
+        className={'input-wr'}
+        // component={PlacesAutocomplete}
+        placeholder={'Enter deadline location address'}
+        // label={texts.name}
+        // validate={[required]}
+        fullWidth
+        // disabled={!editable}
+      />
       {/*<div className="input-box input-wr">*/}
       {/*  <PlacesAutocomplete*/}
       {/*    value={this.state.values.address || ''}*/}
@@ -77,16 +89,7 @@ const CreateTaskForm = () => {
       {/*    placeholder="Enter deadline location address"*/}
       {/*  />*/}
       {/*</div>*/}
-      {/*<TextField*/}
 
-      {/*<button*/}
-      {/*  // type="submit"*/}
-      {/*  className="btn btn--fw"*/}
-      {/*  onClick={handlerSubmit}*/}
-      {/*  // disabled={!this.isValidForm() || !userUID}*/}
-      {/*>*/}
-      {/*  {buttonText || 'Add event'}*/}
-      {/*</button>*/}
       {
         !isUserLogin && (
           <p className="submit-message">Login, please!</p>
