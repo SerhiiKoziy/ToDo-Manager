@@ -17,12 +17,6 @@ import { setCurrentEvent, updateEvent, deleteEvent } from '../../store/events/ac
 
 import styles from './styles.module.scss';
 
-interface IDustbins {
-  accepts: string[];
-  lastDroppedItem: null;
-  id: string;
-}
-
 const dustbins = [
   {
     accepts: [ItemTypes.INPROGRESS, ItemTypes.DONE],
@@ -66,31 +60,27 @@ const Dashboard = () => {
 
   const handleDrop = useCallback(
     (index: number, event: IEvent, target: any): void => {
-      const changedTask = events.find((eventItem: IEvent) => {
-        return eventItem.eventId == event.taskId;
-      });
+      const changedEvent = events.find((eventItem: IEvent) => (eventItem.eventId == event.eventId));
 
-      if (changedTask) {
-        changedTask.stageProces = target;
+      if (changedEvent) {
+        changedEvent.stageProces = target;
 
-        dispatch(updateEvent(changedTask));
+        dispatch(updateEvent(changedEvent));
       }
     },
     [dispatch, events],
   );
 
-  const isDropped = (boxName: string) =>  {
-    return droppedBoxNames.indexOf(boxName) > -1;
-  };
+  const isDropped = (boxName: string) => droppedBoxNames.indexOf(boxName) > -1;
 
   const renderEvent = (event: IEvent, i: number) => {
-    const { title, eventId } = event;
+    const { title, eventId, stageProces } = event;
 
     return (
       <Box
         name={title}
-        type={event.stageProces}
-        taskId={eventId}
+        type={stageProces}
+        eventId={eventId}
         isDropped={isDropped(title)}
         key={i}
       >
@@ -147,7 +137,7 @@ const Dashboard = () => {
           }
         </div>
       </div>
-      <div className={styles.builderTask}>
+      <div className={styles.builderEvent}>
         <CreateTask />
       </div>
     </div>

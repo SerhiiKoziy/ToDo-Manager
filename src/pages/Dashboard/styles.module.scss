@@ -68,6 +68,10 @@
       }
     }
   }
+
+  .builderEvent {
+
+  }
 }
 
 @media only screen and (max-width: 769px) {
@@ -93,7 +97,7 @@
         }
       }
 
-      .builder-task{
+      .builderEvent{
         &.mobile{
           display: none;
         }

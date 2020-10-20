@@ -9,7 +9,7 @@ const boxSource = {
   beginDrag(props) {
     return {
       name: props.name,
-      taskId: props.taskId,
+      eventId: props.eventId,
     };
   },
 };

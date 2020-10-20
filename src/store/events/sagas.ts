@@ -101,17 +101,15 @@ interface IUpdateEvent extends AnyAction {
   payload: IEvent;
 }
 
-function* updateEventAsync(action: IUpdateEvent) {
+function* updateEventAsync(action?: IUpdateEvent) {
   yield put(startFetching());
 
   try {
     const currentTime = new Date().getTime();
-    const { payload: event } = action;
     let preparedEvent: IEvent | null = null;
 
-    console.log('preparedEvent', preparedEvent)
-
-    if (event) {
+    if (action) {
+      const { payload: event } = action;
       preparedEvent = {...event, updatedAt: currentTime}
     } else {
       const currentEvent: IEvent = yield select(getCurrentEvent);
@@ -120,9 +118,8 @@ function* updateEventAsync(action: IUpdateEvent) {
       preparedEvent = {...currentEvent, ...formValues, updatedAt: currentTime};
     }
 
-    const eventId = preparedEvent.eventId;
-
     if (preparedEvent) {
+      const eventId = preparedEvent.eventId;
       const updateEvent = () => putEventFirebase(preparedEvent as IEvent, eventId)
         .then((res: IEvent[]) => res)
         .catch(() => console.error('Event update'));
