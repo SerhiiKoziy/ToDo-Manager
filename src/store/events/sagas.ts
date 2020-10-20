@@ -74,7 +74,7 @@ function* createEventAsync() {
         uid: uid,
         stageProces: 'ToDo',
         weather,
-        position: mockWeather.position,
+        position: position,
         createdAt: currentTime,
       };
 
