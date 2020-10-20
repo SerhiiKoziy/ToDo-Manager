@@ -22,7 +22,7 @@ export const CREATE_EVENT = "CREATE_EVENT";
 export const DELETE_EVENT = "DELETE_EVENT";
 
 //TODO add to events
-const getEventsFirebaseAction  = async () => {
+const getEventsFirebaseAction = async () => {
   return await getEventsFirebase()
     .then((res: Promise<any>) => res)
     .catch((error) => {
@@ -56,22 +56,28 @@ function* createEventAsync() {
   try {
     const event: IEvent = yield select(getEventFormValues);
     const uid: string = yield select(getUserUid);
+    const currentTime = new Date().getTime();
 
-    const mockWeather = {
-      position: {
+    const position = {
         lat: 50.4501,
         lng: 30.523400000000038,
-      },
-      day: 1,
-    };
+      };
 
-    const getWeather = () => getWeatherByCoordinates(mockWeather).then((res) => res);
+    const day = 1;
 
+    const getWeather = () => getWeatherByCoordinates(position, day).then((res) => res);
     const weather: IWeather = yield call(getWeather);
-    console.log('weather', weather)
 
     if (weather) {
-      const preparedEvent: IEvent = {...event, uid: uid, stageProces: 'ToDo', weather};
+      const preparedEvent: IEvent = {
+        ...event,
+        uid: uid,
+        stageProces: 'ToDo',
+        weather,
+        position: mockWeather.position,
+        createdAt: currentTime,
+      };
+
       yield call(() => postEventFirebaseAction(preparedEvent));
       yield call(requestEventsAsync);
     }
@@ -97,9 +103,10 @@ function* updateEventAsync() {
   try {
     const currentEvent: IEvent = yield select(getCurrentEvent);
     const formValues: IEvent = yield select(getEventFormValues);
+    const currentTime = new Date().getTime();
 
     if (currentEvent) {
-      const preparedEvent = {...currentEvent, ...formValues};
+      const preparedEvent = {...currentEvent, ...formValues, updatedAt: currentTime};
       const updateEvent = () => putEventFirebase(preparedEvent, currentEvent.eventId)
         .then((res: IEvent[]) => res)
         .catch(() => console.error('Event update'));
