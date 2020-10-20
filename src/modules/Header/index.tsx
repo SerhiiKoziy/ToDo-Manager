@@ -1,26 +1,20 @@
 import React, { useMemo } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from "react-router";
 
 import { Link } from "react-router-dom";
-
-// import { auth } from '../../store/action-firebase';
-import { getUserMeta } from '../../store/user/selectors';
-// import { loadUserInfo, uploadUserInfo } from '../../store/action-firebase/user';
-// import { transformAvatarUrl } from '../../store/actions/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import IState from "../../types/IState";
+import { getUserMeta } from '../../store/user/selectors';
 
 import styles from './styles.module.scss';
 
 interface IHeaderProps {
-  user: any;
   handleAuth: () => void;
 }
 
-const Index = ({ user, handleAuth }: IHeaderProps) => {
+const Header = ({ handleAuth }: IHeaderProps) => {
   const location = useLocation();
   const userMeta = useSelector(getUserMeta);
 
@@ -30,39 +24,12 @@ const Index = ({ user, handleAuth }: IHeaderProps) => {
     },
     [userMeta],
   );
-//
-//   async loadProfile() {
-//     const user = auth().currentUser;
-//     const uid = user.uid;
-//     const res = await loadUserInfo(uid);
-//     const defaultName = (user.displayName || this.getNameFromEmail(user.email)) || '1111';
-//     let signAs;
-//     let PhotoUrl;
-//
-//     const preparedUserData = {
-//       uid: user.uid,
-//       displayName: user.displayName,
-//       email: user.email,
-//       photoURL: user.photoURL,
-//     };
-//
-//     this.props.addUserStore(preparedUserData); //TODO add handler
-//     if (res) {
-//       signAs = res.name;
-//       PhotoUrl = transformAvatarUrl(res.PhotoUrl);
-//     } else {
-//       signAs = defaultName;
-//       uploadUserInfo(preparedUserData, uid);
-//     }
-//
-//     this.setState({ name: signAs, PhotoUrl });
-//   }
-//
+
 //   getNameFromEmail(email) {
 //     const end = email.indexOf('@');
 //     return email.slice(0, end);
 //   }
-//
+
   const renderRightBlock = (page: string) => {
     switch (page) {
       case 'main':
@@ -144,10 +111,4 @@ const Index = ({ user, handleAuth }: IHeaderProps) => {
   );
 };
 
-export default connect(
-  (state: IState) => ({
-    data: state.data,
-    user: state.user
-  }),
-  { }
-)(Index);
+export default Header

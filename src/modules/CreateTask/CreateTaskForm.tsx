@@ -4,13 +4,12 @@ import { useSelector } from "react-redux";
 
 import DatePicker from "../../components/DatePicker";
 import TextField from "../../components/TextField";
+import PlacesAutocompleteTom from "../../components/PlacesAutocompleteTom";
 
 import { getIsUserLogin } from "../../store/user/selectors";
 import { getCurrentEvent } from "../../store/events/selectors";
 
 import { EVENT_FORM } from '../../configs/forms';
-
-import styles from "./styles.module.scss";
 
 const CreateTaskForm = () => {
   const isUserLogin = useSelector(getIsUserLogin);
@@ -29,7 +28,7 @@ const CreateTaskForm = () => {
   );
 
   return (
-    <div className={styles.formWrapper}>
+    <div>
       <Field
         name="date"
         type="text"
@@ -70,25 +69,17 @@ const CreateTaskForm = () => {
         // disabled={!editable}
         defaultValue={currentEvent?.description}
       />
-      <Field
-        name="address"
-        type="text"
-        className={'input-wr'}
-        // component={PlacesAutocomplete}
-        placeholder={'Enter deadline location address'}
-        // label={texts.name}
-        // validate={[required]}
-        fullWidth
-        // disabled={!editable}
-      />
-      {/*<div className="input-box input-wr">*/}
-      {/*  <PlacesAutocomplete*/}
-      {/*    value={this.state.values.address || ''}*/}
-      {/*    onChange={this.changeLocation}*/}
-      {/*    onBlur={this.handleInputBlur}*/}
-      {/*    placeholder="Enter deadline location address"*/}
-      {/*  />*/}
-      {/*</div>*/}
+      {/*<Field*/}
+      {/*  name="address"*/}
+      {/*  type="text"*/}
+      {/*  className={'input-wr'}*/}
+      {/*  component={PlacesAutocompleteTom}*/}
+      {/*  placeholder={'Enter deadline location address'}*/}
+      {/*  // label={texts.name}*/}
+      {/*  // validate={[required]}*/}
+      {/*  fullWidth*/}
+      {/*  // disabled={!editable}*/}
+      {/*/>*/}
 
       {
         !isUserLogin && (

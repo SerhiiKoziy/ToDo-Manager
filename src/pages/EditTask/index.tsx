@@ -3,27 +3,26 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { useParams } from "react-router-dom";
 
-import CreateTask from '../../modules/CreateTask';
 import { Event } from "../../modules/Event";
 
 import IState from "../../types/IState";
-// import { deleteTask } from "../../store/actions/tasksActions";
+import { setCurrentEvent, deleteEvent } from "../../store/events/actionCreators";
 
 import IEvent from '../../types/IEvent';
 
 interface IEditTaskProps {
   events: IEvent[];
-  deleteTask: (taskId: string) => void;
 }
 
-const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
+const EditTask = ({ events }: IEditTaskProps) => {
   const [ currentTask, setCurrentTask ] = useState<IEvent>();
   const { taskId } = useParams();
 
   useEffect(
     () => {
-      const task: IEvent | undefined = events.find((task: any) => task.eventId === taskId);
-      task && setCurrentTask(task)
+      const event: IEvent | undefined = events.find((event: IEvent) => event.eventId === taskId);
+      event && setCurrentTask(event)
+      event && setCurrentEvent(event)
     },
     [events]
   );
@@ -34,7 +33,7 @@ const EditTask = ({ events, deleteTask }: IEditTaskProps) => {
         currentTask && (
           <Event
             event={currentTask}
-            onDelete={() => deleteTask(taskId)}
+            onDelete={() => deleteEvent(taskId)}
             onEditEvent={(eventId) => console.log('event', eventId)}
           />
         )

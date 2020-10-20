@@ -5,10 +5,10 @@ import { DragDropContext } from 'react-dnd';
 
 import CreateTask from '../../modules/CreateTask';
 import { Event } from '../../modules/Event';
-import Dustbin from '../../components/dnd/Dustbin';
-import Box from '../../components/dnd/Box';
+import Dustbin from '../../components/Dnd/Dustbin';
+import DragBox from '../../components/Dnd/DragBox';
 
-import ItemTypes from '../../components/dnd/ItemTypes';
+import EventStatus from '../../types/EventStatus';
 import IEvent from '../../types/IEvent';
 
 import { getEventsList } from '../../store/events/selectors';
@@ -19,19 +19,19 @@ import styles from './styles.module.scss';
 
 const dustbins = [
   {
-    accepts: [ItemTypes.INPROGRESS, ItemTypes.DONE],
+    accepts: [EventStatus.IN_PROGRESS, EventStatus.DONE],
     lastDroppedItem: null,
-    id: ItemTypes.TODO,
+    id: EventStatus.TODO,
   },
   {
-    accepts: [ItemTypes.TODO, ItemTypes.DONE],
+    accepts: [EventStatus.TODO, EventStatus.DONE],
     lastDroppedItem: null,
-    id: ItemTypes.INPROGRESS,
+    id: EventStatus.IN_PROGRESS,
   },
   {
-    accepts: [ItemTypes.TODO, ItemTypes.INPROGRESS, NativeTypes.URL],
+    accepts: [EventStatus.TODO, EventStatus.IN_PROGRESS, NativeTypes.URL],
     lastDroppedItem: null,
-    id: ItemTypes.DONE,
+    id: EventStatus.DONE,
   },
 ];
 
@@ -77,7 +77,7 @@ const Dashboard = () => {
     const { title, eventId, stageProces } = event;
 
     return (
-      <Box
+      <DragBox
         name={title}
         type={stageProces}
         eventId={eventId}
@@ -90,7 +90,7 @@ const Dashboard = () => {
           onDelete={() => onDeleteEvent(eventId)}
           onEditEvent={() => onEditEvent(eventId)}
         />
-      </Box>
+      </DragBox>
     );
   };
 
@@ -122,13 +122,7 @@ const Dashboard = () => {
                     index={index}
                   >
                     {
-                      events?.map((event: IEvent, i: number) => {
-                        if (event.stageProces === id) {
-                          return renderEvent(event, i);
-                        }
-
-                        return null;
-                      })
+                      events?.map((event: IEvent, i: number) => event.stageProces === id ? renderEvent(event, i) : null)
                     }
                   </Dustbin>
                 </div>

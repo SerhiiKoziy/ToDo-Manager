@@ -1,8 +1,8 @@
 import React, { useMemo, ReactNode } from 'react';
 import { DropTarget as dropTarget } from 'react-dnd';
+import classNames from "classnames";
 
 import styles from "./styles.module.scss";
-import classNames from "classnames";
 
 const dustbinTarget = {
   drop(props: any, monitor: any) {
