@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 
 import { Event } from '../../modules/Event';
 
-// import { deleteTask } from '../../store/actions/tasksActions';
-
 import IState from "../../types/IState";
 import IEvent from "../../types/IEvent";
 

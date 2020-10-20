@@ -1,7 +1,6 @@
-// Vendor imports
 import React from "react";
-// Style imports
-import styles from "./Button.module.scss";
+
+import styles from "./styles.module.scss";
 
 interface Props {
   children?: JSX.Element;
@@ -9,7 +8,7 @@ interface Props {
   onClick?: () => void;
 }
 
-const button = ({ children, variant, onClick }: Props) => {
+const Button = ({ children, variant, onClick }: Props) => {
   let buttonClass = styles.primaryButton;
   if (variant && variant === "transparent") {
     buttonClass = styles.transparentButton;
@@ -21,4 +20,4 @@ const button = ({ children, variant, onClick }: Props) => {
   );
 };
 
-export default button;
+export default Button;
