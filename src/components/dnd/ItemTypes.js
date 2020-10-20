@@ -1,5 +1,5 @@
 export default {
   TODO: 'ToDo',
-  INPROGRES: 'InProgress',
+  INPROGRESS: 'InProgress',
   DONE: 'Done',
 };

@@ -14,7 +14,7 @@ function App() {
 
           <Route path="/profile" component={() => <NotificationPage /> } />
           {/*<Route path="/event/:taskId" component={() => <TaskPage /> } />*/}
-          <Route path="/event/:eventId/edit" component={() => <EditTask /> } />
+          {/*<Route path="/event/:eventId/edit" component={() => <EditTask /> } />*/}
           <Route path="/add" component={() => <AddTask /> } />
 
           <Route path="/" component={() => <Root /> } />

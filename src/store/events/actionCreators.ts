@@ -14,6 +14,6 @@ export const setCurrentEvent = (event: IEvent | null) => updateCurrentEvent('cur
 export const resetCurrentEvent = () => actionFactory(RESET_CURRENT_EVENT);
 
 export const fetchEvents = () => actionFactory(EVENTS_REQUESTED);
-export const updateEvent = () => actionFactory(UPDATE_EVENT);
+export const updateEvent = (event?: IEvent) => actionFactory(UPDATE_EVENT, event);
 export const createEvent = () => actionFactory(CREATE_EVENT);
 export const deleteEvent = (eventId: string) => actionFactory(DELETE_EVENT, { eventId });

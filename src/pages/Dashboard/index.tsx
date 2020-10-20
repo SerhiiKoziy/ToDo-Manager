@@ -13,8 +13,7 @@ import IEvent from '../../types/IEvent';
 
 import { getEventsList } from '../../store/events/selectors';
 import { getEventsIsLoading } from '../../store/events/selectors';
-// import { deleteTask, editTaskAction } from '../../store/actions/tasksActions';
-import { setCurrentEvent, deleteEvent } from '../../store/events/actionCreators';
+import { setCurrentEvent, updateEvent, deleteEvent } from '../../store/events/actionCreators';
 
 import styles from './styles.module.scss';
 
@@ -26,17 +25,17 @@ interface IDustbins {
 
 const dustbins = [
   {
-    accepts: [ItemTypes.INPROGRES, ItemTypes.DONE],
+    accepts: [ItemTypes.INPROGRESS, ItemTypes.DONE],
     lastDroppedItem: null,
     id: ItemTypes.TODO,
   },
   {
     accepts: [ItemTypes.TODO, ItemTypes.DONE],
     lastDroppedItem: null,
-    id: ItemTypes.INPROGRES,
+    id: ItemTypes.INPROGRESS,
   },
   {
-    accepts: [ItemTypes.TODO, ItemTypes.INPROGRES, NativeTypes.URL],
+    accepts: [ItemTypes.TODO, ItemTypes.INPROGRESS, NativeTypes.URL],
     lastDroppedItem: null,
     id: ItemTypes.DONE,
   },
@@ -48,31 +47,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
-  // constructor(props: any) {
-  //   super(props);
-  //   this.state = {
-  //     dustbins: [
-  //       {
-  //         accepts: [ItemTypes.INPROGRES, ItemTypes.DONE],
-  //         lastDroppedItem: null,
-  //         id: ItemTypes.TODO,
-  //       },
-  //       {
-  //         accepts: [ItemTypes.TODO, ItemTypes.DONE],
-  //         lastDroppedItem: null,
-  //         id: ItemTypes.INPROGRES,
-  //       },
-  //       {
-  //         accepts: [ItemTypes.TODO, ItemTypes.INPROGRES, NativeTypes.URL],
-  //         lastDroppedItem: null,
-  //         id: ItemTypes.DONE,
-  //       },
-  //     ],
-  //     droppedBoxNames: [],
-  //   };
-  //
-  //   // this.handleDrop = this.handleDrop.bind(this);
-  // }
 
   const onDeleteEvent = useCallback(
     (eventId: string): void => {
@@ -92,13 +66,15 @@ const Dashboard = () => {
 
   const handleDrop = useCallback(
     (index: number, event: IEvent, target: any): void => {
-      const changedTask = events.filter((eventItem: IEvent) => {
+      const changedTask = events.find((eventItem: IEvent) => {
         return eventItem.eventId == event.taskId;
-      })[0];
-      // console.log('changedTask', changedTask)
-      changedTask.stageProces = target; //TODO check
+      });
 
-      // dispatch(editTaskAction(changedTask));
+      if (changedTask) {
+        changedTask.stageProces = target;
+
+        dispatch(updateEvent(changedTask));
+      }
     },
     [dispatch, events],
   );
@@ -127,15 +103,6 @@ const Dashboard = () => {
       </Box>
     );
   };
-
-  // const handleDrop = (index: number, event: IEvent, target: any) => {
-  //   const changedTask = events?.filter((element: IEvent) => {
-  //     return element.eventId == event.taskId; //TODO check
-  //   })[0];
-  //
-  //   // changedTask && changedTask?.stageProces = target; //TODO check
-  //   editTaskAction(changedTask);
-  // };
 
   if (eventsIsLoading) {
     return <span>Loading...</span>

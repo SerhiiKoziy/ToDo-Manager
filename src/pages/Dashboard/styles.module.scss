@@ -30,6 +30,8 @@
 
       .listName {
         text-align: center;
+        margin: 10px 0;
+
         h3 {
           margin: 0;
         }
@@ -49,18 +51,17 @@
         border: 3px dashed transparent;
         transition: border 0.3s, background 0.3s;
 
-        &.can-drop {
+        &.canDrop {
           border-color: #fff;
         }
 
-        &.is-active {
+        &.isActive {
           border-color: #fff;
           background: transparentize(green, 0.8);
         }
-
       }
 
-      &.back-fields {
+      &.backFields {
         position: absolute;
 
         z-index: 0;
