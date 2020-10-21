@@ -1,9 +1,10 @@
 
 .task {
   position: relative;
-  background: transparent;
+
   margin: 0 0 20px 0;
   padding: 10px;
+
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 2px;
@@ -11,45 +12,41 @@
   box-shadow: 0 0 10px transparentize(#000, 0.7);
   background: linear-gradient(135deg, rgba(253, 253, 253, 0.4), rgba(0, 127, 163, 0));
 
-  &.onBoard-task {
-    .task-secondary-info {
+  &.onBoardTask {
+    .taskSecondaryInfo {
       display: none;
     }
 
-    .temp-list, .temp-list-title {
+    .tempList, .tempListTitle {
       display: none;
-    }
-  }
-
-  p {
-    &.date-task {
-
     }
   }
 
   .taskContent {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .task-secondary-info {
-      div {
-        padding: 0 0 10px 0;
+    .tempList {
+      padding: 0 0 0 22px;
+      margin: -10px 0 0 0;
+
+      .temp {
+        margin: 0 0 5px 0;
+
       }
     }
   }
 
-  .temp-list {
-    padding: 0 0 0 22px;
-    margin: -10px 0 0 0;
+  .weatherIndicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
 
-    li {
-      margin: 0 0 5px 0;
-
-    }
-  }
-
-  .weather-indicator {
     img {
       width: 100%;
     }
@@ -86,12 +83,11 @@
         align-items: center;
       }
 
-      &.control-delete {
+      &.controlDelete {
         color: #d0021b;
       }
 
       &:hover {
-
         background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 0 3px #000;
       }
