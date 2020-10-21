@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { auth } from 'firebase/app';
 
-import './auth.module.scss';
+import styles from './styles.module.scss';
+import { faTemperatureLow } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Login extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Login extends Component {
 
   emailStart() {
     return (
-      <div className="enter_with_email">
+      <div className={styles.enterWithEmail}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -185,12 +186,13 @@ class Login extends Component {
 
   renderSocietyButtons() {
     return (
-      <div className="auth-buttons">
+      <div className={styles.authButtons}>
         <button
           name="login-google"
           type="primary"
           onClick={() => this.loginWithGoogle()}
         >
+          <FontAwesomeIcon icon={faTemperatureLow} />
           Log in with Google
         </button>
       </div>
@@ -199,17 +201,18 @@ class Login extends Component {
 
   render() {
     const { type } = this.state;
+
     if (this.state.emailPhase === 'sendingFormData') {
-      return <div className="login"> {'loading...'} </div>;
+      return <div className={styles.login}> {'loading...'} </div>;
     }
 
     return (
-      <div className="login">
+      <div className={styles.login}>
         {type === 'registration' ? this.renderRegistrationBlock() : this.renderEmailBlock()}
         {
           (type === 'auth') && this.renderSocietyButtons()
         }
-        <div className="control-buttons">
+        <div className={styles.controlButtons}>
           {/*<button*/}
             {/*className={`change-tab ${this.state.activeButton ? 'active' : ''}`}*/}
             {/*name="change-type"*/}
@@ -219,12 +222,11 @@ class Login extends Component {
             {/*{ type === 'auth' ? 'Registration' : 'Authorization' }*/}
           {/*</button>*/}
           <button
-            className="change-tab sigh-out"
+            className={styles.sighOut} //"sigh-out"
             name="sigh-out"
             type="primary"
             onClick={() => this.sighOut()}
           >
-            {/*<FontAwesomeIcon icon={faTemperatureLow} />*/}
             {/*<Icon icon={'google'}/>*/}
             {'Sign out'}
           </button>
@@ -234,9 +236,4 @@ class Login extends Component {
   }
 }
 
-export default connect(
-  (state) => {
-    return { user: state.user };
-  },
-  { }
-)(Login);
+export default Login

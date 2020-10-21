@@ -4,7 +4,7 @@ import IPosition from "../types/IPosition";
 
 export const MAIN_API_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
-export async function getWeatherByCoordinates(position: IPosition, day: number) {
+export const getWeatherByCoordinates = async (position: IPosition, day: number) => {
   return axios.get(`https://cors-anywhere.herokuapp.com/${MAIN_API_URL}`, {
     params: {
       APPID: '8932288cdb827d871a2f1495aae80b44',
@@ -23,4 +23,4 @@ export async function getWeatherByCoordinates(position: IPosition, day: number) 
   }).catch(error => {
     return console.error(error);
   });
-}
+};
