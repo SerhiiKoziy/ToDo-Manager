@@ -4,12 +4,12 @@ import { startFetching, stopFetching } from "../loading/actionCreators";
 
 import { setUserMeta } from './actionCreators';
 
-import firebase from "firebase";
+import firebase, { auth } from "firebase";
 
 export const USER_REQUESTED = "USER_REQUESTED";
 
 //TODO change Promise
-const getCurrentUserMeta = (auth: any) => {
+const getCurrentUserMeta = (auth: auth.Auth) => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged((user: any) => {
       unsubscribe();

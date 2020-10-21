@@ -46,3 +46,15 @@ export const reducersSet: any = {};
 export const registerReducer = (statePartName: string, reducer: any, getDefaultState: any): any => {
   reducersSet[statePartName] = transformReducer(reducer, getDefaultState);
 };
+
+export const transformAvatarUrl = (url: string) => {
+  if (!!url) {
+    return '';
+  }
+
+  const slashPosition = url.substring(0, url.lastIndexOf('/')).lastIndexOf('/');
+  const beforeFileName = url.substring(0, slashPosition);
+  const afterFileName = url.substring(slashPosition, url.length);
+
+  return `${beforeFileName}/${afterFileName}`;
+};

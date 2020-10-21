@@ -4,11 +4,16 @@ import classNames from "classnames";
 
 import styles from "./styles.module.scss";
 
+interface IBoxSource {
+  name: string;
+  eventId: string;
+}
+
 const boxSource = {
-  beginDrag(props: any) {
+  beginDrag({ name, eventId }: IBoxSource) {
     return {
-      name: props.name,
-      eventId: props.eventId,
+      name: name,
+      eventId: eventId,
     };
   },
 };

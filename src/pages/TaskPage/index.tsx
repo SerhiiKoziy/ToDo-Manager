@@ -1,4 +1,4 @@
-﻿import React, {useEffect, useState} from 'react';
+﻿import React, { useEffect, useState, ReactNode } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { push } from 'react-router-redux';
@@ -14,7 +14,7 @@ import './styles.module.scss';
 interface ITaskPageProps {
   events: IEvent[];
   deleteTask: (eventId: string) => void;
-  children: any;
+  children: ReactNode;
 }
 
 const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
@@ -22,13 +22,13 @@ const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
   const { taskId } = useParams();
   useEffect(
     () => {
-      const task = events.find((task: any) => task.eventId === taskId);
+      const task = events.find((event: IEvent) => event.eventId === taskId);
       task && setCurrentTask(task)
     },
     [events]
   );
 
-  const handleDeleteTask = (currentTask: any) => {
+  const handleDeleteTask = (currentTask: IEvent) => {
     // this.props.push('/');
     deleteTask(currentTask.eventId);
   };

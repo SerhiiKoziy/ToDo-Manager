@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth } from '../../store/action-firebase';
+import { auth } from 'firebase/app';
 
 import './auth.module.scss';
 
@@ -28,11 +28,13 @@ class Login extends Component {
   async loginWithOtherAcc(provider) {
     this.setState({ emailPhase: 'sendingFormData' });
     auth().useDeviceLanguage();
+
     return await auth().signInWithRedirect(provider);
   }
 
   renderEmailBlock() {
     const phase = this.state.emailPhase;
+
     return phase === 'start' ?
       this.emailStart() : this.emailContinuation(phase);
   }

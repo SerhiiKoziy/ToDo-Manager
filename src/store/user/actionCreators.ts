@@ -4,8 +4,10 @@ import { actionFactory } from '../utils';
 
 import { UPDATE_USER_META, IUserState } from './reducer';
 
-export const updateUser = (key: keyof IUserState, value: any) => actionFactory(UPDATE_USER_META, value);
+import IUserMeta from "../../types/IUserMeta";
 
-export const setUserMeta = (value: any) => updateUser('userMeta', value);
+export const updateUser = (key: keyof IUserState, value: IUserMeta) => actionFactory(UPDATE_USER_META, value);
+
+export const setUserMeta = (value: IUserMeta) => updateUser('userMeta', value);
 
 export const fetchUserAction = () => actionFactory(USER_REQUESTED);

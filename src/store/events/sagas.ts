@@ -4,8 +4,8 @@ import { AnyAction } from 'redux';
 import { startFetching, stopFetching } from "../loading/actionCreators";
 import { getWeatherByCoordinates } from "../../api/weatherApi";
 
-import { getEventsFirebase, postEventFirebase, deleteEvent } from '../action-firebase/events';
-import { database } from "../action-firebase";
+import { getEventsFirebase, postEventFirebase, deleteEvent } from '../actions-firebase/events';
+import { database } from "../actions-firebase";
 
 import { setEvents, resetCurrentEvent } from './actionCreators';
 

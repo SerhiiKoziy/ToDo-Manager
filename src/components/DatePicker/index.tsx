@@ -1,6 +1,5 @@
-import React, {ReactElement, useEffect, useState, useMemo, ReactNode, useCallback} from 'react';
+import React, { ReactElement, useEffect, useState, useMemo, ReactNode } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-// import classNames from "classnames";
 import { WrappedFieldProps } from "redux-form";
 import { FormControl, FormHelperText, InputLabel } from '@material-ui/core';
 
@@ -73,9 +72,6 @@ const DatePicker = ({ className, input, disabledDates, defaultValue, required, m
         className={
           buildClassName(
             styles.advancedDatePickerField,
-            // {
-            //   [styles.withoutError]: (!touched || !invalid) && !hasError,
-            // },
           )
         }
         error={touched && !!error}

@@ -2,7 +2,7 @@ import firebase, { User } from 'firebase/app';
 import 'firebase/database';
 import 'firebase/storage';
 import 'firebase/auth';
-import axios, { AxiosStatic, AxiosRequestConfig, AxiosPromise, Method } from 'axios';
+import axios from 'axios';
 
 const config = {
   apiKey: "AIzaSyAPTIDOWPcKXEaBV2_sbh24JdhS9KL1zu8",
@@ -22,7 +22,7 @@ const firebaseUrl = (url: string) => `https://${config.functionsUrl}/${url}`;
 // Local cloud server:
 // const fbUrl = url => 'http://localhost:3000/tobby-helper/us-central1/' + url;
 
-export const auth = firebase.auth;
+export const firebaseAuth = firebase.auth;
 export const database = firebase.database();
 
 const firebasePostRequest = async (endpoint: string, data: any) => {
@@ -43,20 +43,21 @@ const firebasePostRequest = async (endpoint: string, data: any) => {
   )
 };
 
-export function checkConnection() {
+export const checkConnection = async () => {
   let result = false;
-  const connectedRef = firebase.database().ref('.info/connected');
-  connectedRef.on('value', snap => {
-    if (snap.val() && window.navigator.onLine) {
-      result = true;
-    }
-  });
+
+  await database.ref('.info/connected')
+    .on('value', snap => {
+      if (snap.val() && window.navigator.onLine) {
+        result = true;
+      }
+    });
 
   return result;
-}
+};
 
 const getToken = async () => {
-  const user: User | null =  await auth().currentUser;
+  const user: User | null =  await firebaseAuth().currentUser;
 
   if (user) {
     return await user.getIdToken();
