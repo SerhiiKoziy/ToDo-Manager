@@ -20,7 +20,7 @@ interface IEventProps {
   className?: string;
 }
 
-export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps): any => {
+export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps) => {
   const { temp, weather }: IWeather = event && event.weather;
   const { description, main, icon }: IWeatherTemp = weather[0];
   const cloudImageUrl = `http://openweathermap.org/img/w/${icon}.png`;

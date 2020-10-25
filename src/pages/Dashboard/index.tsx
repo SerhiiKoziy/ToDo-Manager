@@ -59,7 +59,7 @@ const Dashboard = () => {
   );
 
   const handleDrop = useCallback(
-    (index: number, event: IEvent, target: any): void => {
+    (index: number, event: IEvent, target: string): void => {
       const changedEvent = events.find((eventItem: IEvent) => (eventItem.eventId == event.eventId));
 
       if (changedEvent) {

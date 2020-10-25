@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState, ReactNode } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 import classNames from "classnames";
 
 interface IRootProps {
-  children?: any;
+  children?: ReactNode;
 }
 
 const Root = ({ children }: IRootProps) => {
