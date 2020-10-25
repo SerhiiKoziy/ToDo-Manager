@@ -12,7 +12,7 @@ interface IRegistrationBlockProps {
   className?: string;
 }
 
-const RegistrationBlock = ({ className,email, password, type }: IRegistrationBlockProps) => {
+const Registration = ({ className,email, password, type }: IRegistrationBlockProps) => {
   const [phase, setPhase] = useState('');
   const [emailValue, setEmail] = useState(email);
   const [passwordValue, setPassword] = useState(password);
@@ -79,4 +79,4 @@ const RegistrationBlock = ({ className,email, password, type }: IRegistrationBlo
   )
 };
 
-export default RegistrationBlock;
+export default Registration;

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { auth } from 'firebase/app';
 
-import LoginBlock from './LoginBlock';
-import RegistrationBlock from './RegistrationBlock';
+import Login from './Login';
+import Registration from './Registration';
 
 import styles from './styles.module.scss';
-import { faTemperatureLow } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Authorization extends Component {
   constructor(props) {
@@ -17,23 +15,6 @@ class Authorization extends Component {
       email: '',
       password: '',
     };
-  }
-
-  loginWithGoogle() {
-    const provider = new auth.GoogleAuthProvider();
-    this.loginWithOtherAcc(provider);
-  }
-
-  loginWithFacebook() {
-    const provider = new auth.FacebookAuthProvider();
-    this.loginWithOtherAcc(provider);
-  }
-
-  async loginWithOtherAcc(provider) {
-    this.setState({ emailPhase: 'sendingFormData' });
-    auth().useDeviceLanguage();
-
-    return await auth().signInWithRedirect(provider);
   }
 
   sighOut() {
@@ -56,24 +37,14 @@ class Authorization extends Component {
       <div className={styles.login}>
         {
           type === 'registration' ? (
-            <RegistrationBlock />
+            <Registration />
           ) : (
-            <LoginBlock
+            <Login
               phase={this.state.phase}
             />
           )
         }
-        {
-          <div className={styles.authButtons}>
-            <button
-              name="login-google"
-              type="primary"
-              onClick={() => this.loginWithGoogle()}
-            >
-              Log in with Google
-            </button>
-          </div>
-        }
+
         <div className={styles.controlButtons}>
           <button
             className={`change-tab ${this.state.activeButton ? 'active' : ''}`}
@@ -97,4 +68,4 @@ class Authorization extends Component {
   }
 }
 
-export default Login
+export default Authorization;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import Login from '../../modules/auth/auth';
+import Authorization from '../../modules/Authorization/auth';
 import Header from '../../modules/Header';
 import Footer from '../../modules/Footer';
 import Dashboard from '../Dashboard';
@@ -61,7 +61,7 @@ const Root = ({ children }: IRootProps) => {
         >
           <FontAwesomeIcon icon={faTimes} />
         </div>
-        <Login />
+        <Authorization />
       </div>
 
       <div className={styles.routeWr}>

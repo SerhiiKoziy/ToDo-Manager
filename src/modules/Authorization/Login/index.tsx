@@ -12,9 +12,9 @@ interface IRegistrationBlockProps {
   phase: string;
   type: string;
   className?: string;
-}
+};
 
-export const LoginBlock = ({ className, email, password, phase, type }: IRegistrationBlockProps) => {
+const Login = ({ className, email, password, phase, type }: IRegistrationBlockProps) => {
   const [phaseValue, setPhase] = useState(phase);
   const [emailValue, setEmail] = useState(email);
   const [passwordValue, setPassword] = useState(password);
@@ -98,16 +98,16 @@ export const LoginBlock = ({ className, email, password, phase, type }: IRegistr
 
   return (
     <div className={styles.loginWrapper}>
+      <h3>Login using email</h3>
       {
         phase === 'start' ? (
           <div className={styles.enterWithEmail}>
             <form
               onSubmit={(e) => {
-                e.preventDefault();
+                // e.preventDefault();
                 handleEmail();
               }}
             >
-              <h3>Enter your email</h3>
               <input
                 type="email"
                 onChange={handleChangeEmail}
@@ -115,7 +115,7 @@ export const LoginBlock = ({ className, email, password, phase, type }: IRegistr
                 placeholder="email"
               />
               {/* {this.state.preloader ? <Spin /> :
-          <Button name="next" type="primary" htmlType='submit'>Next</Button>}*/}
+              <Button name="next" type="primary" htmlType='submit'>Next</Button>}*/}
               <button name="next" type="submit">Next</button>
             </form>
           </div>
@@ -123,18 +123,18 @@ export const LoginBlock = ({ className, email, password, phase, type }: IRegistr
           <div>
             <form
               onSubmit={(e) => {
-                e.preventDefault();
+                // e.preventDefault();
                 loginWithEmail();
               }}
             >
-              <h2>
-                {
-                  phase === 'creation' ? (
-                    `Account with email ${emailValue}
-                does not exist. Enter password to create new account`
-                  ) : 'Enter your password'
-                }
-              </h2>
+              {/*<h2>*/}
+              {/*  {*/}
+              {/*    phase === 'creation' ? (*/}
+              {/*      `Account with email ${emailValue}*/}
+              {/*  does not exist. Enter password to create new account`*/}
+              {/*    ) : 'Enter your password'*/}
+              {/*  }*/}
+              {/*</h2>*/}
               <input
                 type="password"
                 placeholder="Password"
@@ -154,10 +154,12 @@ export const LoginBlock = ({ className, email, password, phase, type }: IRegistr
         )
       }
 
+      <h3>Or google account</h3>
+
       <div className={styles.authButtons}>
         <Button
           // name="login-google"
-          // type="primary"
+          variant="outlined"
           onClick={handleLoginWithGoogle}
         >
           Log in with Google
@@ -167,4 +169,4 @@ export const LoginBlock = ({ className, email, password, phase, type }: IRegistr
   )
 };
 
-// export default LoginBlock1;
+export default Login;
