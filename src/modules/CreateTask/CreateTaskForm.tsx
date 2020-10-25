@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import DatePicker from "../../components/DatePicker";
 import TextField from "../../components/TextField";
-import PlacesAutocompleteTom from "../../components/PlacesAutocompleteTom";
+// import PlacesAutocompleteTom from "../../components/PlacesAutocompleteTom";
 
 import { getIsUserLogin } from "../../store/user/selectors";
 import { getCurrentEvent } from "../../store/events/selectors";

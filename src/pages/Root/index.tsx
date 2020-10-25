@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useState } from "react";
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,37 +9,34 @@ import Footer from '../../modules/Footer';
 import Dashboard from '../Dashboard';
 
 import { fetchUserAction } from '../../store/user/actionCreators';
+import { getUserMeta } from '../../store/user/selectors';
 import { fetchEvents } from '../../store/events/actionCreators';
-
-import IState from '../../types/IState';
-import IUserMeta from "../../types/IUserMeta";
 
 import './styles.scss';
 
 interface IRootProps {
-  userMeta: IUserMeta | null;
-  fetchUserAction: () => void;
-  fetchEvents: () => void;
   children?: any;
 }
 
-const Root = ({ children, userMeta, fetchUserAction, fetchEvents }: IRootProps) => {
+const Root = ({ children }: IRootProps) => {
   const [ openAuth, setOpenAuth ] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const userMeta = useSelector(getUserMeta);
 
   useEffect(
     () => {
-      fetchUserAction();
+      dispatch(fetchUserAction());
     },
-    [],
+    [dispatch],
   );
 
   useEffect(
     () => {
       if (userMeta) {
-        fetchEvents();
+        dispatch(fetchEvents());
       }
     },
-    [userMeta],
+    [userMeta, dispatch],
   );
 
   return (
@@ -67,10 +64,4 @@ const Root = ({ children, userMeta, fetchUserAction, fetchEvents }: IRootProps) 
   );
 };
 
-export default connect(
-  (state: IState) => ({
-    user: state.user,
-    userMeta: state.user.userMeta,
-  }),
-  { fetchUserAction, fetchEvents }
-)(Root);
+export default Root

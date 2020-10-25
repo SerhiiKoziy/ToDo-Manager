@@ -11,13 +11,13 @@ import IEvent from "../../types/IEvent";
 
 import './styles.module.scss';
 
-interface ITaskPageProps {
+interface IEventPageProps {
   events: IEvent[];
   deleteTask: (eventId: string) => void;
   children: ReactNode;
 }
 
-const TaskPage = ({ events, deleteTask, children }: ITaskPageProps) => {
+const EventPage = ({ events, deleteTask, children }: IEventPageProps) => {
   const [ currentTask, setCurrentTask ] = useState<IEvent>();
   const { taskId } = useParams();
   useEffect(
@@ -64,4 +64,4 @@ export default connect(
     events: state.events.list, //TODO add hooks
   }),
   { push }
-)(TaskPage);
+)(EventPage);
