@@ -1,18 +1,14 @@
-.root, .page {
-  height: 100%;
-}
-
 .root {
   position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
 
-  .route-wr {
+  .routeWr {
     height: 100%;
   }
 
-  .auth-wr {
+  .authWr {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -34,7 +30,7 @@
       opacity: 1;
     }
 
-    .close-auth {
+    .closeAuth {
       display: flex;
       flex-direction: row-reverse;
 
@@ -52,6 +48,7 @@
   box-sizing: border-box;
   max-height: calc(100vh - 60px);
   overflow: auto;
+  height: 100%;
 }
 
 $blue: #006ec5;
@@ -59,7 +56,6 @@ $grey: #585858;
 $lightblue: #00b3e3;
 html, body {
   height: 100%;
-  //font-family: $book;
   font-size: 16px;
   line-height: 1.125;
   color: #fff;

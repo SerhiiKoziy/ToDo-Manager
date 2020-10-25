@@ -12,7 +12,8 @@ import { fetchUserAction } from '../../store/user/actionCreators';
 import { getUserMeta } from '../../store/user/selectors';
 import { fetchEvents } from '../../store/events/actionCreators';
 
-import './styles.scss';
+import styles from './styles.module.scss';
+import classNames from "classnames";
 
 interface IRootProps {
   children?: any;
@@ -40,12 +41,22 @@ const Root = ({ children }: IRootProps) => {
   );
 
   return (
-    <div className="root">
+    <div className={styles.root}>
       <Header handleAuth={() => setOpenAuth(true)} />
 
-      <div className={`auth-wr ${openAuth ? 'open' : 'close'}`}>
+      <div
+        className={
+          classNames(
+            styles.authWr,
+            {
+              [styles.open]: openAuth,
+              [styles.close]: !openAuth,
+            }
+          )
+        }
+      >
         <div
-          className="close-auth"
+          className={styles.closeAuth}
           onClick={() => setOpenAuth(false)}
         >
           <FontAwesomeIcon icon={faTimes} />
@@ -53,7 +64,7 @@ const Root = ({ children }: IRootProps) => {
         <Login />
       </div>
 
-      <div className="route-wr">
+      <div className={styles.routeWr}>
         {children}
 
         <Dashboard />
