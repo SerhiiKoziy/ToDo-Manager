@@ -95,17 +95,17 @@ const Header = ({ handleAuth }: IHeaderProps) => {
         <Link to="/profile">
           <span>Hello!  Dear, { preparedTitle }</span>
         </Link>
-        <div className="login-wr" onClick={() => handleAuth()}>
-          <div className="avatar-wr">
-            {
-              url ? (
-                <img src={url} alt="avatar" />
-              ) : (
-                <FontAwesomeIcon icon={faSignInAlt} />
-              )
-            }
-          </div>
-        </div>
+        {/*<div className="login-wr" onClick={() => handleAuth()}>*/}
+        {/*  <div className="avatar-wr">*/}
+        {/*    {*/}
+        {/*      url ? (*/}
+        {/*        <img src={url} alt="avatar" />*/}
+        {/*      ) : (*/}
+        {/*        <FontAwesomeIcon icon={faSignInAlt} />*/}
+        {/*      )*/}
+        {/*    }*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </header>
   );

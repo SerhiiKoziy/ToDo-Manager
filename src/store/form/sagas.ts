@@ -3,9 +3,9 @@ import { submit } from 'redux-form';
 
 import { isFormValid, isFormPristine } from './selectors';
 
-export const VALIDATE_TASK_FORM = 'VALIDATE_TASK_FORM';
+export const VALIDATE_EVENT_FORM = 'VALIDATE_EVENT_FORM';
 
-function* validateTaskForm() {
+function* validateEventForm() {
 //   const isPriceFormValid = yield select(isFormValid(CHANGE_PRICE_FORM));
 //   // const isPriceFormPristine = yield select(isFormPristine(CHANGE_PRICE_FORM));
 //   // const businessType = yield select(getBusinessTypeFilter);
@@ -23,5 +23,5 @@ function* validateTaskForm() {
 }
 
 export default function* watcher() {
-  yield takeLatest(VALIDATE_TASK_FORM, validateTaskForm);
+  yield takeLatest(VALIDATE_EVENT_FORM, validateEventForm);
 }

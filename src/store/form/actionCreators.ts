@@ -7,4 +7,4 @@ import { EVENT_FORM } from '../../configs/forms';
 // import { VALIDATE_VARIANT_PRICE_FORM } from './sagas';
 
 // export const validateChangePriceForm = () => actionFactory(VALIDATE_VARIANT_PRICE_FORM);
-export const validateTaskForm = () => submit(EVENT_FORM);
+export const validateEventForm = () => submit(EVENT_FORM);
