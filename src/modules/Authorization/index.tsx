@@ -1,6 +1,9 @@
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { useSelector } from "react-redux";
 import { auth } from 'firebase/app';
 import { Button } from '@material-ui/core';
+
+import { getIsUserLogin } from "../../store/user/selectors";
 
 import Login from './Login';
 import Registration from './Registration';
@@ -12,6 +15,7 @@ const Authorization = () => {
   const [type, setType] = useState('auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isUserLogin = useSelector(getIsUserLogin);
 
   const sighOut = () => {
     auth().signOut();
@@ -100,14 +104,18 @@ const Authorization = () => {
           { type === 'auth' ? 'Registration' : 'Authorization' }
         </Button>
 
-        <Button
-          className={styles.sighOut}
-          name="sigh-out"
-          variant="outlined"
-          onClick={sighOut}
-        >
-          {'Sign out'}
-        </Button>
+        {
+          isUserLogin && (
+            <Button
+              className={styles.sighOut}
+              name="log-out"
+              variant="outlined"
+              onClick={sighOut}
+            >
+              {'Log out'}
+            </Button>
+          )
+        }
       </div>
     </div>
   );
