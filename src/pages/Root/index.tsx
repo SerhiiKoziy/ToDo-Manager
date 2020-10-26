@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import Authorization from '../../modules/Authorization/auth';
+import Authorization from '../../modules/Authorization';
 import Header from '../../modules/Header';
 import Footer from '../../modules/Footer';
 import Dashboard from '../Dashboard';
