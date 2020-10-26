@@ -12,18 +12,20 @@ import styles from './styles.module.scss';
 
 const Authorization = () => {
   const [phase, setPhase] = useState('start');
-  const [type, setType] = useState('auth');
+  const [type, setType] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const isUserLogin = useSelector(getIsUserLogin);
 
-  const sighOut = () => {
-    auth().signOut();
-    // this.props.deleteUserStore(); //TODO add handler
-  };
+  const sighOut = useCallback(
+    () => {
+      auth().signOut();
+      // dispatch(deleteUserStore()); //TODO add handler
+    }, []
+  );
 
   const handleChangeType = useCallback(
-    () => setType(type === 'auth' ? 'registration' : 'auth'),
+    () => setType(type === 'login' ? 'registration' : 'login'),
     [type]
   );
 
@@ -35,9 +37,6 @@ const Authorization = () => {
 
       if (res && res.length === 0) {
         console.log("Invalid login email. Please, registration your profile or choose a social button.");
-        // this.setState({ preloader: false, activeButton: true });
-      } else {
-        // this.setState({ emailPhase: 'using', preloader: false, activeButton: false });
       }
     }
   };
@@ -101,7 +100,7 @@ const Authorization = () => {
           variant="outlined"
           onClick={handleChangeType}
         >
-          { type === 'auth' ? 'Registration' : 'Authorization' }
+          { type === 'login' ? 'Registration' : 'Authorization' }
         </Button>
 
         {

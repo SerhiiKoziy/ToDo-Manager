@@ -14,7 +14,7 @@ interface IRegistrationBlockProps {
   password: string;
   phase: string;
   className?: string;
-};
+}
 
 const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onChangePassword, onChangePhase, loginWithEmail }: IRegistrationBlockProps) => {
   const isCreationAccount = phase === 'creation';
@@ -64,14 +64,6 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
                 loginWithEmail();
               }}
             >
-              {/*<h2>*/}
-              {/*  {*/}
-              {/*    phase === 'creation' ? (*/}
-              {/*      `Account with email ${emailValue}*/}
-              {/*  does not exist. Enter password to create new account`*/}
-              {/*    ) : 'Enter your password'*/}
-              {/*  }*/}
-              {/*</h2>*/}
               <input
                 type="password"
                 placeholder="Password"
