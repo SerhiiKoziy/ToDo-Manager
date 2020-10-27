@@ -29,7 +29,6 @@ const EventPage = ({ events, deleteTask, children }: IEventPageProps) => {
   );
 
   const handleDeleteTask = (currentTask: IEvent) => {
-    // this.props.push('/');
     deleteTask(currentTask.eventId);
   };
 

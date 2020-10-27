@@ -1,0 +1,15 @@
+@import './color-palette';
+
+:root {
+  --theme-color-accent: #{$black};
+  --theme-color-accent-plus: #{$black};
+  --theme-color-advert: #{$red};
+  --theme-color-accent-light: #{lighten($black, 80)};
+  --theme-color-accent-white: #{$white};
+  --theme-color-mute: #{$black};
+  --theme-color-deep: #{$black};
+  --theme-color-hover: #{lighten($black, 30)};
+  --theme-color-button-inside: #{$white};
+
+  --theme-font-family: Arial, Helvetica, sans-serif;
+}

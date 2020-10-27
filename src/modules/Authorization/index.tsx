@@ -69,7 +69,7 @@ const Authorization = () => {
   }
 
   return (
-    <div className={styles.login}>
+    <div className={styles.authorization}>
       {
         type === 'registration' ? (
           <Registration
@@ -95,7 +95,7 @@ const Authorization = () => {
 
       <div className={styles.controlButtons}>
         <Button
-          className={styles.changeTab}
+          className={styles.changeFormTypeButton}
           name="change-type"
           variant="outlined"
           onClick={handleChangeType}
@@ -106,7 +106,7 @@ const Authorization = () => {
         {
           isUserLogin && (
             <Button
-              className={styles.sighOut}
+              className={styles.sighOutButton}
               name="log-out"
               variant="outlined"
               onClick={sighOut}

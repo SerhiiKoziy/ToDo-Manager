@@ -1,19 +1,20 @@
 
-.task {
+.event {
   position: relative;
 
   margin: 0 0 20px 0;
   padding: 10px;
 
+  color: #fff;
+
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 2px;
-  color: #fff;
   box-shadow: 0 0 10px transparentize(#000, 0.7);
   background: linear-gradient(135deg, rgba(253, 253, 253, 0.4), rgba(0, 127, 163, 0));
 
   &.onBoardTask {
-    .taskSecondaryInfo {
+    .eventSecondaryInfo {
       display: none;
     }
 
@@ -22,20 +23,25 @@
     }
   }
 
-  .taskContent {
+  .eventContent {
     position: relative;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .tempList {
-      padding: 0 0 0 22px;
-      margin: -10px 0 0 0;
+    .eventMainInfo {
+      .temperatureTitle {
+      }
 
-      .temp {
-        margin: 0 0 5px 0;
+      .tempList {
+        padding: 0 0 0 22px;
+        margin: -10px 0 0 0;
 
+        .temp {
+          margin: 0 0 5px 0;
+
+        }
       }
     }
   }
@@ -44,8 +50,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 40px;
+
     width: 40px;
+    height: 40px;
 
     img {
       width: 100%;
@@ -53,31 +60,39 @@
   }
 
   .controls {
-    margin-top: 15px;
+    position: relative;
+
     display: flex;
     justify-content: space-around;
+
+    margin-top: 15px;
+
     text-align: center;
-    position: relative;
-    transform: translateY(10%);
     opacity: 0;
+    transform: translateY(10%);
     transition: transform 0.5s ease, opacity 0.5s ease;
 
     .control {
-      padding: 5px 0;
-      box-sizing: border-box;
-      height: 30px;
       width: 30px;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 1px #000;
-      border-radius: 2px;
+      height: 30px;
+
+      padding: 5px 0;
       margin-right: 5px;
+
       color: black;
+      background: rgba(255, 255, 255, 0.5);
+
+      box-sizing: border-box;
+      box-shadow: 0 0 1px #000;
+
+      border-radius: 2px;
       cursor: pointer;
       transition: background 0.3s, box-shadow 0.3s;
 
       a, .deleteButton {
-        height: 100%;
         width: 100%;
+        height: 100%;
+
         display: flex;
         justify-content: center;
         align-items: center;
