@@ -13,9 +13,9 @@
     .lists {
       position: relative;
 
-      display: flex;
-
       width: 100%;
+
+      display: flex;
 
       z-index: 1;
 
@@ -29,8 +29,8 @@
       }
 
       .listName {
-        text-align: center;
         margin: 10px 0;
+        text-align: center;
 
         h3 {
           margin: 0;
@@ -86,9 +86,11 @@
           }
 
           &.mobile{
-            display: flex;
-            overflow: auto;
             height: calc(100vh - 150px);
+
+            display: flex;
+
+            overflow: auto;
           }
 
           .list {

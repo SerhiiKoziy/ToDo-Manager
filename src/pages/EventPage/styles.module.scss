@@ -7,12 +7,14 @@
   }
 
   .inside-wr {
-    display: flex;
     height: 100%;
 
+    display: flex;
+
     .task-header {
-      line-height: 60px;
       height: 60px;
+
+      line-height: 60px;
 
       a {
         i {
@@ -34,11 +36,14 @@
       }
 
       .markerMap {
-        height: 40px;
         width: 40px;
-        border-radius: 50%;
+        height: 40px;
+
         padding: 5px;
+
+        border-radius: 50%;
         background: #2c6c89;
+
         img {
           max-width: 100%;
         }
@@ -63,6 +68,7 @@
 
       .task-wr {
         width: 100%;
+
         overflow: auto;
       }
 

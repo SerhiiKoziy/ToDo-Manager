@@ -1,6 +1,10 @@
+//@import '@styles';
+
 .root {
   position: relative;
+
   height: 100vh;
+
   display: flex;
   flex-direction: column;
 
@@ -12,13 +16,17 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 300px;
-    transition: 0.4s all;
+
+    max-width: 500px;
+    width: calc(100% - 20px);
+
     padding: 20px;
     border: 1px solid #fff;
     border-radius: 3px;
     background: rgb(42, 96, 122);
+
+    transform: translate(-50%, -50%);
+    transition: 0.4s all;
 
     &.close {
       z-index: -100;
@@ -43,12 +51,13 @@
 
 .page {
   max-width: 1400px;
+  height: 100%;
+  max-height: calc(100vh - 60px);
+
   margin: 0 auto;
   padding: 0 40px 0;
   box-sizing: border-box;
-  max-height: calc(100vh - 60px);
   overflow: auto;
-  height: 100%;
 }
 
 $blue: #006ec5;

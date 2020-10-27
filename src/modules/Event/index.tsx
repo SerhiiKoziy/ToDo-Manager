@@ -26,18 +26,18 @@ export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps) 
   const cloudImageUrl = `http://openweathermap.org/img/w/${icon}.png`;
 
   return (
-    <div className={classNames(className, styles.task)}>
-      <div className={styles.taskContent}>
-        <div className={styles.taskMainInfo}>
+    <div className={classNames(className, styles.event)}>
+      <div className={styles.eventContent}>
+        <div className={styles.eventMainInfo}>
 
           <h4>Title: {event.title}</h4>
           <p>Desc: {event.description}</p>
           <p>{`${moment(event.date).format('LL')}`}</p>
-          <p>{`${event.address}`}</p>
+          {/*<p>{`${event.address}`}</p>*/}
 
-          <p>
-            <FontAwesomeIcon icon={faTemperatureLow} /> <br/>
-            Temperature celsius:
+          <p className={styles.temperatureTitle}>
+            <FontAwesomeIcon icon={faTemperatureLow} />
+            <span> Temperature celsius:</span>
           </p>
 
           {
@@ -51,7 +51,7 @@ export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps) 
             )
           }
         </div>
-        <div className={styles.taskSecondaryInfo}>
+        <div className={styles.eventSecondaryInfo}>
           <p>Second info:</p>
           {
             weather[0] && (
