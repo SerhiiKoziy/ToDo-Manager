@@ -1,27 +1,19 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 import CreateTaskForm from './CreateTaskForm';
 
 import { createEvent, updateEvent } from "../../store/events/actionCreators";
 import { getCurrentEvent } from "../../store/events/selectors";
+import { getIsUserLogin } from "../../store/user/selectors";
 
 import styles from './styles.module.scss';
 
 const CreateTask = () => {
   const dispatch = useDispatch();
   const currentEvent = useSelector(getCurrentEvent);
-
-  // const getLocationByAddress = (address) => {
-  //   return new Promise((resolve, reject) => {
-  //     geocodeByAddress(address, (err, location) => {
-  //       if (err) {
-  //         reject(err);
-  //       }
-  //       resolve(location);
-  //     });
-  //   });
-  // };
+  const isUserLogin = useSelector(getIsUserLogin);
 
   const publish = useCallback(
     (): void => {
@@ -37,13 +29,17 @@ const CreateTask = () => {
   return (
     <div className={styles.formWrapper}>
       <CreateTaskForm />
-      <button
-        className="btn btn--fw"
-        onClick={publish}
-        // disabled={!this.isValidForm() || !userUID}
-      >
-        {currentEvent ? 'Edit event' : 'Add event'}
-      </button>
+      <div className={styles.eventButtonWrapper}>
+        <Button
+          className={styles.eventButton}
+          onClick={publish}
+          disabled={!isUserLogin}
+          variant="outlined"
+        >
+          {currentEvent ? 'Edit event' : 'Add event'}
+        </Button>
+      </div>
+
     </div>
   );
 };

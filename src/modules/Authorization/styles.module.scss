@@ -1,9 +1,10 @@
-.login {
+.authorization {
   .enterWithEmail {
     form {
       input {
         width: 100%;
         height: 30px;
+
         box-sizing: border-box;
       }
     }
@@ -17,19 +18,24 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
     border-top: 1px solid #fff;
 
     button {
       display: flex;
       align-items: center;
+
       padding: 10px;
       margin: 0;
+
       border: 1px solid;
       border-radius: 5px;
+
       text-align: center;
       line-height: 16px;
       font-size: 16px;
       cursor: pointer;
+
       transition: 0.4s all;
 
       &:hover {
@@ -44,10 +50,6 @@
 
   input {
     display: block;
-  }
-
-  div {
-    padding: 10px 0 10px 0;
   }
 
   button {
@@ -69,27 +71,32 @@
   .controlButtons {
     display: flex;
     justify-content: space-between;
+
     border-top: 1px solid #fff;
     padding: 15px 0 0 0;
 
+    .changeFormTypeButton {
+      color: #fff;
+    }
+
     button {
-      cursor: pointer;
       margin: 0;
       padding: 10px;
 
-      &.sighOut {
-        border: 1px solid #f1000085;
-        border-radius: 6px;
-        transition: 0.4s all;
-
-        &:hover {
-          border: 1px solid #f10000c4;
-        }
-      }
+      cursor: pointer;
     }
 
-    .googleBtn {
+    .sighOutButton {
+      color: #fff;
+      border: 2px solid #f1000085;
+      border-radius: 6px;
 
+      transition: 0.4s all;
+
+      &:hover {
+        background: #f1000085;
+        border: 2px solid rgba(241, 78, 43, 0.77);
+      }
     }
   }
 }

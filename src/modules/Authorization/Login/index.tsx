@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-ui/core';
+import { auth } from "firebase";
 
 import styles from './styles.module.scss';
-import {auth} from "firebase";
 
 interface IRegistrationBlockProps {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
@@ -45,19 +45,31 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
       <h3>Login using email</h3>
       {
         phase === 'start' ? (
-          <div className={styles.enterWithEmail}>
-            <form onSubmit={onSubmit}>
+          <div className={styles.formWrapper}>
+            <form
+              className={styles.form}
+              onSubmit={onSubmit}
+            >
               <input
+                className={styles.input}
                 type="email"
                 onChange={onChangeEmail}
                 value={email}
-                placeholder="email"
+                placeholder="Email"
               />
-              <button name="next" type="submit">Next</button>
+              <Button
+                className={styles.nextButton}
+                name="next"
+                size="small"
+                variant="outlined"
+                type="submit"
+              >
+                Next
+              </Button>
             </form>
           </div>
         ) : (
-          <div>
+          <div className={styles.formWrapper}>
             <form
               onSubmit={(e) => {
                 // e.preventDefault();
@@ -70,12 +82,15 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
                 onChange={onChangePassword}
                 value={password}
               />
-              <button
+              <Button
+                className={styles.nextButton}
                 name="login"
+                size="small"
+                variant="text"
                 type="submit"
               >
                 {isCreationAccount ? 'Create account and log in' : 'Log in'}
-              </button>
+              </Button>
               <a onClick={() => onChangePhase('start')}>Back</a>
               {
                 !isCreationAccount ? (
@@ -89,8 +104,9 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
 
       <h3>Or google account</h3>
 
-      <div className={styles.authButtons}>
+      <div className={styles.societyButton}>
         <Button
+          className={styles.googleAuth}
           name="login-google"
           variant="outlined"
           onClick={handleLoginWithGoogle}
