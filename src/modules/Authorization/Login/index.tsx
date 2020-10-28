@@ -55,6 +55,7 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
                 type="email"
                 onChange={onChangeEmail}
                 value={email}
+                disabled
                 placeholder="Email"
               />
               <Button
@@ -81,6 +82,7 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
                 placeholder="Password"
                 onChange={onChangePassword}
                 value={password}
+                disabled
               />
               <Button
                 className={styles.nextButton}
