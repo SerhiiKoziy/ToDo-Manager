@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 
 import CreateTaskForm from './CreateTaskForm';
 
-import { getCurrentEvent } from "../../store/events/selectors";
+import { getCurrentEvent, getEventsIsLoading } from "../../store/events/selectors";
 import { getIsUserLogin } from "../../store/user/selectors";
 
 import { createEvent, updateEvent } from "../../store/events/actionCreators";
@@ -16,6 +16,7 @@ const CreateTask = () => {
   const dispatch = useDispatch();
   const currentEvent = useSelector(getCurrentEvent);
   const isUserLogin = useSelector(getIsUserLogin);
+  const isLoadingEvents = useSelector(getEventsIsLoading);
 
   const publish = useCallback(
     (): void => {
@@ -35,10 +36,16 @@ const CreateTask = () => {
     [dispatch, validateEventForm],
   );
 
-
   return (
     <div className={styles.formWrapper}>
+      {
+        isLoadingEvents && (
+          <span className={styles.loader}>Loading...</span>
+        )
+      }
+
       <CreateTaskForm onSubmit={publish}/>
+
       <div className={styles.eventButtonWrapper}>
         <Button
           className={styles.eventButton}
