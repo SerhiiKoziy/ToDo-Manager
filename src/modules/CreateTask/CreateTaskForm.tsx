@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import { Field, reduxForm } from 'redux-form';
 import { useSelector } from "react-redux";
 
@@ -10,6 +10,8 @@ import { getIsUserLogin } from "../../store/user/selectors";
 import { getCurrentEvent } from "../../store/events/selectors";
 
 import { EVENT_FORM } from '../../configs/forms';
+
+import { required } from '../../utils/validations';
 
 const CreateTaskForm = () => {
   const isUserLogin = useSelector(getIsUserLogin);
@@ -36,7 +38,7 @@ const CreateTaskForm = () => {
         component={DatePicker}
         placeholder={"Choose event's date"}
         label={"Choose event's date"}
-        // validate={[required]}
+        validate={required}
         fullWidth
         disablePast
         // disabled={!editable}
@@ -49,9 +51,9 @@ const CreateTaskForm = () => {
         type="text"
         className={'input-wr'}
         component={TextField}
-        placeholder={'Enter title'}
-        label={'Enter event name'}
-        // validate={[required]}
+        placeholder={'Enter event title'}
+        label={'Enter event title'}
+        validate={required}
         fullWidth
         // disabled={!editable}
         defaultValue={currentEvent?.title}
@@ -64,9 +66,7 @@ const CreateTaskForm = () => {
         component={TextField}
         placeholder={'Enter description'}
         label={'Add description'}
-        // validate={[required]}
         fullWidth
-        // disabled={!editable}
         defaultValue={currentEvent?.description}
       />
       {/*<Field*/}

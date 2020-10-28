@@ -4,9 +4,11 @@ import { Button } from '@material-ui/core';
 
 import CreateTaskForm from './CreateTaskForm';
 
-import { createEvent, updateEvent } from "../../store/events/actionCreators";
 import { getCurrentEvent } from "../../store/events/selectors";
 import { getIsUserLogin } from "../../store/user/selectors";
+
+import { createEvent, updateEvent } from "../../store/events/actionCreators";
+import { validateEventForm } from "../../store/form/actionCreators";
 
 import styles from './styles.module.scss';
 
@@ -23,23 +25,31 @@ const CreateTask = () => {
         dispatch(createEvent());
       }
     },
-    [dispatch, currentEvent],
+    [dispatch, currentEvent, updateEvent, createEvent],
   );
+
+  const onSave = useCallback(
+    (): void => {
+      dispatch(validateEventForm());
+    },
+    [dispatch, validateEventForm],
+  );
+
 
   return (
     <div className={styles.formWrapper}>
-      <CreateTaskForm />
+      <CreateTaskForm onSubmit={publish}/>
       <div className={styles.eventButtonWrapper}>
         <Button
           className={styles.eventButton}
-          onClick={publish}
+          onClick={onSave}
           disabled={!isUserLogin}
           variant="outlined"
+          type="button"
         >
           {currentEvent ? 'Edit event' : 'Add event'}
         </Button>
       </div>
-
     </div>
   );
 };
