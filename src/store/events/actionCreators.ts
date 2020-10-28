@@ -2,7 +2,7 @@ import { EVENTS_REQUESTED, UPDATE_EVENT, CREATE_EVENT, DELETE_EVENT } from './sa
 
 import { actionFactory } from '../utils';
 
-import { SET_EVENTS, SET_CURRENT_EVENT, RESET_CURRENT_EVENT, IEventsState } from './reducer';
+import { SET_EVENTS, SET_CURRENT_EVENT, RESET_CURRENT_EVENT, LOADING_EVENT, IEventsState } from './reducer';
 
 import IEvent from '../../types/IEvent';
 
@@ -17,3 +17,5 @@ export const fetchEvents = () => actionFactory(EVENTS_REQUESTED);
 export const updateEvent = (event?: IEvent) => actionFactory(UPDATE_EVENT, event);
 export const createEvent = () => actionFactory(CREATE_EVENT);
 export const deleteEvent = (eventId: string) => actionFactory(DELETE_EVENT, { eventId });
+
+export const loadingEvent = (isLoading: boolean) => actionFactory(LOADING_EVENT, isLoading);

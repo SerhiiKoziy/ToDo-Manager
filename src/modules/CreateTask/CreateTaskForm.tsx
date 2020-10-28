@@ -7,7 +7,7 @@ import TextField from "../../components/TextField";
 // import PlacesAutocompleteTom from "../../components/PlacesAutocompleteTom";
 
 import { getIsUserLogin } from "../../store/user/selectors";
-import { getCurrentEvent } from "../../store/events/selectors";
+import { getCurrentEvent, getEventsIsLoading } from "../../store/events/selectors";
 
 import { EVENT_FORM } from '../../configs/forms';
 
@@ -16,6 +16,7 @@ import { required } from '../../utils/validations';
 const CreateTaskForm = () => {
   const isUserLogin = useSelector(getIsUserLogin);
   const currentEvent = useSelector(getCurrentEvent);
+  const isLoadingEvents = useSelector(getEventsIsLoading);
   const nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
 
@@ -31,6 +32,11 @@ const CreateTaskForm = () => {
 
   return (
     <div>
+      {
+        isLoadingEvents && (
+          <span>Loading...</span>
+        )
+      }
       <Field
         name="date"
         type="text"

@@ -37,7 +37,7 @@ const dustbins = [
 
 const Dashboard = () => {
   const events = useSelector(getEventsList);
-  const eventsIsLoading = useSelector(getEventsIsLoading);
+  const isLoadingEvents = useSelector(getEventsIsLoading);
   const dispatch = useDispatch();
 
   const [droppedBoxNames, setDroppedBoxNames] = useState<string[]>([]);
@@ -93,10 +93,6 @@ const Dashboard = () => {
       </DragBox>
     );
   };
-
-  if (eventsIsLoading) {
-    return <span>Loading...</span>
-  }
 
   return (
     <div className={styles.dashboardWrapper}>

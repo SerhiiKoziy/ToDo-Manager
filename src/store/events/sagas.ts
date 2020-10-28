@@ -1,13 +1,12 @@
 import { put, call, select, takeLatest } from "redux-saga/effects";
 import { AnyAction } from 'redux';
 
-import { startFetching, stopFetching } from "../loading/actionCreators";
 import { getWeatherByCoordinates } from "../../api/weatherApi";
 
 import { getEventsFirebase, postEventFirebase, deleteEvent } from '../actions-firebase/events';
 import { database } from "../actions-firebase";
 
-import { setEvents, resetCurrentEvent } from './actionCreators';
+import { setEvents, resetCurrentEvent, loadingEvent } from './actionCreators';
 
 import { getCurrentEvent } from './selectors';
 import { getEventFormValues } from "../form/selectors";
@@ -32,7 +31,7 @@ const getEventsFirebaseAction = async () => {
 
 function* requestEventsAsync() {
   try {
-    yield put(startFetching());
+    yield put(loadingEvent(true));
 
     const getEvents = () => getEventsFirebaseAction().then((events: IEvent[]) => events);
     const eventsList: IEvent[] = yield call(getEvents);
@@ -41,17 +40,17 @@ function* requestEventsAsync() {
 
     yield put(setEvents(eventsArray));
 
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   } catch {
     alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   }
 }
 
 const postEventFirebaseAction = async (event: IEvent): Promise<any> => await postEventFirebase(event);
 
 function* createEventAsync() {
-  yield put(startFetching());
+  yield put(loadingEvent(true));
 
   try {
     const event: IEvent = yield select(getEventFormValues);
@@ -82,10 +81,10 @@ function* createEventAsync() {
       yield call(requestEventsAsync);
     }
 
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   } catch {
     alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   }
 }
 
@@ -102,7 +101,7 @@ interface IUpdateEvent extends AnyAction {
 }
 
 function* updateEventAsync(action?: IUpdateEvent) {
-  yield put(startFetching());
+  yield put(loadingEvent(true));
 
   try {
     const currentTime = new Date().getTime();
@@ -130,10 +129,10 @@ function* updateEventAsync(action?: IUpdateEvent) {
       yield call(requestEventsAsync);
     }
 
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   } catch {
     alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   }
 }
 
@@ -150,7 +149,7 @@ interface IDeleteEventAsyncProps extends AnyAction {
 }
 
 function* deleteEventAsync({ payload: { eventId } }: IDeleteEventAsyncProps) {
-  yield put(startFetching());
+  yield put(loadingEvent(true));
 
   try {
     const deleteEvent = () => deleteEventFirebase(eventId) //TODO change name
@@ -159,10 +158,10 @@ function* deleteEventAsync({ payload: { eventId } }: IDeleteEventAsyncProps) {
 
     yield call(deleteEvent);
     yield call(requestEventsAsync);
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   } catch {
     alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
-    yield put(stopFetching());
+    yield put(loadingEvent(false));
   }
 }
 
