@@ -16,7 +16,7 @@ const { ifDevelopment, ifProduction } = getIfUtils(process.env.NODE_ENV || 'deve
 const { resolve, join } = require('path');
 // const getEnvironments = require('./env');
 
-const PORT = 8089;
+const PORT = 3000;
 const url = `http://localhost:${PORT}`;
 const SRC = resolve(__dirname, 'src');
 
@@ -52,7 +52,7 @@ const aliasDefault = {
   '@components': join(SRC, 'components'),
   '@pages': join(SRC, 'pages'),
   '@modules': join(SRC, 'modules'),
-  '@types': join(SRC, 'types'),
+  '@typing': join(SRC, 'types'),
 };
 
 const config = async () => {

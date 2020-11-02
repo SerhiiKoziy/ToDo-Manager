@@ -1,7 +1,7 @@
 import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 
-import { getWeatherByCoordinates } from '../../api/weatherApi';
+import { getWeatherByCoordinates } from '@api/weatherApi';
 
 import { getEventsFirebase, postEventFirebase, deleteEvent } from '../actions-firebase/events';
 import { database } from '../actions-firebase';
@@ -12,8 +12,8 @@ import { getCurrentEvent } from './selectors';
 import { getEventFormValues } from '../form/selectors';
 import { getUserUid } from '../user/selectors';
 
-import IEvent from '../../types/IEvent';
-import IWeather from '../../types/IWeather';
+import IEvent from '@typing/IEvent';
+import IWeather from '@typing/IWeather';
 
 export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
 export const UPDATE_EVENT = "UPDATE_EVENT";

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-import IState from '../../types/IState';
-import IUserMeta from '../../types/IUserMeta';
+import IState from '@typing/IState';
+import IUserMeta from '@typing/IUserMeta';
 
 import { IUserState } from './reducer';
 

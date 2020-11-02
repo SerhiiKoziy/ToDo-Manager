@@ -1,5 +1,5 @@
-import IState from '../../types/IState';
-import IEvent from '../../types/IEvent';
+import IState from '@typing/IState';
+import IEvent from '@typing/IEvent';
 
 import { IEventsState } from './reducer';
 

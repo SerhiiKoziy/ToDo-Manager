@@ -1,4 +1,4 @@
-import IUserMeta from '../../types/IUserMeta'
+import IUserMeta from '@typing/IUserMeta'
 
 export interface IUserState {
   userMeta: IUserMeta | null;
