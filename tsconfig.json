@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "target": "es5",
     "lib": [
       "dom",
@@ -14,12 +15,28 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": false,
-    "jsx": "react"
+    "jsx": "react",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "^store": [
+        "src/store/index"
+      ],
+      "^config/*": [
+        "src/config/*"
+      ],
+      "^components/*": [
+        "src/components/*"
+      ],
+      "^types/*": [
+        "src/types/*"
+      ]
+    }
   },
   "include": [
-    "src"
+    "./src/**/*"
   ]
 }

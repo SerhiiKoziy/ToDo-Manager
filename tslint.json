@@ -34,14 +34,63 @@
       "options": {
         "imports-groups": [
           {
-            "name": "types"
+            "name": "typing"
+          },
+          {
+            "name": "api"
+          },
+          {
+            "name": "configs"
+          },
+          {
+            "name": "utils"
+          },
+          {
+            "name": "store"
+          },
+          {
+            "name": "components"
+          },
+          {
+            "name": "pages"
+          },
+          {
+            "name": "modules"
           }
         ],
         "matching-rules": [
-//          {
-//            "matches": "^(\\^types)",
-//            "imports-group": "types"
-//          }
+          {
+            "matches": "@(\\@api)",
+            "imports-group": "api"
+          },
+          {
+            "matches": "@(\\@utils)",
+            "imports-group": "utils"
+          },
+          {
+            "matches": "@(\\@configs)",
+            "imports-group": "configs"
+          },
+          {
+            "matches": "@(\\@typing)",
+            "imports-group": "types"
+          },
+          {
+            "matches": "@(\\@store)",
+            "imports-group": "store"
+          },
+          {
+            "matches": "@(\\@components)",
+            "imports-group": "components"
+          },
+          {
+            "matches": "@(\\@pages)",
+            "imports-group": "pages"
+          },
+          {
+            "matches": "@(\\@modules)",
+            "imports-group": "modules"
+          }
         ]
       }
     },
