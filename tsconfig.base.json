@@ -17,13 +17,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "^configs": ["src/configs/src/index.ts"],
-      "^enums": ["src/enums/src/index.ts"],
-      "^utils": ["src/utils/src/index.ts"],
-      "^types": ["src/types/src/index.ts"],
-      "^form": ["src/form/src/index.ts"],
-      "^components": ["src/components/src/index.ts"],
-      "^styles": ["src/styles/src/index.scss"]
+      "@configs": ["src/configs/src/index.ts"],
+      "@enums": ["src/enums/src/index.ts"],
+      "@utils": ["src/utils/src/index.ts"],
+      "@types": ["src/types/src/index.ts"],
+      "@form": ["src/form/src/index.ts"],
+      "@components": ["src/components/src/index.ts"],
+      "@styles": ["src/styles/src/index.scss"]
     },
     "types": ["node", "googlemaps"]
   },

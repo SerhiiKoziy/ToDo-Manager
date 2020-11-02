@@ -60,20 +60,20 @@
         ],
         "matching-rules": [
           {
-            "matches": "@(\\@api)",
-            "imports-group": "api"
+            "matches": "@(\\@typing)",
+            "imports-group": "types"
           },
           {
-            "matches": "@(\\@utils)",
-            "imports-group": "utils"
+            "matches": "@(\\@api)",
+            "imports-group": "api"
           },
           {
             "matches": "@(\\@configs)",
             "imports-group": "configs"
           },
           {
-            "matches": "@(\\@typing)",
-            "imports-group": "types"
+            "matches": "@(\\@utils)",
+            "imports-group": "utils"
           },
           {
             "matches": "@(\\@store)",
@@ -90,6 +90,10 @@
           {
             "matches": "@(\\@modules)",
             "imports-group": "modules"
+          },
+          {
+            "matches": "@(\\./styles\\.scss)$",
+            "imports-group": "styles"
           }
         ]
       }

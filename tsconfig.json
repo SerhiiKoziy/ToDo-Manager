@@ -22,17 +22,35 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "^store": [
+      "@typing/*": [
+        "src/types/*"
+      ],
+      "@api": [
+        "src/api/*"
+      ],
+      "@configs/*": [
+        "src/configs/*"
+      ],
+      "@utils": [
+        "src/utils/*"
+      ],
+      "@store": [
         "src/store/index"
       ],
-      "^config/*": [
-        "src/config/*"
+      "@store/*": [
+        "src/store/*"
       ],
-      "^components/*": [
+      "@components/*": [
         "src/components/*"
       ],
-      "^types/*": [
-        "src/types/*"
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
       ]
     }
   },

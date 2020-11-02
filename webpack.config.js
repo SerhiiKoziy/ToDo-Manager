@@ -335,14 +335,9 @@ const config = async () => {
         filename: './styles/style[hash].css',
       })),
       ifProduction(new CopyWebpackPlugin([{ from: './*.config', to: '', toType: 'file' }])),
-      // ifProduction(new RobotstxtPlugin({
-      //   policy: [
-      //     robotsConfig,
-      //   ]
-      // })),
       ifProduction(new StatsPlugin('stats.json')),
     ]),
   };
-}
+};
 
 module.exports = config;
