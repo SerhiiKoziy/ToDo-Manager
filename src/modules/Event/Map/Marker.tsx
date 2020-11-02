@@ -5,8 +5,8 @@ interface IMarkerProps {
 }
 
 const Marker = ({ imageUrl }: IMarkerProps) => (
-  <div className="markerMap">
-    <img src={imageUrl} alt="" />
+  <div className='markerMap'>
+    <img src={imageUrl} alt='' />
   </div>
 );
 

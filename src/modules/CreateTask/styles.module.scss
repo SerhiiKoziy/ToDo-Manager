@@ -1,10 +1,12 @@
+@import '@styles';
+
 .formWrapper {
   position: relative;
 
   margin: 60px 20px 20px 20px;
   padding: 20px;
 
-  border: 2px solid #fff;
+  border: 2px solid $white;
   border-radius: 4px;
 
   z-index: 1;
@@ -33,11 +35,11 @@
     flex-direction: row-reverse;
 
     .eventButton {
-      color: #fff;
+      color: $white;
 
       &:disabled {
-        color: #000;
-        background: #ccc;
+        color: $black;
+        background: $alto;
         cursor: not-allowed;
       }
     }

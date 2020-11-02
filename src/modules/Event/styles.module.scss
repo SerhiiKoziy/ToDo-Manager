@@ -1,3 +1,4 @@
+@import '@styles';
 
 .event {
   position: relative;
@@ -5,12 +6,12 @@
   margin: 0 0 20px 0;
   padding: 10px;
 
-  color: #fff;
+  color: $white;
 
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 2px;
-  box-shadow: 0 0 10px transparentize(#000, 0.7);
+  box-shadow: 0 0 10px transparentize($black, 0.7);
   background: linear-gradient(135deg, rgba(253, 253, 253, 0.4), rgba(0, 127, 163, 0));
 
   &.onBoardTask {
@@ -79,11 +80,11 @@
       padding: 5px 0;
       margin-right: 5px;
 
-      color: black;
+      color: $black;
       background: rgba(255, 255, 255, 0.5);
 
       box-sizing: border-box;
-      box-shadow: 0 0 1px #000;
+      box-shadow: 0 0 1px $black;
 
       border-radius: 2px;
       cursor: pointer;
@@ -99,12 +100,12 @@
       }
 
       &.controlDelete {
-        color: #d0021b;
+        color: $lightRed;
       }
 
       &:hover {
         background: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 0 3px #000;
+        box-shadow: 0 0 3px $black;
       }
     }
   }

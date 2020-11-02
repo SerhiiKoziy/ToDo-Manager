@@ -1,3 +1,5 @@
+@import '@styles';
+
 .loginWrapper {
   h3 {
     margin: 20px 0;
@@ -14,7 +16,7 @@
       .nextButton {
         width: 40px;
 
-        color: #fff;
+        color: $white;
       }
     }
   }
@@ -35,14 +37,14 @@
     .googleAuth {
       margin: 0;
 
-      background: #fff;
+      background: $white;
 
       transition: 0.4s all;
 
       &:hover {
         background: #2a6079;
-        color: #fff;
-        border: 1px solid #fff;
+        color: $white;
+        border: 1px solid $white;
       }
     }
   }

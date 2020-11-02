@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 
-import IPosition from "../../../types/IPosition";
+import IPosition from '../../../types/IPosition';
 
 interface ISimpleMapProps {
   image?: string;
@@ -10,10 +10,9 @@ interface ISimpleMapProps {
   zoom?: number;
 }
 
-const SimpleMap = ({ image, position, zoom = 10 }: ISimpleMapProps) => {;
-
+const SimpleMap = ({ image, position, zoom = 10 }: ISimpleMapProps) => {
   return (
-    <div className="map">
+    <div className='map'>
       <GoogleMapReact
         defaultCenter={position}
         defaultZoom={zoom}

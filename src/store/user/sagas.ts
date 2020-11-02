@@ -1,12 +1,12 @@
-import { put, call, takeLatest } from "redux-saga/effects";
+import { put, call, takeLatest } from 'redux-saga/effects';
 
-import { startFetching, stopFetching } from "../loading/actionCreators";
+import { startFetching, stopFetching } from '../loading/actionCreators';
 
 import { setUserMeta } from './actionCreators';
 
-import firebase, { auth } from "firebase";
+import firebase, { auth } from 'firebase';
 
-export const USER_REQUESTED = "USER_REQUESTED";
+export const USER_REQUESTED = 'USER_REQUESTED';
 
 //TODO change Promise
 const getCurrentUserMeta = (auth: auth.Auth) => {
@@ -30,7 +30,7 @@ function* requestUserAsync() {
 
     yield put(stopFetching());
   } catch {
-    alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
     yield put(stopFetching());
   }
 }

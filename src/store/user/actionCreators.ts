@@ -4,7 +4,7 @@ import { actionFactory } from '../utils';
 
 import { UPDATE_USER_META, IUserState } from './reducer';
 
-import IUserMeta from "../../types/IUserMeta";
+import IUserMeta from '../../types/IUserMeta';
 
 export const updateUser = (key: keyof IUserState, value: IUserMeta) => actionFactory(UPDATE_USER_META, value);
 
