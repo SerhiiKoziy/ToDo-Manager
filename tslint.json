@@ -13,6 +13,7 @@
     "ordered-imports": false,
     "import-name": false,
     "object-literal-sort-keys": false,
+    "no-unused-expression": false,
     "variable-name": [
       true,
       "check-format",
@@ -33,177 +34,14 @@
       "options": {
         "imports-groups": [
           {
-            "name": "react"
-          },
-          {
-            "name": "shared-packages"
-          },
-          {
-            "name": "dependencies"
-          },
-          {
             "name": "types"
-          },
-          {
-            "name": "config"
-          },
-          {
-            "name": "texts"
-          },
-          {
-            "name": "static-data-sources"
-          },
-          {
-            "name": "shared-names"
-          },
-          {
-            "name": "utils"
-          },
-          {
-            "name": "api"
-          },
-          {
-            "name": "store"
-          },
-          {
-            "name": "hooks"
-          },
-          {
-            "name": "assets"
-          },
-          {
-            "name": "images"
-          },
-          {
-            "name": "common-components"
-          },
-          {
-            "name": "icons"
-          },
-          {
-            "name": "components"
-          },
-          {
-            "name": "parent-components"
-          },
-          {
-            "name": "parent"
-          },
-          {
-            "name": "child-components"
-          },
-          {
-            "name": "local"
-          },
-          {
-            "name": "local-redux"
-          },
-          {
-            "name": "styles"
-          },
-          {
-            "name": "others"
           }
         ],
         "matching-rules": [
-          {
-            "matches": "^(react)",
-            "imports-group": "react"
-          },
-          {
-            "matches": "^(@interdan)",
-            "imports-group": "shared-packages"
-          },
-          {
-            "matches": "^(\\^types)",
-            "imports-group": "types"
-          },
-          {
-            "matches": "^(\\^config)",
-            "imports-group": "config"
-          },
-          {
-            "matches": "^(\\^texts)",
-            "imports-group": "texts"
-          },
-          {
-            "matches": "^(\\^staticDataSources)",
-            "imports-group": "static-data-sources"
-          },
-          {
-            "matches": "^(\\^sharedNames)",
-            "imports-group": "shared-names"
-          },
-          {
-            "matches": "^(\\^api)",
-            "imports-group": "api"
-          },
-          {
-            "matches": "^(\\^utils)",
-            "imports-group": "utils"
-          },
-          {
-            "matches": "^(\\^store)",
-            "imports-group": "store"
-          },
-          {
-            "matches": "^(\\^hooks)",
-            "imports-group": "hooks"
-          },
-          {
-            "matches": "^(\\^assets)",
-            "imports-group": "assets"
-          },
-          {
-            "matches": "^(\\^images)",
-            "imports-group": "images"
-          },
-          {
-            "matches": "^(\\^components/common)",
-            "imports-group": "common-components"
-          },
-          {
-            "matches": "^(\\^components/icons)",
-            "imports-group": "icons"
-          },
-          {
-            "matches": "^(\\^components)",
-            "imports-group": "components"
-          },
-          {
-            "matches": "^(\\../[A-Z]\\w+)",
-            "imports-group": "parent-components"
-          },
-          {
-            "matches": "^(\\./[A-Z]\\w+)",
-            "imports-group": "child-components"
-          },
-          {
-            "matches": "^(\\.\\./)",
-            "imports-group": "parent"
-          },
-          {
-            "matches": "^(\\./(?!(styles\\.scss|map(State|Dispatch)ToProps))\\w+)",
-            "imports-group": "local"
-          },
-          {
-            "matches": "^(\\./map\\w+ToProps)",
-            "imports-group": "local-redux"
-          },
-          {
-            "matches": "^(\\./styles\\.scss)$",
-            "imports-group": "styles"
-          },
-          {
-            "type": "dependencies",
-            "imports-group": "dependencies",
-            "disable-native-nodejs-modules": true,
-            "from-package.json": true
-          },
-          {
-            "matches": ".*",
-            "imports-group": "others"
-          }
+//          {
+//            "matches": "^(\\^types)",
+//            "imports-group": "types"
+//          }
         ]
       }
     },

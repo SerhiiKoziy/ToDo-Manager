@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import IPosition from "../types/IPosition";
+import IPosition from '../types/IPosition';
 
 export const MAIN_API_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
@@ -19,7 +19,6 @@ export const getWeatherByCoordinates = async (position: IPosition, day: number) 
     }
 
     return response.data.list[response.data.list.length - 1];
-
   }).catch(error => {
     return console.error(error);
   });

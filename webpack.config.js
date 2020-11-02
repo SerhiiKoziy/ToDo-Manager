@@ -5,19 +5,16 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const TSLintPlugin = require('tslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const RobotstxtPlugin = require('robotstxt-webpack-plugin').default;
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const StatsPlugin = require('stats-webpack-plugin');
 const { getIfUtils, removeEmpty } = require('webpack-config-utils');
-const { getLocalIdent } = require('css-loader/dist/utils')
-
-const robotsConfig = require('./robotsConfig');
+const { getLocalIdent } = require('css-loader/dist/utils');
 
 const { ifDevelopment, ifProduction } = getIfUtils(process.env.NODE_ENV || 'development');
 const { resolve, join } = require('path');
-const getEnvironments = require('./env');
+// const getEnvironments = require('./env');
 
 const PORT = 8089;
 const url = `http://localhost:${PORT}`;
@@ -46,32 +43,27 @@ const devServer = {
 };
 
 const aliasDefault = {
-  '^images': join(SRC, 'assets/images'),
-  '^assets': join(SRC, 'assets/'),
-  '^scss-config': join(SRC, 'assets/scss/config.scss'),
-  '^tools': join(SRC, 'tools'),
-  '^utils': join(SRC, 'utils'),
-  '^store': join(SRC, 'store'),
-  '^api': join(SRC, 'api'),
-  '^config': join(SRC, 'config'),
-  '^texts': join(SRC, 'config/texts'),
-  '^components': join(SRC, 'components'),
-  '^types': join(SRC, 'types'),
-  '^hooks': join(SRC, 'hooks'),
-  '^HOC': join(SRC, 'HOC'),
-  '^sharedNames': join(SRC, 'sharedNames'),
-  '^staticDataSources': join(SRC, 'staticDataSources'),
+  '@images': join(SRC, 'assets/images'),
+  '@styles': join(SRC, 'assets/scss/main.scss'),
+  '@utils': join(SRC, 'utils'),
+  '@store': join(SRC, 'store'),
+  '@api': join(SRC, 'api'),
+  '@configs': join(SRC, 'configs'),
+  '@components': join(SRC, 'components'),
+  '@pages': join(SRC, 'pages'),
+  '@modules': join(SRC, 'modules'),
+  '@types': join(SRC, 'types'),
 };
 
 const config = async () => {
-  let envs;
+  // let envs;
 
-  try {
-    envs = await getEnvironments();
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
+  // try {
+  //   envs = await getEnvironments();
+  // } catch (error) {
+  //   console.error(error);
+  //   process.exit(1);
+  // }
 
   return {
     mode: ifDevelopment('development', 'production'),
@@ -327,7 +319,7 @@ const config = async () => {
         filename: 'index.html',
         inject: 'body',
       }),
-      new webpack.DefinePlugin(envs),
+      // new webpack.DefinePlugin(envs),
       ifDevelopment(new MiniCssExtractPlugin({
         filename: './styles/style.css',
       })),
@@ -343,11 +335,11 @@ const config = async () => {
         filename: './styles/style[hash].css',
       })),
       ifProduction(new CopyWebpackPlugin([{ from: './*.config', to: '', toType: 'file' }])),
-      ifProduction(new RobotstxtPlugin({
-        policy: [
-          robotsConfig,
-        ]
-      })),
+      // ifProduction(new RobotstxtPlugin({
+      //   policy: [
+      //     robotsConfig,
+      //   ]
+      // })),
       ifProduction(new StatsPlugin('stats.json')),
     ]),
   };
