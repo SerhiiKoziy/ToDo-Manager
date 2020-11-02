@@ -1,3 +1,5 @@
+@import '@styles';
+
 body {
   height: 100vh;
 
@@ -5,5 +7,31 @@ body {
 
   #root {
     height: 100%;
+  }
+}
+
+html, body {
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.125;
+  color: $white;
+}
+
+body {
+  background: url('./assets/images/city.jpg') center center no-repeat;
+  background-size: cover;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: -1;
+    opacity: 0.3;
+    content: '';
+    background: linear-gradient(-45deg, #169fb8, #007fa3);
   }
 }

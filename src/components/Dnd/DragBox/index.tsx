@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { DragSource as dragSource } from 'react-dnd';
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IBoxSource {
   name: string;

@@ -1,5 +1,5 @@
 
-export const START_FETCHING = "START_FETCHING";
+export const START_FETCHING = 'START_FETCHING';
 export const STOP_FETCHING = "STOP_FETCHING";
 
 const loadingReducer = (state: boolean = true, { type }: { type: string }) => {

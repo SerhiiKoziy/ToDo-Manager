@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState, useMemo, ReactNode } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import { WrappedFieldProps } from "redux-form";
+import { WrappedFieldProps } from 'redux-form';
 import { FormControl, FormHelperText, InputLabel } from '@material-ui/core';
 
 import {
@@ -10,7 +10,7 @@ import {
 
 
 import buildClassName from '../../utils/buildClassName';
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 interface IDatePicker {
   label?: ReactNode;
@@ -90,7 +90,7 @@ const DatePicker = ({ className, input, disabledDates, defaultValue, required, m
         )}
 
         <KeyboardDatePicker
-          variant="inline"
+          variant='inline'
           format={DATE_FORMAT}
           value={currentValue || null}
           innerRef={setInputRef}

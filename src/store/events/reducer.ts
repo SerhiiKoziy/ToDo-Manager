@@ -12,7 +12,7 @@ const defaultEventsReducer = {
   isLoading: false,
 };
 
-export const LOADING_EVENT = "LOADING_EVENT";
+export const LOADING_EVENT = 'LOADING_EVENT';
 export const SET_EVENTS = "SET_EVENTS";
 export const SET_CURRENT_EVENT = "SET_CURRENT_EVENT";
 export const RESET_CURRENT_EVENT = "RESET_CURRENT_EVENT";

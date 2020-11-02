@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import { WrappedFieldProps } from 'redux-form';
 
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import Input from "./Input";
+import Input from './Input';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const inputProps: TextFieldProps['InputProps'] = {
   inputComponent: Input,

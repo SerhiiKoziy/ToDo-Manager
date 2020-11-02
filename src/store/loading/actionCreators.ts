@@ -1,4 +1,4 @@
-import * as actionTypes from "./reducer";
+import * as actionTypes from './reducer';
 
 export const startFetching = () => {
   return {

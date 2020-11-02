@@ -1,3 +1,5 @@
+@import '@styles';
+
 .dashboardWrapper {
   display: flex;
 
@@ -52,11 +54,11 @@
         transition: border 0.3s, background 0.3s;
 
         &.canDrop {
-          border-color: #fff;
+          border-color: $white;
         }
 
         &.isActive {
-          border-color: #fff;
+          border-color: $white;
           background: transparentize(green, 0.8);
         }
       }

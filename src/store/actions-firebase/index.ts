@@ -5,14 +5,14 @@ import 'firebase/auth';
 import axios from 'axios';
 
 const config = {
-  apiKey: "AIzaSyAPTIDOWPcKXEaBV2_sbh24JdhS9KL1zu8",
-  authDomain: "tobby-helper.firebaseapp.com",
-  databaseURL: "https://tobby-helper.firebaseio.com",
-  projectId: "tobby-helper",
-  storageBucket: "tobby-helper.appspot.com",
-  messagingSenderId: "971465429410",
-  appId: "1:971465429410:web:42da6e9e187e0ab4dbe2fb",
-  functionsUrl: "us-central1-todo-manager.cloudfunctions.net"
+  apiKey: 'AIzaSyAPTIDOWPcKXEaBV2_sbh24JdhS9KL1zu8',
+  authDomain: 'tobby-helper.firebaseapp.com',
+  databaseURL: 'https://tobby-helper.firebaseio.com',
+  projectId: 'tobby-helper',
+  storageBucket: 'tobby-helper.appspot.com',
+  messagingSenderId: '971465429410',
+  appId: '1:971465429410:web:42da6e9e187e0ab4dbe2fb',
+  functionsUrl: 'us-central1-todo-manager.cloudfunctions.net'
 };
 
 firebase.initializeApp(config);

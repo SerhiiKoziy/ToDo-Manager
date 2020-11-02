@@ -1,13 +1,13 @@
 ﻿import React, { useEffect, useState, ReactNode } from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 import { Event } from '../../modules/Event';
 
-import IState from "../../types/IState";
-import IEvent from "../../types/IEvent";
+import IState from '../../types/IState';
+import IEvent from '../../types/IEvent';
 
 import './styles.module.scss';
 

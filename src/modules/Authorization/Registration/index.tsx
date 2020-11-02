@@ -19,28 +19,28 @@ const Registration = ({ className, email, password, onChangeEmail, onChangePassw
         <h3>Enter your email</h3>
         <input
           className={styles.input}
-          type="email"
+          type='email'
           onChange={onChangeEmail}
           value={email}
-          placeholder="Email"
+          placeholder='Email'
           disabled
         />
         <h3>Enter your pass</h3>
         <input
           className={styles.input}
-          type="password"
-          placeholder="Password"
+          type='password'
+          placeholder='Password'
           onChange={onChangePassword}
           value={password}
           disabled
         />
         <Button
           className={styles.registrationButton}
-          name="login"
-          type="submit"
-          variant="outlined"
+          name='login'
+          type='submit'
+          variant='outlined'
         >
-          {"Create account and log in"}
+          {'Create account and log in'}
         </Button>
       </form>
     </div>

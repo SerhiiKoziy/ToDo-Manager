@@ -1,13 +1,13 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import DatePicker from "../../components/DatePicker";
-import TextField from "../../components/TextField";
-// import PlacesAutocompleteTom from "../../components/PlacesAutocompleteTom";
+import DatePicker from '../../components/DatePicker';
+import TextField from '../../components/TextField';
+// import PlacesAutocomplete from '../../components/PlacesAutocomplete';
 
-import { getIsUserLogin } from "../../store/user/selectors";
-import { getCurrentEvent } from "../../store/events/selectors";
+import { getIsUserLogin } from '../../store/user/selectors';
+import { getCurrentEvent } from '../../store/events/selectors';
 
 import { EVENT_FORM } from '../../configs/forms';
 
@@ -32,8 +32,8 @@ const CreateTaskForm = () => {
   return (
     <div>
       <Field
-        name="date"
-        type="text"
+        name='date'
+        type='text'
         className={'input-wr'}
         component={DatePicker}
         placeholder={"Choose event's date"}
@@ -47,8 +47,8 @@ const CreateTaskForm = () => {
       />
 
       <Field
-        name="title"
-        type="text"
+        name='title'
+        type='text'
         className={'input-wr'}
         component={TextField}
         placeholder={'Enter event title'}
@@ -60,8 +60,8 @@ const CreateTaskForm = () => {
       />
 
       <Field
-        name="description"
-        type="text"
+        name='description'
+        type='text'
         className={'input-wr'}
         component={TextField}
         placeholder={'Enter description'}
@@ -70,10 +70,10 @@ const CreateTaskForm = () => {
         defaultValue={currentEvent?.description}
       />
       {/*<Field*/}
-      {/*  name="address"*/}
-      {/*  type="text"*/}
+      {/*  name='address'*/}
+      {/*  type='text'*/}
       {/*  className={'input-wr'}*/}
-      {/*  component={PlacesAutocompleteTom}*/}
+      {/*  component={PlacesAutocomplete}*/}
       {/*  placeholder={'Enter deadline location address'}*/}
       {/*  // label={texts.name}*/}
       {/*  // validate={[required]}*/}
@@ -83,7 +83,7 @@ const CreateTaskForm = () => {
 
       {
         !isUserLogin && (
-          <p className="submit-message">Login, please!</p>
+          <p className='submit-message'>Login, please!</p>
         )
       }
     </div>

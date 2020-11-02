@@ -1,8 +1,8 @@
-import { all, fork } from "redux-saga/effects";
+import { all, fork } from 'redux-saga/effects';
 
-import userSagas from "./user/sagas";
-import eventsSagas from "./events/sagas";
-import formSaga from "./form/sagas";
+import userSagas from './user/sagas';
+import eventsSagas from './events/sagas';
+import formSaga from './form/sagas';
 
 const sagas = [
   userSagas,

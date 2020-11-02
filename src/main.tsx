@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
+import AppContainer from './AppContainer';
 
 import './polyfills';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<AppContainer />, document.getElementById('root'));
 
 if ((module as any).hot) {
-  (module as any).hot.accept('./App', () => {
-    const ReloadedApp = require('./App').default;
+  (module as any).hot.accept('./AppContainer', () => {
+    const ReloadedApp = require('./AppContainer').default;
     ReactDOM.render(<ReloadedApp />, document.getElementById('root'));
   });
 }

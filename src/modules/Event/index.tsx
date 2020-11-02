@@ -1,15 +1,15 @@
 import React from 'react';
-import classNames from "classnames";
+import classNames from 'classnames';
 import moment from 'moment';
-// import SimpleMap from "./GoogleMap";
+// import SimpleMap from './GoogleMap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow, faEye, faPencilRuler, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Link from "../../components/Link";
+import Link from '../../components/Link';
 
 import IEvent from '../../types/IEvent';
-import IWeather from "../../types/IWeather";
-import IWeatherTemp from "../../types/IWeatherTemp";
+import IWeather from '../../types/IWeather';
+import IWeatherTemp from '../../types/IWeatherTemp';
 
 import styles from './styles.module.scss';
 
@@ -64,7 +64,7 @@ export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps) 
         </div>
 
         <div className={styles.weatherIndicator}>
-          <img src={cloudImageUrl} alt="" />
+          <img src={cloudImageUrl} alt='' />
         </div>
       </div>
 

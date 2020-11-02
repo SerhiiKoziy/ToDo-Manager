@@ -1,19 +1,19 @@
-import { put, call, select, takeLatest } from "redux-saga/effects";
+import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 
-import { getWeatherByCoordinates } from "../../api/weatherApi";
+import { getWeatherByCoordinates } from '../../api/weatherApi';
 
 import { getEventsFirebase, postEventFirebase, deleteEvent } from '../actions-firebase/events';
-import { database } from "../actions-firebase";
+import { database } from '../actions-firebase';
 
 import { setEvents, resetCurrentEvent, loadingEvent } from './actionCreators';
 
 import { getCurrentEvent } from './selectors';
-import { getEventFormValues } from "../form/selectors";
-import { getUserUid } from "../user/selectors";
+import { getEventFormValues } from '../form/selectors';
+import { getUserUid } from '../user/selectors';
 
 import IEvent from '../../types/IEvent';
-import IWeather from "../../types/IWeather";
+import IWeather from '../../types/IWeather';
 
 export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
 export const UPDATE_EVENT = "UPDATE_EVENT";
@@ -42,7 +42,7 @@ function* requestEventsAsync() {
 
     yield put(loadingEvent(false));
   } catch {
-    alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
     yield put(loadingEvent(false));
   }
 }
@@ -83,7 +83,7 @@ function* createEventAsync() {
 
     yield put(loadingEvent(false));
   } catch {
-    alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
     yield put(loadingEvent(false));
   }
 }
@@ -131,7 +131,7 @@ function* updateEventAsync(action?: IUpdateEvent) {
 
     yield put(loadingEvent(false));
   } catch {
-    alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
     yield put(loadingEvent(false));
   }
 }
@@ -160,7 +160,7 @@ function* deleteEventAsync({ payload: { eventId } }: IDeleteEventAsyncProps) {
     yield call(requestEventsAsync);
     yield put(loadingEvent(false));
   } catch {
-    alert("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
     yield put(loadingEvent(false));
   }
 }

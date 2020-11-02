@@ -1,3 +1,5 @@
+@import '@styles';
+
 .list {
   flex: 1 1 auto;
 
@@ -13,11 +15,11 @@
   transition: border 0.3s, background 0.3s;
 
   &.canDrop {
-    border-color: #ccc;
+    border-color: $alto;
   }
 
   &.isActive {
-    border-color: #ccc;
+    border-color: $alto;
     background: transparentize(green, 0.8);
   }
 }

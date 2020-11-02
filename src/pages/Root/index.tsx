@@ -1,7 +1,8 @@
-﻿import React, { useEffect, useState, ReactNode } from "react";
+﻿import React, { useEffect, useState, ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
 
 import Authorization from '../../modules/Authorization';
 import Header from '../../modules/Header';
@@ -13,7 +14,6 @@ import { getUserMeta } from '../../store/user/selectors';
 import { fetchEvents } from '../../store/events/actionCreators';
 
 import styles from './styles.module.scss';
-import classNames from "classnames";
 
 interface IRootProps {
   children?: ReactNode;

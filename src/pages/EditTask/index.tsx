@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-import { Event } from "../../modules/Event";
+import { Event } from '../../modules/Event';
 
-import IState from "../../types/IState";
-import { setCurrentEvent, deleteEvent } from "../../store/events/actionCreators";
+import IState from '../../types/IState';
+import { setCurrentEvent, deleteEvent } from '../../store/events/actionCreators';
 
 import IEvent from '../../types/IEvent';
 
@@ -28,7 +28,7 @@ const EditTask = ({ events }: IEditTaskProps) => {
   );
 
   return (
-    <div className="edit-page ">
+    <div className='edit-page '>
       {
         currentTask && (
           <Event
@@ -38,12 +38,12 @@ const EditTask = ({ events }: IEditTaskProps) => {
           />
         )
       }
-      <div className="builder-task">
+      <div className='builder-task'>
         {/*<CreateTask*/}
         {/*  // key={currentTask.updatedAt}*/}
         {/*  currentTask={currentTask || {}}*/}
         {/*  isEdit={true}*/}
-        {/*  buttonText="Edit event"*/}
+        {/*  buttonText='Edit event'*/}
         {/*/>*/}
       </div>
     </div>
