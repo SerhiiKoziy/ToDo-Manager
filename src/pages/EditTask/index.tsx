@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { useParams } from 'react-router-dom';
 
-import { Event } from '../../modules/Event';
+import { Event } from '@modules/Event';
 
-import IState from '../../types/IState';
+import IState from '@typing/IState';
 import { setCurrentEvent, deleteEvent } from '../../store/events/actionCreators';
 
-import IEvent from '../../types/IEvent';
+import IEvent from '@typing/IEvent';
 
 interface IEditTaskProps {
   events: IEvent[];

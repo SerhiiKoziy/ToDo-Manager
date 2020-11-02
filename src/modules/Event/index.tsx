@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureLow, faEye, faPencilRuler, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Link from '../../components/Link';
 
-import IEvent from '../../types/IEvent';
-import IWeather from '../../types/IWeather';
-import IWeatherTemp from '../../types/IWeatherTemp';
+import IEvent from '@typing/IEvent';
+import IWeather from '@typing/IWeather';
+import IWeatherTemp from '@typing/IWeatherTemp';
 
 import styles from './styles.module.scss';
 

@@ -2,16 +2,15 @@ import React, { useCallback } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useSelector } from 'react-redux';
 
-import DatePicker from '../../components/DatePicker';
-import TextField from '../../components/TextField';
-// import PlacesAutocomplete from '../../components/PlacesAutocomplete';
+import DatePicker from '@components/DatePicker';
+import TextField from '@components/TextField';
 
-import { getIsUserLogin } from '../../store/user/selectors';
-import { getCurrentEvent } from '../../store/events/selectors';
+import { getIsUserLogin } from '@store/user/selectors';
+import { getCurrentEvent } from '@store/events/selectors';
 
-import { EVENT_FORM } from '../../configs/forms';
+import { EVENT_FORM } from '@configs/forms';
 
-import { required } from '../../utils/validations';
+import { required } from '@utils/validations';
 
 const CreateTaskForm = () => {
   const isUserLogin = useSelector(getIsUserLogin);

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import IPosition from '../types/IPosition';
+import IPosition from '@typing/IPosition';
 
 export const MAIN_API_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 

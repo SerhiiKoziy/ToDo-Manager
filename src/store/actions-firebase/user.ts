@@ -1,6 +1,6 @@
 import { database } from './index';
 
-import IUserMeta from '../../types/IUserMeta';
+import IUserMeta from '@typing/IUserMeta';
 
 export async function loadUserInfo(uid: string) {
   try {

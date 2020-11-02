@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Root from '../../pages/Root';
+import Root from '@pages/Root';
 
 import styles from './App.module.scss';
 

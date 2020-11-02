@@ -1,6 +1,6 @@
 import { database } from './index';
 import firebase from 'firebase/app';
-import IEvent from '../../types/IEvent';
+import IEvent from '@typing/IEvent';
 
 export async function getEventsFirebase() {
   const user = await firebase.auth().currentUser;

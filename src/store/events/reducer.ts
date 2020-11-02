@@ -1,4 +1,4 @@
-import IEvent from '../../types/IEvent'
+import IEvent from '@typing/IEvent'
 
 export interface IEventsState {
   list: IEvent[];

@@ -4,7 +4,7 @@ import { actionFactory } from '../utils';
 
 import { SET_EVENTS, SET_CURRENT_EVENT, RESET_CURRENT_EVENT, LOADING_EVENT, IEventsState } from './reducer';
 
-import IEvent from '../../types/IEvent';
+import IEvent from '@typing/IEvent';
 
 export const updateEvents = (key: keyof IEventsState, events: IEvent[]) => actionFactory(SET_EVENTS, events);
 export const setEvents = (events: IEvent[]) => updateEvents('list', events);

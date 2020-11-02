@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from "react-router";
+import { useLocation } from 'react-router';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { getUserMeta } from '../../store/user/selectors';
+import { getUserMeta } from '@store/user/selectors';
 
 import styles from './styles.module.scss';
 

@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 
-import Authorization from '../../modules/Authorization';
-import Header from '../../modules/Header';
-import Footer from '../../modules/Footer';
-import Dashboard from '../Dashboard';
+import Authorization from '@modules/Authorization';
+import Header from '@modules/Header';
+import Footer from '@modules/Footer';
 
-import { fetchUserAction } from '../../store/user/actionCreators';
-import { getUserMeta } from '../../store/user/selectors';
-import { fetchEvents } from '../../store/events/actionCreators';
+import { fetchUserAction } from '@store/user/actionCreators';
+import { getUserMeta } from '@store/user/selectors';
+import { fetchEvents } from '@store/events/actionCreators';
+
+import Dashboard from '../Dashboard';
 
 import styles from './styles.module.scss';
 

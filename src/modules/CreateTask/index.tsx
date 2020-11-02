@@ -4,11 +4,11 @@ import { Button } from '@material-ui/core';
 
 import CreateTaskForm from './CreateTaskForm';
 
-import { getCurrentEvent, getEventsIsLoading } from '../../store/events/selectors';
-import { getIsUserLogin } from '../../store/user/selectors';
+import { getCurrentEvent, getEventsIsLoading } from '@store/events/selectors';
+import { getIsUserLogin } from '@store/user/selectors';
 
-import { createEvent, updateEvent } from '../../store/events/actionCreators';
-import { validateEventForm } from '../../store/form/actionCreators';
+import { createEvent, updateEvent } from '@store/events/actionCreators';
+import { validateEventForm } from '@store/form/actionCreators';
 
 import styles from './styles.module.scss';
 

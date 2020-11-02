@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 
 import { Event } from '../../modules/Event';
 
-import IState from '../../types/IState';
-import IEvent from '../../types/IEvent';
+import IState from '@typing/IState';
+import IEvent from '@typing/IEvent';
 
 import './styles.module.scss';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 
-import IPosition from '../../../types/IPosition';
+import IPosition from '@typing/IPosition';
 
 interface ISimpleMapProps {
   image?: string;

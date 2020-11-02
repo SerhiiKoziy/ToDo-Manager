@@ -3,17 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
-import CreateTask from '../../modules/CreateTask';
-import { Event } from '../../modules/Event';
-import Dustbin from '../../components/Dnd/Dustbin';
-import DragBox from '../../components/Dnd/DragBox';
+import CreateTask from '@modules/CreateTask';
+import { Event } from '@modules/Event';
 
-import EventStatus from '../../types/EventStatus';
-import IEvent from '../../types/IEvent';
+import Dustbin from '@components/Dnd/Dustbin';
+import DragBox from '@components/Dnd/DragBox';
 
-import { getEventsList } from '../../store/events/selectors';
-import { getEventsIsLoading } from '../../store/events/selectors';
-import { setCurrentEvent, updateEvent, deleteEvent } from '../../store/events/actionCreators';
+import EventStatus from '@typing/EventStatus';
+import IEvent from '@typing/IEvent';
+
+import { getEventsList } from '@store/events/selectors';
+import { getEventsIsLoading } from '@store/events/selectors';
+import { setCurrentEvent, updateEvent, deleteEvent } from '@store/events/actionCreators';
 
 import styles from './styles.module.scss';
 

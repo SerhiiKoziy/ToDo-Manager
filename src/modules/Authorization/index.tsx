@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { auth } from 'firebase/app';
 import { Button } from '@material-ui/core';
 
-import { getIsUserLogin } from "../../store/user/selectors";
+import { getIsUserLogin } from "@store/user/selectors";
 
 import Login from './Login';
 import Registration from './Registration';
