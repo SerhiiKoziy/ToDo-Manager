@@ -1,0 +1,12 @@
+@import '@styles';
+
+.link {
+  color: $black;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:visited {
+    color: $black;
+  }
+}

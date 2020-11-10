@@ -1,4 +1,4 @@
-# ToDo forecast manager
+# Weather Planer
 
 
 ![](https://raw.githubusercontent.com/SerhiiKoziy/ToDo-Manager/master/public/assets/images/gif.gif)

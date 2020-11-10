@@ -1,0 +1,12 @@
+@import '@styles';
+
+.taskDraggable {
+  &.isDragging {
+    opacity: 1;
+
+    .task {
+      background: linear-gradient(135deg, rgba(253, 253, 253, 0.5), rgba(0, 127, 163, 0));
+      box-shadow: 0 0 10px transparentize($white, 0.7);
+    }
+  }
+}

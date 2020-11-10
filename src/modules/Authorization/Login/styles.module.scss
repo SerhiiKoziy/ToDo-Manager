@@ -1,0 +1,51 @@
+@import '@styles';
+
+.loginWrapper {
+  h3 {
+    margin: 20px 0;
+
+    text-align: center;
+  }
+
+  .formWrapper {
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      .nextButton {
+        width: 40px;
+
+        color: $white;
+      }
+    }
+  }
+
+  .input {
+    height: 48px;
+
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  .societyButton {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    .googleAuth {
+      margin: 0;
+
+      background: $white;
+
+      transition: 0.4s all;
+
+      &:hover {
+        background: #2a6079;
+        color: $white;
+        border: 1px solid $white;
+      }
+    }
+  }
+}

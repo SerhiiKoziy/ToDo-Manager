@@ -1,0 +1,18 @@
+.advancedDatePickerField {
+  width: 100%;
+  padding-bottom: 6px !important;
+
+  &.withoutError {
+    padding-bottom: 23px !important;
+  }
+
+  .errorHelper {
+    margin: 6px 0 0;
+    font-size: 11px;
+  }
+
+  .label {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+}

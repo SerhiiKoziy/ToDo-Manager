@@ -1,0 +1,112 @@
+@import '@styles';
+
+.authorization {
+  .enterWithEmail {
+    form {
+      input {
+        width: 100%;
+        height: 30px;
+
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  .none {
+    display: none;
+  }
+
+  .authButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    border-top: 1px solid $white;
+
+    button {
+      display: flex;
+      align-items: center;
+
+      padding: 10px;
+      margin: 0;
+
+      border: 1px solid;
+      border-radius: 5px;
+
+      text-align: center;
+      line-height: 16px;
+      font-size: 16px;
+      cursor: pointer;
+
+      transition: 0.4s all;
+
+      &:hover {
+        box-shadow: 0 0 5px $white;
+      }
+    }
+  }
+
+  a {
+    margin-left: 25px;
+  }
+
+  input {
+    display: block;
+  }
+
+  button {
+    margin: 12px 12px 0 0;
+  }
+
+  .emailReg {
+    margin-bottom: 30px;
+  }
+
+  .antSpin {
+    margin: 12px 0 0 10px;
+  }
+
+  .validationFailedMessage {
+    color: $flamingo
+  }
+
+  .controlButtons {
+    display: flex;
+    justify-content: space-between;
+
+    border-top: 1px solid $white;
+    padding: 15px 0 0 0;
+
+    .changeFormTypeButton {
+      color: $white;
+    }
+
+    button {
+      margin: 0;
+      padding: 10px;
+
+      cursor: pointer;
+    }
+
+    .sighOutButton {
+      color: $white;
+      border: 2px solid $red;
+      border-radius: 6px;
+
+      transition: 0.4s all;
+
+      &:hover {
+        background: $red;
+        border: 2px solid rgba($flamingo, 0.77);
+      }
+    }
+  }
+}
+
+.layoutContent {
+  .enterWithEmail {
+    input {
+      width: 25%;
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "defaultSeverity": "error",
+  "autoFixOnSave": true,
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-airbnb",
+    "tslint-import-group-ordering",
+    "tslint-react-hooks"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-console": false,
+    "ordered-imports": false,
+    "import-name": false,
+    "object-literal-sort-keys": false,
+    "no-unused-expression": false,
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-pascal-case",
+      "allow-snake-case"
+    ],
+    "max-line-length": [
+      true,
+      {
+        "limit": 500
+      }
+    ],
+    "member-ordering": false,
+    "prefer-array-literal": false,
+    "no-shadowed-variable": false,
+    "import-group-ordering": {
+      "severity": "warning",
+      "options": {
+        "imports-groups": [
+          {
+            "name": "typing"
+          },
+          {
+            "name": "api"
+          },
+          {
+            "name": "configs"
+          },
+          {
+            "name": "utils"
+          },
+          {
+            "name": "store"
+          },
+          {
+            "name": "components"
+          },
+          {
+            "name": "pages"
+          },
+          {
+            "name": "modules"
+          }
+        ],
+        "matching-rules": [
+          {
+            "matches": "@(\\@typing)",
+            "imports-group": "types"
+          },
+          {
+            "matches": "@(\\@api)",
+            "imports-group": "api"
+          },
+          {
+            "matches": "@(\\@configs)",
+            "imports-group": "configs"
+          },
+          {
+            "matches": "@(\\@utils)",
+            "imports-group": "utils"
+          },
+          {
+            "matches": "@(\\@store)",
+            "imports-group": "store"
+          },
+          {
+            "matches": "@(\\@components)",
+            "imports-group": "components"
+          },
+          {
+            "matches": "@(\\@pages)",
+            "imports-group": "pages"
+          },
+          {
+            "matches": "@(\\@modules)",
+            "imports-group": "modules"
+          },
+          {
+            "matches": "@(\\./styles\\.scss)$",
+            "imports-group": "styles"
+          }
+        ]
+      }
+    },
+    "react-hooks-nesting": "error"
+  },
+  "rulesDirectory": []
+}

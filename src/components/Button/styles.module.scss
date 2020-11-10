@@ -1,0 +1,26 @@
+@import '@styles';
+
+.primaryButton {
+  color: $white;
+  background-color: $blue;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid $lochmara;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 1rem;
+  outline: none;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.transparentButton {
+  color: $white;
+  padding: 1.2rem 1.4rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 1rem;
+  outline: none;
+  border-color: transparent;
+  background-color: transparent;
+}

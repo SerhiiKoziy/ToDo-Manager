@@ -1,0 +1,80 @@
+.task-page {
+  h3 {
+    color: $blue;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 60px;
+  }
+
+  .inside-wr {
+    height: 100%;
+
+    display: flex;
+
+    .task-header {
+      height: 60px;
+
+      line-height: 60px;
+
+      a {
+        i {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .task-wr {
+      width: 100%;
+    }
+
+    .task {
+      padding: 20px;
+
+      .map {
+        height: 300px;
+        width: 100%
+      }
+
+      .markerMap {
+        width: 40px;
+        height: 40px;
+
+        padding: 5px;
+
+        border-radius: 50%;
+        background: #2c6c89;
+
+        img {
+          max-width: 100%;
+        }
+      }
+
+      h4 {
+
+      }
+
+      p {
+        &.date-task {
+
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .page.task-page {
+    .inside-wr {
+
+      .task-wr {
+        width: 100%;
+
+        overflow: auto;
+      }
+
+      .task {
+        margin: 0;
+      }
+    }
+  }
+}

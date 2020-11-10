@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "strict": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@configs": ["src/configs/src/index.ts"],
+      "@enums": ["src/enums/src/index.ts"],
+      "@utils": ["src/utils/src/index.ts"],
+      "@types": ["src/types/src/index.ts"],
+      "@form": ["src/form/src/index.ts"],
+      "@components": ["src/components/src/index.ts"],
+      "@styles": ["src/styles/src/index.scss"]
+    },
+    "types": ["node", "googlemaps"]
+  },
+  "plugins": [
+    {
+      "transform": "@zerollup/ts-transform-paths"
+    }
+  ],
+  "exclude": ["node_modules", "tmp"]
+}
