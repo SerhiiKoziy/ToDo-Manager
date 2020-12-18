@@ -33,7 +33,6 @@ export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps) 
           <h4>Title: {event.title}</h4>
           <p>Desc: {event.description}</p>
           <p>{`${moment(event.date).format('LL')}`}</p>
-          {/*<p>{`${event.address}`}</p>*/}
 
           <p className={styles.temperatureTitle}>
             <FontAwesomeIcon icon={faTemperatureLow} />

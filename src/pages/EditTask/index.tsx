@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Event } from '@modules/Event';
 
 import IState from '@typing/IState';
-import { setCurrentEvent, deleteEvent } from '../../store/events/actionCreators';
+import { setCurrentEvent, deleteEvent } from '@store/events/actionCreators';
 
 import IEvent from '@typing/IEvent';
 
@@ -39,7 +39,7 @@ const EditTask = ({ events }: IEditTaskProps) => {
         )
       }
       <div className='builder-task'>
-        {/*<CreateTask*/}
+        {/*<CreateTask*/} //TODO return creating
         {/*  // key={currentTask.updatedAt}*/}
         {/*  currentTask={currentTask || {}}*/}
         {/*  isEdit={true}*/}

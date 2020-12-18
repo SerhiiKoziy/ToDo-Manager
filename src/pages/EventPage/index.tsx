@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import { useParams } from 'react-router-dom';
 
-import { Event } from '../../modules/Event';
+import { Event } from '@modules/Event';
 
 import IState from '@typing/IState';
 import IEvent from '@typing/IEvent';
