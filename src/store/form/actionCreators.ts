@@ -1,6 +1,6 @@
 import { submit } from 'redux-form';
 
-import { EVENT_FORM } from '../../configs/forms';
+import { EVENT_FORM } from '@configs/forms';
 
 // import { actionFactory } from '^utils/storeHelper';
 

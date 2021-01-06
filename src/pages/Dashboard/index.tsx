@@ -103,7 +103,7 @@ const Dashboard = () => {
             dustbins.map(({ accepts, id }, index) => {
               return (
                 <div
-                  key={`wr-${index}`}
+                  key={id}
                   className={styles.listWrapper}
                 >
                   <div className={styles.listName}>

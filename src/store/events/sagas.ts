@@ -1,7 +1,7 @@
 import { put, call, select, takeLatest } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 
-import { getWeatherByCoordinates } from '@api/weatherApi';
+import { getWeatherByCoordinates } from '../../api/weatherApi';
 
 import { getEventsFirebase, postEventFirebase, deleteEvent } from '../actions-firebase/events';
 import { database } from '../actions-firebase';

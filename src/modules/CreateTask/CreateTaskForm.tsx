@@ -10,7 +10,7 @@ import { getCurrentEvent } from '@store/events/selectors';
 
 import { EVENT_FORM } from '@configs/forms';
 
-import { required } from '@utils/validations';
+import { required } from '../../utils/validations';
 
 const CreateTaskForm = () => {
   const isUserLogin = useSelector(getIsUserLogin);

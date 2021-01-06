@@ -1,7 +1,8 @@
 import { getFormValues as getValues, isValid, isPristine } from 'redux-form';
+
 import IState from '@typing/IState';
 import IEvent from '@typing/IEvent';
-import { EVENT_FORM } from '../../configs/forms';
+import { EVENT_FORM } from '@configs/forms';
 
 export const getFormValues = (form: string) => getValues(form);
 
