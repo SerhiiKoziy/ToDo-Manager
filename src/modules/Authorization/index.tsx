@@ -33,11 +33,7 @@ const Authorization = () => {
     if (!email) {
       console.log('Email field is required');
     } else {
-      const res = await auth().fetchSignInMethodsForEmail(email);
-
-      if (res && res.length === 0) {
-        console.log("Invalid login email. Please, registration your profile or choose a social button.");
-      }
+      return await auth().fetchSignInMethodsForEmail(email);
     }
   };
 
@@ -59,7 +55,16 @@ const Authorization = () => {
   const onSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      loginWithEmail();
+
+      loginWithEmail()
+        .then((res) => {
+          if (res && res.length === 0) {
+            console.log("Invalid login email. Please, registration your profile or choose a social button.");
+          }
+        })
+        .catch((err) => {
+          console.log("Error:", err);
+        });
     },
     [],
   );
