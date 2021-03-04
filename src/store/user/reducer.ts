@@ -1,12 +1,12 @@
-import IUserMeta from '@typing/IUserMeta'
+import IUserMeta from '@typing/IUserMeta';
 
 export interface IUserState {
   userMeta: IUserMeta | null;
   isLoading: boolean;
 }
 
-export const UPDATE_USER_META = "UPDATE_USER_META";
-export const DELETE_USER = "DELETE_USER";
+export const UPDATE_USER_META = 'UPDATE_USER_META';
+export const DELETE_USER = 'DELETE_USER';
 
 export const userReducer = (state: object = {}, action: any) => {
   const { type, payload } = action;
@@ -15,7 +15,7 @@ export const userReducer = (state: object = {}, action: any) => {
     case UPDATE_USER_META:
       return {
         ...state,
-        ...payload, //TODO change data user
+        ...payload, // TODO change data user
         userMeta: payload,
       };
 

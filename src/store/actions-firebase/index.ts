@@ -12,7 +12,7 @@ const config = {
   storageBucket: 'tobby-helper.appspot.com',
   messagingSenderId: '971465429410',
   appId: '1:971465429410:web:42da6e9e187e0ab4dbe2fb',
-  functionsUrl: 'us-central1-todo-manager.cloudfunctions.net'
+  functionsUrl: 'us-central1-todo-manager.cloudfunctions.net',
 };
 
 firebase.initializeApp(config);
@@ -40,7 +40,7 @@ const firebasePostRequest = async (endpoint: string, data: any) => {
         },
       },
     )
-  )
+  );
 };
 
 export const checkConnection = async () => {
@@ -67,14 +67,14 @@ const getToken = async () => {
 };
 
 export const handleNotification = async (subject: string, text: string) => {
-  const { data } = await firebasePostRequest( 'handleNotification', { subject, text });
+  const { data } = await firebasePostRequest('handleNotification', { subject, text });
 
   return data === 'success' ? data : 'reject';
 };
 
 export const initUser = async (entryId: string, email: string) => {
   await getToken();
-  const { data } = await firebasePostRequest( 'initUser', { entryId, email });
+  const { data } = await firebasePostRequest('initUser', { entryId, email });
 
   if (data && data.token) (
     firebase.auth().signInWithCustomToken(data.token)

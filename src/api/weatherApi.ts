@@ -19,7 +19,7 @@ export const getWeatherByCoordinates = async (position: IPosition, day: number) 
     }
 
     return response.data.list[response.data.list.length - 1];
-  }).catch(error => {
+  }).catch((error: any) => {
     return console.error(error);
   });
 };

@@ -55,12 +55,12 @@ const EventPage = ({ events, deleteTask, children }: IEventPageProps) => {
         {children}
       </div>
     </div>
-  )
+  );
 };
 
 export default connect(
   (state: IState) => ({
-    events: state.events.list, //TODO add hooks
+    events: state.events.list, // TODO add hooks
   }),
   { push }
 )(EventPage);

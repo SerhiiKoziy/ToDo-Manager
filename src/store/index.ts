@@ -14,7 +14,7 @@ function configureStore() {
   const rootReducer = createRootReducer(browserHistory);
   const routerMiddleware = createRouterMiddleware(browserHistory);
   const composedMiddleware = composeWithDevTools(
-    applyMiddleware(saga, routerMiddleware)
+    applyMiddleware(saga, routerMiddleware),
   );
   const store = createStore(rootReducer, composedMiddleware);
   saga.run(rootSaga);

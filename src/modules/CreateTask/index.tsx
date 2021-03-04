@@ -51,8 +51,8 @@ const CreateTask = () => {
           className={styles.eventButton}
           onClick={onSave}
           disabled={!isUserLogin}
-          variant='outlined'
-          type='button'
+          variant="outlined"
+          type="button"
         >
           {currentEvent ? 'Edit event' : 'Add event'}
         </Button>
@@ -61,4 +61,4 @@ const CreateTask = () => {
   );
 };
 
-export default CreateTask
+export default CreateTask;

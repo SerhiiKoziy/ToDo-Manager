@@ -20,12 +20,12 @@ export const UPDATE_EVENT = "UPDATE_EVENT";
 export const CREATE_EVENT = "CREATE_EVENT";
 export const DELETE_EVENT = "DELETE_EVENT";
 
-//TODO add to events
+// TODO add to events
 const getEventsFirebaseAction = async () => {
   return await getEventsFirebase()
     .then((res: Promise<any>) => res)
     .catch((error) => {
-      console.log('error', error)
+      console.log('error', error);
     });
 };
 

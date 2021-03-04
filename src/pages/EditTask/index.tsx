@@ -21,10 +21,10 @@ const EditTask = ({ events }: IEditTaskProps) => {
   useEffect(
     () => {
       const event: IEvent | undefined = events.find((event: IEvent) => event.eventId === taskId);
-      event && setCurrentTask(event)
-      event && setCurrentEvent(event)
+      event && setCurrentTask(event);
+      event && setCurrentEvent(event);
     },
-    [events]
+    [events],
   );
 
   return (

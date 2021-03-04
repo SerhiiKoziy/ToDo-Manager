@@ -31,8 +31,8 @@ const CreateTaskForm = () => {
   return (
     <div>
       <Field
-        name='date'
-        type='text'
+        name="date"
+        type="text"
         className={'input-wr'}
         component={DatePicker}
         placeholder={"Choose event's date"}
@@ -46,8 +46,8 @@ const CreateTaskForm = () => {
       />
 
       <Field
-        name='title'
-        type='text'
+        name="title"
+        type="text"
         className={'input-wr'}
         component={TextField}
         placeholder={'Enter event title'}
@@ -59,8 +59,8 @@ const CreateTaskForm = () => {
       />
 
       <Field
-        name='description'
-        type='text'
+        name="description"
+        type="text"
         className={'input-wr'}
         component={TextField}
         placeholder={'Enter description'}
@@ -82,11 +82,11 @@ const CreateTaskForm = () => {
 
       {
         !isUserLogin && (
-          <p className='submit-message'>Login, please!</p>
+          <p className="submit-message">Login, please!</p>
         )
       }
     </div>
-  )
+  );
 };
 
 export default reduxForm({

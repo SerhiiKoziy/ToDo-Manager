@@ -46,7 +46,7 @@ const Authorization = () => {
     [],
   );
 
-  const onSubmit = useCallback( //TODO complete onSubmit
+  const onSubmit = useCallback( // TODO complete onSubmit
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
