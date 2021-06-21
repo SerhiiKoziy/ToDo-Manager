@@ -7,17 +7,17 @@ import styles from './styles.module.scss';
 const Footer = () => (
   <footer className={styles.footer}>
     <div className={styles.footerTab}>
-      <Link to='/'>
+      <Link to="/">
         <span>Main</span>
       </Link>
     </div>
     <div className={styles.footerTab}>
-      <Link to='/events'>
+      <Link to="/events">
         <span>Tasks</span>
       </Link>
     </div>
     <div className={styles.footerTab}>
-      <Link to='/profile'>
+      <Link to="/profile">
         <span>Options</span>
       </Link>
     </div>

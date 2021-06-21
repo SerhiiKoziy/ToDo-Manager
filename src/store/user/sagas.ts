@@ -11,11 +11,12 @@ export const USER_REQUESTED = 'USER_REQUESTED';
 // TODO change Promise
 const getCurrentUserMeta = (auth: auth.Auth) => {
   return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged((user: any) => {
-      unsubscribe();
-      resolve(user);
-    },
-    () => console.log('error getCurrentUserMeta'));
+    const unsubscribe = auth.onAuthStateChanged(
+        (user: any) => {
+          unsubscribe();
+          resolve(user);
+        },
+        () => console.log('error getCurrentUserMeta'));
   });
 };
 

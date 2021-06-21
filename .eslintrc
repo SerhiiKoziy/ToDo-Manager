@@ -1,33 +1,127 @@
 {
-  "extends": "airbnb",
   "parser": "babel-eslint",
+  "extends": "airbnb",
   "env": {
     "browser": true,
-    "node": true
-  },
-  "ecmaVersion": 6,
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
+    "node": true,
+    "jest": true,
+    "es6": true
   },
   "plugins": [
-    "react"
+    "redux-saga",
+    "react",
+    "eslint-plugin-react-hooks",
+    "jsx-a11y"
   ],
-  "settings": {
-    "react": {
-      "pragma": "React"
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "legacyDecorators": true
     }
   },
   "rules": {
-    //"arrow-body-style": [2, "always"],
-    "react/sort-comp": [0],
-    "arrow-body-style": ["error", "never"],
-    "react/jsx-no-bind": [2, {
-      "ignoreDOMComponents": false,
-      "ignoreRefs": false,
-      "allowArrowFunctions": false,
-      "allowFunctions": false,
-      "allowBind": false
-    }]
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "arrow-body-style": [
+      2,
+      "as-needed"
+    ],
+    "class-methods-use-this": 0,
+    "comma-dangle": [
+      2,
+      "always-multiline"
+    ],
+    "key-spacing":"off",
+    "global-require": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }],
+    "import/imports-first": 0,
+    "import/newline-after-import": 0,
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-named-as-default": 0,
+    "import/no-unresolved": 2,
+    "import/no-webpack-loader-syntax": 0,
+    "import/prefer-default-export": 0,
+    "no-nested-ternary": 0,
+    "indent": [
+      "error",
+      4
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "always"
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      "always"
+    ],
+    "operator-linebreak": 0,
+    "jsx-a11y/aria-props": 2,
+    "jsx-a11y/heading-has-content": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/label-has-for": 2,
+    "jsx-a11y/mouse-events-have-key-events": 2,
+    "jsx-a11y/role-has-required-aria-props": 2,
+    "jsx-a11y/role-supports-aria-props": 2,
+    "max-len": 0,
+    "newline-per-chained-call": 0,
+    "no-confusing-arrow": 0,
+    "no-console": 1,
+    "no-use-before-define": 0,
+    "prefer-template": 2,
+    "consistent-return": 0,
+    "react/forbid-prop-types": 0,
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-first-prop-new-line": [
+      2,
+      "multiline"
+    ],
+    "react/jsx-filename-extension": 0,
+    "react/jsx-no-target-blank": 0,
+    "react/require-default-props": 0,
+    "react/require-extension": 0,
+    "react/self-closing-comp": 0,
+    "react/jsx-indent": [
+      "error",
+      4
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      4
+    ],
+    "react/sort-comp": 0,
+    "no-return-assign": 0,
+    "redux-saga/no-yield-in-race": 2,
+    "redux-saga/yield-effects": 2,
+    "require-yield": 0,
+    "react/no-array-index-key": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-one-expression-per-line": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack/webpack.prod.js"
+      }
+    },
+    "import/ignore": [
+      "environment"
+    ],
+    "react": {
+      "version": "16.6.3"
+    }
   }
 }

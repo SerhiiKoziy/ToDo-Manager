@@ -14,7 +14,7 @@ const Input = ({ defaultValue = '', inputRef, onChange, onBlur, type, value, ...
     [defaultValue],
   );
 
-  const handleChange= useCallback(
+  const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
       if (typeof onChange === 'function') {
         onChange(e);

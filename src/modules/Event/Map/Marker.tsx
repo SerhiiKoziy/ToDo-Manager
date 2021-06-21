@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface IMarkerProps {
-  imageUrl?: string
+  imageUrl?: string;
 }
 
 const Marker = ({ imageUrl }: IMarkerProps) => (
-  <div className='markerMap'>
-    <img src={imageUrl} alt='' />
+  <div className="markerMap">
+    <img src={imageUrl} alt="" />
   </div>
 );
 

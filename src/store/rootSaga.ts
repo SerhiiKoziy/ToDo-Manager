@@ -7,7 +7,7 @@ import formSaga from './form/sagas';
 const sagas = [
   userSagas,
   eventsSagas,
-  formSaga
+  formSaga,
 ];
 
 export default function* rootSaga() {

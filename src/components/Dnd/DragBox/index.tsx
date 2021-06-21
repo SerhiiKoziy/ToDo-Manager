@@ -12,8 +12,8 @@ interface IBoxSource {
 const boxSource = {
   beginDrag({ name, eventId }: IBoxSource) {
     return {
-      name: name,
-      eventId: eventId,
+      name,
+      eventId,
     };
   },
 };
@@ -34,14 +34,14 @@ const DragBox = ({ children, isDragging, connectDragSource }: IDragBox) => {
             styles.taskDraggable,
             {
               [styles.isDragging]: isDragging,
-            }
+            },
           )
         }
       >
         {children}
       </div>,
     )
-  )
+  );
 };
 
 export default dragSource(
@@ -52,5 +52,5 @@ export default dragSource(
       connectDragSource: connect.dragSource(),
       isDragging: monitor.isDragging(),
     };
-  }
+  },
 )(DragBox);

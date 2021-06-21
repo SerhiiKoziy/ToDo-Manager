@@ -11,9 +11,9 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           {/*<Route path='/event/:taskId' component={() => <TaskPage /> } />*/}
-          <Route path='/' component={() => <Root /> } />
+          <Route path="/" component={() => <Root /> } />
 
-          <Redirect to='/' />
+          <Redirect to="/" />
         </Switch>
       </Suspense>
     </div>

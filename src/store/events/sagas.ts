@@ -15,10 +15,10 @@ import { getUserUid } from '../user/selectors';
 import IEvent from '@typing/IEvent';
 import IWeather from '@typing/IWeather';
 
-export const EVENTS_REQUESTED = "EVENTS_REQUESTED";
-export const UPDATE_EVENT = "UPDATE_EVENT";
-export const CREATE_EVENT = "CREATE_EVENT";
-export const DELETE_EVENT = "DELETE_EVENT";
+export const EVENTS_REQUESTED = 'EVENTS_REQUESTED';
+export const UPDATE_EVENT = 'UPDATE_EVENT';
+export const CREATE_EVENT = 'CREATE_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';
 
 // TODO add to events
 const getEventsFirebaseAction = async () => {
@@ -42,7 +42,7 @@ function* requestEventsAsync() {
 
     yield put(loadingEvent(false));
   } catch {
-    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error('THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER');
     yield put(loadingEvent(false));
   }
 }
@@ -58,22 +58,24 @@ function* createEventAsync() {
     const currentTime = new Date().getTime();
 
     const position = {
-        lat: 50.4501,
-        lng: 30.523400000000038,
-      };
+      lat: 50.4501,
+      lng: 30.523400000000038,
+    };
 
     const day = 1;
 
-    const getWeather = () => getWeatherByCoordinates(position, day).then((res) => res);
+    const getWeather = () => getWeatherByCoordinates(position, day).then(
+        (res): void => res,
+    );
     const weather: IWeather = yield call(getWeather);
 
     if (weather) {
       const preparedEvent: IEvent = {
         ...event,
-        uid: uid,
-        stageProces: 'ToDo',
+        uid,
         weather,
-        position: position,
+        position,
+        stageProces: 'ToDo',
         createdAt: currentTime,
       };
 
@@ -83,7 +85,7 @@ function* createEventAsync() {
 
     yield put(loadingEvent(false));
   } catch {
-    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error('THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER');
     yield put(loadingEvent(false));
   }
 }
@@ -109,12 +111,12 @@ function* updateEventAsync(action?: IUpdateEvent) {
 
     if (action) {
       const { payload: event } = action;
-      preparedEvent = {...event, updatedAt: currentTime}
+      preparedEvent = { ...event, updatedAt: currentTime };
     } else {
       const currentEvent: IEvent = yield select(getCurrentEvent);
       const formValues: IEvent = yield select(getEventFormValues);
 
-      preparedEvent = {...currentEvent, ...formValues, updatedAt: currentTime};
+      preparedEvent = { ...currentEvent, ...formValues, updatedAt: currentTime };
     }
 
     if (preparedEvent) {
@@ -131,7 +133,7 @@ function* updateEventAsync(action?: IUpdateEvent) {
 
     yield put(loadingEvent(false));
   } catch {
-    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error('THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER');
     yield put(loadingEvent(false));
   }
 }
@@ -140,19 +142,19 @@ export async function deleteEventFirebase(eventId: IEvent['eventId']) {
   return await deleteEvent(eventId)
     .then((res: Promise<any>) => res)
     .catch((error) => {
-      console.log('error', error)
+      console.log('error', error);
     });
 }
 
 interface IDeleteEventAsyncProps extends AnyAction {
-  payload: IEvent; //TODO fix type
+  payload: IEvent; // TODO fix type
 }
 
 function* deleteEventAsync({ payload: { eventId } }: IDeleteEventAsyncProps) {
   yield put(loadingEvent(true));
 
   try {
-    const deleteEvent = () => deleteEventFirebase(eventId) //TODO change name
+    const deleteEvent = () => deleteEventFirebase(eventId) // TODO change name
       .then((res: IEvent[]) => res)
       .catch(() => console.error('Event update'));
 
@@ -160,7 +162,7 @@ function* deleteEventAsync({ payload: { eventId } }: IDeleteEventAsyncProps) {
     yield call(requestEventsAsync);
     yield put(loadingEvent(false));
   } catch {
-    console.error("THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER");
+    console.error('THE REQUEST HAS FAILED AND THIS IS ERROR HANDLER');
     yield put(loadingEvent(false));
   }
 }

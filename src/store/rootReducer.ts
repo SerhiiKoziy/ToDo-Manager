@@ -7,7 +7,7 @@ import loadingReducer from './loading/reducer';
 import { IEventsState, eventsReducer, RESET_CURRENT_EVENT } from './events/reducer';
 import { IUserState, userReducer } from './user/reducer';
 
-export interface StoreState {
+export interface IStoreState {
   isLoading: boolean;
   user: IUserState;
   events: IEventsState;
@@ -16,21 +16,20 @@ export interface StoreState {
 }
 
 export const createRootReducer = (history: History) => (
-  combineReducers<StoreState>({
+  combineReducers<IStoreState>({
     isLoading: loadingReducer,
     user: userReducer,
     events: eventsReducer,
     form: formReducer.plugin({
       EVENT_FORM: (state, action) => {
-        switch(action.type) {
+        switch (action.type) {
           case RESET_CURRENT_EVENT:
             return null;       // <--- blow away form data
           default:
             return state;
         }
-      }
+      },
     }),
     router: connectRouter(history),
   })
 );
-

@@ -1,8 +1,7 @@
-﻿import React, { useEffect, useState, ReactNode } from 'react';
+import React, { useEffect, useState, ReactNode } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { push } from 'react-router-redux';
-import { useParams } from 'react-router-dom';
 
 import { Event } from '@modules/Event';
 
@@ -23,9 +22,9 @@ const EventPage = ({ events, deleteTask, children }: IEventPageProps) => {
   useEffect(
     () => {
       const task = events.find((event: IEvent) => event.eventId === taskId);
-      task && setCurrentTask(task)
+      task && setCurrentTask(task);
     },
-    [events]
+    [events],
   );
 
   const handleDeleteTask = (currentTask: IEvent) => {
@@ -62,5 +61,5 @@ export default connect(
   (state: IState) => ({
     events: state.events.list, // TODO add hooks
   }),
-  { push }
+  { push },
 )(EventPage);

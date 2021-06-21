@@ -111,4 +111,4 @@ const Header = ({ handleAuth }: IHeaderProps) => {
   );
 };
 
-export default Header
+export default Header;

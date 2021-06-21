@@ -3,8 +3,7 @@ export default interface IUserMeta {
   displayName: string;
   email: string;
   emailVerified: boolean;
-  providerData: any[]
+  providerData: any[];
   photoURL: string;
   phoneNumber: string | null;
 }
-

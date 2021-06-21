@@ -52,18 +52,18 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
             >
               <input
                 className={styles.input}
-                type='email'
+                type="email"
                 onChange={onChangeEmail}
                 value={email}
                 disabled
-                placeholder='Email'
+                placeholder="Email"
               />
               <Button
                 className={styles.nextButton}
-                name='next'
-                size='small'
-                variant='outlined'
-                type='submit'
+                name="next"
+                size="small"
+                variant="outlined"
+                type="submit"
               >
                 Next
               </Button>
@@ -78,18 +78,18 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
               }}
             >
               <input
-                type='password'
-                placeholder='Password'
+                type="password"
+                placeholder="Password"
                 onChange={onChangePassword}
                 value={password}
                 disabled
               />
               <Button
                 className={styles.nextButton}
-                name='login'
-                size='small'
-                variant='text'
-                type='submit'
+                name="login"
+                size="small"
+                variant="text"
+                type="submit"
               >
                 {isCreationAccount ? 'Create account and log in' : 'Log in'}
               </Button>
@@ -109,7 +109,7 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
       <div className={styles.societyButton}>
         <Button
           className={styles.googleAuth}
-          name='login-google'
+          name="login-google"
           variant="outlined"
           onClick={handleLoginWithGoogle}
         >
@@ -117,7 +117,7 @@ const Login = ({ className, email, password, phase, onSubmit, onChangeEmail, onC
         </Button>
       </div>
     </div>
-  )
+  );
 };
 
 export default Login;

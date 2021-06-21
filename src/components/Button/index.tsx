@@ -10,7 +10,7 @@ interface Props {
 
 const Button = ({ children, variant, onClick }: Props) => {
   let buttonClass = styles.primaryButton;
-  if (variant && variant === "transparent") {
+  if (variant && variant === 'transparent') {
     buttonClass = styles.transparentButton;
   }
   return (

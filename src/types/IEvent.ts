@@ -13,7 +13,7 @@ export default interface IEvent {
   description: string;
   eventId: string;
   position: IPosition;
-  stageProces: string;//TODO Change in base
+  stageProces: string; // TODO Change in base
   updatedAt: number;
   weather: IWeather;
   taskId?: string;

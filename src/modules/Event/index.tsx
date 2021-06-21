@@ -63,7 +63,7 @@ export const Event = ({ event, onDelete, onEditEvent, className }: IEventProps) 
         </div>
 
         <div className={styles.weatherIndicator}>
-          <img src={cloudImageUrl} alt='' />
+          <img src={cloudImageUrl} alt="" />
         </div>
       </div>
 

@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { auth } from 'firebase/app';
 import { Button } from '@material-ui/core';
 
-import { getIsUserLogin } from "@store/user/selectors";
+import { getIsUserLogin } from '@store/user/selectors';
 
 import Login from './Login';
 import Registration from './Registration';
@@ -17,16 +17,14 @@ const Authorization = () => {
   const [password, setPassword] = useState('');
   const isUserLogin = useSelector(getIsUserLogin);
 
-  const sighOut = useCallback(
-    () => {
-      auth().signOut();
+  const sighOut = () => {
+    auth().signOut();
       // dispatch(deleteUserStore()); //TODO add handler
-    }, []
-  );
+  };
 
   const handleChangeType = useCallback(
     () => setType(type === 'login' ? 'registration' : 'login'),
-    [type]
+    [type],
   );
 
   const loginWithEmail = async () => await auth().fetchSignInMethodsForEmail(email);
@@ -56,11 +54,11 @@ const Authorization = () => {
         loginWithEmail()
           .then((res) => {
             if (res && res.length === 0) {
-              console.log("Invalid login email. Please, registration your profile or choose a social button.");
+              console.log('Invalid login email. Please, registration your profile or choose a social button.');
             }
           })
           .catch((err) => {
-            console.log("Error:", err);
+            console.log('Error:', err);
           });
       }
     },

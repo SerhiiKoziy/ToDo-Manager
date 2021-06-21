@@ -12,7 +12,7 @@ interface ISimpleMapProps {
 
 const SimpleMap = ({ image, position, zoom = 10 }: ISimpleMapProps) => {
   return (
-    <div className='map'>
+    <div className="map">
       <GoogleMapReact
         defaultCenter={position}
         defaultZoom={zoom}

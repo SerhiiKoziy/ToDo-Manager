@@ -20,7 +20,7 @@ interface IDustbin {
 const Dustbin = ({ isOver, canDrop, connectDropTarget, children }: IDustbin): ReactNode => {
   const isActive = useMemo(
     () => isOver && canDrop,
-    [isOver && canDrop]
+    [isOver && canDrop],
   );
 
   return (
@@ -32,14 +32,14 @@ const Dustbin = ({ isOver, canDrop, connectDropTarget, children }: IDustbin): Re
             {
               [styles.isActive]: isActive,
               [styles.canDrop]: canDrop,
-            }
+            },
           )
         }
       >
         {children}
       </div>,
     )
-  )
+  );
 };
 
 export default dropTarget(
@@ -49,5 +49,5 @@ export default dropTarget(
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop(),
-  })
+  }),
 )(Dustbin);

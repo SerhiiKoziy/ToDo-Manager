@@ -60,26 +60,6 @@
         ],
         "matching-rules": [
           {
-            "matches": "@(\\@typing)",
-            "imports-group": "types"
-          },
-          {
-            "matches": "@(\\@api)",
-            "imports-group": "api"
-          },
-          {
-            "matches": "@(\\@configs)",
-            "imports-group": "configs"
-          },
-          {
-            "matches": "@(\\@utils)",
-            "imports-group": "utils"
-          },
-          {
-            "matches": "@(\\@store)",
-            "imports-group": "store"
-          },
-          {
             "matches": "@(\\@components)",
             "imports-group": "components"
           },
@@ -90,6 +70,26 @@
           {
             "matches": "@(\\@modules)",
             "imports-group": "modules"
+          },
+          {
+            "matches": "@(\\@api)",
+            "imports-group": "api"
+          },
+          {
+            "matches": "@(\\@store)",
+            "imports-group": "store"
+          },
+          {
+            "matches": "@(\\@configs)",
+            "imports-group": "configs"
+          },
+          {
+            "matches": "@(\\@typing)",
+            "imports-group": "types"
+          },
+          {
+            "matches": "@(\\@utils)",
+            "imports-group": "utils"
           },
           {
             "matches": "@(\\./styles\\.scss)$",

@@ -7,7 +7,6 @@ interface IAction {
 export const actionFactory = (actionType: any, value?: any): IAction => {
   const action: IAction = { type: actionType };
 
-
   if (typeof value !== 'undefined') {
     action.payload = value;
   }
@@ -39,7 +38,6 @@ const transformReducer = (reducerAsObject: any, getDefaultState: any): any => {
     return updatedState || state;
   };
 };
-
 
 export const reducersSet: any = {};
 

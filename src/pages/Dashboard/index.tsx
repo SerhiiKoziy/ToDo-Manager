@@ -12,8 +12,7 @@ import DragBox from '@components/Dnd/DragBox';
 import EventStatus from '@typing/EventStatus';
 import IEvent from '@typing/IEvent';
 
-import { getEventsList } from '@store/events/selectors';
-import { getEventsIsLoading } from '@store/events/selectors';
+import { getEventsList, getEventsIsLoading } from '@store/events/selectors';
 import { setCurrentEvent, updateEvent, deleteEvent } from '@store/events/actionCreators';
 
 import styles from './styles.module.scss';

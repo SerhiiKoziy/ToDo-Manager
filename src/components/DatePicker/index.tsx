@@ -8,7 +8,6 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-
 import buildClassName from '../../utils/buildClassName';
 import styles from './styles.module.scss';
 
@@ -90,7 +89,7 @@ const DatePicker = ({ className, input, disabledDates, defaultValue, required, m
         )}
 
         <KeyboardDatePicker
-          variant='inline'
+          variant="inline"
           format={DATE_FORMAT}
           value={currentValue || null}
           innerRef={setInputRef}
@@ -112,7 +111,7 @@ const DatePicker = ({ className, input, disabledDates, defaultValue, required, m
         )}
       </FormControl>
     </MuiPickersUtilsProvider>
-  )
+  );
 };
 
 export default DatePicker;

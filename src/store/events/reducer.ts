@@ -1,4 +1,4 @@
-import IEvent from '@typing/IEvent'
+import IEvent from '@typing/IEvent';
 
 export interface IEventsState {
   list: IEvent[];
@@ -13,9 +13,9 @@ const defaultEventsReducer = {
 };
 
 export const LOADING_EVENT = 'LOADING_EVENT';
-export const SET_EVENTS = "SET_EVENTS";
-export const SET_CURRENT_EVENT = "SET_CURRENT_EVENT";
-export const RESET_CURRENT_EVENT = "RESET_CURRENT_EVENT";
+export const SET_EVENTS = 'SET_EVENTS';
+export const SET_CURRENT_EVENT = 'SET_CURRENT_EVENT';
+export const RESET_CURRENT_EVENT = 'RESET_CURRENT_EVENT';
 
 export const eventsReducer = (state: IEventsState = defaultEventsReducer, action: any) => {
   const { type, payload } = action;
@@ -24,13 +24,13 @@ export const eventsReducer = (state: IEventsState = defaultEventsReducer, action
     case LOADING_EVENT:
       return {
         ...state,
-        isLoading: payload
+        isLoading: payload,
       };
 
     case SET_EVENTS:
       return {
         ...state,
-        list: payload
+        list: payload,
       };
 
     case SET_CURRENT_EVENT:

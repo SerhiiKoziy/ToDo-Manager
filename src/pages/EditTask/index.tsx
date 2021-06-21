@@ -28,7 +28,7 @@ const EditTask = ({ events }: IEditTaskProps) => {
   );
 
   return (
-    <div className='edit-page '>
+    <div className="edit-page ">
       {
         currentTask && (
           <Event
@@ -38,7 +38,7 @@ const EditTask = ({ events }: IEditTaskProps) => {
           />
         )
       }
-      <div className='builder-task'>
+      <div className="builder-task">
         {/*<CreateTask*/} //TODO return creating
         {/*  // key={currentTask.updatedAt}*/}
         {/*  currentTask={currentTask || {}}*/}
@@ -47,9 +47,9 @@ const EditTask = ({ events }: IEditTaskProps) => {
         {/*/>*/}
       </div>
     </div>
-  )
+  );
 };
 
 export default connect((state: IState) => ({
   events: state.events.list,
-}), { push })(EditTask);
+}),                    { push })(EditTask);

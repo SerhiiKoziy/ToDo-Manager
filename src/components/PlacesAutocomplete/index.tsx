@@ -1,18 +1,16 @@
 import React, { ReactElement, useEffect, useState, useMemo, ReactNode, useCallback, SetStateAction } from 'react';
 
-import { WrappedFieldProps } from 'redux-form';
-import { FormControl, FormHelperText, InputLabel } from '@material-ui/core';
+// import { WrappedFieldProps } from 'redux-form';
+// import { FormControl, FormHelperText, InputLabel } from '@material-ui/core';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-
-
-import buildClassName from '../../utils/buildClassName';
-import styles from './styles.module.scss';
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardDatePicker,
+// } from '@material-ui/pickers';
+//
+// import buildClassName from '../../utils/buildClassName';
+// import styles from './styles.module.scss';
 
 interface IPlacesAutocomplete {
   label?: ReactNode;
@@ -24,7 +22,7 @@ interface IPlacesAutocomplete {
 
 const DATE_FORMAT = 'dd.MM.yyyy';
 
-const PlacesAutocompleteComponent = ({ className, defaultValue, required, label, ...rest }: IPlacesAutocomplete ): ReactElement => {
+const PlacesAutocompleteComponent = ({ className, defaultValue, required, label, ...rest }: IPlacesAutocomplete): ReactElement => {
   // const [isFocused, setIsFocused] = useState<boolean>(false);
   // const [hasError, setHasError] = useState<boolean>(false);
   const [address, setAddress] = useState<boolean>(false);
@@ -74,15 +72,12 @@ const PlacesAutocompleteComponent = ({ className, defaultValue, required, label,
 
   const handleSelect = async (addressValue: SetStateAction<boolean>) => {
     setAddress(addressValue);
-    console.log('address', addressValue)
-    console.log('geocodeByAddress(address)', geocodeByAddress)
+    console.log('address', addressValue);
+    console.log('geocodeByAddress(address)', geocodeByAddress);
     if (geocodeByAddress) {
-      const a = geocodeByAddress(addressValue, (res: any, res2: any, res3: any) => {
-        console.log('res', res)
-        console.log('res2', res2)
-        console.log('res3', res3)
+      return geocodeByAddress(addressValue, (res: any, res2: any, res3: any) => {
+        console.log('res', res, res2, res3);
       });
-      console.log('111a', a)
     }
     // return await geocodeByAddress(address)
     //   .then((results: any) => {
@@ -97,10 +92,6 @@ const PlacesAutocompleteComponent = ({ className, defaultValue, required, label,
     //   .then((results: any) => getLatLng(results[0]))
     //   .then((latLng: any) => console.log('Success', latLng))
     //   .catch((error: any) => console.error('Error', error));
-  };
-
-  const renderFunc = () => {
-
   };
 
   return (
@@ -167,7 +158,7 @@ const PlacesAutocompleteComponent = ({ className, defaultValue, required, label,
                   className: 'location-search-input',
                 })}
               />
-              <div className='autocomplete-dropdown-container'>
+              <div className="autocomplete-dropdown-container">
                 {loading && <div>Loading...</div>}
                 {
                   suggestions.map((suggestion: any) => {
@@ -193,11 +184,11 @@ const PlacesAutocompleteComponent = ({ className, defaultValue, required, label,
                 }
               </div>
             </div>
-          )
+          );
         }
       }
     </PlacesAutocomplete>
-  )
+  );
 };
 
 export default PlacesAutocompleteComponent;

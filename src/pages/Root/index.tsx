@@ -21,7 +21,7 @@ interface IRootProps {
 }
 
 const Root = ({ children }: IRootProps) => {
-  const [ openAuth, setOpenAuth ] = useState<boolean>(false);
+  const [ openAuth, setOpenAuth] = useState<boolean>(false);
   const dispatch = useDispatch();
   const userMeta = useSelector(getUserMeta);
 
@@ -52,7 +52,7 @@ const Root = ({ children }: IRootProps) => {
             {
               [styles.open]: openAuth,
               [styles.close]: !openAuth,
-            }
+            },
           )
         }
       >
@@ -76,4 +76,4 @@ const Root = ({ children }: IRootProps) => {
   );
 };
 
-export default Root
+export default Root;

@@ -35,8 +35,8 @@ const firebasePostRequest = async (endpoint: string, data: any) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'crossDomain': true,
+          Authorization: `Bearer ${token}`,
+          crossDomain: true,
         },
       },
     )
@@ -47,7 +47,7 @@ export const checkConnection = async () => {
   let result = false;
 
   await database.ref('.info/connected')
-    .on('value', snap => {
+    .on('value', (snap): void => {
       if (snap.val() && window.navigator.onLine) {
         result = true;
       }
@@ -76,10 +76,10 @@ export const initUser = async (entryId: string, email: string) => {
   await getToken();
   const { data } = await firebasePostRequest('initUser', { entryId, email });
 
-  if (data && data.token) (
-    firebase.auth().signInWithCustomToken(data.token)
-      .then(() => 'Admin Success')
-  );
+  if (data && data.token) {
+    return firebase.auth().signInWithCustomToken(data.token)
+      .then(() => 'Admin Success');
+  }
 
   return 'User';
 };
